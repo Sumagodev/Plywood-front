@@ -1,0 +1,103 @@
+.subscription-card-container {
+  background-image: url(../image/home/images/backimg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 1px;
+}
+
+.subscription-card-container .subscription-card {
+  background-color: #ffffff;
+  box-shadow: 12px 14px 35px 0px #00000040;
+  border-radius: 20px;
+  margin-bottom: 50px !important;
+}
+
+.subscription-card-container .subscription-card .subscription-card-heading {
+  background: linear-gradient(90deg,
+      #6c4f37 0%,
+      rgba(103, 67, 32, 0.580081) 66.96%,
+      rgba(96, 50, 0, 0) 100%);
+  color: white;
+  /* font-size: 1.2rem; */
+  text-align: center;
+  border-radius: 50px 0 0 50px;
+  padding: 5px 40px 5px 14px;
+  /* margin-left: 20px; */
+}
+
+.subscription-card-container .subscription-card .subscription-card-price {
+  color: #624832;
+  /* font-weight: 800; */
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.subscription-card-container .subscription-card .subscription-card-days {
+  color: black;
+}
+
+.subscription-card-container .subscription-card .subsctiption-card-button {
+  background-color: #624832 !important;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  /* border: none; */
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 2vh 3.5vw;
+  margin-bottom: -50px;
+}
+
+
+
+
+
+
+.mysubscription-main-container .mysubscription-heading-container .theme-outline-button {
+  background-color: #5A432F;
+  color: white;
+  font-weight: 500;
+}
+
+.mysubscription-main-container .mysubscription-heading-container .theme-outline-button:hover {
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: white;
+  color: #5A432F;
+  border: 1px solid #5A432F;
+  transition: all ease 0.3s;
+}
+
+.mysubscription-main-container .profile-section-container {
+  background-color: #F5F1E8;
+  box-shadow: 15px 18px 35px 0px #00000040;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.mysubscription-main-container .profile-section-container .sub-section-1 {
+  background-color: #6C4F37;
+  box-shadow: 15px 18px 35px 0px #00000040;
+  margin: 0 !important;
+  padding: 20px;
+}
+
+.mysubscription-main-container .profile-section-container .theme-outline-button {
+  background: none;
+  border: 1px solid #F5F1E8;
+  border-radius: 10px;
+  color: white;
+}
+
+.mysubscription-main-container .profile-section-container .theme-outline-button:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 15px 18px 35px 0px #00000040;
+  transition: all ease 0.3s;
+}
+
+.mysubscription-main-container .profile-section-container .sub-section-2 {
+  margin: 0 !important;
+  padding: 20px;
+  color: black;
+}

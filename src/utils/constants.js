@@ -1,0 +1,1 @@
+export const AUTH_TOKEN = "PLYWOOD_BAZAR_AUTH"
