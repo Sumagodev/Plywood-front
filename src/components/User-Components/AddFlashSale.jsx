@@ -260,7 +260,7 @@ export default function AddFlashSale() {
                   </label>
 
                   <select
-                    className="form-control"
+                    className="form-control "
                     value={productId}
                     onChange={(e) => {
                       setProductId(e.target.value);
@@ -287,14 +287,14 @@ export default function AddFlashSale() {
                   <label>
                     Discount type <span className="text-danger">*</span>
                   </label>
-                  <select
+                  <select 
                     onChange={(e) => {
                       setDiscountType(e.target.value);
                       setDiscountValue(0);
                       setSalePrice(0);
                     }}
                     value={discountType}
-                    className="form-control"
+                    className="form-control" 
                   >
                     <option value={"Percentage"}>Percentage</option>
                     <option value={"Amount"}>Amount</option>

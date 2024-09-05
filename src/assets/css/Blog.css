@@ -133,3 +133,10 @@
   font-size: 1.7rem;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .main-blog .overlayflowscroll .tab .blog2_heading {
+  
+    font-size: 1.2rem;
+  }
+}

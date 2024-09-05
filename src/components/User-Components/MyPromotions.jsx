@@ -148,6 +148,8 @@ export default function MyPromotions() {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
                                             <div className="row mt-4">
                                                 <div className="col-12">
                                                

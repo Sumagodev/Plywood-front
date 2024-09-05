@@ -57,7 +57,7 @@ import { BiSolidMessage } from "react-icons/bi";
 import { MdThumbUp } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import greenimg from "../assets/image/home/images/greenlam1.png";
-import "../assets/css/Blog.css"
+import "../assets/css/Blog.css";
 
 function Index() {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -122,8 +122,6 @@ function Index() {
       // toastError(err)
     }
   };
-
-
 
   function getCurrentDimension() {
     return {
@@ -419,42 +417,36 @@ function Index() {
     setActiveTab(tab);
   };
 
-
   const [blogsArr, setBlogsArr] = useState([]);
   const [showBlogs, setShowBlogs] = useState(true);
   const [blogVideoArr, setBlogVideoArr] = useState([]);
 
   const handleGetBlogs = async () => {
-      try {
-          let { data: res } = await getBlogApi();
-          if (res.data) {
-              setBlogsArr(res.data);
-          }
+    try {
+      let { data: res } = await getBlogApi();
+      if (res.data) {
+        setBlogsArr(res.data);
       }
-      catch (err) {
-          console.log(err)
-      }
-  }
-
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleGetBlogVideo = async () => {
-      try {
-          let { data: res } = await getBlogVideoApi();
-          if (res.data) {
-              setBlogVideoArr(res.data);
-          }
+    try {
+      let { data: res } = await getBlogVideoApi();
+      if (res.data) {
+        setBlogVideoArr(res.data);
       }
-      catch (err) {
-          console.log(err)
-      }
-  }
-
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-      handleGetBlogs()
-      handleGetBlogVideo()
-  }, [])
-
+    handleGetBlogs();
+    handleGetBlogVideo();
+  }, []);
 
   return (
     <main>
@@ -581,7 +573,7 @@ function Index() {
               </p>
               <div className=" d-flex justify-content-center">
                 <button className="text-center fs-5 fw-bold text-white prdbtn px-4 py-2">
-                  1 Get Deal
+                  Get Quote
                 </button>
               </div>
             </Col>
@@ -601,7 +593,7 @@ function Index() {
               </p>
               <div className=" d-flex justify-content-center">
                 <button className="text-center fs-5 fw-bold text-white prdbtn px-4 py-2">
-                  1 Get Deal
+                  Get Quote
                 </button>
               </div>
             </Col>
@@ -621,7 +613,7 @@ function Index() {
               </p>
               <div className=" d-flex justify-content-center">
                 <button className="text-center fs-5 fw-bold text-white prdbtn px-4 py-2">
-                  1 Get Deal
+                  Get Quote
                 </button>
               </div>
             </Col>
@@ -641,7 +633,7 @@ function Index() {
               </p>
               <div className=" d-flex justify-content-center">
                 <button className="text-center fs-5 fw-bold text-white prdbtn px-4 py-2">
-                  1 Get Deal
+                  Get Quote
                 </button>
               </div>
             </Col>
@@ -658,7 +650,15 @@ function Index() {
         <Container className="product-container-section">
           <h1 className="heading text-center">Products May You Like</h1>
           <Row>
-            <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
+            <Col
+              className="d-flex justify-content-center align-items-center py-4"
+              xxl={3}
+              xl={3}
+              lg={6}
+              md={6}
+              sm={6}
+              xs={6}
+            >
               <div className="box_Product1">
                 <img src={greenimg} alt="" />
                 <span className="icn_Product">
@@ -671,10 +671,18 @@ function Index() {
                   </span>
                   <span className="Rs-1">₹3360</span>
                 </div>
-                <button>1 Get Deal</button>
+                <button>Get Quote</button>
               </div>
             </Col>
-            <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
+            <Col
+              className="d-flex justify-content-center align-items-center py-4"
+              xxl={3}
+              xl={3}
+              lg={6}
+              md={6}
+              sm={6}
+              xs={6}
+            >
               <div className="box_Product1">
                 <img src={greenimg} alt="" />
                 <span className="icn_Product">
@@ -687,10 +695,18 @@ function Index() {
                   </span>
                   <span className="Rs-1">₹3360</span>
                 </div>
-                <button>1 Get Deal</button>
+                <button>Get Quote</button>
               </div>
             </Col>
-            <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
+            <Col
+              className="d-flex justify-content-center align-items-center py-4"
+              xxl={3}
+              xl={3}
+              lg={6}
+              md={6}
+              sm={6}
+              xs={6}
+            >
               <div className="box_Product1">
                 <img src={greenimg} alt="" />
                 <span className="icn_Product">
@@ -703,10 +719,18 @@ function Index() {
                   </span>
                   <span className="Rs-1">₹3360</span>
                 </div>
-                <button>1 Get Deal</button>
+                <button>Get Quote</button>
               </div>
             </Col>
-            <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
+            <Col
+              className="d-flex justify-content-center align-items-center py-4"
+              xxl={3}
+              xl={3}
+              lg={6}
+              md={6}
+              sm={6}
+              xs={6}
+            >
               <div className="box_Product1">
                 <img src={greenimg} alt="" />
                 <span className="icn_Product">
@@ -719,12 +743,15 @@ function Index() {
                   </span>
                   <span className="Rs-1">₹3360</span>
                 </div>
-                <button>1 Get Deal</button>
+                <button>Get Quote</button>
               </div>
             </Col>
           </Row>
           <div className="d-flex justify-content-center align-items-center mt-3">
-            <button className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5" style={{backgroundColor:"rgba(96, 50, 0, 1)"}}>
+            <button
+              className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
+              style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
+            >
               View All
             </button>
           </div>
@@ -751,13 +778,13 @@ function Index() {
                           <div className="newprdcrd">
                             <img
                               src={generateImageUrl(el.image)}
-                              alt=""
-                              className="img-fluid"
+                              alt="" 
+                              className="img-fluid img1"
                             />
                             <div className="d-flex justify-content-center">
                               <LuPhoneCall className="phn rounded-circle p-2" />
                             </div>
-                            <h6 className="fs-6">{el.message}</h6>
+                            <h6 className="fs-6 msg1" >{el.message}</h6>
                             <button
                               onClick={() =>
                                 navigate(`/ShopDetail/${el?.productSlug}`)
@@ -935,7 +962,7 @@ function Index() {
                                 <img
                                   src={generateImageUrl(el.productId.mainImage)}
                                   alt=""
-                                  className="img-fluid ims"
+                                  className="img-fluid ims img1 "
                                 />
                                 <div className="overlyasper"></div>
                               </Link>
@@ -1135,58 +1162,69 @@ function Index() {
         </section>
       )} */}
 
-
       {/* states */}
 
       <section>
         <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
 
-
-
-
-
-
       <section>
-        <Container className="dealership-opportunities-container">
-          <Row>Dealership Opportunities</Row>
+        <Container className="dealership-oppo-container my-5">
+          <Row className="h1 justify-content-center text-center mb-5 text-black fw-bold">
+            Dealership Opportunities
+          </Row>
           <Row>
-            <Col>
-              <div>
-                <div></div>
-                <div></div>
+            <Col className="dealership-oppo-sub-container">
+              <div className="dealership-oppo-box">
+                <div className="dealership-oppo-img-box img-1">
+                  <div className="dealership-oppo-text-box-1">
+                    <span>1 stop shop</span> <br /> for all type of plywood &
+                    MDF HDMR
+                  </div>
+                </div>
+                <div className="dealership-oppo-text-box-2">Plywood & MDF</div>
               </div>
             </Col>
-            <Col>
-              <div>
-                <div></div>
-                <div></div>
+            <Col className="dealership-oppo-sub-container">
+              <div className="dealership-oppo-box">
+                <div className="dealership-oppo-img-box img-2">
+                  <div className="dealership-oppo-text-box-1">
+                    <span>New face of Luxury</span> <br />
+                    EXCLUSIVE veneers & laminate
+                  </div>
+                </div>
+                <div className="dealership-oppo-text-box-2">
+                  Laminates/veneers
+                </div>
               </div>
             </Col>
-            <Col>
-              <div>
-                <div></div>
-                <div></div>
+            <Col className="dealership-oppo-sub-container">
+              <div className="dealership-oppo-box">
+                <div className="dealership-oppo-img-box img-3">
+                  <div className="dealership-oppo-text-box-1">
+                    <span>Explore the Diverse</span> <br />
+                    Range of adhesives
+                  </div>
+                </div>
+                <div className="dealership-oppo-text-box-2">Adhesives</div>
               </div>
             </Col>
-            <Col>
-              <div>
-                <div></div>
-                <div></div>
+            <Col className="dealership-oppo-sub-container">
+              <div className="dealership-oppo-box">
+                <div className="dealership-oppo-img-box img-4">
+                  <div className="dealership-oppo-text-box-1">
+                    <span>Furniture fixtures</span> <br />
+                    at Affordable prices
+                  </div>
+                </div>
+                <div className="dealership-oppo-text-box-2">
+                  Hardware \ Furniture Fixtures
+                </div>
               </div>
             </Col>
           </Row>
         </Container>
       </section>
-
-
-
-
-
-
-
-
-
 
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
@@ -1218,7 +1256,6 @@ function Index() {
           </Swiper>
         </Container>
       </section>
-
 
       {/* <div className="blog-main-container-1 d-flex flex-wrap flex-column align-items-center gap-5 my-5">
         <div className="tabs">
@@ -1396,89 +1433,108 @@ function Index() {
         </div>
       </section> */}
 
-
-
-      
-        <Container fluid className="main-blog">
-            <div className="blog2 new_blog2 blog_container top-banner ptb-80">
-                <div className="container-fluid d-flex justify-content-center align-items-center">
-                    <div className="row overlayflowscroll">
-                        <div className={`tab col-lg-2 col-12 ${showBlogs == true ? "active-tab" : "in-active"}`} onClick={() => setShowBlogs(true)}>
-                            <div className="blog2_heading">
-                                News
-                            </div>
-                        </div>
-                        &nbsp;
-                        <div className={`tab col-lg-2 col-12 ${showBlogs == false ? "active-tab" : "in-active"}`} onClick={() => setShowBlogs(false)}>
-                            <div className="blog2_heading">
-                                Video
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <Container fluid className="main-blog">
+        <div className="blog2 new_blog2 blog_container top-banner ptb-80">
+          <div className="container-fluid d-flex justify-content-center align-items-center">
+            <div className="row overlayflowscroll">
+              <div
+                className={`tab col-lg-2 col-12 ${
+                  showBlogs == true ? "active-tab" : "in-active"
+                }`}
+                onClick={() => setShowBlogs(true)}
+              >
+                <div className="blog2_heading">News</div>
+              </div>
+              &nbsp;
+              <div
+                className={`tab col-lg-2 col-12 ${
+                  showBlogs == false ? "active-tab" : "in-active"
+                }`}
+                onClick={() => setShowBlogs(false)}
+              >
+                <div className="blog2_heading">Video</div>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div className="blog2 new_blog2 blog_container ">
-                <div className="container-fluid">
-                    {
-                        showBlogs ?
-                            <div className="row news-1">
-                                {
-                                    blogsArr && blogsArr.length > 0 && blogsArr.map((el, index) => {
-                                        return (
-                                            <div key={index} className="col-xxl-3 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
-                                                <div className="blog_listing">
-                                                    <div className="blog_listing_img">
-                                                        <img src={generateImageUrl(el.image)} alt="" className="img-fluid blogImage" />
-                                                    </div>
-                                                    <div className="list_content_blog">
-                                                        <h6>{el?.name}</h6>
-                                                        {/* <h4> How to Secure Your Ecommerce Website from Cyberattacks</h4> */}
-                                                        <div dangerouslySetInnerHTML={{ __html: el?.description.slice(0, 100) }}></div>
-                                                        <Link to={`/blog-detail/${el._id}`} className="btn blog_readmore">Read More <BsArrowRight className="blog_arrow" /></Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-
-                            </div>
-                            :
-                            <div className="row video-2">
-                                {
-                                    blogVideoArr && blogVideoArr.length > 0 && blogVideoArr.map((el, index) => {
-                                        return (
-                                            <div key={index} className="col-xxl-4 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
-                                                <div className="blog_listing">
-                                                    <div className="blog_listing_img">
-                                                        {/* {el.url} */}
-                                                        {
-                                                            el.url && el.url.includes("http") &&
-                                                            <iframe src={(el.url)} allowFullScreen frameborder="0" className="img-fluid blogImage"></iframe>
-                                                        }
-                                                        {/* <img src={generateImageUrl(el.image)} alt="" className="img-fluid blogImage" /> */}
-                                                    </div>
-                                                    {/* <div className="list_content_blog">
+        <div className="blog2 new_blog2 blog_container ">
+          <div className="container-fluid">
+            {showBlogs ? (
+              <div className="row news-1">
+                {blogsArr &&
+                  blogsArr.length > 0 &&
+                  blogsArr.map((el, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="col-xxl-3 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center"
+                      >
+                        <div className="blog_listing">
+                          <div className="blog_listing_img">
+                            <img
+                              src={generateImageUrl(el.image)}
+                              alt=""
+                              className="img-fluid blogImage"
+                            />
+                          </div>
+                          <div className="list_content_blog">
+                            <h6>{el?.name}</h6>
+                            {/* <h4> How to Secure Your Ecommerce Website from Cyberattacks</h4> */}
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: el?.description.slice(0, 100),
+                              }}
+                            ></div>
+                            <Link
+                              to={`/blog-detail/${el._id}`}
+                              className="btn blog_readmore"
+                            >
+                              Read More <BsArrowRight className="blog_arrow" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            ) : (
+              <div className="row video-2">
+                {blogVideoArr &&
+                  blogVideoArr.length > 0 &&
+                  blogVideoArr.map((el, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="col-xxl-4 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center"
+                      >
+                        <div className="blog_listing">
+                          <div className="blog_listing_img">
+                            {/* {el.url} */}
+                            {el.url && el.url.includes("http") && (
+                              <iframe
+                                src={el.url}
+                                allowFullScreen
+                                frameborder="0"
+                                className="img-fluid blogImage"
+                              ></iframe>
+                            )}
+                            {/* <img src={generateImageUrl(el.image)} alt="" className="img-fluid blogImage" /> */}
+                          </div>
+                          {/* <div className="list_content_blog">
                                                         <h6>{el?.name}</h6>
                                                         <div dangerouslySetInnerHTML={{ __html: el?.description.slice(0, 100) }}></div>
                                                         <Link to={`/blog-detail/${el._id}`} className="btn blog_readmore">Read More <BsArrowRight className="blog_arrow" /></Link>
                                                     </div> */}
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-
-                            </div>
-
-                    }
-                </div>
-            </div>
-        </Container>
-      
-
-
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+          </div>
+        </div>
+      </Container>
 
       {/* <section className="ptb-80 contact-us">
         <div className="container">

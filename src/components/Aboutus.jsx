@@ -197,10 +197,10 @@ const Aboutus = () => {
 
 
 
-        <Container fluid className="onboard_container  d-flex flex-wrap flex-column align-items-center justify-content-center ">
+        <Container fluid className="onboard_container  d-flex flex-wrap flex-column align-items-center justify-content-center">
           <h1 className="fw-bold pt-5">Why you should onboard with us</h1>
           <Row className="onboard_row p-3 ">
-            <Col lg={4} className="py-3" >
+            <Col lg={3} className="py-3" >
             <div className="onboard_col ">
               <img src={img1} alt="" />
               <h3 className="py-3">Sell on Plywood Bazar for free</h3>
@@ -215,7 +215,7 @@ const Aboutus = () => {
               </div>
             </Col>
 
-            <Col lg={4} className="py-3">
+            <Col lg={3} className="py-3">
             <div  className="onboard_col ">
               <img src={img2} alt="" />
               <h3 className="py-3">Connect with verified sellers.</h3>
@@ -230,7 +230,7 @@ const Aboutus = () => {
               </div>
             </Col>
 
-            <Col lg={4} className="py-3">
+            <Col lg={3} className="py-3">
             <div className="onboard_col">
               <img className="bg-light" src={img3} alt="" />
               <h3 className="py-3">Pay with plywood Bazar. <br />&nbsp;</h3>

@@ -3,16 +3,23 @@
   justify-content: center;
   align-items: center;
 }
+.msg1{
+  height: 50px;
+}
 
 .categoriesback {
 
   background-color: #f5f1e8;
+}
+.img1{
+  height: 200px;
 }
 
 .categoriescircle {
   background-color: #5a432f;
 
 }
+
 
 .ctimg {
   height: 200px;
@@ -946,4 +953,73 @@
     height: 13vmin;
     font-size: 1.1rem;
   }
+}
+
+
+
+
+
+/* Dealership Opportunities */
+
+
+
+.dealership-oppo-container .dealership-oppo-sub-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .dealership-oppo-img-box{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 300px;
+  height: 380px;
+  overflow: hidden;
+}
+
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .img-1{
+  background-image: url(../../assets/image/home/images/deal-img-1.png);
+  border-radius: 70px 0 0 0;
+}
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .img-2{
+  background-image: url(../../assets/image/home/images/deal-img-2.png);
+}
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .img-3{
+  background-image: url(../../assets/image/home/images/deal-img-3.png);
+}
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .img-4{
+  background-image: url(../../assets/image/home/images/deal-img-4.png);
+  border-radius: 0 0 70px 0;
+}
+
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .dealership-oppo-text-box-1{
+  background: linear-gradient(180deg, rgba(96, 50, 0, 0) 0%, rgba(96, 50, 0, 0.8) 35.92%, #603200 54.5%);
+  width: 100%;
+  padding: 30px 0 30px 50px;
+  color: white;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .dealership-oppo-text-box-1 span{
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .dealership-oppo-text-box-2{
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 600;
 }

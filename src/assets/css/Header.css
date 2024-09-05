@@ -207,9 +207,9 @@
   bottom: 50px;
 }
 @media (max-width: 768px) {
-  .form-control {
+  /* .form-control {
     width: auto !important;
-  }
+  } */
 
   .searchBox {
     width: auto !important;

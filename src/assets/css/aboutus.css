@@ -11,6 +11,9 @@
     gap: 5vmin;
 }
 
+.onboard_row{
+    margin-left: 20rem;
+}
 .AboutUS_Header1 .Header_img {
     height: max-content;
     width: max-content;
@@ -186,6 +189,17 @@
   .Card_bottum {
     padding: 15px; /* Adjust padding inside the card */
   }
+  .AboutUS_Header1 .Header_text{
+    font-size: 16px;
+  }
+  .Company_mission_main .Company_mission_img{
+    height: 200px;
+    width: 200px;
+    margin-top: -50px;
+  }
+  .onboard_row{
+    margin-left: 0px;
+}
 }
 
 

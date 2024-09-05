@@ -89,8 +89,11 @@ export default function RecentActivities() {
                 </div>
 
             </div>
-
+                    
 
         </div >
+
+
+
     )
 }

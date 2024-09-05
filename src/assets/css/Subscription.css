@@ -29,7 +29,7 @@
 .subscription-card-container .subscription-card .subscription-card-price {
   color: #624832;
   /* font-weight: 800; */
-  font-size: 4rem;
+  font-size: 3.5rem;
   line-height: 1;
 }
 
@@ -55,11 +55,13 @@
 
 
 .mysubscription-main-container .mysubscription-heading-container .theme-outline-button {
-  background-color: #5A432F;
-  color: white;
+  background-color: white;
+  color: #5A432F;
   font-weight: 500;
+  /* font-size: 20px;
+  border-radius: 10px;
+  height: 35px; */
 }
-
 .mysubscription-main-container .mysubscription-heading-container .theme-outline-button:hover {
   box-shadow: 0px 4px 4px 0px #00000040;
   background-color: white;
@@ -80,6 +82,7 @@
   box-shadow: 15px 18px 35px 0px #00000040;
   margin: 0 !important;
   padding: 20px;
+  
 }
 
 .mysubscription-main-container .profile-section-container .theme-outline-button {

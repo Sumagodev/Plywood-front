@@ -12,6 +12,7 @@ import { errorToast, successToast } from "../Utility/Toast";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toastSuccess } from "../../utils/toastutill";
 import { getUserById } from "../../services/User.service";
+import { Container,Row,Col } from "react-bootstrap";
 export default function MyFlashSales() {
   const navigate = useNavigate();
   let userObj = useSelector((state) => state.auth.user);
@@ -119,7 +120,7 @@ export default function MyFlashSales() {
           </div>
         )}
         <div className="row mt-4">
-          <div className="col-12">
+          <div className="col-12 col-sm-12 col-md-12">
             <div className="row d-flex justify-content-between">
               {flashSalesArr && flashSalesArr.length > 0 ? (
                 flashSalesArr.map((el, index) => {
@@ -127,7 +128,7 @@ export default function MyFlashSales() {
                     <div
                       key={index}
                       className="profile-section-container col-lg-4 col-12"
-                      style={{ width: "30%" }}
+                      
                     >
                       <div className="row">
                         <div className="col-3">
@@ -152,19 +153,21 @@ export default function MyFlashSales() {
                           </div>
                         </div>
                       </div>
-                      <div className="row mt-4">
-                        <div className="col-5 my-1">Product Name:</div>
-                        <div className="col-7  my-1">{el?.productId?.name}</div>
-                        <div className="col-5 my-1">Sale Price:</div>
-                        <div className="col-7  my-1">{el?.salePrice}</div>
-                        <div className="col-5 my-1">Price:</div>
-                        <div className="col-7  my-1">{el?.price}</div>
-                        <div className="col-5 my-1">Start Date:</div>
-                        <div className="col-7  my-1">
+
+                     
+                      <div className="row mt-4 col-12">
+                        <div className="col-6  my-1">Product Name:</div>
+                        <div className="col-6    my-1">{el?.productId?.name}</div>
+                        <div className="col-6 my-1">Sale Price:</div>
+                        <div className="col-6  my-1">{el?.salePrice}</div>
+                        <div className="col-6 my-1">Price:</div>
+                        <div className="col-6  my-1">{el?.price}</div>
+                        <div className="col-6 my-1">Start Date:</div>
+                        <div className="col-6  my-1">
                           {moment(el?.startDate).format("DD-MM-YYYY")}
                         </div>
-                        <div className="col-5 my-1">End Date:</div>
-                        <div className="col-7  my-1">
+                        <div className="col-6 my-1">End Date:</div>
+                        <div className="col-6  my-1">
                           {moment(el?.endDate).format("DD-MM-YYYY")}
                         </div>
                       </div>
