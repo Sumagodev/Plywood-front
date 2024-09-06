@@ -27,7 +27,12 @@
   padding: 5px 40px 5px 14px;
   margin-left: 20px;
 }
+.clr{
+  color: #624832;
+  font-size: 20px;
+  font-weight: 100px;
 
+}
 .topup-subscription-container .subscription-card .subscription-card-price {
   color: #624832;
   /* font-weight: 800; */
