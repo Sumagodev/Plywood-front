@@ -323,7 +323,7 @@ function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link className="text-white" to="/Shop">
+                        <Link className="text-white" to="/product-details">
                           View Products
                         </Link>
                       </li>

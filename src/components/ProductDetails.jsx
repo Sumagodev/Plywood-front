@@ -34,7 +34,10 @@ import cardImg from "../assets/images/cardImg.png"
 import {
     deleteProductbyId,
     getProducts,
-  } from "../services/Product.service";
+} from "../services/Product.service";
+import { getBrandApi } from "../services/brand.service";
+import { toastError } from "../utils/toastutill";
+
 const cardData = [
     {
         imgSrc: G1
@@ -62,6 +65,23 @@ const ProductDetails = () => {
     const [address, setAddress] = useState("");
     const [productName, setProductName] = useState("");
 
+
+    const [brandArr, setBrandArr] = useState([]);
+
+    const getBrands = async () => {
+      try {
+        const { data: res } = await getBrandApi();
+        if (res) {
+          setBrandArr(res.data);
+        }
+      } catch (error) {
+        toastError(error);
+      }
+    };
+  
+    useEffect(() => {
+      getBrands();
+    }, []);
     const states = {
         0: {
             slidesPerView: 2,
@@ -106,6 +126,7 @@ const ProductDetails = () => {
             console.log(error);
         }
     };
+
     useEffect(() => {
         handleNestedcategories();
     }, []);
@@ -152,6 +173,7 @@ const ProductDetails = () => {
             errorToast(err);
         }
     };
+
     return (
         <main>
             <section className="shop-page shoppagepading ">
@@ -173,15 +195,15 @@ const ProductDetails = () => {
                         <section className="py-4 text-center">
                             <Container fluid className="">
                                 <h5>RECOMMENDED PRODUCT</h5>
-                                <Row>
+                                <Row className='d-lg-block d-none'>
                                     <div className=' col-lg-12 '>
                                         {categoryArr &&
                                             categoryArr
                                                 .slice(0, 4)
                                                 .map((item, index) => (
 
-                                                    <Link to={`Shop?categories=${item._id}`}>
-                                                        <Col className="d-grid text-center align-items-center justify-content-center">
+                                                    <Link to={`/Shop?categories=${item._id}`}>
+                                                        <Col className="d-grid text-center align-items-center justify-content-center ">
                                                             <div className="pt-2  d-grid align-items-center justify-content-center">
                                                                 <img
                                                                     src={generateImageUrl(item.image)}
@@ -196,10 +218,48 @@ const ProductDetails = () => {
                                                 ))}
                                     </div>
                                 </Row>
+                                <Row className='d-block d-lg-none  '>
+                                    {
+                                        <Swiper
+                                            modules={[Autoplay]}
+                                            spaceBetween={5}
+                                            autoplay={{
+                                                delay: 2500,
+                                                disableOnInteraction: false,
+                                            }}
+                                            speed={1500}
+                                            breakpoints={states}
+                                        >
+                                            {categoryArr &&
+                                                categoryArr
+                                                    .slice(0, 8)
+                                                    .map((item, index) => (
+                                                        <SwiperSlide key={index}>
+                                                            <Link to={`/Shop?categories=${item._id}`}>
+                                                                <Col className="d-grid text-center align-items-center justify-content-center">
+                                                                    <div className="pt-2  d-grid align-items-center justify-content-center">
+                                                                        <img
+                                                                            src={generateImageUrl(item.image)}
+                                                                            className=" img-fluid recommondedprdcrd rounded-5 "
+                                                                            alt={item.name}
+                                                                        />
+                                                                        <p className="p-2 recommondedprdname">{item.name.slice(0, 20)}</p>
+
+                                                                    </div>
+                                                                </Col>
+                                                            </Link>
+                                                        </SwiperSlide>
+                                                    ))}
+
+
+                                        </Swiper>
+                                    }
+                                </Row>
                             </Container>
                         </section>
                     </div>
                 </div>
+
                 <div className=" col-12 col-lg-8 ">
                     <section>
                         <Container className="product-container-section">
@@ -384,36 +444,7 @@ const ProductDetails = () => {
             <Row>
                 <img src={bannerImg} alt="bannerImg" className='ms-md-3' />
             </Row>
-            <section style={{ backgroundColor: "#F5F1E8" }}>
-                <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
-                    States
-                </p>
-                <Container fluid className=" px-5 text-center fw-bold">
-                    <Swiper
-                        modules={[Autoplay]}
-                        spaceBetween={5}
-                        autoplay={{
-                            delay: 2500,
-                            disableOnInteraction: false,
-                        }}
-                        speed={1500}
-                        breakpoints={states}
-                    >
-                        {cities.map((city, index) => (
-                            <SwiperSlide key={index}>
-                                <div>
-                                    <img
-                                        src={city.imgSrc}
-                                        className=" img-fluid"
-                                        alt={city.name}
-                                    />
-                                    <p className="text-center">{city.name}</p>
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </Container>
-            </section>
+
             <section>
                 <Container>
                     <Row>
@@ -551,7 +582,7 @@ const ProductDetails = () => {
                 </h2>
             </Container>
             <section className='smallBanner d-flex flex-column justify-content-around'>
-                <Container fluid className=" px-5 fw-bold">
+                <Container fluid className=" px-lg-5 fw-bold">
 
                     <Swiper
                         modules={[Autoplay]}
@@ -563,15 +594,16 @@ const ProductDetails = () => {
                         speed={1500}
                         breakpoints={states}
                     >
-                        {cardData.map((city, index) => (
+                        {brandArr.map((city, index) => (
                             <SwiperSlide key={index}>
                                 <div>
                                     <img
-                                        src={city.imgSrc}
+                                        src={generateImageUrl(city.image)}
+                                        // src={generateImageUrl(city.image)}
                                         className="w-75"
                                         alt={city.name}
                                     />
-                                    {/* <p className="text-center">{city.name}</p> */}
+                                    <p className="text-center">{city.name}</p>
                                 </div>
                             </SwiperSlide>
                         ))}
