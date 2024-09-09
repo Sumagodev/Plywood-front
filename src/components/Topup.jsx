@@ -91,15 +91,18 @@ export default function Topup() {
                                                 el?.advertisementDays > 0 &&
                                                 <div className="subscription-card-description mt-0">For {el?.advertisementDays > 1 ? `${el?.advertisementDays} Days` : `${el?.advertisementDays} Day`}</div>
                                             }
-                                            <ul className="subscription-card-message-list pb-5 mb-3">
-                                                {
-                                                    el.messageArr && el.messageArr.length > 0 && el.messageArr.map((ele, indexX) => {
-                                                        return (
-                                                            <li key={indexX}>{ele?.message}</li>
-                                                        )
-                                                    })
-                                                }
-                                            </ul>
+                                            {
+                                                el.messageArr && el.messageArr.length < 0 && (
+                                                    <ul className="subscription-card-message-list pb-5 mb-3">
+                                                        {
+                                                            el.messageArr.map((ele, indexX) => (
+                                                                <li key={indexX}>{ele?.message}</li>
+                                                            ))
+                                                        }
+                                                    </ul>
+                                                )
+                                            }
+
                                             <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuyTopup(el)}>
                                                 Buy Now
                                             </button>

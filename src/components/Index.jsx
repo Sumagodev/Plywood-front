@@ -41,6 +41,8 @@ import {
   checkForValidSubscriptionAndReturnBoolean,
   registerUserFcmToken,
 } from "../services/User.service";
+import { images } from "./Utility/Images";
+
 import { addUserRequirement } from "../services/UserRequirements.service";
 import { getHomePageBannersApi } from "../services/homepageBanners.service";
 import { generateImageUrl } from "../services/url.service";
@@ -49,6 +51,7 @@ import CountdownTimer from "./Utility/CountdownTimer";
 import { errorToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
 import playbanner from "../assets/image/home/Group 1000004149.png";
+import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
 import mancrp from "../assets/image/home/images/mancrp.png";
@@ -58,7 +61,11 @@ import { MdThumbUp } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import greenimg from "../assets/image/home/images/greenlam1.png";
 import "../assets/css/Blog.css";
-
+import {
+  deleteProductbyId,
+  getProducts,
+} from "../services/Product.service";
+import { gettopUsers } from "../services/User.service"
 function Index() {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [categoryArr, setcategoryArr] = useState([]);
@@ -221,9 +228,8 @@ function Index() {
     try {
       let date = new Date();
       date.setDate(date.getDate() - 1);
-      let enddate = `${date.getFullYear()}-${
-        (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1)
-      }-${(date.getDate() + 1 < 10 ? "0" : "") + date.getDate()}`;
+      let enddate = `${date.getFullYear()}-${(date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1)
+        }-${(date.getDate() + 1 < 10 ? "0" : "") + date.getDate()}`;
       let { data: res } = await getAllFlashSales("endDate=" + enddate);
       if (res.data) {
         // console.log(res.data, "flash sales");
@@ -380,13 +386,13 @@ function Index() {
   };
   const ourvideos = {
     0: {
-      slidesPerView: 1,
+      slidesPerView: 2,
     },
     567: {
       slidesPerView: 2,
     },
     992: {
-      slidesPerView: 3,
+      slidesPerView: 4,
     },
     1300: {
       slidesPerView: 4,
@@ -447,7 +453,40 @@ function Index() {
     handleGetBlogs();
     handleGetBlogVideo();
   }, []);
+  const [productArr, setProductArr] = useState([]);
 
+  const handleGetProducts = async () => {
+    try {
+
+
+      let { data: res } = await getProducts();
+      if (res.data) {
+        setProductArr(res.data);
+      }
+    } catch (err) {
+      errorToast(err);
+    }
+  };
+  useEffect(() => {
+    handleGetProducts();
+  }, []);
+  const [topusers, settopusers] = useState([]);
+
+  const handlesettopusers = async () => {
+    try {
+
+
+      let { data: res } = await gettopUsers();
+      if (res.data) {
+        settopusers(res.data);
+      }
+    } catch (err) {
+      errorToast(err);
+    }
+  };
+  useEffect(() => {
+    handlesettopusers();
+  }, []);
   return (
     <main>
       <section className="mb-80">
@@ -647,105 +686,52 @@ function Index() {
       </section> */}
 
       <section>
-        <Container className="product-container-section">
+        <Container fluid className="product-container-section">
           <h1 className="heading text-center">Products May You Like</h1>
           <Row>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={3}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={5}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              speed={1500}
+              breakpoints={states}
             >
-              <div className="box_Product1">
-                <img src={greenimg} alt="" />
-                <span className="icn_Product">
-                  <LuPhoneCall />
-                </span>
-                <div className="product_icn_text">
-                  <span className="green-1">Greenlam Laminates</span>
-                  <span className="chennai">
-                    <IoLocationSharp /> Chennai
-                  </span>
-                  <span className="Rs-1">₹3360</span>
-                </div>
-                <button>Get Quote</button>
-              </div>
-            </Col>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={3}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="box_Product1">
-                <img src={greenimg} alt="" />
-                <span className="icn_Product">
-                  <LuPhoneCall />
-                </span>
-                <div className="product_icn_text">
-                  <span className="green-1">Greenlam Laminates</span>
-                  <span className="chennai">
-                    <IoLocationSharp /> Chennai
-                  </span>
-                  <span className="Rs-1">₹3360</span>
-                </div>
-                <button>Get Quote</button>
-              </div>
-            </Col>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={3}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="box_Product1">
-                <img src={greenimg} alt="" />
-                <span className="icn_Product">
-                  <LuPhoneCall />
-                </span>
-                <div className="product_icn_text">
-                  <span className="green-1">Greenlam Laminates</span>
-                  <span className="chennai">
-                    <IoLocationSharp /> Chennai
-                  </span>
-                  <span className="Rs-1">₹3360</span>
-                </div>
-                <button>Get Quote</button>
-              </div>
-            </Col>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={3}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="box_Product1">
-                <img src={greenimg} alt="" />
-                <span className="icn_Product">
-                  <LuPhoneCall />
-                </span>
-                <div className="product_icn_text">
-                  <span className="green-1">Greenlam Laminates</span>
-                  <span className="chennai">
-                    <IoLocationSharp /> Chennai
-                  </span>
-                  <span className="Rs-1">₹3360</span>
-                </div>
-                <button>Get Quote</button>
-              </div>
-            </Col>
+
+
+              {productArr &&
+                productArr.slice(0, 10).map((product, index) => (
+                  <SwiperSlide key={index}>
+                    <Col
+                      key={index}
+                      className="d-flex productyoulike justify-content-center align-items-center py-4 px-0 mx-0"
+
+                    >
+                      <div className="box_Product1 ">
+                        <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
+
+                        <span className="icn_Product">
+                          <LuPhoneCall />
+                        </span>
+                        <div className="">
+                          <Link to={`/ShopDetail/${product?.slug}`}>
+
+                            <span className="fs-6 msg1">{product.name}</span>
+                            <span className="chennai">
+                              <IoLocationSharp /> chainai
+                            </span>
+                            <span className="fs-6 msg1">{product.sellingprice}</span>
+                          </Link>
+                        </div>
+                        <button className=" fs-6 fw-bold">Get Quote</button>
+
+                      </div>
+                    </Col>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
           </Row>
           <div className="d-flex justify-content-center align-items-center mt-3">
             <button
@@ -778,7 +764,7 @@ function Index() {
                           <div className="newprdcrd">
                             <img
                               src={generateImageUrl(el.image)}
-                              alt="" 
+                              alt=""
                               className="img-fluid img1"
                             />
                             <div className="d-flex justify-content-center">
@@ -824,219 +810,176 @@ function Index() {
 
       <section>
         <Container className="main_Profiles my-5">
-          <h1 className="text-center mb-4">Top profiles</h1>
+          <h1 className="text-center mb-4">Top Profiles</h1>
           <Row>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={6}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="component-container1">
-                <img src={icon1} alt="" className="img" />
-                <div className="sub-container1">
-                  <span className="p1">Keshav Enterprise</span>
-                  <span className="p2">
-                    Product - <span>N.A</span>
-                  </span>
-                </div>
-                <div className="sub-container2">
-                  <span className="p3">Rating - 4.5</span>
-                  <span className="phone-icon">
-                    <FaPhoneVolume />
-                  </span>
-                </div>
-              </div>
-            </Col>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={6}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="component-container1">
-                <img src={icon1} alt="" className="img" />
-                <div className="sub-container1">
-                  <span className="p1">Keshav Enterprise</span>
-                  <span className="p2">
-                    Product - <span>N.A</span>
-                  </span>
-                </div>
-                <div className="sub-container2">
-                  <span className="p3">Rating - 4.5</span>
-                  <span className="phone-icon">
-                    <FaPhoneVolume />
-                  </span>
-                </div>
-              </div>
-            </Col>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={6}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="component-container1">
-                <img src={icon1} alt="" className="img" />
-                <div className="sub-container1">
-                  <span className="p1">Keshav Enterprise</span>
-                  <span className="p2">
-                    Product - <span>N.A</span>
-                  </span>
-                </div>
-                <div className="sub-container2">
-                  <span className="p3">Rating - 4.5</span>
-                  <span className="phone-icon">
-                    <FaPhoneVolume />
-                  </span>
-                </div>
-              </div>
-            </Col>
-            <Col
-              className="d-flex justify-content-center align-items-center py-4"
-              xxl={3}
-              xl={6}
-              lg={6}
-              md={6}
-              sm={6}
-              xs={6}
-            >
-              <div className="component-container1">
-                <img src={icon1} alt="" className="img" />
-                <div className="sub-container1">
-                  <span className="p1">Keshav Enterprise</span>
-                  <span className="p2">
-                    Product - <span>N.A</span>
-                  </span>
-                </div>
-                <div className="sub-container2">
-                  <span className="p3">Rating - 4.5</span>
-                  <span className="phone-icon">
-                    <FaPhoneVolume />
-                  </span>
-                </div>
-              </div>
-            </Col>
+            {topusers && topusers.slice(0, 4).map((el) => (
+              <Col
+                key={el._id}
+                className="d-flex justify-content-center align-items-center py-4"
+                xxl={3}
+                xl={3}
+                lg={3}
+                md={6}
+                sm={6}
+                xs={6}
+              >
+                <Link to={`/Supplier/${el?._id}`}>
+                  <div className="component-container1  text-center">
+
+                    {el?.bannerImage ? (
+                      <img
+                        src={generateImageUrl(el?.bannerImage)}
+                        alt=""
+                        className=" img-fluid img"
+                      />
+                    ) : (
+                      <img
+                        src={images.category_6}
+                        alt=""
+                        className=" img-fluid img"
+                      />
+                    )}
+
+                    <div className="sub-container1">
+                      <span className=""> <Link to={`/Supplier/${el?._id}`}>
+                        {el?.companyName
+                          ? el?.companyName
+                          : el?.name}
+                      </Link></span>
+                      <span className="">
+                        Products:{" "}
+                        {el?.productsCount
+                          ? el?.productsCount
+                          : "N.A."}
+                      </span>
+                    </div>
+                    <div className="sub-container2">
+                      <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
+                      <span className="phone-icon">
+                        <FaPhoneVolume />
+                      </span>
+                    </div>
+
+
+                  </div>
+                </Link>
+
+
+              </Col>
+            ))}
           </Row>
         </Container>
       </section>
 
-      {flashSalesArr && flashSalesArr.length > 0 && (
-        <section className=" mt-5 ">
-          <Container className=" mt-5 ">
-            <Row className=" flashpeoductback d-lg-flex  justify-content-center ">
-              <Col
-                lg={3}
-                xs={8}
-                className="  d-lg-flex  justify-content-center align-items-center "
-                onClick={() => navigate("/AddPromotions")}
-              >
-                <img src={img4} className=" img-fluid " alt="" />{" "}
-              </Col>
-              <Col lg={9} xs={12} className="newprdrw">
-                <Swiper
-                  modules={[Autoplay]}
-                  spaceBetween={5}
-                  autoplay={{ disableOnInteraction: false }}
-                  speed={1500}
-                  breakpoints={flashsale}
+      {
+        flashSalesArr && flashSalesArr.length > 0 && (
+          <section className=" mt-5 ">
+            <Container className=" mt-5 ">
+              <Row className=" flashpeoductback d-lg-flex  justify-content-center ">
+                <Col
+                  lg={3}
+                  xs={8}
+                  className="  d-lg-flex  justify-content-center align-items-center "
+                  onClick={() => navigate("/AddPromotions")}
                 >
-                  {flashSalesArr &&
-                    flashSalesArr.length > 0 &&
-                    flashSalesArr.map((el, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <div className="newprdcrd text-center">
-                            <div className="position-relative">
-                              <CountdownTimer targetDate={el.endDate} />
-                              <Link to={`/ShopDetail/${el?.productId?.slug}`}>
-                                <img
-                                  src={generateImageUrl(el.productId.mainImage)}
-                                  alt=""
-                                  className="img-fluid ims img1 "
-                                />
-                                <div className="overlyasper"></div>
-                              </Link>
-                            </div>
-                            <div
-                              className="d-flex justify-content-center"
-                              onClick={() => {
-                                currentUserHasActiveSubscription
-                                  ? window.alert(
+                  <img src={img4} className=" img-fluid " alt="" />{" "}
+                </Col>
+                <Col lg={9} xs={12} className="newprdrw">
+                  <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={5}
+                    autoplay={{ disableOnInteraction: false }}
+                    speed={1500}
+                    breakpoints={flashsale}
+                  >
+                    {flashSalesArr &&
+                      flashSalesArr.length > 0 &&
+                      flashSalesArr.map((el, index) => {
+                        return (
+                          <SwiperSlide key={index}>
+                            <div className="newprdcrd text-center">
+                              <div className="position-relative">
+                                <CountdownTimer targetDate={el.endDate} />
+                                <Link to={`/ShopDetail/${el?.productId?.slug}`}>
+                                  <img
+                                    src={generateImageUrl(el.productId.mainImage)}
+                                    alt=""
+                                    className="img-fluid ims img1 "
+                                  />
+                                  <div className="overlyasper"></div>
+                                </Link>
+                              </div>
+                              <div
+                                className="d-flex justify-content-center"
+                                onClick={() => {
+                                  currentUserHasActiveSubscription
+                                    ? window.alert(
                                       `${el?.userId?.companyObj?.phone}`
                                     )
-                                  : errorToast("Take subscription");
-                              }}
-                            >
-                              <LuPhoneCall className="phn rounded-circle p-2" />
-                            </div>
-                            <div className="d-flex justify-content-center">
-                              <h6>{el?.description}</h6>
-                            </div>
-                            <h6 className=" text-center  prdtitle">
-                              <Link to={`/ShopDetail/${el?.productId?.slug}`}>
-                                {el?.productId?.name}
-                              </Link>
-                            </h6>
-                            <ul className="">
-                              <li>
-                                {el.discountType == "Percentage"
-                                  ? `${el.discountValue}% OFF`
-                                  : `Flat ${el.discountValue} OFF`}
-                              </li>
-                            </ul>
-                            <div>
-                              <h6 className="old">
-                                <span className="prize">₹{el?.price}</span>
-                                <span className="small text-muted">
-                                  {el.pricetype
-                                    ? "/ " + el.pricetype
-                                    : "/ Sq ft"}
-                                </span>
+                                    : errorToast("Take subscription");
+                                }}
+                              >
+                                <LuPhoneCall className="phn rounded-circle p-2" />
+                              </div>
+                              <div className="d-flex justify-content-center">
+                                <h6>{el?.description}</h6>
+                              </div>
+                              <h6 className=" text-center  prdtitle">
+                                <Link to={`/ShopDetail/${el?.productId?.slug}`}>
+                                  {el?.productId?.name}
+                                </Link>
                               </h6>
-                              <h6 className="new">
-                                <span className="prize">₹{el?.salePrice}</span>
-                                <span className="small text-muted">
-                                  {el.pricetype
-                                    ? "/ " + el.pricetype
-                                    : "/ Sq ft"}
-                                </span>
-                              </h6>
+                              <ul className="">
+                                <li>
+                                  {el.discountType == "Percentage"
+                                    ? `${el.discountValue}% OFF`
+                                    : `Flat ${el.discountValue} OFF`}
+                                </li>
+                              </ul>
+                              <div>
+                                <h6 className="old">
+                                  <span className="prize">₹{el?.price}</span>
+                                  <span className="small text-muted">
+                                    {el.pricetype
+                                      ? "/ " + el.pricetype
+                                      : "/ Sq ft"}
+                                  </span>
+                                </h6>
+                                <h6 className="new">
+                                  <span className="prize">₹{el?.salePrice}</span>
+                                  <span className="small text-muted">
+                                    {el.pricetype
+                                      ? "/ " + el.pricetype
+                                      : "/ Sq ft"}
+                                  </span>
+                                </h6>
+                              </div>
+                              <button
+                                onClick={() =>
+                                  navigate(`/ShopDetail/${el?.productId?.slug}`)
+                                }
+                                className="newprdbtn py-2 text-white"
+                              >
+                                Get Quotes
+                              </button>
                             </div>
-                            <button
-                              onClick={() =>
-                                navigate(`/ShopDetail/${el?.productId?.slug}`)
-                              }
-                              className="newprdbtn py-2 text-white"
-                            >
-                              Get Quotes
-                            </button>
-                          </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                  <SwiperSlide>
-                    <div className="addfrmmain">
-                      <Link to="/AddPromotions" className="addfrm p-2">
-                        +
-                      </Link>
-                    </div>
-                  </SwiperSlide>
-                </Swiper>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      )}
+                          </SwiperSlide>
+                        );
+                      })}
+                    <SwiperSlide>
+                      <div className="addfrmmain">
+                        <Link to="/AddPromotions" className="addfrm p-2">
+                          +
+                        </Link>
+                      </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </Col>
+              </Row>
+            </Container>
+          </section>
+        )
+      }
       {/* {flashSalesArr && flashSalesArr.length > 0 && (
         <section className="flash-sale mb-80 px-4pc gray-bg ptb-80">
           <div className="container-fluid">
@@ -1168,6 +1111,41 @@ function Index() {
         <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
 
+
+
+      <section style={{ backgroundColor: "#F5F1E8" }}>
+        <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
+          States
+        </p>
+        <Container fluid className=" px-5 text-center fw-bold">
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={5}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            speed={1500}
+            breakpoints={states}
+          >
+            {cities.map((city, index) => (
+              <SwiperSlide key={index}>
+                <div>
+                  <img
+                    src={city.imgSrc}
+                    className=" img-fluid"
+                    alt={city.name}
+                  />
+                  <p className="text-center">{city.name}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Container>
+      </section>
+      <section>
+        <img src={dealer} className=" img-fluid  w-100 mt-5" style={{ height: "200px" }} alt="" />
+      </section>
       <section>
         <Container className="dealership-oppo-container my-5">
           <Row className="h1 justify-content-center text-center mb-5 text-black fw-bold">
@@ -1225,38 +1203,6 @@ function Index() {
           </Row>
         </Container>
       </section>
-
-      <section style={{ backgroundColor: "#F5F1E8" }}>
-        <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
-          States
-        </p>
-        <Container fluid className=" px-5 text-center fw-bold">
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={5}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            speed={1500}
-            breakpoints={states}
-          >
-            {cities.map((city, index) => (
-              <SwiperSlide key={index}>
-                <div>
-                  <img
-                    src={city.imgSrc}
-                    className=" img-fluid"
-                    alt={city.name}
-                  />
-                  <p className="text-center">{city.name}</p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Container>
-      </section>
-
       {/* <div className="blog-main-container-1 d-flex flex-wrap flex-column align-items-center gap-5 my-5">
         <div className="tabs">
           <div
@@ -1438,18 +1384,16 @@ function Index() {
           <div className="container-fluid d-flex justify-content-center align-items-center">
             <div className="row overlayflowscroll">
               <div
-                className={`tab col-lg-2 col-12 ${
-                  showBlogs == true ? "active-tab" : "in-active"
-                }`}
+                className={`tab col-lg-2 col-12 ${showBlogs == true ? "active-tab" : "in-active"
+                  }`}
                 onClick={() => setShowBlogs(true)}
               >
                 <div className="blog2_heading">News</div>
               </div>
               &nbsp;
               <div
-                className={`tab col-lg-2 col-12 ${
-                  showBlogs == false ? "active-tab" : "in-active"
-                }`}
+                className={`tab col-lg-2 col-12 ${showBlogs == false ? "active-tab" : "in-active"
+                  }`}
                 onClick={() => setShowBlogs(false)}
               >
                 <div className="blog2_heading">Video</div>
@@ -1460,76 +1404,104 @@ function Index() {
 
         <div className="blog2 new_blog2 blog_container ">
           <div className="container-fluid">
+
             {showBlogs ? (
               <div className="row news-1">
-                {blogsArr &&
-                  blogsArr.length > 0 &&
-                  blogsArr.map((el, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="col-xxl-3 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center"
-                      >
-                        <div className="blog_listing">
-                          <div className="blog_listing_img">
-                            <img
-                              src={generateImageUrl(el.image)}
-                              alt=""
-                              className="img-fluid blogImage"
-                            />
+                <Swiper
+                  modules={[Autoplay]}
+                  spaceBetween={5}
+                  autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                  speed={1500}
+                  breakpoints={ourvideos}
+                >
+                  {blogsArr &&
+                    blogsArr.length > 0 &&
+                    blogsArr.map((el, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <div
+                            key={index}
+                            className=" d-flex justify-content-center align-items-center"
+                          >
+                            <div className="blog_listing">
+                              <div className="blog_listing_img">
+                                <img
+                                  src={generateImageUrl(el.image)}
+                                  alt=""
+                                  className="img-fluid blogImage"
+                                />
+                              </div>
+                              <div className="list_content_blog">
+                                <h6>{el?.name.slice(0, 40)}</h6>
+                                {/* <h4> How to Secure Your Ecommerce Website from Cyberattacks</h4> */}
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: el?.description.slice(0, 100),
+                                  }}
+                                ></div>
+                                <Link
+                                  to={`/blog-detail/${el._id}`}
+                                  className="btn blog_readmore"
+                                >
+                                  Read More <BsArrowRight className="blog_arrow" />
+                                </Link>
+                              </div>
+                            </div>
                           </div>
-                          <div className="list_content_blog">
-                            <h6>{el?.name}</h6>
-                            {/* <h4> How to Secure Your Ecommerce Website from Cyberattacks</h4> */}
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: el?.description.slice(0, 100),
-                              }}
-                            ></div>
-                            <Link
-                              to={`/blog-detail/${el._id}`}
-                              className="btn blog_readmore"
-                            >
-                              Read More <BsArrowRight className="blog_arrow" />
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        </SwiperSlide>
+                      );
+                    })}
+                </Swiper>
               </div>
+
             ) : (
               <div className="row video-2">
-                {blogVideoArr &&
-                  blogVideoArr.length > 0 &&
-                  blogVideoArr.map((el, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="col-xxl-4 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center"
-                      >
-                        <div className="blog_listing">
-                          <div className="blog_listing_img">
-                            {/* {el.url} */}
-                            {el.url && el.url.includes("http") && (
-                              <iframe
-                                src={el.url}
-                                allowFullScreen
-                                frameborder="0"
-                                className="img-fluid blogImage"
-                              ></iframe>
-                            )}
-                            {/* <img src={generateImageUrl(el.image)} alt="" className="img-fluid blogImage" /> */}
-                          </div>
-                          {/* <div className="list_content_blog">
+                <Swiper
+                  modules={[Autoplay]}
+                  spaceBetween={5}
+                  autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                  speed={1500}
+                  breakpoints={ourvideos}
+                >
+                  {blogVideoArr &&
+                    blogVideoArr.length > 0 &&
+                    blogVideoArr.map((el, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <div
+                            key={index}
+                            className="col-xxl-4 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center"
+                          >
+                            <div className="blog_listing">
+                              <div className="blog_listing_img">
+                                {/* {el.url} */}
+                                {el.url && el.url.includes("http") && (
+                                  <iframe
+                                    src={el.url}
+                                    allowFullScreen
+                                    frameborder="0"
+                                    className="img-fluid blogImage"
+                                  ></iframe>
+                                )}
+                                {/* <img src={generateImageUrl(el.image)} alt="" className="img-fluid blogImage" /> */}
+                              </div>
+                              {/* <div className="list_content_blog">
                                                         <h6>{el?.name}</h6>
                                                         <div dangerouslySetInnerHTML={{ __html: el?.description.slice(0, 100) }}></div>
                                                         <Link to={`/blog-detail/${el._id}`} className="btn blog_readmore">Read More <BsArrowRight className="blog_arrow" /></Link>
                                                     </div> */}
-                        </div>
-                      </div>
-                    );
-                  })}
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      );
+                    })}
+                </Swiper>
               </div>
             )}
           </div>
@@ -1746,7 +1718,7 @@ function Index() {
           </a>
         </Modal.Body>
       </Modal>
-    </main>
+    </main >
   );
 }
 

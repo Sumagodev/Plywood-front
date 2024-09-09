@@ -15,8 +15,20 @@ import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import "../../assets/css/Products.css";
 import { IoSearch } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
+const useWindowWidth = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowWidth;
+};
 export default function Products() {
+  const windowWidth = useWindowWidth();
+
   let userObj = useSelector((state) => state.auth.user);
 
   const navigate = useNavigate();
@@ -42,10 +54,10 @@ export default function Products() {
         backgroundColor: '#6c4f37',
         color: 'white',
         fontWeight: 'bold',
-        fontSize: '1.3rem',
+        fontSize: windowWidth < 768 ? '0.7rem' : '1.3rem', // Smaller font size on mobile
         display: 'flex',
         justifyContent: 'center',
-        padding: '1vw 0',
+        padding: windowWidth < 768 ? '0.0vw 0' : '1vw 0',
       },
     },
     cells: {
@@ -53,10 +65,10 @@ export default function Products() {
         backgroundColor: '#f5f1e8',
         color: 'black',
         fontWeight: 'bold',
-        fontSize: '1.05rem',
+        fontSize: windowWidth < 768 ? '0.7  rem' : '1.05rem', // Smaller font size on mobile
         display: 'flex',
         justifyContent: 'center',
-        padding: '0.5vw 0',
+        padding: windowWidth < 768 ? '0.3vw 0' : '0.5vw 0',
         // textWrap: 'pretty',
       },
     },
@@ -189,16 +201,16 @@ export default function Products() {
       <div className="container-fluid main-product-container">
         <div className="row d-flex justify-content-center">
           <div className="col-12 col-md-10 mb-5">
-            <div className="row d-flex mt-5 px-3 align-items-center justify-content-between" style={{gap:"2vw 0"}}>
+            <div className="row d-flex mt-5 px-3 align-items-center justify-content-between" style={{ gap: "2vw 0" }}>
               <div className="col-lg-8 col-sm-12 d-flex gap-3">
                 <h4 className="yellow h4">Your products</h4>
                 <div className="d-flex justify-content-center align-items-center create-button-plus-container">
-                <Link
-                  to="/AddProducts"
-                  className="yellow-bg btn text-white subsctiption-card-button"
-                >
-                  <FaPlus />
-                </Link>
+                  <Link
+                    to="/AddProducts"
+                    className="yellow-bg btn text-white subsctiption-card-button"
+                  >
+                    <FaPlus />
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-4 col-sm-6 search-box-button-container">
@@ -208,7 +220,7 @@ export default function Products() {
                   onChange={(e) => handleChange(e.target.value)}
                   className="form-control"
                 />
-                <button>
+                <button className=" mx-3">
                   <IoSearch />
                 </button>
               </div>
@@ -232,16 +244,16 @@ export default function Products() {
                 onChangeRowsPerPage={handlePerRowsChange}
                 onChangePage={handlePageChange}
                 customStyles={customStyles}
-                // subHeaderComponent={
-                //     // <CustomHeader
-                //     //     store={store}
-                //     //     searchTerm={searchTerm}
-                //     //     rowsPerPage={rowsPerPage}
-                //     //     handleFilter={handleFilter}
-                //     //     handlePerPage={handlePerPage}
-                //     //     toggleSidebar={toggleSidebar}
-                //     // />
-                // }
+              // subHeaderComponent={
+              //     // <CustomHeader
+              //     //     store={store}
+              //     //     searchTerm={searchTerm}
+              //     //     rowsPerPage={rowsPerPage}
+              //     //     handleFilter={handleFilter}
+              //     //     handlePerPage={handlePerPage}
+              //     //     toggleSidebar={toggleSidebar}
+              //     // />
+              // }
               />
 
               {/* <ReactPaginate

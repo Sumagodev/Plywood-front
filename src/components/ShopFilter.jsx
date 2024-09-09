@@ -211,7 +211,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
   
 
       <Row className=" d-flex  justify-content-center">
-        <Col lg={10} className=" px-5 shop-filter py-3">
+        <Col  lg={11} className=" px-5 shop-filter py-3">
           <Accordion>
             <Row>
               <Col lg={2}>
@@ -296,6 +296,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                         <a
                           className="searchicn position-absolute top-50 end-0 translate-middle-y me-1 text-white d-inline-flex align-items-center justify-content-center"
                           href=""
+                          onClick={() => { handleApplyFilter(); handleClose && handleClose() }}
                         >
                           <FiSearch />
                         </a>

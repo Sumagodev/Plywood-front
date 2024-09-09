@@ -20,12 +20,13 @@
 
 }
 
-
 .ctimg {
   height: 200px;
   width: 200px;
 }
-
+.productyoumaylike{
+  height: 500px;
+}
 @media (max-width: 1400px) {
 
   .ctimg {
@@ -154,11 +155,13 @@
 @media (max-width: 480px) {
   .product-container-section .box_Product1 {
     border-radius: 25px;
-    width: 38vmin;
+    width: 45vmin;
     text-align: center;
     margin-bottom: 4vmin;
   }
-
+  .productyoumaylike{
+    height: 450px;
+  }
   .product-container-section .box_Product1 img {
     border-radius: 25px;
   }

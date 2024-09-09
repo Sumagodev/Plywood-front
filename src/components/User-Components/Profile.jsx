@@ -261,7 +261,7 @@ export default function Profile() {
                                         View
                                     </div>
                                 </Col>
-                               
+
                             </Row>
 
                             <Row className='profile-section-container-left-info mt-2 py-2'>
@@ -272,28 +272,28 @@ export default function Profile() {
                                     <Row className='d-flex justify-content-center ' style={{ fontSize: "0.75rem", color: "black", fontWeight: "500" }}>
                                         <Col lg={7}>
                                             <Row>
-                                                <Col lg={3} className='profile-section-container-text'>Phone No.</Col>
-                                                <Col lg={9}>{userObj?.phone}</Col>
+                                                <Col xs={3} className='profile-section-container-text'>Phone No.</Col>
+                                                <Col xs={9}>{userObj?.phone}</Col>
                                             </Row>
                                             <Row>
-                                                <Col lg={3} className='profile-section-container-text'>Role</Col>
-                                                <Col lg={9}> {userObj?.role}</Col>
+                                                <Col xs={3} className='profile-section-container-text'>Role</Col>
+                                                <Col xs={9}> {userObj?.role}</Col>
                                             </Row>
                                             <Row>
-                                                <Col lg={3} className='profile-section-container-text'>Country</Col>
-                                                <Col lg={9}>{userObj?.countryObj?.name ? userObj?.countryObj?.name : "N.A."}</Col>
+                                                <Col xs={3} className='profile-section-container-text'>Country</Col>
+                                                <Col xs={9}>{userObj?.countryObj?.name ? userObj?.countryObj?.name : "N.A."}</Col>
                                             </Row>
                                         </Col>
 
                                         <Col lg={5}>
                                             <Row>
-                                                <Col lg={3} className='profile-section-container-text'>State</Col>
-                                                <Col lg={9}>{userObj?.stateObj?.name ? userObj?.stateObj?.name : "N.A."}</Col>
+                                                <Col xs={3} className='profile-section-container-text'>State</Col>
+                                                <Col xs={9}>{userObj?.stateObj?.name ? userObj?.stateObj?.name : "N.A."}</Col>
                                             </Row>
 
                                             <Row>
-                                                <Col lg={3} className='profile-section-container-text'>City</Col>
-                                                <Col lg={9}>{userObj?.cityObj?.name ? userObj?.cityObj?.name : "N.A."}</Col>
+                                                <Col xs={3} className='profile-section-container-text'>City</Col>
+                                                <Col xs={9}>{userObj?.cityObj?.name ? userObj?.cityObj?.name : "N.A."}</Col>
                                             </Row>
                                         </Col>
                                     </Row>
@@ -388,72 +388,79 @@ export default function Profile() {
 
                 <Container fluid className='profile-section-container-left profile-section-container-left2 px-5' >
                     <Col lg={10} className='py-5'>
-                    <Row  className='text-dark '>
+                        <Row className='text-dark '>
 
-                        <Col className=' profile-section-Heading px-4  col-md-4 col-8' >Company Ditails</Col>
+                            <Col className=' profile-section-Heading px-4  col-md-4 col-8' >Company Ditails</Col>
 
-                        <Col className='d-flex justify-content-center align-items-center col-md-1 gap-2'>
-                            <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
-                                <button type="button" onClick={() => { navigate(`/Edit-Profile`) }} className="theme-outline-button ">
-                                    <MdEdit />
-                                </button>
-                                Edit
-                            </div>
-                            <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
-                                <button type="button" onClick={() => { navigate(`/Supplier/${userObj?._id}`) }} className="theme-outline-button" >
-                                    <IoEye />
-                                </button>
-                                View
-                            </div>
-                        </Col>
-                       
-                    </Row>
+                            <Col className='d-flex justify-content-center align-items-center col-md-1 gap-2'>
+                                <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
+                                    <button type="button" onClick={() => { navigate(`/Edit-Profile`) }} className="theme-outline-button ">
+                                        <MdEdit />
+                                    </button>
+                                    Edit
+                                </div>
+                                <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
+                                    <button type="button" onClick={() => { navigate(`/Supplier/${userObj?._id}`) }} className="theme-outline-button" >
+                                        <IoEye />
+                                    </button>
+                                    View
+                                </div>
+                            </Col>
+
+                        </Row>
 
 
-                    <Row className='profile-section-container-left-info mt-4 py-3' >
-                        <Col lg={3} className='d-flex justify-content-center align-items-center'>  <img src={iconp} alt="" className="profile-section-container-img img-fluid" /></Col>
-                        <Col lg={9} className='p-4 '>
-                            <Row className='px-2 pb-3 fs-2 text-black fw-semibold'> {userObj?.companyObj?.name}</Row>
+                        <Row className='profile-section-container-left-info mt-4 py-3' >
+                            <Col lg={3} className='d-flex justify-content-center align-items-center'>  <img src={iconp} alt="" className="profile-section-container-img img-fluid" /></Col>
+                            <Col lg={9} className='p-4 '>
+                                <Row className='px-2 pb-3 fs-2 text-black fw-semibold'> {userObj?.companyObj?.name}</Row>
 
-                            <Row className='d-flex justify-content-center ' style={{ fontSize: "0.75rem", color: "black", fontWeight: "500" }}>
-                                <Col lg={4}>
-                                    <Row>
-                                        <Col lg={5} className='profile-section-container-text'>Email</Col>
-                                        <Col lg={7}> {userObj?.companyObj?.email}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col lg={5} className='profile-section-container-text'>Phone No.</Col>
-                                        <Col lg={7}> {userObj?.companyObj?.phone}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col lg={5} className='profile-section-container-text'>Dealing With Brand Name</Col>
-                                        <Col lg={7}> {userObj?.brandNames}</Col>
-                                    </Row>
-                                </Col>
+                                <Row className='d-flex justify-content-center ' style={{ fontSize: "0.75rem", color: "black", fontWeight: "500" }}>
+                                    <Col lg={4}>
+                                        <Row>
+                                            <Col xs={5} className='profile-section-container-text'>Email</Col>
+                                            <Col xs={7}> {userObj?.companyObj?.email}</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col xs={5} className='profile-section-container-text'>Phone No.</Col>
+                                            <Col xs={7}> {userObj?.companyObj?.phone}</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col xs={5} className='profile-section-container-text'>Dealing With Brand Name</Col>
+                                            <Col xs={7}> {userObj?.brandNames}</Col>
+                                        </Row>
+                                    </Col>
 
-                                <Col lg={8}>
-                                    <Row>
-                                        <Col lg={4} className='profile-section-container-text'>GST Number</Col>
-                                        <Col lg={8}>{userObj?.companyObj?.gstNumber}</Col>
-                                    </Row>
+                                    <Col lg={8}>
+                                        <Row>
+                                            <Col xs={5} lg={4} className='profile-section-container-text'>GST Number</Col>
+                                            <Col xs={7} lg={8}>{userObj?.companyObj?.gstNumber}</Col>
+                                        </Row>
 
-                                    <Row>
-                                        <Col lg={4} className='profile-section-container-text'>Address</Col>
-                                        <Col lg={8}>{userObj?.companyObj?.address}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col lg={4} className='profile-section-container-text'>Year Of Establish</Col>
-                                        <Col lg={8}>{userObj?.companyObj?.yearOfEstablishment}</Col>
-                                    </Row>
+                                        <Row>
+                                            <Col xs={5} lg={4} className='profile-section-container-text'>Address</Col>
+                                            <Col xs={7} lg={8}>{userObj?.companyObj?.address}</Col>
+                                        </Row>
+                                        <Row>
+                                            <Col xs={5} lg={4} className='profile-section-container-text'>Year Of Establish</Col>
+                                            <Col xs={7} lg={8}>{userObj?.companyObj?.yearOfEstablishment}</Col>
+                                        </Row>
 
-                                    <Row>
-                                        <Col lg={4} className='profile-section-container-text'>Google Map</Col>
-                                        <Col lg={8}>{userObj?.companyObj?.googleMapsLink}</Col>
-                                    </Row>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
+
+                                    </Col>
+                                    <Col>
+                                        <Row>
+                                            <Col lg={2} className='profile-section-container-text'>Google Map</Col>
+                                            <Col lg={10}>
+                                                <p style={{ wordBreak: 'break-word' }}>
+                                                    {userObj?.companyObj?.googleMapsLink}
+                                                </p>
+                                            </Col>
+
+                                        </Row></Col>
+                                </Row>
+                            </Col>
+                        </Row>
                     </Col>
                 </Container>
 
@@ -584,20 +591,20 @@ export default function Profile() {
 
 
 
-                                    <div className="col-5 my-1">
-                        Nature of your business:
-                    </div>
-                    <div className="col-7  my-1" style={{ wordBreak: "break-all" }}>
-                        {userObj?.companyObj?.natureOfBusiness}
-                    </div>
-                                    <div className="col-5 my-1">
-                        Annual Turnover:
-                    </div>
-                    <div className="col-7  my-1" style={{ wordBreak: "break-all" }}>
-                        {userObj?.companyObj?.annualTurnover}
-                    </div>
+                {/* <div className="col-5 my-1">
+                    Nature of your business:
+                </div>
+                <div className="col-7  my-1" style={{ wordBreak: "break-all" }}>
+                    {userObj?.companyObj?.natureOfBusiness}
+                </div>
+                <div className="col-5 my-1">
+                    Annual Turnover:
+                </div>
+                <div className="col-7  my-1" style={{ wordBreak: "break-all" }}>
+                    {userObj?.companyObj?.annualTurnover}
+                </div> */}
 
-                                    {/* <div className="col-5 my-1">
+                {/* <div className="col-5 my-1">
                                         Year of Establishment:
                                     </div>
                                     <div className="col-7  my-1" style={{ wordBreak: "break-all" }}>

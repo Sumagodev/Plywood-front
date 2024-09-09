@@ -74,7 +74,7 @@ export default function Subscription() {
                                     return (
                                         <div key={index} className="subscription-card">
                                             <div className="subscription-card-heading">{el?.name}</div>
-                                            <div className="subscription-card-price">₹ {el?.price}  <span style={{fontSize:15, color:'#603200'}}>+18% GST </span></div>
+                                            <div className="subscription-card-price">₹ {el?.price}  <span style={{ fontSize: 15, color: '#603200' }}>+18% GST </span></div>
                                             {
                                                 el?.noOfMonth ?
                                                     <div className="subscription-card-days">{el?.noOfMonth} {el?.noOfMonth > 1 ? "months" : "month"}</div>
@@ -82,24 +82,28 @@ export default function Subscription() {
                                             }
                                             <div className="subscription-card-description mb-3">{el?.description}</div>
                                             <div className="subscription-card-days">{el?.numberOfSales != 0 ? `${el?.numberOfSales} Flash sales` : "No Flash sales"}</div>
-                                            
+
                                             {
-                                               <div className="subscription-card-description mt-0">For {el?.saleDays > 1 ? `${el?.saleDays} Days` : `${el?.saleDays} Day`}</div>
+                                                <div className="subscription-card-description mt-0">For {el?.saleDays > 1 ? `${el?.saleDays} Days` : `${el?.saleDays} Day`}</div>
                                             }
                                             <div className="subscription-card-days">{el?.numberOfAdvertisement != 0 ? `${el?.numberOfAdvertisement} Advertisements` : "No Advertisements"}</div>
                                             {
                                                 el?.advertisementDays > 0 &&
                                                 <div className="subscription-card-description mt-0">For {el?.advertisementDays > 1 ? `${el?.advertisementDays} Days` : `${el?.advertisementDays} Day`}</div>
                                             }
-                                            <ul className="subscription-card-message-list pb-5 mb-3">
-                                                {
-                                                    el.messageArr && el.messageArr.length > 0 && el.messageArr.map((ele, indexX) => {
-                                                        return (
-                                                            <li key={indexX}>{ele?.message}</li>
-                                                        )
-                                                    })
-                                                }
-                                            </ul>
+                                            {/* {
+                                                el.messageArr && el.messageArr.length > 0 && (
+                                                    <ul className="subscription-card-message-list pb-5 mb-3">
+                                                        {
+                                                            el.messageArr.map((ele, indexX) => (
+                                                                <li key={indexX}>{ele?.message}</li>
+                                                            ))
+                                                        }
+                                                    </ul>
+                                                )
+                                            } */}
+
+
                                             <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
                                                 Subscribe Now
                                             </button>

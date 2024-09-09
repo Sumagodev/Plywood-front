@@ -1755,7 +1755,7 @@ footer .footer {
 .subscription-container .subscription-card {
   width: 30%;
   margin: 20px 1.5%;
-  min-height: 500px;
+  min-height: auto;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 23px -7px rgba(54, 53, 54, 0.253);
@@ -1764,6 +1764,7 @@ footer .footer {
   align-items: center;
   padding: 30px;
   position: relative;
+  padding-bottom: 80px;
 }
 
 .subscription-container .subscription-card .subscription-card-heading {
@@ -1915,13 +1916,18 @@ footer .footer {
   color: white;
   border-radius: 60px 0px 0px 60px;
   background: linear-gradient(90deg, #6C4F37 0%, rgba(103, 67, 32, 0.580081) 66.96%, rgba(96, 50, 0, 0) 100%);
-
+  padding-left: 50px;
 }
-
+.productyoulike{
+  height: 500px;
+}
 @media (max-width: 480px) {
   .profile-section-container-left .profile-section-Heading {
     font-size: 1.1rem !important; 
     padding: 10px 0;
+  }
+  .productyoulike{
+    height: 400px;
   }
   .profile-section-container-left .profile-section-Heading-icn{
     font-size: 0.75rem !important; 
@@ -2992,10 +2998,13 @@ footer .footer {
   .row.flex_deraction_row {
     flex-direction: column;
   }
-
+.list_content_blog  h6{
+  font-size: 14px;
+}
   .shop-filter .list {
     overflow-x: scroll;
   }
+
 
   .category .box img {
     height: 190px !important;

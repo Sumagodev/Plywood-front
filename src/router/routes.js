@@ -31,8 +31,9 @@ import Subscription from "../components/User-Components/Subscription";
 import UserNotifications from "../components/User-Components/UserNotifications";
 import { ROLES } from "../utils/Roles.utils";
 import Aboutus from "../components/Aboutus";
-
+import AddDealership from "../components/User-Components/AddDealership";
 import Thankyou from "../components/Thankyou";
+import ProductDetails from "../components/ProductDetails";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -69,10 +70,24 @@ export const routes = [
     isUnProtected: true,
   },
   {
+    path: "/product-details",
+    component: <ProductDetails />,
+    role: [],
+    isAuthorized: true,
+    isUnProtected: true,
+  },
+  {
     path: "/ShopDetail/:slug",
     component: <ShopDetail />,
     role: [],
     isAuthorized: false,
+    isUnProtected: false,
+  },
+  {
+    path: "/AddDealership",
+    component: <AddDealership/>,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: true,
     isUnProtected: false,
   },
   {

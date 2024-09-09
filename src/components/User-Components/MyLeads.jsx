@@ -62,7 +62,7 @@ export default function MyLeads() {
     return (
         <div className='container my-5'>
             <div className="row d-flex justify-content-between">
-                <div className="col-6 ms-2 pt-2 profile-section-Heading mb-3">My Leads</div>
+                <div className="col-lg-6 ms-2 pt-2 profile-section-Heading mb-3 ">My Leads</div>
             </div>
 
             {/* <div className="rounded">
@@ -152,8 +152,8 @@ export default function MyLeads() {
                                     return (
                                         <>
 
-                                            <div className="col-md-4 col-12 mt-2">
-                                                <div key={index} className='profile-section-container'>
+                                            <div className="col-md-4 col-12 mt-2 ">
+                                                <div key={index} className='profile-section-container'  style={{background: "#F5F1E8",boxShadow: "12px 14px 35px 0px #00000040"}}>
                                                     <div className="row flex_deraction_row">
                                                         <div className="col-6">
                                                             {/* <h4><b>{el?.userObj?.name}</b></h4> */}

@@ -226,17 +226,15 @@ function Shop() {
     <main>
       <section className="shop-page shoppagepading ">
         <div className="container-fluid">
-          <img src={newvedor} alt="" />
           <div className="row  mb-80 px-4pc" >
-            {/* <PageBanner
+            <PageBanner
               img={
-                // shopImage && shopImage !== ""
-                //   ? generateImageUrl(shopImage)
-                  // : images.top_banner
-                  newvedor
+                shopImage && shopImage !== ""
+                  ? generateImageUrl(shopImage)
+                  : images.top_banner
               }
               className="mx-0"
-            /> */}
+            />
 
             <div className="col-12  d-none d-lg-block">
               <ShopFilter
@@ -247,7 +245,7 @@ function Shop() {
             <div className=" row">
               <div className="col-12 col-lg-9">
 
-               
+
                 <div className="row gy-5 main_Profiles">
                   {isLoading == true ? (
                     <div className="col-xl-12">
@@ -685,7 +683,6 @@ function Shop() {
                     <Container fluid className="">
                       <h5>RECOMMENDED PRODUCT</h5>
                       <Row>
-
                         <div>
                           {categoryArr &&
                             categoryArr
@@ -708,8 +705,6 @@ function Shop() {
 
                               ))}
                         </div>
-
-
                       </Row>
                     </Container>
                   </section>

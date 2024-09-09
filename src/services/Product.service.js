@@ -6,7 +6,9 @@ let serverUrl = `${url}/product`;
 export const AddProduct = async (obj) => {
   return axiosApiInstance.post(`${serverUrl}/`, obj);
 };
-
+export const getProducts = async () => {
+  return axiosApiInstance.get(`${serverUrl}`);
+};
 export const getAllProducts = async (query) => {
   return axiosApiInstance.get(`${serverUrl}/?${query}`);
 };

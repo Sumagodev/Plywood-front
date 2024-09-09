@@ -674,7 +674,7 @@ function Header() {
                           </Button>
                         ) : (
                           <Button className="navbtn rounded-pill me-2">
-                            <Link to="/" className="text-white">
+                            <Link to="/Subscription" className="text-white">
                               Subscription
                             </Link>
                           </Button>
