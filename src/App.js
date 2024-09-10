@@ -17,11 +17,11 @@ export let LoggedInUserContext = createContext();
 export const axiosApiInstance = axios.create();
 
 function App() {
-  onMessageListener()
-    .then((payload) => {
-      new Notification(payload?.data?.title, { body: payload?.data?.content });
-    })
-    .catch((err) => console.log('failed: ', err));
+  // onMessageListener()
+  //   .then((payload) => {
+  //     new Notification(payload?.data?.title, { body: payload?.data?.content });
+  //   })
+  //   .catch((err) => console.log('failed: ', err));
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({});
   const [seoObj, setSeoObj] = useState(null);
