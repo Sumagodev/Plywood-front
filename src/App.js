@@ -6,7 +6,7 @@ import './assets/scss/main.css';
 import RootRoute from "./router/RootRoute";
 import '../node_modules/react-image-crop/dist/ReactCrop.css'
 import { Toaster } from 'react-hot-toast';
-import { onMessageListener } from "./firebase";
+// import { onMessageListener } from "./firebase";
 import { getSeoBySlugApi } from "./services/websiteData.service";
 import { generateImageUrl } from "./services/url.service";
 import { Helmet } from "react-helmet";

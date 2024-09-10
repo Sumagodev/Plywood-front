@@ -30,7 +30,7 @@ import img7 from "../assets/image/home/imghyderabad.png";
 import img5 from "../assets/image/home/imggujarat.png";
 import "../assets/css/home.css";
 import successgif from "../assets/images/verified.gif";
-import { fetchToken } from "../firebase";
+// import { fetchToken } from "../firebase";
 import { getForHomepage } from "../services/Advertisement.service";
 import { getBrands } from "../services/Banner.service";
 import { getBlogApi } from "../services/Blog.service";
@@ -92,25 +92,25 @@ function Index() {
 
   const [signInModal, setSignInModal] = useState(false);
 
-  const getUserFcmToken = async () => {
-    try {
-      let temp = await fetchToken();
-      console.log(temp);
-      if (mainAuthObj?.isAuthorized) {
-        let { data: res } = await registerUserFcmToken({
-          fcmToken: temp,
-          userId: mainAuthObj?.user?._id,
-        });
-        console.log(res, "TOKEN RES");
-      }
-    } catch (error) {
-      // console.error(error);
-    }
-  };
+  // const getUserFcmToken = async () => {
+  //   try {
+  //     let temp = await fetchToken();
+  //     console.log(temp);
+  //     if (mainAuthObj?.isAuthorized) {
+  //       let { data: res } = await registerUserFcmToken({
+  //         fcmToken: temp,
+  //         userId: mainAuthObj?.user?._id,
+  //       });
+  //       console.log(res, "TOKEN RES");
+  //     }
+  //   } catch (error) {
+  //     // console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getUserFcmToken();
-  }, []);
+  // useEffect(() => {
+  //   getUserFcmToken();
+  // }, []);
 
   useEffect(() => {
     if (auth && auth._id) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState, useRef } from "react";
 import { debounce } from "lodash";
 import {
-  getUserNotifications,
+  // getUserNotifications,
   searchVendorFromDb,
   sentOtp,
 } from "../services/User.service";
