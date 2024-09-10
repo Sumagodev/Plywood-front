@@ -69,18 +69,18 @@ const ProductDetails = () => {
     const [brandArr, setBrandArr] = useState([]);
 
     const getBrands = async () => {
-      try {
-        const { data: res } = await getBrandApi();
-        if (res) {
-          setBrandArr(res.data);
+        try {
+            const { data: res } = await getBrandApi();
+            if (res) {
+                setBrandArr(res.data);
+            }
+        } catch (error) {
+            toastError(error);
         }
-      } catch (error) {
-        toastError(error);
-      }
     };
-  
+
     useEffect(() => {
-      getBrands();
+        getBrands();
     }, []);
     const states = {
         0: {
@@ -129,6 +129,24 @@ const ProductDetails = () => {
 
     useEffect(() => {
         handleNestedcategories();
+    }, []);
+
+    const [productArr, setProductArr] = useState([]);
+
+    const handleGetProducts = async () => {
+        try {
+
+
+            let { data: res } = await getProducts();
+            if (res.data) {
+                setProductArr(res.data);
+            }
+        } catch (err) {
+            errorToast(err);
+        }
+    };
+    useEffect(() => {
+        handleGetProducts();
     }, []);
     const handleSubmitRequirement = async (e) => {
         e.preventDefault();
@@ -194,7 +212,7 @@ const ProductDetails = () => {
                     <div>
                         <section className="py-4 text-center">
                             <Container fluid className="">
-                                <h5>RECOMMENDED PRODUCT</h5>
+                                <h6 className=' fs-2'>RECOMMENDED PRODUCT</h6>
                                 <Row className='d-lg-block d-none'>
                                     <div className=' col-lg-12 '>
                                         {categoryArr &&
@@ -264,22 +282,54 @@ const ProductDetails = () => {
                     <section>
                         <Container className="product-container-section">
                             <Row>
-                                <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <div className="box_Product1">
-                                        <img src={greenimg} alt="" />
-                                        <span className="icn_Product">
-                                            <LuPhoneCall />
-                                        </span>
-                                        <div className="product_icn_text">
-                                            <span className="green-1">Greenlam Laminates</span>
-                                            <span className="chennai">
-                                                <IoLocationSharp /> Chennai
-                                            </span>
-                                            <span className="Rs-1">₹3360</span>
-                                        </div>
-                                        <button>1 Get Deal</button>
-                                    </div>
-                                </Col>
+                                {productArr &&
+                                    productArr.slice(0, 10).map((product, index) => (
+                                        <SwiperSlide key={index}>
+                                            <Col
+                                                key={index}
+                                                className="d-flex productyoulike justify-content-center align-items-center py-4 px-0 mx-0"
+
+                                            >
+                                                <div className="box_Product1 ">
+                                                    <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
+
+                                                    <span className="icn_Product">
+                                                        <LuPhoneCall />
+                                                    </span>
+                                                    <div className="">
+                                                        <Link to={`/ShopDetail/${product?.slug}`}>
+
+                                                            <span className="fs-6 msg1">{product.name}</span>
+                                                            <span className="chennai">
+                                                                <IoLocationSharp /> chainai
+                                                            </span>
+                                                            <span className="fs-6 msg1">{product.sellingprice}</span>
+                                                        </Link>
+                                                    </div>
+                                                    <button className=" fs-6 fw-bold">Get Quote</button>
+
+                                                </div>
+                                            </Col>
+                                            <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
+                                                <div className="box_Product1">
+                                                    <img src={generateImageUrl(product.mainImage)} alt="" />
+                                                    <span className="icn_Product">
+                                                        <LuPhoneCall />
+                                                    </span>
+                                                    <div className="product_icn_text">
+                                                        <Link to={`/ShopDetail/${product?.slug}`}>
+                                                            <span className="green-1">Greenlam Laminates</span>
+                                                            <span className="chennai">
+                                                                <IoLocationSharp /> Chennai
+                                                            </span>
+                                                            <span className="Rs-1">₹3360</span>
+                                                        </Link>
+                                                    </div>
+                                                    <button>1 Get Deal</button>
+                                                </div>
+                                            </Col>
+                                        </SwiperSlide>
+                                    ))}
                                 <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
                                     <div className="box_Product1">
                                         <img src={greenimg} alt="" />
@@ -582,7 +632,7 @@ const ProductDetails = () => {
                 </h2>
             </Container>
             <section className='smallBanner d-flex flex-column justify-content-around'>
-                <Container fluid className=" px-lg-5 fw-bold">
+                <Container fluid className=" px-lg-5 py-lg-4 py-2 fw-bold">
 
                     <Swiper
                         modules={[Autoplay]}
@@ -594,16 +644,15 @@ const ProductDetails = () => {
                         speed={1500}
                         breakpoints={states}
                     >
-                        {brandArr.map((city, index) => (
+                        {brandArr.map((brand, index) => (
                             <SwiperSlide key={index}>
                                 <div>
                                     <img
-                                        src={generateImageUrl(city.image)}
-                                        // src={generateImageUrl(city.image)}
+                                        src={G3}
                                         className="w-75"
-                                        alt={city.name}
+                                        alt={brand.name}
                                     />
-                                    <p className="text-center">{city.name}</p>
+                                    {/* <p className="text-center">{brand.name}</p> */}
                                 </div>
                             </SwiperSlide>
                         ))}
