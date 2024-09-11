@@ -734,12 +734,15 @@ function Index() {
             </Swiper>
           </Row>
           <div className="d-flex justify-content-center align-items-center mt-3">
-            <button
-              className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
-              style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
-            >
-              View All
-            </button>
+            <Link to={`/product-details`}>
+              <button
+                className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
+                style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
+
+              >
+                View All
+              </button>
+            </Link>
           </div>
         </Container>
       </section>
