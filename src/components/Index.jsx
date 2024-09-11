@@ -524,7 +524,7 @@ function Index() {
         <Container fluid className="categoriesback p-5">
           <div className="container">
             <div className="title-section with-btn mb-5">
-              <h1 className="heading "> Categories</h1>
+              <h1 className="heading ">New Categories</h1>
             </div>
           </div>
           <Row>
