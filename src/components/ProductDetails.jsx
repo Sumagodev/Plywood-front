@@ -283,37 +283,12 @@ const ProductDetails = () => {
                         <Container className="product-container-section">
                             <Row>
                                 {productArr &&
-                                    productArr.slice(0, 10).map((product, index) => (
-                                        <SwiperSlide key={index}>
-                                            <Col
-                                                key={index}
-                                                className="d-flex productyoulike justify-content-center align-items-center py-4 px-0 mx-0"
-
-                                            >
-                                                <div className="box_Product1 ">
-                                                    <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
-
-                                                    <span className="icn_Product">
-                                                        <LuPhoneCall />
-                                                    </span>
-                                                    <div className="">
-                                                        <Link to={`/ShopDetail/${product?.slug}`}>
-
-                                                            <span className="fs-6 msg1">{product.name}</span>
-                                                            <span className="chennai">
-                                                                <IoLocationSharp /> chainai
-                                                            </span>
-                                                            <span className="fs-6 msg1">{product.sellingprice}</span>
-                                                        </Link>
-                                                    </div>
-                                                    <button className=" fs-6 fw-bold">Get Quote</button>
-
-                                                </div>
-                                            </Col>
+                                    productArr.slice(0, 9).map((product, index) => (
+                                  
                                             <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
                                                 <div className="box_Product1">
-                                                    <img src={generateImageUrl(product.mainImage)} alt="" />
-                                                    <span className="icn_Product">
+                                                <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
+                                                <span className="icn_Product">
                                                         <LuPhoneCall />
                                                     </span>
                                                     <div className="product_icn_text">
@@ -328,56 +303,9 @@ const ProductDetails = () => {
                                                     <button>1 Get Deal</button>
                                                 </div>
                                             </Col>
-                                        </SwiperSlide>
+                                    
                                     ))}
-                                <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <div className="box_Product1">
-                                        <img src={greenimg} alt="" />
-                                        <span className="icn_Product">
-                                            <LuPhoneCall />
-                                        </span>
-                                        <div className="product_icn_text">
-                                            <span className="green-1">Greenlam Laminates</span>
-                                            <span className="chennai">
-                                                <IoLocationSharp /> Chennai
-                                            </span>
-                                            <span className="Rs-1">₹3360</span>
-                                        </div>
-                                        <button>1 Get Deal</button>
-                                    </div>
-                                </Col>
-                                <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <div className="box_Product1">
-                                        <img src={greenimg} alt="" />
-                                        <span className="icn_Product">
-                                            <LuPhoneCall />
-                                        </span>
-                                        <div className="product_icn_text">
-                                            <span className="green-1">Greenlam Laminates</span>
-                                            <span className="chennai">
-                                                <IoLocationSharp /> Chennai
-                                            </span>
-                                            <span className="Rs-1">₹3360</span>
-                                        </div>
-                                        <button>1 Get Deal</button>
-                                    </div>
-                                </Col>
-                                <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
-                                    <div className="box_Product1">
-                                        <img src={greenimg} alt="" />
-                                        <span className="icn_Product">
-                                            <LuPhoneCall />
-                                        </span>
-                                        <div className="product_icn_text">
-                                            <span className="green-1">Greenlam Laminates</span>
-                                            <span className="chennai">
-                                                <IoLocationSharp /> Chennai
-                                            </span>
-                                            <span className="Rs-1">₹3360</span>
-                                        </div>
-                                        <button>1 Get Deal</button>
-                                    </div>
-                                </Col>
+                              
                             </Row>
                             <div className="d-flex justify-content-center align-items-center mt-3">
                                 <button className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5" style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}>
@@ -556,76 +484,7 @@ const ProductDetails = () => {
                     </Row>
                 </Container>
             </section>
-            <section>
-                <Container className="product-container-section">
-                    <Row>
-                        <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
-                            <div className="box_Product1">
-                                <img src={greenimg} alt="" />
-                                <span className="icn_Product">
-                                    <LuPhoneCall />
-                                </span>
-                                <div className="product_icn_text">
-                                    <span className="green-1">Greenlam Laminates</span>
-                                    <span className="chennai">
-                                        <IoLocationSharp /> Chennai
-                                    </span>
-                                    <span className="Rs-1">₹3360</span>
-                                </div>
-                                <button>1 Get Deal</button>
-                            </div>
-                        </Col>
-                        <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
-                            <div className="box_Product1">
-                                <img src={greenimg} alt="" />
-                                <span className="icn_Product">
-                                    <LuPhoneCall />
-                                </span>
-                                <div className="product_icn_text">
-                                    <span className="green-1">Greenlam Laminates</span>
-                                    <span className="chennai">
-                                        <IoLocationSharp /> Chennai
-                                    </span>
-                                    <span className="Rs-1">₹3360</span>
-                                </div>
-                                <button>1 Get Deal</button>
-                            </div>
-                        </Col>
-                        <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
-                            <div className="box_Product1">
-                                <img src={greenimg} alt="" />
-                                <span className="icn_Product">
-                                    <LuPhoneCall />
-                                </span>
-                                <div className="product_icn_text">
-                                    <span className="green-1">Greenlam Laminates</span>
-                                    <span className="chennai">
-                                        <IoLocationSharp /> Chennai
-                                    </span>
-                                    <span className="Rs-1">₹3360</span>
-                                </div>
-                                <button>1 Get Deal</button>
-                            </div>
-                        </Col>
-                        <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={3} lg={6} md={6} sm={6} xs={6}>
-                            <div className="box_Product1">
-                                <img src={greenimg} alt="" />
-                                <span className="icn_Product">
-                                    <LuPhoneCall />
-                                </span>
-                                <div className="product_icn_text">
-                                    <span className="green-1">Greenlam Laminates</span>
-                                    <span className="chennai">
-                                        <IoLocationSharp /> Chennai
-                                    </span>
-                                    <span className="Rs-1">₹3360</span>
-                                </div>
-                                <button>1 Get Deal</button>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
+            
             <Container>
                 <h2 className='mx-4 fw-bold'>
                     Related Brand
