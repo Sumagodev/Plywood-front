@@ -21,7 +21,7 @@ import { getWebsiteData } from "../services/websiteData.service";
 import ReactPaginate from "react-paginate";
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
-import { Col, Row, Container ,Table} from "react-bootstrap";
+import { Col, Row, Container, Table } from "react-bootstrap";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import { errorToast } from "./Utility/Toast";
@@ -69,6 +69,7 @@ function Shop() {
       if (res.data && res?.data?.length > 0) {
         Promise.resolve()
           .then(() => {
+            
             setProductsArr(res?.data);
             setTotal(res?.total);
           })
@@ -551,46 +552,48 @@ function Shop() {
                 </div>
               </div> */}
                                 <div className="col-12 col-lg-4 col-sm-6 col-md-6 py-3 px-2">
-                                  <Link to={`/Supplier/${el?._id}`}>
-                                    <div className="component-container1  text-center">
+                                  {/* <Link to={`/Supplier/${el?._id}`}> */}
+                                  <div className="component-container1  text-center">
 
-                                      {el?.bannerImage ? (
-                                        <img
-                                          src={generateImageUrl(el?.bannerImage)}
-                                          alt=""
-                                          className=" img-fluid img"
-                                        />
-                                      ) : (
-                                        <img
-                                          src={images.category_6}
-                                          alt=""
-                                          className=" img-fluid img"
-                                        />
-                                      )}
+                                    {el?.bannerImage ? (
+                                      <img
+                                        src={generateImageUrl(el?.bannerImage)}
+                                        alt=""
+                                        className=" img-fluid img"
+                                      />
+                                    ) : (
+                                      <img
+                                        src={images.category_6}
+                                        alt=""
+                                        className=" img-fluid img"
+                                      />
+                                    )}
 
-                                      <div className="sub-container1">
-                                        <span className=""> <Link to={`/Supplier/${el?._id}`}>
-                                          {el?.companyName
-                                            ? el?.companyName
-                                            : el?.name}
-                                        </Link></span>
-                                        <span className="">
-                                          Products:{" "}
-                                          {el?.productsCount
-                                            ? el?.productsCount
-                                            : "N.A."}
-                                        </span>
-                                      </div>
-                                      <div className="sub-container2">
-                                        <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
-                                        <span className="phone-icon">
-                                          <FaPhoneVolume />
-                                        </span>
-                                      </div>
-
-
+                                    <div className="sub-container1">
+                                      <span className=""> <Link to={`/Supplier/${el?._id}`}>
+                                        {el?.companyName
+                                          ? el?.companyName
+                                          : el?.name}
+                                      </Link></span>
+                                      <span className="">
+                                        Products:{" "}
+                                        {el?.productsCount
+                                          ? el?.productsCount
+                                          : "N.A."}
+                                      </span>
                                     </div>
-                                  </Link>
+                                    <div className="sub-container2">
+                                      <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
+                                      <span className="phone-icon">
+                                        <a href={`tel: ${el?.phone}`}>
+                                          <FaPhoneVolume />
+                                        </a>
+                                      </span>
+                                    </div>
+
+
+                                  </div>
+                                  {/* </Link> */}
                                 </div>
 
 

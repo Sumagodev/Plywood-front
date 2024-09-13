@@ -16,6 +16,9 @@ export const getBrandApi = (query) => {
 export const getByIdApi = (id) => {
   return axios.get(`${serverUrl}/getById/${id}`)
 }
+export const getBrands = () => {
+  return axios.get(`${serverUrl}`)
+}
 
 export const deleteBrandApi = (id) => {
   return axios.delete(`${serverUrl}/deleteById/${id}`)

@@ -92,5 +92,6 @@ export const getSalesUsers = async () => {
   return await axiosApiInstance.get(`${serverUrl}/getSalesUsers`);
 };
 export const gettopUsers = async () => {
-  return await axiosApiInstance.get(`${serverUrl}/getAllUsersForWebsite`);
+  return await axiosApiInstance.get(`${serverUrl}/getTopVendors`);
 };
+

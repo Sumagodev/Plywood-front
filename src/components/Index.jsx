@@ -66,11 +66,13 @@ import {
   getProducts,
 } from "../services/Product.service";
 import { gettopUsers } from "../services/User.service"
+import { getStateDetails } from "../services/State.stateDetail";
 function Index() {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [categoryArr, setcategoryArr] = useState([]);
   const [brandArr, setbrandArr] = useState([]);
   const [flashSalesArr, setFlashSalesArr] = useState([]);
+  const [stateDetails, setStateDetails] = useState([]);
   const auth = useSelector((state) => state.auth.user);
   const mainAuthObj = useSelector((state) => state.auth);
   let role = useSelector((state) => state.auth.role);
@@ -449,9 +451,23 @@ function Index() {
     }
   };
 
+  const handleStateDetails = async () => {
+    try {
+      let { data: res } = await getStateDetails();
+      console.log("res.datassssssssss", res.data);
+      
+      if (res.data) {
+        setStateDetails(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     handleGetBlogs();
     handleGetBlogVideo();
+    handleStateDetails();
   }, []);
   const [productArr, setProductArr] = useState([]);
 
@@ -478,6 +494,8 @@ function Index() {
 
       let { data: res } = await gettopUsers();
       if (res.data) {
+        console.log("res.data", res.data);
+
         settopusers(res.data);
       }
     } catch (err) {
@@ -826,46 +844,49 @@ function Index() {
                 sm={6}
                 xs={6}
               >
-                <Link to={`/Supplier/${el?._id}`}>
-                  <div className="component-container1  text-center">
+                {/* <Link to={`/Supplier/${el?._id}`}> */}
+                <div className="component-container1  text-center">
 
-                    {el?.bannerImage ? (
-                      <img
-                        src={generateImageUrl(el?.bannerImage)}
-                        alt=""
-                        className=" img-fluid img"
-                      />
-                    ) : (
-                      <img
-                        src={images.category_6}
-                        alt=""
-                        className=" img-fluid img"
-                      />
-                    )}
+                  {el?.bannerImage ? (
+                    <img
+                      src={generateImageUrl(el?.bannerImage)}
+                      alt=""
+                      className=" img-fluid img"
+                    />
+                  ) : (
+                    <img
+                      src={images.category_6}
+                      alt=""
+                      className=" img-fluid img"
+                    />
+                  )}
 
-                    <div className="sub-container1">
-                      <span className=""> <Link to={`/Supplier/${el?._id}`}>
+                  <div className="sub-container1">
+                    <span className="">
+                      <Link to={`/Supplier/${el?._id}`}>
                         {el?.companyName
                           ? el?.companyName
                           : el?.name}
                       </Link></span>
-                      <span className="">
-                        Products:{" "}
-                        {el?.productsCount
-                          ? el?.productsCount
-                          : "N.A."}
-                      </span>
-                    </div>
-                    <div className="sub-container2">
-                      <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
-                      <span className="phone-icon">
-                        <FaPhoneVolume />
-                      </span>
-                    </div>
-
-
+                    <span className="">
+                      Products:{" "}
+                      {el?.productsCount
+                        ? el?.productsCount
+                        : "N.A."}
+                    </span>
                   </div>
-                </Link>
+                  <div className="sub-container2">
+                    <span className="p3">Rating - {el?.rating ? el?.rating : 2}</span>
+                    <span className="phone-icon">
+                      <a href={`tel:+91 ${el?.phone}`}>
+                        <FaPhoneVolume />
+                      </a>
+                    </span>
+                  </div>
+
+
+                </div>
+                {/* </Link> */}
 
 
               </Col>
@@ -1131,13 +1152,13 @@ function Index() {
             speed={1500}
             breakpoints={states}
           >
-            {cities.map((city, index) => (
+            {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
                 <div>
                   <img
-                    src={city.imgSrc}
+                    src={city?.image}
                     className=" img-fluid"
-                    alt={city.name}
+                    alt={city?.stateId?.name}
                   />
                   <p className="text-center">{city.name}</p>
                 </div>
