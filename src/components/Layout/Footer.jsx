@@ -481,19 +481,19 @@ function Footer() {
                 </div> */}
                 <ul className="list1 list-unstyled">
                   <li className="">
-                    <a href="https://www.facebook.com/profile.php?id=100063861976220&mibextid=LQQJ4d"
+                    <a href="https://www.facebook.com/profile.php?id=100063861976220&mibextid=LQQJ4d" target="_blank"
                     >
                       <img src={fb} className="p-1 img-fluid" />
                     </a>
                   </li>
-                  <li>
-                    <a href="https://www.instagram.com/plywood_bazar/"
+                  <li> 
+                    <a href="https://www.instagram.com/plywood_bazar/" target="_blank"
                     >
                       <img src={inst} className="p-1 img-fluid" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.youtube.com/@DipparvVentures"
+                    <a href="https://www.youtube.com/@DipparvVentures" target="_blank"
                     >
                       <img src={yout} className="p-1 img-fluid" />
                     </a>

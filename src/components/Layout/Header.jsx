@@ -564,18 +564,18 @@ function Header() {
             </div>
             <div className="social_icons col-lg-6 px-5 text-end d-inline-flex align-items-center justify-content-end">
               <div className="d-flex">
-                <a className="icn p-2 btn-social rounded-circle mx-2" href="">
+                <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="https://www.facebook.com/profile.php?id=100063861976220&mibextid=LQQJ4d">
                   <img src={fb} className=" img-fluid" />
 
                 </a>
-                <a className="icn p-2 btn-social rounded-circle mx-2" href="">
+                <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="https://www.instagram.com/plywood_bazar/">
                   <img src={inst} className=" img-fluid" />
                 </a>
-                <a className="icn p-2 btn-social rounded-circle mx-2" href="">
+                <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="https://www.youtube.com/@DipparvVentures">
                   <img src={yout} className=" img-fluid" />
 
                 </a>
-                <a className="icn p-2 btn-social rounded-circle mx-2" href="">
+                <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="">
                   <img src={whp} className=" img-fluid" />
                 </a>
               </div>
