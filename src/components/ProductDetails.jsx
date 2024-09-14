@@ -35,8 +35,9 @@ import {
     deleteProductbyId,
     getProducts,
 } from "../services/Product.service";
-import { getBrandApi } from "../services/brand.service";
+
 import { toastError } from "../utils/toastutill";
+import { getBrands } from '../services/brand.service';
 
 const cardData = [
     {
@@ -68,9 +69,11 @@ const ProductDetails = () => {
 
     const [brandArr, setBrandArr] = useState([]);
 
-    const getBrands = async () => {
+    const getBrand = async () => {
         try {
-            const { data: res } = await getBrandApi();
+            const { data: res } = await getBrands();
+            console.log("brands....", res.data);
+
             if (res) {
                 setBrandArr(res.data);
             }
@@ -80,7 +83,7 @@ const ProductDetails = () => {
     };
 
     useEffect(() => {
-        getBrands();
+        getBrand();
     }, []);
     const states = {
         0: {
@@ -139,6 +142,8 @@ const ProductDetails = () => {
 
             let { data: res } = await getProducts();
             if (res.data) {
+                console.log("res.data......qqqqqq", res.data);
+
                 setProductArr(res.data);
             }
         } catch (err) {
@@ -284,28 +289,30 @@ const ProductDetails = () => {
                             <Row>
                                 {productArr &&
                                     productArr.slice(0, 9).map((product, index) => (
-                                  
-                                            <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
-                                                <div className="box_Product1">
+
+                                        <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
+                                            <div className="box_Product1">
                                                 <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
                                                 <span className="icn_Product">
+                                                    <a href={`tel: ${product.phone}`}>
                                                         <LuPhoneCall />
-                                                    </span>
-                                                    <div className="product_icn_text">
-                                                        <Link to={`/ShopDetail/${product?.slug}`}>
-                                                            <span className="green-1">Greenlam Laminates</span>
-                                                            <span className="chennai">
-                                                                <IoLocationSharp /> Chennai
-                                                            </span>
-                                                            <span className="Rs-1">₹3360</span>
-                                                        </Link>
-                                                    </div>
-                                                    <button>1 Get Deal</button>
+                                                    </a>
+                                                </span>
+                                                <div className="product_icn_text">
+                                                    <Link to={`/ShopDetail/${product?.slug}`}>
+                                                        <span className="green-1">{product?.name}</span>
+                                                        <span className="chennai">
+                                                            <IoLocationSharp /> {product?.cityName}
+                                                        </span>
+                                                        <span className="Rs-1">{product?.productPrice}</span>
+                                                    </Link>
                                                 </div>
-                                            </Col>
-                                    
+                                                <button>1 Get Deal</button>
+                                            </div>
+                                        </Col>
+
                                     ))}
-                              
+
                             </Row>
                             <div className="d-flex justify-content-center align-items-center mt-3">
                                 <button className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5" style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}>
@@ -484,7 +491,7 @@ const ProductDetails = () => {
                     </Row>
                 </Container>
             </section>
-            
+
             <Container>
                 <h2 className='mx-4 fw-bold'>
                     Related Brand
@@ -507,7 +514,7 @@ const ProductDetails = () => {
                             <SwiperSlide key={index}>
                                 <div>
                                     <img
-                                        src={G3}
+                                        src={generateImageUrl(brand.image)}
                                         className="w-75"
                                         alt={brand.name}
                                     />
