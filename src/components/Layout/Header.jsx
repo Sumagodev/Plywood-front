@@ -20,7 +20,8 @@ import { MdAccountCircle } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
-import logo from "../../assets/image/home/image 109.png";
+// import logo from "../../assets/image/home/image 109.png";
+import logo from "../../assets/image/home/images/logo6.png";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AiFillHome, AiOutlineLogout, AiTwotoneSetting } from "react-icons/ai";
 import { BiBell, BiChevronDown, BiSearch } from "react-icons/bi";
@@ -553,12 +554,12 @@ function Header() {
         {windowWidth > 992 ? (
           <Container fluid className="Header"><div className="Sub_Headere py-2 ">
             <div className="main_logo d-inline-flex align-items-center mx-5">
-              <a
-                href="index.html"
+              <Link
+                to="/"
                 className="navbar-brand d-flex align-items-center"
               >
                 <img className="logo" src={logo} alt="" />
-              </a>
+              </Link>
             </div>
             <div className="social_icons col-lg-6 px-5 text-end d-inline-flex align-items-center justify-content-end">
               <div className="d-flex">

@@ -816,16 +816,7 @@ function Index() {
           <h1 className="text-center mb-4">Top Profiles</h1>
           <Row>
             {topusers && topusers.slice(0, 4).map((el) => (
-              <Col
-                key={el._id}
-                className="d-flex justify-content-center align-items-center py-4"
-                xxl={3}
-                xl={3}
-                lg={3}
-                md={6}
-                sm={6}
-                xs={6}
-              >
+              <div className="col-12 col-lg-3 col-sm-6 col-md-6 py-3 px-2">
                 <Link to={`/Supplier/${el?._id}`}>
                   <div className="component-container1  text-center">
 
@@ -857,7 +848,7 @@ function Index() {
                       </span>
                     </div>
                     <div className="sub-container2">
-                      <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
+                      <span className="ps-3">Rating - {el?.rating ? el?.rating : 0}</span>
                       <span className="phone-icon">
                         <FaPhoneVolume />
                       </span>
@@ -866,9 +857,7 @@ function Index() {
 
                   </div>
                 </Link>
-
-
-              </Col>
+              </div>
             ))}
           </Row>
         </Container>
@@ -883,7 +872,7 @@ function Index() {
                   lg={3}
                   xs={8}
                   className="  d-lg-flex  justify-content-center align-items-center "
-                  onClick={() => navigate("/AddPromotions")}
+                  onClick={() => navigate("/AddFlashSale")}
                 >
                   <img src={img4} className=" img-fluid " alt="" />{" "}
                 </Col>
@@ -971,7 +960,7 @@ function Index() {
                       })}
                     <SwiperSlide>
                       <div className="addfrmmain">
-                        <Link to="/AddPromotions" className="addfrm p-2">
+                        <Link to="/AddFlashSale" className="addfrm p-2">
                           +
                         </Link>
                       </div>

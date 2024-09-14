@@ -350,14 +350,14 @@ export const Register = () => {
 
     return (
         <>
-            <div className="regsiter_user">
+            <div className="regsiter_user topup-subscription-container ">
                 <div className="container">
                     <div className="row m-3 pt-3">
                         <div className="col-12 col-md-12">
                             <div className="right">
                                 <h3 className="heading yellow">Register</h3>
                                
-                                <form className="form row">
+                                <form className="form row ">
 
 
                                     <div className="col-md-6">
@@ -449,9 +449,10 @@ export const Register = () => {
                                                     </label>
                                                 </OverlayTrigger>
                                             </div>
-                                            <Select className='form-control' 
+                                            <Select className='form-control'  
                                              options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))} 
                                              value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
+                                             
 
                                         </div>
                                         <div className="col-md-6">
