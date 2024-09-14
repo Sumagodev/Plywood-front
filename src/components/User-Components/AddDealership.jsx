@@ -40,7 +40,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
     const [countryArr, setcountryArr] = useState([]);
     const [stateArr, setstateArr] = useState([]);
     const [cityArr, setcityArr] = useState([]);
-    const [countryId, setcountryId] = useState("");
+    const [countryId, setcountryId] = useState("648d5b79f79a9ff6f10a82fb");
     const [stateId, setstateId] = useState("");
     const [cityId, setcityId] = useState("");
     const [brandNames, setBrandNames] = useState("")
@@ -320,11 +320,6 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
     }, [stateId])
 
 
-    const tooltip = (
-        <Tooltip id="tooltip">
-            <strong>Product Categories interested in</strong> You can select multiple categories if you want.
-        </Tooltip>
-    );
 
 
     const makeClientCrop = async (crop) => {
@@ -402,59 +397,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                                 onChange={(e) => setcompanyName(e.target.value)}
                                             />
                                         </div>
-                                        {/* <div className="col-md-6">
-                                            <label>Organization Email <span className="text-danger">*</span></label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={companyEmail}
-                                                onChange={(e) => setcompanyEmail(e.target.value)}
-                                            />
-                                        </div> */}
-                                        <div className="col-md-6">
-                                            <label>Organization Phone / Landline</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={companyPhone}
-                                                onChange={(e) => setcompanyPhone(e.target.value)}
-                                                maxLength="10"
-                                            />
-                                        </div>
-                                        
-                                        {/* <div className="col-md-6">
-                                            <label>Landline Number <span className="text-danger">*</span> </label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={landline}
-                                                onChange={(e) => setLandline(e.target.value)}
-                                            />
-                                        </div> */}
-
-                                        <div className="col-md-6">
-                                            <label> Year of Establishment <span className="text-danger">*</span> </label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={yearOfEstablishment}
-                                                onChange={(e) => setYearOfEstablishment(e.target.value)}
-                                            />
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div style={{ width: "max-content" }}>
-                                                <OverlayTrigger placement="right" overlay={tooltip}>
-                                                    <label>Category<span className="text-danger me-2">*</span>
-                                                        <AiOutlineInfoCircle />
-                                                    </label>
-                                                </OverlayTrigger>
-                                            </div>
-                                            <Select className='form-control'  
-                                             options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))} 
-                                             value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
-                                             
-
-                                        </div>
+                                      
                                         <div className="col-md-6">
                                             <label> Dealing With Brand Names  </label>
                                             <input
@@ -464,48 +407,16 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                                 onChange={(e) => setBrandNames(e.target.value)}
                                             />
                                         </div>
-                                        <div className="col-md-6">
-                                            <label> GST No </label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={gstNumber}
-                                                onChange={(e) => setgstNumber(e.target.value)}
-                                            />
-                                        </div>
-                                        {/* <div className="col-md-6">
-                                            <label> Google Maps Link <span className="text-danger">*</span> </label>
-                                            <a href="https://www.google.com/maps" target="_blank" style={{ textDecorationLine: "underline" }}> Click to open google maps</a>
-                                            <br />
-                                            <br />
-                                            <span>Note : The link above will take you to google maps where you can select the your business's location to get the link and paste it in the text input given below</span>
-                                            <br />
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={googleMapsLink}
-                                                onChange={(e) => setGoogleMapsLink(e.target.value)}
-                                            />
-                                        </div> */}
-                                        <div className="col-md-12">
-                                            <label> Address <span className="text-danger">*</span></label>
-                                            <textarea
-                                                className="form-control"
-                                                value={address}
-                                                onChange={(e) => setaddress(e.target.value)}
-                                                rows={3}
-                                            ></textarea>
-                                        </div>
-
-
-
+                                     
+                                       
+                                       
 
                                       
 
 
 
                                         <div className="col-md-6">
-                                            <label> Profile Photo</label>
+                                            <label> image </label>
                                             <div onClick={() => handleOpenImageInNewTab(profileImage)}>
                                                 <img src={profileImage} style={{ width: 150, height: 150 }} alt="" />
                                             </div>
@@ -517,33 +428,6 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                         </div>
 
 
-                                        <div className="col-md-6">
-                                            <label> Banner Photo  (Exterior/Interior Image of your Showroom/Unit)</label>
-                                            <div onClick={() => handleOpenImageInNewTab(bannerImage)}>
-                                                <img src={bannerImage} style={{ width: 150, height: 150 }} alt="" />
-                                            </div>
-                                            <FileInput setFile={async (e) => {
-                                                let base64 = await convertFileToBase64(e);
-                                                setBannerImage(base64)
-                                            }} file={bannerImage} type="image" previousFile={(bannerImage && bannerImage != "" && bannerImage.includes("base64")) ? bannerImage : null} />
-                                            {/* <FileUpload onFileChange={(val) => setBannerImage(val)} /> */}
-                                        </div>
-                                        {/* <div className="col-md-6">
-                                            <label> Discription of business</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={natureOfBusiness}
-                                                onChange={(e) => setNatureOfBusiness(e.target.value)}
-                                            />
-                                        </div> */}
-                                      
-
-                                        {/* <div className="col-md-6">
-                                            <label>Select Sales Person</label>
-                                            <Select className='form-control' options={salesUsersArr && salesUsersArr.length > 0 && salesUsersArr.map((el) => ({ ...el, label: el.name, value: el._id }))} value={salesObj} onChange={(e) => setSalesObj(e)} />
-
-                                        </div> */}
 
 
 
@@ -556,39 +440,9 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
 
 
 
-
-
-
-                                        {/* <div className="col-md-6">
-                                            <label> Nature of your business</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={natureOfBusiness}
-                                                onChange={(e) => setNatureOfBusiness(e.target.value)}
-                                            />
-                                        </div> */}
 
                                     </div>
-                                    <h4 className="heading yellow mt-4"> Contact Person Details</h4>
-                                    <div className="col-md-6">
-                                        <label>Name of Authorised person<span className="text-danger">*</span></label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            value={name}
-                                            onChange={(e) => setname(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label>Date of Birth </label>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            value={moment(aniversaryDate).format("YYYY-MM-DD")}
-                                            onChange={(e) => setAniversaryDate(e.target.value)}
-                                        />
-                                    </div>
+                                   
                                     <div className="col-md-6">
                                         <label>Your Email Id <span className="text-danger">*</span></label>
                                         <input
@@ -600,45 +454,11 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                         />
                                     </div>
 
-                                    <div className="col-md-6">
-                                        <label>Mobile No. <span className="text-danger">*</span></label>
-                                        <input
-                                            type="tel"
-                                            className="form-control"
-                                            value={mobile}
-                                            onChange={(e) => setmobile(e.target.value)}
-                                            maxLength="10"
-                                        />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label>Whatsapp No. </label>
-                                        <input
-                                            type="tel"
-                                            className="form-control"
-                                            value={whatsapp}
-                                            onChange={(e) => setwhatsapp(e.target.value)}
-                                            maxLength="10"
-                                        />
-                                    </div>
 
 
 
 
-
-
-                                    <div className="col-md-6">
-                                            <label> Country <span className="text-danger">*</span></label>
-                                            {
-                                                countryArr && (
-                                                    <select className="form-control" onChange={(e) => setcountryId(e.target.value)}>
-                                                        <option value="">Please Select Country</option>
-                                                        {countryArr.map((country) => (
-                                                            <option value={country._id} >{country.name}</option>
-                                                        ))}
-                                                    </select>
-                                                )
-                                            }
-                                        </div>
+                                 
                                         <div className="col-md-6">
                                             <label> State <span className="text-danger">*</span></label>
                                             {
@@ -653,7 +473,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                             }
                                         </div>
                                         <div className="col-md-6">
-                                            <label> City <span className="text-danger">*</span></label>
+                                            <label> Cities <span className="text-danger">*</span></label>
                                             {
                                                 cityArr && (
                                                     <select className="form-control" onChange={(e) => setcityId(e.target.value)}>
@@ -667,21 +487,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                         </div>
 
 
-                                        <div className="col-md-6">
-                                            <label> Google Maps Link</label>
-                                            {/* <a href="https://www.google.com/maps" target="_blank" style={{ textDecorationLine: "underline" }}> Click to open google maps</a> */}
-                                            {/* <br />
-                                            <br />
-                                            <span>Note : The link above will take you to google maps where you can select the your business's location to get the link and paste it in the text input given below</span>
-                                            <br /> */}
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={googleMapsLink}
-                                                onChange={(e) => setGoogleMapsLink(e.target.value)}
-                                            />
-                                        </div>
-
+                                      
 
 
 
@@ -695,7 +501,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                                     to="/Privacy">privacy policy</Link> before registering
                                         </div>
                                         <button type="button" onClick={() => { handleRegister() }} className="btn btn-custom btn-yellow mt-5">
-                                            Register
+                                            add dealership oprtunity
                                         </button>
                                     </div>
                                 </form>
