@@ -38,6 +38,7 @@ import {
 
 import { toastError } from "../utils/toastutill";
 import { getBrands } from '../services/brand.service';
+import { gettopUsers } from '../services/User.service';
 
 const cardData = [
     {
@@ -65,7 +66,7 @@ const ProductDetails = () => {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [productName, setProductName] = useState("");
-
+    const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
     const [brandArr, setBrandArr] = useState([]);
 
@@ -81,6 +82,26 @@ const ProductDetails = () => {
             toastError(error);
         }
     };
+
+    const [topusers, settopusers] = useState([]);
+
+    const handlesettopusers = async () => {
+        try {
+
+
+            let { data: res } = await gettopUsers();
+            if (res.data) {
+                console.log("res.data", res.data);
+
+                settopusers(res.data);
+            }
+        } catch (err) {
+            errorToast(err);
+        }
+    };
+    useEffect(() => {
+        handlesettopusers();
+    }, []);
 
     useEffect(() => {
         getBrand();
@@ -294,9 +315,11 @@ const ProductDetails = () => {
                                             <div className="box_Product1">
                                                 <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
                                                 <span className="icn_Product">
-                                                    <a href={`tel: ${product.phone}`}>
-                                                        <LuPhoneCall />
-                                                    </a>
+                                                    {isAuthorized ?
+                                                        <a href={`tel: ${product.phone}`}>
+                                                            <LuPhoneCall />
+                                                        </a>
+                                                        : <LuPhoneCall />}
                                                 </span>
                                                 <div className="product_icn_text">
                                                     <Link to={`/ShopDetail/${product?.slug}`}>
@@ -380,46 +403,63 @@ const ProductDetails = () => {
                         <Container className="main_Profiles my-5">
                             <h1 className="text-center mb-4">Top profiles</h1>
                             <Row className=''>
-                                <Col xs={6} lg={12}
-                                    className="d-flex justify-content-center align-items-center py-4"
+                                {
+                                    topusers && topusers.slice(0, 2).map((el) => {
+                                        return (
+                                            <>
+                                                <Col xs={6} lg={12}
+                                                    className="d-flex justify-content-center align-items-center py-4"
 
-                                >
-                                    <div className="component-container1">
-                                        <img src={icon1} alt="" className="img" />
-                                        <div className="sub-container1">
-                                            <span className="p1">Keshav Enterprise</span>
-                                            <span className="p2">
-                                                Product - <span>N.A</span>
-                                            </span>
-                                        </div>
-                                        <div className="sub-container2">
-                                            <span className="p3">Rating - 4.5</span>
-                                            <span className="phone-icon">
-                                                <FaPhoneVolume />
-                                            </span>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col xs={6} lg={12}
-                                    className="d-flex justify-content-center align-items-center py-4"
+                                                >
+                                                    <div className="component-container1">
+                                                        <img src={generateImageUrl(el?.bannerImage)} alt="" className="img" />
+                                                        <div className="sub-container1">
+                                                            <span className="p1">{el?.companyName
+                                                                ? el?.companyName
+                                                                : el?.name}</span>
+                                                            <span className="p2">
+                                                                Product - <span>{el?.productsCount
+                                                                    ? el?.productsCount
+                                                                    : "N.A."}</span>
+                                                            </span>
+                                                        </div>
+                                                        <div className="sub-container2">
+                                                            <span className="p3">Rating - {el?.rating ? el?.rating : 2}</span>
+                                                            <span className="phone-icon">
+                                                                {
+                                                                isAuthorized ?
+                                                                <a href={`tel: ${el.phone}`}>
+                                                                    <FaPhoneVolume />
+                                                                </a>
+                                                                : <FaPhoneVolume />}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+                                                {/* <Col xs={6} lg={12}
+                                                    className="d-flex justify-content-center align-items-center py-4"
 
-                                >
-                                    <div className="component-container1">
-                                        <img src={icon1} alt="" className="img" />
-                                        <div className="sub-container1">
-                                            <span className="p1">Keshav Enterprise</span>
-                                            <span className="p2">
-                                                Product - <span>N.A</span>
-                                            </span>
-                                        </div>
-                                        <div className="sub-container2">
-                                            <span className="p3">Rating - 4.5</span>
-                                            <span className="phone-icon">
-                                                <FaPhoneVolume />
-                                            </span>
-                                        </div>
-                                    </div>
-                                </Col>
+                                                >
+                                                    <div className="component-container1">
+                                                        <img src={icon1} alt="" className="img" />
+                                                        <div className="sub-container1">
+                                                            <span className="p1">Keshav Enterprise</span>
+                                                            <span className="p2">
+                                                                Product - <span>N.A</span>
+                                                            </span>
+                                                        </div>
+                                                        <div className="sub-container2">
+                                                            <span className="p3">Rating - 4.5</span>
+                                                            <span className="phone-icon">
+                                                                <FaPhoneVolume />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </Col> */}
+                                            </>
+                                        )
+                                    })
+                                }
 
                             </Row>
                         </Container>

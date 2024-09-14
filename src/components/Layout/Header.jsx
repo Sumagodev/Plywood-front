@@ -128,11 +128,11 @@ function Header() {
       icon: <MdOutlineSubscriptions />,
       link: "/MySubscriptions",
     },
-    // {
-    //   name: "Subscription",
-    //   icon: <MdSubscriptions />,
-    //   link: "/Subscription",
-    // },
+    {
+      name: "Subscription",
+      icon: <MdSubscriptions />,
+      link: "/Subscription",
+    },
     {
       name: "Topup",
       icon: <MdSubscriptions />,
@@ -199,7 +199,8 @@ function Header() {
   const [categoryArr, setcategoryArr] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
+  console.log("isAuthorized", isAuthorized);
+  
   const [name, setname] = useState();
 
   const handleNestedcategories = async () => {
@@ -554,7 +555,7 @@ function Header() {
           <Container fluid className="Header"><div className="Sub_Headere py-2 ">
             <div className="main_logo d-inline-flex align-items-center mx-5">
               <a
-                href="index.html"
+                href="/"
                 className="navbar-brand d-flex align-items-center"
               >
                 <img className="logo" src={logo} alt="" />

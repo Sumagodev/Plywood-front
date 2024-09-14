@@ -42,7 +42,6 @@ import {
   registerUserFcmToken,
 } from "../services/User.service";
 import { images } from "./Utility/Images";
-
 import { addUserRequirement } from "../services/UserRequirements.service";
 import { getHomePageBannersApi } from "../services/homepageBanners.service";
 import { generateImageUrl } from "../services/url.service";
@@ -455,7 +454,7 @@ function Index() {
     try {
       let { data: res } = await getStateDetails();
       console.log("res.datassssssssss", res.data);
-      
+
       if (res.data) {
         setStateDetails(res.data);
       }
@@ -731,7 +730,14 @@ function Index() {
                         <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
 
                         <span className="icn_Product">
-                          <LuPhoneCall />
+                          {/* <LuPhoneCall /> */}
+                          {
+                            isAuthorized ?
+                              <a href={`tel: ${product.phone}`}>
+                                <LuPhoneCall />
+                              </a>
+                              : <LuPhoneCall />
+                          }
                         </span>
                         <div className="">
                           <Link to={`/ShopDetail/${product?.slug}`}>
@@ -878,9 +884,13 @@ function Index() {
                   <div className="sub-container2">
                     <span className="p3">Rating - {el?.rating ? el?.rating : 2}</span>
                     <span className="phone-icon">
-                      <a href={`tel:+91 ${el?.phone}`}>
-                        <FaPhoneVolume />
-                      </a>
+                      {
+                        isAuthorized ?
+                          <a href={`tel: ${el.phone}`}>
+                            <LuPhoneCall />
+                          </a>
+                          : <LuPhoneCall />
+                      }
                     </span>
                   </div>
 
@@ -943,7 +953,14 @@ function Index() {
                                     : errorToast("Take subscription");
                                 }}
                               >
-                                <LuPhoneCall className="phn rounded-circle p-2" />
+                                {/* <LuPhoneCall className="phn rounded-circle p-2" /> */}
+                                {
+                                  isAuthorized ?
+                                    <a href={`tel: ${el.userId?.companyObj?.phone}`}>
+                                      <LuPhoneCall className="phn rounded-circle p-2" />
+                                    </a>
+                                    : <LuPhoneCall className="phn rounded-circle p-2" />
+                                }
                               </div>
                               <div className="d-flex justify-content-center">
                                 <h6>{el?.description}</h6>
