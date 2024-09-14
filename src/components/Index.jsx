@@ -839,17 +839,8 @@ function Index() {
         <Container className="main_Profiles my-5">
           <h1 className="text-center mb-4">Top Profiles</h1>
           <Row>
-            {topusers && topusers.slice(0, 4).map((el) => (
-              <Col
-                key={el._id}
-                className="d-flex justify-content-center align-items-center py-4"
-                xxl={3}
-                xl={3}
-                lg={3}
-                md={6}
-                sm={6}
-                xs={6}
-              >
+            {topusers && topusers.slice(0, 3).map((el) => (
+              <div className="col- col-lg-4 col-sm-6 col-md-6 py-3 px-2">
                 {/* <Link to={`/Supplier/${el?._id}`}> */}
                 <div className="component-container1  text-center">
 
@@ -868,12 +859,11 @@ function Index() {
                   )}
 
                   <div className="sub-container1">
-                    <span className="">
-                      <Link to={`/Supplier/${el?._id}`}>
-                        {el?.companyName
-                          ? el?.companyName
-                          : el?.name}
-                      </Link></span>
+                    <span className=""> <Link to={`/Supplier/${el?._id}`}>
+                      {el?.companyName
+                        ? el?.companyName
+                        : el?.name}
+                    </Link></span>
                     <span className="">
                       Products:{" "}
                       {el?.productsCount
@@ -882,7 +872,7 @@ function Index() {
                     </span>
                   </div>
                   <div className="sub-container2">
-                    <span className="p3">Rating - {el?.rating ? el?.rating : 2}</span>
+                    <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
                     <span className="phone-icon">
                       {
                         isAuthorized ?
@@ -897,9 +887,7 @@ function Index() {
 
                 </div>
                 {/* </Link> */}
-
-
-              </Col>
+              </div>
             ))}
           </Row>
         </Container>
@@ -914,7 +902,7 @@ function Index() {
                   lg={3}
                   xs={8}
                   className="  d-lg-flex  justify-content-center align-items-center "
-                  onClick={() => navigate("/AddPromotions")}
+                  onClick={() => navigate("/AddFlashSale")}
                 >
                   <img src={img4} className=" img-fluid " alt="" />{" "}
                 </Col>
@@ -1009,7 +997,7 @@ function Index() {
                       })}
                     <SwiperSlide>
                       <div className="addfrmmain">
-                        <Link to="/AddPromotions" className="addfrm p-2">
+                        <Link to="/AddFlashSale" className="addfrm p-2">
                           +
                         </Link>
                       </div>

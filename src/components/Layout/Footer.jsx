@@ -15,7 +15,9 @@ import { addNewsLetter } from "../../services/newsLetter.service";
 import { toastError, toastSuccess } from "../../utils/toastutill";
 import { getNestedCategories } from "../../services/Category.service";
 import { Container, Row, Col } from "react-bootstrap";
-import logo from "../../assets/image/home/image 109.png";
+// import logo from "../../assets/image/home/image 109.png";
+import logo from "../../assets/image/home/images/logo6.png";
+
 import { SlLocationPin } from "react-icons/sl";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
@@ -297,9 +299,13 @@ function Footer() {
           <Container className=" text-white mt-0 mt-lg-5 p-4 p-md-0">
             <Row className="elements1">
               <Col xs={12} lg={4} className="">
-                <p>
-                  <img src={logo} alt="" className="img-fluid" />
-                </p>
+                <Link 
+                
+                to='/'>
+
+                  <p>
+                    <img src={logo} alt="" className="img-fluid" />
+                  </p></Link>
                 <p>
                   Plywood bazar. com is India's largest online B2B market place
                   brought a platform to interact with Manufacturers,
@@ -314,7 +320,7 @@ function Footer() {
               <Col lg={5}>
                 <Row>
                   <Col className="quicklinks mt-5 mt-lg-0" xs={12} lg={4}>
-                    <h5  className=" text-white">QUICK LINKS</h5>
+                    <h5 className=" text-white">QUICK LINKS</h5>
 
                     <ul className="links">
                       <li>
@@ -402,7 +408,7 @@ function Footer() {
                 </Row>
               </Col>
               <Col className="contactus mt-5 mt-lg-0" xs={12} lg={3}>
-                <h5  className=" text-white">CONTACT US</h5>
+                <h5 className=" text-white">CONTACT US</h5>
                 <ul className="list-unstyled">
                   <li>
                     <IoCallOutline />
@@ -475,26 +481,26 @@ function Footer() {
                 </div> */}
                 <ul className="list1 list-unstyled">
                   <li className="">
-                    <a                         href="https://www.facebook.com/profile.php?id=100063861976220&mibextid=LQQJ4d"
+                    <a href="https://www.facebook.com/profile.php?id=100063861976220&mibextid=LQQJ4d"
                     >
-                    <img src={fb} className="p-1 img-fluid" />
+                      <img src={fb} className="p-1 img-fluid" />
                     </a>
                   </li>
                   <li>
-                    <a                         href="https://www.instagram.com/plywood_bazar/"
+                    <a href="https://www.instagram.com/plywood_bazar/"
                     >
-                    <img src={inst} className="p-1 img-fluid" />
+                      <img src={inst} className="p-1 img-fluid" />
                     </a>
                   </li>
                   <li>
-                    <a                         href="https://www.youtube.com/@DipparvVentures"
+                    <a href="https://www.youtube.com/@DipparvVentures"
                     >
-                    <img src={yout} className="p-1 img-fluid" />
+                      <img src={yout} className="p-1 img-fluid" />
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                    <img src={whp} className="p-1 img-fluid" />
+                      <img src={whp} className="p-1 img-fluid" />
                     </a>
                   </li>
                 </ul>
@@ -505,7 +511,7 @@ function Footer() {
         </div>
       </>
     </>
-  );                      
+  );
 }
 
 export default Footer;
