@@ -129,11 +129,11 @@ function Header() {
       icon: <MdOutlineSubscriptions />,
       link: "/MySubscriptions",
     },
-    // {
-    //   name: "Subscription",
-    //   icon: <MdSubscriptions />,
-    //   link: "/Subscription",
-    // },
+    {
+      name: "Subscription",
+      icon: <MdSubscriptions />,
+      link: "/Subscription",
+    },
     {
       name: "Topup",
       icon: <MdSubscriptions />,
@@ -200,7 +200,8 @@ function Header() {
   const [categoryArr, setcategoryArr] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
+  console.log("isAuthorized", isAuthorized);
+  
   const [name, setname] = useState();
 
   const handleNestedcategories = async () => {

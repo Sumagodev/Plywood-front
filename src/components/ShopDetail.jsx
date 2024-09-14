@@ -5,8 +5,8 @@ import { BsPatchCheckFill } from "react-icons/bs";
 import { ImLocation } from "react-icons/im";
 import { MdCall } from "react-icons/md";
 import ReactStars from "react-rating-stars-component";
-import { useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, redirect, useNavigate, useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,7 +21,10 @@ import { images } from "./Utility/Images";
 import { errorToast, successToast } from "./Utility/Toast";
 import star from '../assets/image/home/images/star.png'
 import { Row, Col, Container, Form, Button, Table } from "react-bootstrap";
-
+import {
+  sentOtp,
+} from "../services/User.service";
+import { login } from "../redux/features/auth/authSlice";
 function ShopDetail() {
   const [modalOpen, setModalOpen] = useState(false);
   let userObj = useSelector((state) => state.auth.user);
@@ -31,15 +34,17 @@ function ShopDetail() {
   const [rating, setRating] = useState(0);
   const [currentUserHasActiveSubscription, setCurrentUserHasActiveSubscription] = useState(false);
   const [isMobileNumberVisible, setIsMobileNumberVisible] = useState(false);
-
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
   const [userName, setUserName] = useState("");
   const [message, setMessage] = useState("");
-
+  const [signInModal, setSignInModal] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [productName, setProductName] = useState("");
-
+  const [loginByEmail, setLoginByEmail] = useState(false);
+  const [otpsent, setotpsent] = useState(false);
+  const [mobile, setmobile] = useState("");
   const [bigImg, setBigImg] = useState(images.category_1);
   const [miniImg, setMiniImg] = useState([images.category_2, images.category_3, images.category_4, images.category_5]);
   const [isPriceVisible, setIsPriceVisible] = useState(false);
@@ -48,8 +53,9 @@ function ShopDetail() {
   const [productObj, setproductObj] = useState("");
   const [imagearray, setImagearray] = useState([]);
   const [similarProductArr, setSimilarProductArr] = useState([]);
-
-
+  const [otp, setotp] = useState("");
+  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
   const handleGetProductBySlug = async (slug) => {
     try {
       let { data: res } = await getProductById(slug);
@@ -84,6 +90,24 @@ function ShopDetail() {
     }
   };
 
+  const handlesLogin = async () => {
+    if (`${otp}` === "") {
+      errorToast("Please Enter Otp");
+      return;
+    }
+    let obj = {
+      phone: mobile,
+      otp,
+    };
+    dispatch(login(obj));
+    setSignInModal(false);
+  };
+
+  const handleRegister = () => {
+    setSignInModal(false);
+    return redirect("/Register");
+  };
+
   useEffect(() => {
     if (slug) {
       handleGetProductBySlug(slug);
@@ -112,6 +136,31 @@ function ShopDetail() {
       return item;
     });
     setProductTabs([...temp]);
+  };
+
+  const resendOtp = async () => {
+    try {
+      if (`${mobile}` === "") {
+        errorToast("Please Enter Mobile Number");
+        return;
+      }
+
+      let obj = {
+        phone: mobile,
+        // email: email,
+      };
+
+      // dispatch(otpSend(obj));
+
+      let { data: res } = await sentOtp(obj);
+      if (res.message) {
+        successToast(res.message);
+        // setotpsent(true)
+      }
+    } catch (error) {
+      errorToast(error);
+      console.log(error);
+    }
   };
 
   const handleSubmitRequirement = async (e) => {
@@ -181,6 +230,47 @@ function ShopDetail() {
       toastError(err)
     }
   }
+
+  const handlesendOtp = async () => {
+    try {
+      if (loginByEmail) {
+        if (`${email}` === "") {
+          errorToast("Please Enter email");
+          return;
+        }
+        if (!`${email}`.includes("@")) {
+          errorToast("Please Enter a valid email");
+          return;
+        }
+        if (!`${email}`.includes(".")) {
+          errorToast("Please Enter a valid email");
+          return;
+        }
+      } else {
+        if (`${mobile}`.length !== 10) {
+          errorToast("Please Enter Mobile Number");
+          return;
+        }
+      }
+      let obj = {
+        phone: mobile,
+        email: email,
+      };
+
+      // console.log(obj,"gdfgdkfdgfadfdfdkjdhfjkdafhfdkjkskjafhdkjhsjk",)
+      // dispatch(otpSend(obj));
+      // setotpsent(true);
+
+      let { data: res } = await sentOtp(obj);
+      if (res.message) {
+        successToast(res.message);
+        setotpsent(true);
+      }
+    } catch (error) {
+      errorToast(error);
+      console.log(error);
+    }
+  };
 
   const handleSubmitReview = async (e) => {
     try {
@@ -347,7 +437,7 @@ function ShopDetail() {
                   {isPriceVisible ? (
                     <div className="btn btn-custom  rounded-1 "> {`INR ${productObj?.sellingprice}`}</div>
                   ) : (
-                    <button onClick={() => currentUserHasActiveSubscription ? setIsPriceVisible(true) : errorToast("You do not have a valid subscription to perform this action")} className="btn btn-custom text-white  rounded-pill" style={{ background: "#603200" }}>
+                    <button onClick={() => !isAuthorized ? setSignInModal(true) : currentUserHasActiveSubscription ? setIsPriceVisible(true) : errorToast("You do not have a valid subscription to perform this action")} className="btn btn-custom text-white  rounded-pill" style={{ background: "#603200" }}>
                       Get Latest Price
                     </button>
 
@@ -733,10 +823,10 @@ function ShopDetail() {
               </Swiper>
             ) : (
               <div className="col-12">
-      
-                      <div>
-                        <h6>No Reviews found for this product</h6>
-                      
+
+                <div>
+                  <h6>No Reviews found for this product</h6>
+
                 </div>
               </div>
             )}
@@ -802,6 +892,179 @@ function ShopDetail() {
               <button className="btn btn-custom btn-yellow mt-2" onClick={(e) => handleSubmitRequirement(e)}>
                 Submit
               </button>
+            </div>
+          </form>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={signInModal} centered onHide={() => setSignInModal(false)}>
+        <Modal.Body className="sign-in-modal custom-modal">
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            onClick={() => setSignInModal(false)}
+          ></button>
+          <div>
+            <Link to="/" className="navbar-brand">
+              <img src={images.logo} alt="" className="main-logo img-fluid" />
+            </Link>
+          </div>
+          <h2 className="heading">Log In via</h2>
+          <form className="form row">
+            {/* <label>Login via </label> */}
+            {/* {otpsent == false && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: 20,
+                  marginTop: 10,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="type2"
+                    id="222"
+                    // value={true}
+                    checked={loginByEmail}
+                    onChange={(e) => setLoginByEmail(true)}
+                  />
+                  <label for="222" className="mx-2">
+                    Email
+                  </label>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="type2"
+                    id="223"
+                    checked={!loginByEmail}
+                    onChange={(e) => setLoginByEmail(false)}
+                  />
+                  <label for="223" className="mx-2">
+                    Phone
+                  </label>
+                </div>
+              </div>
+            )} */}
+
+            {loginByEmail ? (
+              <div className="col-12">
+                {otpsent ? (
+                  <div className="input flex-1">
+                    <label className="text-start">
+                      Enter OTP sent to {mobile}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your OTP"
+                      value={otp}
+                      onChange={(e) => setotp(e.target.value)}
+                    />
+                  </div>
+                ) : (
+                  <div className="input flex-1">
+                    <label className="text-start">Email</label>
+                    <input
+                      type="text"
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="col-12">
+                {otpsent ? (
+                  <div className="input flex-1">
+                    <label className="text-start">
+                      Enter OTP sent to {mobile}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your OTP"
+                      value={otp}
+                      onChange={(e) => setotp(e.target.value)}
+                    />
+
+                    <div className="text-end">
+                      <div
+                        className="resendtp"
+                        onClick={() => {
+                          resendOtp();
+                        }}
+                      >
+                        Resend OTP
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="input flex-1">
+                    <label className="text-start">Phone number</label>
+                    <input
+                      type="number"
+                      maxLength={10}
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your Mobile Number"
+                      value={mobile}
+                      onChange={(e) => setmobile(e.target.value)}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="col-12">
+              {otpsent ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    handlesLogin();
+                  }}
+                  className="btn btn-custom text-white yellow-bg py-2 w-100"
+                >
+                  Verfiy
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    handlesendOtp();
+                  }}
+                  className="btn btn-custom text-white yellow-bg py-2 w-100"
+                >
+                  Submit
+                </button>
+              )}
+
+              <Link
+                to="/Register"
+                onClick={() => {
+                  handleRegister();
+                }}
+                className="btn btn-custom mt-2 text-white yellow-bg py-2 w-100"
+              >
+                Register Now
+              </Link>
             </div>
           </form>
         </Modal.Body>
