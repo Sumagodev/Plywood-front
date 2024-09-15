@@ -822,9 +822,9 @@ function Index() {
       <section>
         <Container className="main_Profiles my-5">
           <h1 className="text-center mb-4">Top Profiles</h1>
-          <Row>
-            {topusers && topusers.slice(0, 3).map((el) => (
-              <div className="col- col-lg-4 col-sm-6 col-md-6 py-3 px-2">
+          <Row className=" d-flex justify-content-center">
+            {topusers && topusers.slice(0, 4).map((el) => (
+              <Col lg={3} sm={6} className="py-3 px-2">
                 {/* <Link to={`/Supplier/${el?._id}`}> */}
                 <div className="component-container1  text-center">
 
@@ -856,7 +856,7 @@ function Index() {
                     </span>
                   </div>
                   <div className="sub-container2">
-                    <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
+                    <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span>
                     <span className="phone-icon">
                       {
                         isAuthorized ?
@@ -871,7 +871,7 @@ function Index() {
 
                 </div>
                 {/* </Link> */}
-              </div>
+              </Col>
             ))}
           </Row>
         </Container>
@@ -1136,12 +1136,13 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <div>
+                <Link to={`Shop?categories=${city._id}`}>
+                  <div>
 
-                  <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" />
+                    <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" />
 
-                  <p className="text-center">{city.name}</p>
-                </div>
+                    <p className="text-center">{city.name}</p>
+                  </div></Link>
               </SwiperSlide>
             ))}
           </Swiper>
