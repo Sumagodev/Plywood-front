@@ -152,7 +152,7 @@ const AddDealership = () => {
         const formData = {
             Organisation_name: organisationName,
             Type: type,
-            Brand: userObj._id,
+            Brand: brandName,
             Product: productId,
             userId: userObj._id,
             image: profileImage,
@@ -278,7 +278,7 @@ const AddDealership = () => {
                                                 {brandArr &&
                                                     brandArr.length > 0 &&
                                                     brandArr.map((el) => (
-                                                        <option value={el._id}>{el.name}</option>
+                                                        <option value={el.name}>{el.name}</option>
                                                     ))}
                                             </select>
                                             {/* <ReactSelect onChange={(e) => setbrand(e.value)} options={brandArr && brandArr.length > 0 && brandArr.map(el => ({ label: el.name, value: el._id }))} /> */}

@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate,useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { getCityByStateApi, getCountriesApi, getStateByCountryApi } from "../../services/location.service";
 import { ROLES_CONSTANT } from ".././Utility/constant";
 import {
@@ -14,15 +14,15 @@ import { getCroppedImg, handleOpenImageInNewTab } from "../../utils/image.utils"
 import Cropper from 'react-easy-crop';
 import FileInput from "../Utility/FileUploadCropper";
 import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
-import { Adddealership } from '../../services/AddDealership.service';
+import { Applydealership } from '../../services/AddDealership.service';
 import { addBrandApi, getBrandApi } from "../../services/brand.service";
 import { errorToast, successToast } from "../Utility/Toast";
 
 const ApplyDealership = () => {
     const navigate = useNavigate();
     const location = useLocation();
-  const { opportunity } = location.state || {};
-  console.log(opportunity)
+    const { opportunity } = location.state || {};
+    console.log(opportunity)
     const [brandName, setBrandName] = useState("");
     const [productArr, setProductArr] = useState([]);
 
@@ -46,6 +46,7 @@ const ApplyDealership = () => {
     const [organisationName, setOrganisationName] = useState("");
     const [productId, setProductId] = useState("66cd61a7e79633780724926d"); // Sample Product ID
     const [cityId, setCityId] = useState([]); // Array of city IDs
+
     const [open, setOpen] = React.useState(false);
 
     const handleClose = () => setShow(false);
@@ -104,12 +105,9 @@ const ApplyDealership = () => {
 
     const handleGetCities = async (stateId) => {
         try {
-            const { data: res } = await getCityByStateApi(`stateId=${stateId}`);
-            if (res.data) {
-                setCityArr(res.data);
-            } else {
-                setCityArr([]);
-            }
+
+            setCityArr(opportunity.cities);
+
         } catch (error) {
             console.error("Error fetching cities", error);
         }
@@ -147,25 +145,25 @@ const ApplyDealership = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!organisationName || !countryId || !stateId || !cityId.length) {
-            alert("Please fill in all required fields.");
+        if ( !cityId.length) {
+            alert("Please fill in cities required fields.");
             return;
         }
 
         const formData = {
-            Organisation_name: organisationName,
+            Organisation_name: userObj.name,
             Type: type,
-            Brand: userObj._id,
-            Product: productId,
+            dealershipOwnerId: opportunity._id,
+            Brand: opportunity.Brand,
+            Product: opportunity.product,
             userId: userObj._id,
-            image: profileImage,
             cityId: cityId,
-            stateId: stateId
+            stateId: opportunity.stateId
         };
 
         console.log(formData)
         try {
-            const { data: response } = await Adddealership(formData);
+            const { data: response } = await Applydealership(formData);
             if (response.success) {
                 console.log("Form submitted successfully", response);
                 setShow(true);
@@ -191,28 +189,7 @@ const ApplyDealership = () => {
         setShow(false);
         navigate("/?loginTriggered=true");
     };
-    const HandleAddBrand = async () => {
-        try {
-            if (`${brandName}` === "") {
-                errorToast("Please Fill Brand Name");
-                return 0;
-            }
 
-            let obj = {
-                name: brandName,
-                status: true,
-            };
-
-            let { data: res } = await addBrandApi(obj);
-            if (res.message) {
-                successToast(res.message);
-                handleGetBrands();
-                handleClose();
-            }
-        } catch (err) {
-            errorToast(err);
-        }
-    };
 
     return (
         <>
@@ -259,6 +236,7 @@ const ApplyDealership = () => {
                                                 type="text"
                                                 className="form-control"
                                                 value={organisationName}
+                                                placeholder={userObj.name}
                                                 onChange={(e) => setOrganisationName(e.target.value)}
                                             />
                                         </div>
@@ -272,18 +250,15 @@ const ApplyDealership = () => {
 
                                             </div>
 
-                                            <select
+                                            <input
                                                 className="form-control"
                                                 value={brandNames}
+                                                placeholder={opportunity.Brand}
                                                 onChange={(e) => setBrandNames(e.target.value)}
-                                            >
-                                                <option value="">Please Select Brand</option>
-                                                {brandArr &&
-                                                    brandArr.length > 0 &&
-                                                    brandArr.map((el) => (
-                                                        <option value={el._id}>{el.name}</option>
-                                                    ))}
-                                            </select>
+
+
+                                            />
+
                                             {/* <ReactSelect onChange={(e) => setbrand(e.value)} options={brandArr && brandArr.length > 0 && brandArr.map(el => ({ label: el.name, value: el._id }))} /> */}
 
                                             {/* <input
@@ -296,29 +271,7 @@ const ApplyDealership = () => {
                                         </div>
 
 
-                                        <div className="col-md-6">
-                                            <label>
-                                                Product <span className="text-danger">*</span>
-                                            </label>
 
-                                            <select
-                                                className="form-control "
-                                                value={productId}
-                                                onChange={(e) => {
-                                                    setProductId(e.target.value);
-
-                                                }}
-                                            >
-                                                <option value="">Please Select Product</option>
-                                                {productArr &&
-                                                    productArr.length > 0 &&
-                                                    productArr.map((el) => (
-                                                        <option key={el._id} value={`${el._id}`}>
-                                                            {el.name}
-                                                        </option>
-                                                    ))}
-                                            </select>
-                                        </div>
 
                                         <div className="col-md-6">
                                             <label>Your Email Id <span className="text-danger">*</span></label>
@@ -331,43 +284,27 @@ const ApplyDealership = () => {
                                         </div>
                                         <div className="col-md-6">
                                             <label>Country <span className="text-danger">*</span></label>
-                                            <select
+                                            <input
+                                                type="email"
                                                 className="form-control"
-                                                value={countryId}
-                                                onChange={(e) => {
-                                                    setCountryId(e.target.value);
-                                                    setStateId("");
-                                                    setCityId([]);
-                                                }}
-                                            >
-                                                <option value="">Select Country</option>
-                                                {countryArr.map((country) => (
-                                                    <option key={country._id} value={country._id}>
-                                                        {country.name}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                                placeholder="India"
+                                                disabled
+                                            />
                                         </div>
                                         <div className="col-md-6">
                                             <label>State <span className="text-danger">*</span></label>
-                                            <select
+                                            <input
+                                                type="email"
                                                 className="form-control"
-                                                value={stateId}
-                                                onChange={(e) => {
-                                                    setStateId(e.target.value);
-                                                    setCityId([]);
-                                                }}
-                                            >
-                                                <option value="">Select State</option>
-                                                {stateArr.map((state) => (
-                                                    <option key={state._id} value={state._id}>
-                                                        {state.name}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                                value={opportunity.stateName}
+                                                placeholder={opportunity.stateName}
+                                                disabled
+                                            />
+                                           
                                         </div>
                                         <div className="col-md-6">
-                                            <label>State <span className="text-danger">*</span></label>
+                                            <label>Cities <span className="text-danger">*</span></label>
+
                                             <select
                                                 className="form-control"
                                                 value={cityId}
@@ -375,29 +312,15 @@ const ApplyDealership = () => {
                                             >
                                                 <option value="">Select Cities</option>
                                                 {cityArr.map((city) => (
-                                                    <option key={city._id} value={city._id}>
-                                                        {city.name}
+                                                    <option key={city.cityId} value={city.cityId}>
+                                                        {city.cityName}
                                                     </option>
                                                 ))}
                                             </select>
                                         </div>
-                                      
 
-                                        <div className="col-md-6">
-                                            <label>Image</label>
-                                            <div onClick={() => handleOpenImageInNewTab(profileImage)}>
-                                                <img src={profileImage} style={{ width: 150, height: 150 }} alt="" />
-                                            </div>
-                                            <FileInput
-                                                setFile={async (e) => {
-                                                    let base64 = await convertFileToBase64(e);
-                                                    setProfileImage(base64);
-                                                }}
-                                                file={profileImage}
-                                                type="image"
-                                                previousFile={(profileImage && profileImage.includes("base64")) ? profileImage : null}
-                                            />
-                                        </div>
+
+                                       
                                     </div>
                                     <div className="col-12 mt-3">
                                         <button type="submit" className="btn btn-primary">

@@ -1126,12 +1126,10 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <div>dzcs
-                  <img
-                    src={city?.image}
-                    className=" img-fluid"
-                    alt={city?.stateId?.name}
-                  />
+                <div>
+               
+                  <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" />
+
                   <p className="text-center">{city.name}</p>
                 </div>
               </SwiperSlide>

@@ -17,6 +17,18 @@ export const Adddealership = async (obj) => {
     }
 }
 
+export const Applydealership = async (obj) => {
+    try {
+        console.log("Request Data:", obj); // Log request data
+        const response = await axiosApiInstance.post(`${url}/dealershipUserRoutes/applyForDealershipOpportunitiy`, obj);
+        console.log("Response Data:", response.data); // Log response data
+        return response;
+    } catch (error) {
+        console.error("Error in API call:", error.response ? error.response.data : error.message);
+        throw error;
+    }
+}
+
 export const getAlldealership = async (query) => {
     return axiosApiInstance.get(`${serverUrl}/getDelearshipOpportunities`)
 }
