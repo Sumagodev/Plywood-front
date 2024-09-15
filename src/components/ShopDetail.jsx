@@ -587,17 +587,26 @@ function ShopDetail() {
                   <SwiperSlide>
                     <div className="product-box">
 
-                      <Link to={`/ShopDetail/${el?.slug}`}>{el?.mainImage ? <img src={generateImageUrl(el?.mainImage)} alt="" className="img" /> : <img src={images.category_5} alt="" className="img" />}</Link>
+                      <Link to={`/ShopDetail/${el?.slug}`}>{el?.productImage ? <img src={generateImageUrl(el?.productImage)} alt="" className="img" /> : <img src={images.category_5} alt="" className="img" />}</Link>
 
                       <div className="content ">
-                        <button className="call-btn">
-                          <MdCall />
-                        </button>
+
+                        {
+                          isAuthorized ?
+                            <a href={`tel: ${el.userMobileNumber}`}>
+                              <button className="call-btn">
+                                <MdCall />
+                              </button>
+                            </a>
+                            : <button className="call-btn">
+                              <MdCall />
+                            </button>
+                        }
                         <div className="title ">
-                          <Link className="text-white fs-5" to={`/ShopDetail/${el?.slug}`}>{el.name}</Link>
+                          <Link className="text-white fs-5" to={`/ShopDetail/${el?.slug}`}>{el.productName}</Link>
                         </div>
                         <div className=" text-white fw-light">Size (Sq ft): {el?.specification?.size ? el?.specification?.size : "N.A."}</div>
-                        <div className=" text-white">₹{el.sellingprice}/Sq ft</div>
+                        <div className=" text-white">₹{el.price}/Sq ft</div>
                       </div>
                     </div>
                   </SwiperSlide>

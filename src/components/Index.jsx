@@ -769,17 +769,17 @@ function Index() {
                               className="img-fluid img1"
                             />
                             <div className="d-flex justify-content-center">
-                         
+
                               <span className="phone-icon">
                                 {
                                   isAuthorized ?
                                     <a href={`tel: ${el.phone}`}>
-                                       <LuPhoneCall className="phn rounded-circle p-2" />
+                                      <LuPhoneCall className="phn rounded-circle p-2" />
                                     </a>
-                                    :  <LuPhoneCall className="phn rounded-circle p-2" />
+                                    : <LuPhoneCall className="phn rounded-circle p-2" />
                                 }
                               </span>
-                             
+
                             </div>
                             <h6 className="fs-6 msg1" >{el.message}</h6>
                             <button
@@ -1187,12 +1187,12 @@ function Index() {
                             <span>{opportunity.Organisation_name}</span> <br />
                           </div>
                           {
-                                  isAuthorized ?
-                                  <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div>
+                            isAuthorized ?
+                              <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div>
 
-                                    :                           <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/', { state: { opportunity } })}  >Apply</button></div>
+                              : <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/', { state: { opportunity } })}  >Apply</button></div>
 
-                                }
+                          }
                         </div>
 
 
