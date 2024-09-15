@@ -1920,6 +1920,7 @@ footer .footer {
 }
 .productyoulike{
   height: 500px;
+  margin-bottom: -50px;
 }
 @media (max-width: 480px) {
   .profile-section-container-left .profile-section-Heading {

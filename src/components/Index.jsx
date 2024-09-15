@@ -4,6 +4,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { FaArrowUp, FaHandshake } from "react-icons/fa";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdCall } from "react-icons/md";
+
 import { RiMessage2Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -79,7 +80,7 @@ function Index() {
   const mainAuthObj = useSelector((state) => state.auth);
   let role = useSelector((state) => state.auth.role);
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
+  const userObj = useSelector((state) => state.auth.user);
   const [homepageBannersArr, setHomepageBannersArr] = useState([]);
 
   const [isDisplayingAll, setIsDisplayingAll] = useState(false);
@@ -100,7 +101,7 @@ function Index() {
   const fetchOpportunities = async () => {
     try {
       const response = await getAlldealership();
-      setOpportunities(response.data.data);
+      setOpportunities(response.data.data.filter(opportunity => opportunity.userId !== userObj._id));
       console.log("sdfes", response.data)
     } catch (error) {
       console.error('Error fetching dealership opportunities:', error);
@@ -539,8 +540,14 @@ function Index() {
                 1200: {
                   slidesPerView: 6,
                 },
+                1300: {
+                  slidesPerView: 6,
+                },
                 1400: {
-                  slidesPerView: 8,
+                  slidesPerView: 7,
+                },
+                1700: {
+                  slidesPerView: 7,
                 },
               }}
               navigation={{
@@ -676,9 +683,9 @@ function Index() {
         </Container>
       </section> */}
 
-      <section>
+      <section className="">
         <Container fluid className="product-container-section">
-          <h1 className="heading text-center">Products May You Like</h1>
+          <h1 className="heading text-center">Products You May Like</h1>
           <Row>
             <Swiper
               modules={[Autoplay]}
@@ -701,6 +708,8 @@ function Index() {
 
                     >
                       <div className="box_Product1 ">
+                       
+
                         <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
 
                         <span className="icn_Product">
@@ -731,7 +740,7 @@ function Index() {
                 ))}
             </Swiper>
           </Row>
-          <div className="d-flex justify-content-center align-items-center mt-3">
+          <div className="d-flex justify-content-center align-items-center mb-5">
             <Link to={`/product-details`}>
               <button
                 className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
@@ -744,7 +753,7 @@ function Index() {
           </div>
         </Container>
       </section>
-
+      <div className=" my-4" style={{ height: "2px" }}></div>
       <section className=" mt-5 ">
         <Container className=" mt-5 ">
           <Row className=" newpeoductback ">
@@ -798,11 +807,11 @@ function Index() {
 
                 {/* Add Products Button on the Last Slide */}
                 <SwiperSlide>
-                  <div className="addfrmmain">
-                    <Link to="/AddPromotions" className="addfrm p-2">
-                      +
+                  {/* <div className="addfrmmain">
+                    <Link to="/AddPromotions" className="addfrm fs-6 p-2">
+                      
                     </Link>
-                  </div>
+                  </div> */}
                 </SwiperSlide>
               </Swiper>
             </Col>
@@ -811,7 +820,9 @@ function Index() {
               className="  d-lg-flex d-none align-items-center "
               onClick={() => navigate("/AddPromotions")}
             >
-              <div className=" newprdround fs-1  text-white rounded-circle p-3 text-center  ">
+              <div className=" newprdround fs-1  text-white rounded-circle p-3 text-center d-grid align-items-center ">
+                Add
+                <br />
                 New Arrivals
               </div>
             </Col>
@@ -876,6 +887,7 @@ function Index() {
           </Row>
         </Container>
       </section>
+      <div className=" my-4" style={{ height: "2px" }}></div>
 
       {
         flashSalesArr && flashSalesArr.length > 0 && (
@@ -1138,11 +1150,16 @@ function Index() {
               <SwiperSlide key={index}>
                 <Link to={`Shop?categories=${city._id}`}>
                   <div>
+                  <img
+                          src={city.image ? generateImageUrl(city?.image) : img1}
+                          alt={city.name}
+                          className="img-fluid ims img1"
+                        />
+                    {/* <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" /> */}
+                    <p className="text-center">{city.stateId.name}</p>
 
-                    <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" />
-
-                    <p className="text-center">{city.name}</p>
                   </div></Link>
+
               </SwiperSlide>
             ))}
           </Swiper>
@@ -1158,52 +1175,58 @@ function Index() {
 
       <section>
         <Container className="dealership-oppo-container my-5">
-          <Row className="h1 justify-content-center text-center mb-5 text-black fw-bold">
-            Dealership Opportunities
-          </Row>
-          <Row>
-            <Swiper
-              modules={[Autoplay]}
-              spaceBetween={5}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              speed={1500}
-              breakpoints={ourvideos}
-            >
-              {opportunities.map(opportunity => (
-                <SwiperSlide >
-                  <Col key={opportunity._id} className="dealership-oppo-sub-container x" >
-                    <div className="dealership-oppo-box rounded-5 rounded">
-                      <div
-                        className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
-                        style={{
-                          backgroundImage: `url(${generateImageUrl(opportunity.image)})`
-                        }}
-                      >
+          {
+            opportunities && opportunities.length > 0 && (
+              <>
+                <Row className="h1 justify-content-center text-center mb-5 fs-3 text-black fw-bold" style={{ backgroundColor: "#F5F1E8" }}>
+                  Dealership / Distributer <br />
+                  Opportunities
+                </Row>
+                <Row>
+                  <Swiper
+                    modules={[Autoplay]}
+                    spaceBetween={5}
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+                    speed={1500}
+                    breakpoints={ourvideos}
+                  >
+                    {opportunities.filter(opportunity => opportunity.userId !== userObj._id).map(opportunity => (
+                      <SwiperSlide >
+                        <Col key={opportunity._id} className="dealership-oppo-sub-container x" >
+                          <div className="dealership-oppo-box rounded-5 rounded">
+                            <div
+                              className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
+                              style={{
+                                backgroundImage: `url(${generateImageUrl(opportunity.image)})`
+                              }}
+                            >
 
-                        <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
-                          <div className=" col-lg-7">
-                            <span>{opportunity.Organisation_name}</span> <br />
+                              <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
+                                <div className=" col-lg-7">
+                                  <span>{opportunity.Organisation_name}</span> <br />
+                                </div>
+                                {
+                                  isAuthorized ?
+                                    <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div>
+
+                                    : <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/', { state: { opportunity } })}  >Apply</button></div>
+
+                                }
+                              </div>
+
+
+                            </div>
+
                           </div>
-                          {
-                            isAuthorized ?
-                              <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div>
-
-                              : <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/', { state: { opportunity } })}  >Apply</button></div>
-
-                          }
-                        </div>
-
-
-                      </div>
-
-                    </div>
-                  </Col></SwiperSlide>
-              ))}
-            </Swiper>
-          </Row>
+                        </Col></SwiperSlide>
+                    ))}
+                  </Swiper>
+                </Row>
+              </>
+            )}
         </Container>
       </section>
       {/* <div className="blog-main-container-1 d-flex flex-wrap flex-column align-items-center gap-5 my-5">
