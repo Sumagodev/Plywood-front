@@ -152,7 +152,7 @@ const AddDealership = () => {
         const formData = {
             Organisation_name: organisationName,
             Type: type,
-            Brand: brandName,
+            Brand: brandNames,
             Product: productId,
             userId: userObj._id,
             image: profileImage,
