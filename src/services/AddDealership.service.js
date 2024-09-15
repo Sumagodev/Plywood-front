@@ -6,12 +6,20 @@ let serverUrl = `${url}/dealershipOwnerRoutes`;
 
 
 export const Adddealership = async (obj) => {
-    return axiosApiInstance.post(`${serverUrl}/addDealershipOpportunity`, obj)
+    try {
+        console.log("Request Data:", obj); // Log request data
+        const response = await axiosApiInstance.post(`${serverUrl}/addDealershipOpportunity`, obj);
+        console.log("Response Data:", response.data); // Log response data
+        return response;
+    } catch (error) {
+        console.error("Error in API call:", error.response ? error.response.data : error.message);
+        throw error;
+    }
 }
 
-// export const getAllAdvertisements = async (query) => {
-//     return axiosApiInstance.get(`${serverUrl}/?userId=${query}`)
-// }
+export const getAlldealership = async (query) => {
+    return axiosApiInstance.get(`${serverUrl}/getDelearshipOpportunities`)
+}
 // export const getForHomepage = async (query) => {
 //     return axiosApiInstance.get(`${serverUrl}/getForHomepage?${query}`)
 // }

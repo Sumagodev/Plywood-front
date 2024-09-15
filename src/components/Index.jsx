@@ -68,6 +68,7 @@ import {
 } from "../services/Product.service";
 import { gettopUsers } from "../services/User.service"
 import { getStateDetails } from "../services/State.stateDetail";
+import { getAlldealership } from '../services/AddDealership.service'
 function Index() {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [categoryArr, setcategoryArr] = useState([]);
@@ -94,26 +95,24 @@ function Index() {
   const [advertisementsArr, setAdvertisementsArr] = useState([]);
 
   const [signInModal, setSignInModal] = useState(false);
+  const [opportunities, setOpportunities] = useState([]);
 
-  // const getUserFcmToken = async () => {
-  //   try {
-  //     let temp = await fetchToken();
-  //     console.log(temp);
-  //     if (mainAuthObj?.isAuthorized) {
-  //       let { data: res } = await registerUserFcmToken({
-  //         fcmToken: temp,
-  //         userId: mainAuthObj?.user?._id,
-  //       });
-  //       console.log(res, "TOKEN RES");
-  //     }
-  //   } catch (error) {
-  //     // console.error(error);
-  //   }
-  // };
+  const fetchOpportunities = async () => {
+    try {
+      const response = await getAlldealership();
+      setOpportunities(response.data.data);
+      console.log("sdfes", response.data)
+    } catch (error) {
+      console.error('Error fetching dealership opportunities:', error);
+    }
+  };
 
-  // useEffect(() => {
-  //   getUserFcmToken();
-  // }, []);
+  useEffect(() => {
+    fetchOpportunities();
+  }, []);
+
+
+
 
   useEffect(() => {
     if (auth && auth._id) {
@@ -151,37 +150,10 @@ function Index() {
     };
   }, [screenSize]);
 
-  // const [blogsArr, setBlogsArr] = useState([]);
-  // const [blogVideoArr, setBlogVideoArr] = useState([]);
-
-  // const handleGetBlogs = async () => {
-  //   try {
-  //     let { data: res } = await getBlogApi();
-  //     if (res.data) {
-  //       setBlogsArr(res.data);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // const handleGetBlogVideo = async () => {
-  //   try {
-  //     let { data: res } = await getBlogVideoApi();
-  //     if (res.data) {
-  //       setBlogVideoArr(res.data);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   handleGetBlogs();
-  //   handleGetBlogVideo();
-  // }, []);
 
   const navigate = useNavigate();
+
+
 
   const handleSubmitRequirement = async (e) => {
     e.preventDefault();
@@ -215,7 +187,7 @@ function Index() {
         userId: auth._id,
       };
       let { data: res } = await addUserRequirement(obj);
-      console.log(res, "====<>");
+      // console.log(res, "====<>");
       if (res.message) {
         toastSuccess(res.message);
 
@@ -247,7 +219,7 @@ function Index() {
     try {
       let { data: res } = await getNestedCategories();
       if (res.data && res.data?.length > 0) {
-        console.log(res.data, "res.data");
+        // console.log(res.data, "res.data");
         setcategoryArr(res.data.map((el) => ({ ...el, checked: false })));
       }
     } catch (error) {
@@ -270,7 +242,7 @@ function Index() {
     try {
       let { data: res } = await getForHomepage();
       if (res.data) {
-        console.log(res.data, "data");
+        // console.log(res.data, "data");
         setAdvertisementsArr(res.data);
       }
     } catch (err) {
@@ -282,7 +254,7 @@ function Index() {
     try {
       let { data: res } = await getHomePageBannersApi();
       if (res.data) {
-        console.log(res.data, "data");
+        // console.log(res.data, "data");
         setHomepageBannersArr(res.data);
       }
     } catch (err) {
@@ -455,7 +427,7 @@ function Index() {
   const handleStateDetails = async () => {
     try {
       let { data: res } = await getStateDetails();
-      console.log("res.datassssssssss", res.data);
+      // console.log("res.datassssssssss", res.data);
 
       if (res.data) {
         setStateDetails(res.data);
@@ -495,7 +467,7 @@ function Index() {
 
       let { data: res } = await gettopUsers();
       if (res.data) {
-        console.log("res.data", res.data);
+        // console.log("res.data", res.data);
 
         settopusers(res.data);
       }
@@ -1167,7 +1139,7 @@ function Index() {
           </Swiper>
         </Container>
       </section>
-      <section>
+      <section onClick={() => navigate('/AddDealership')}>
         <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
 
@@ -1181,54 +1153,42 @@ function Index() {
             Dealership Opportunities
           </Row>
           <Row>
-            <Col className="dealership-oppo-sub-container">
-              <div className="dealership-oppo-box">
-                <div className="dealership-oppo-img-box img-1">
-                  <div className="dealership-oppo-text-box-1">
-                    <span>1 stop shop</span> <br /> for all type of plywood &
-                    MDF HDMR
-                  </div>
-                </div>
-                <div className="dealership-oppo-text-box-2">Plywood & MDF</div>
-              </div>
-            </Col>
-            <Col className="dealership-oppo-sub-container">
-              <div className="dealership-oppo-box">
-                <div className="dealership-oppo-img-box img-2">
-                  <div className="dealership-oppo-text-box-1">
-                    <span>New face of Luxury</span> <br />
-                    EXCLUSIVE veneers & laminate
-                  </div>
-                </div>
-                <div className="dealership-oppo-text-box-2">
-                  Laminates/veneers
-                </div>
-              </div>
-            </Col>
-            <Col className="dealership-oppo-sub-container">
-              <div className="dealership-oppo-box">
-                <div className="dealership-oppo-img-box img-3">
-                  <div className="dealership-oppo-text-box-1">
-                    <span>Explore the Diverse</span> <br />
-                    Range of adhesives
-                  </div>
-                </div>
-                <div className="dealership-oppo-text-box-2">Adhesives</div>
-              </div>
-            </Col>
-            <Col className="dealership-oppo-sub-container">
-              <div className="dealership-oppo-box">
-                <div className="dealership-oppo-img-box img-4">
-                  <div className="dealership-oppo-text-box-1">
-                    <span>Furniture fixtures</span> <br />
-                    at Affordable prices
-                  </div>
-                </div>
-                <div className="dealership-oppo-text-box-2">
-                  Hardware \ Furniture Fixtures
-                </div>
-              </div>
-            </Col>
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={5}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              speed={1500}
+              breakpoints={ourvideos}
+            >
+              {opportunities.map(opportunity => (
+                <SwiperSlide >
+                  <Col key={opportunity._id} className="dealership-oppo-sub-container x" >
+                    <div className="dealership-oppo-box rounded-5 rounded">
+                      <div
+                        className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
+                        style={{
+                          backgroundImage: `url(${generateImageUrl(opportunity.image)})`
+                        }}
+                      >
+
+                        <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
+                          <div className=" col-lg-7">
+                            <span>{opportunity.Organisation_name}</span> <br />
+                          </div>
+
+                          <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+                  </Col></SwiperSlide>
+              ))}
+            </Swiper>
           </Row>
         </Container>
       </section>

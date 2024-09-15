@@ -34,6 +34,7 @@ import Aboutus from "../components/Aboutus";
 import AddDealership from "../components/User-Components/AddDealership";
 import Thankyou from "../components/Thankyou";
 import ProductDetails from "../components/ProductDetails";
+import ApplyDealership from "../components/User-Components/ApplyDealership";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -82,10 +83,17 @@ export const routes = [
     role: [],
     isAuthorized: false,
     isUnProtected: false,
-  },
+  }, 
   {
     path: "/AddDealership",
-    component: <AddDealership/>,
+    component: <AddDealership />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: true,
+    isUnProtected: false,
+  },
+  {
+    path: "/ApplyDealership",
+    component: <ApplyDealership />,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,
