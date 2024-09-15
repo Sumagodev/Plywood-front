@@ -49,7 +49,9 @@ import { toastSuccess } from "../utils/toastutill";
 import CountdownTimer from "./Utility/CountdownTimer";
 import { errorToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
-import playbanner from "../assets/image/home/Group 1000004149.png";
+// import playbanner from "../assets/image/home/Group 1000004149.png";
+import playbanner from "../assets/image/home/buy now (1).png";
+
 import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
@@ -1135,13 +1137,6 @@ function Index() {
       )} */}
 
       {/* states */}
-
-      <section>
-        <img src={playbanner} className=" img-fluid  " alt="" />
-      </section>
-
-
-
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
           States
@@ -1159,7 +1154,7 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <div>
+                <div>dzcs
                   <img
                     src={city?.image}
                     className=" img-fluid"
@@ -1173,8 +1168,13 @@ function Index() {
         </Container>
       </section>
       <section>
-        <img src={dealer} className=" img-fluid  w-100 mt-5" style={{ height: "200px" }} alt="" />
+        <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
+
+
+
+
+
       <section>
         <Container className="dealership-oppo-container my-5">
           <Row className="h1 justify-content-center text-center mb-5 text-black fw-bold">

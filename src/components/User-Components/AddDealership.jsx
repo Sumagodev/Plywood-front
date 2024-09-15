@@ -17,8 +17,8 @@ import { getCroppedImg, handleOpenImageInNewTab } from "../../utils/image.utils"
 import Cropper from 'react-easy-crop';
 import FileInput from "../Utility/FileUploadCropper";
 import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
-
- const AddDealership = () => {
+import {Adddealership} from '../../services/AddDealership.service'
+const AddDealership = () => {
     const editorRef = useRef(null);
     const navigate = useNavigate()
     const [termsAccepted, setTermsAccepted] = useState(false);
@@ -41,9 +41,10 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
     const [stateArr, setstateArr] = useState([]);
     const [cityArr, setcityArr] = useState([]);
     const [countryId, setcountryId] = useState("648d5b79f79a9ff6f10a82fb");
+
     const [stateId, setstateId] = useState("");
-    const [cityId, setcityId] = useState("");
     const [brandNames, setBrandNames] = useState("")
+    
     // const [landline, setLandline] = useState("");
     const [aniversaryDate, setAniversaryDate] = useState(new Date());
 
@@ -72,256 +73,19 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const handleProfileModalClose = () => setShowProfileModal(false);
-    const handleProfileModalShow = () => setShowProfileModal(true);
-
-
-
-
-    const [croppedBannerPhoto, setCroppedBannerPhoto] = useState("");
-
-
-    const [showBannerModal, setShowBannerModal] = useState(false);
-
-    const handleBannerModalClose = () => setShowBannerModal(false);
-    const handleBannerModalShow = () => setShowBannerModal(true);
-
-
-
-
-    ///////new Fields///////
-    const [natureOfBusiness, setNatureOfBusiness] = useState();
-    const [annualTurnover, setAnnualTurnover] = useState();
-    const [iecCode, setIecCode] = useState();
-    const [yearOfEstablishment, setYearOfEstablishment] = useState();
-    const [legalStatus, setLegalStatus] = useState();
-    const [cinNo, setCinNo] = useState();
-    const [companyCeo, setCompanyCeo] = useState();
-    const [googleMapsLink, setGoogleMapsLink] = useState();
-    const [salesObj, setSalesObj] = useState(null);
 
 
     const onCropChange = (newCrop) => setCroppedProfilePhoto(newCrop);
     const onZoomChange = (newZoom) => setZoom(newZoom);
-
-
-    const handleRegister = async () => {
-        // console.log(category, "check cate")
-
-        if (`${companyName}` === "") {
-            errorToast("Organization Name is Required");
-            return 0;
-        }
-        if (`${yearOfEstablishment}` === "") {
-            errorToast("Year of Establishment is Required");
-            return 0;
-        };
-        if (!category) {
-            errorToast("category is Required");
-            return 0;
-        };
-        if (`${address}` === "") {
-            errorToast("Address is Required");
-            return 0;
-        };
-       
-
-
-        if (`${name}` === "") {
-            errorToast("Name is Required");
-            return;
-        }
-        if (`${email}` === "") {
-            errorToast("email is Required");
-            return 0;
-        }
-
-
-        if (`${mobile}` === "") {
-            errorToast("Mobile is Required");
-            return 0;
-        }
-        // if (`${whatsapp}` === "") {
-        //     errorToast("Enter Your Whatsapp Number");
-        //     return 0;
-        // }
-
-
-
-        
-        
-        // if (`${companyEmail}` === "") {
-        //     errorToast("Organization Email is Required");
-        //     return 0;
-        // }
-        // if (`${companyPhone}` === "") {
-        //     errorToast("Organization Phone is Required");
-        //     return 0
-        // }
-        // if (`${gstNumber}` === "") {
-        //     errorToast("Gst is Required");
-        //     return 0;
-        // };
-       
-        if (`${countryId}` === "") {
-            errorToast("Country is Required");
-            return 0;
-        };
-        if (`${stateId}` === "") {
-            errorToast("State is Required");
-            return 0;
-        };
-        if (`${cityId}` === "") {
-            errorToast("City is Required");
-            return 0;
-        };
-      
-        if (!termsAccepted) {
-            errorToast("Please Accept our terms and condition and privacy policy before registering !!!");
-            return
-        }
-        let obj = {
-            name,
-            email,
-            phone: mobile,
-            address,
-            brandNames,
-            whatsapp,
-            dob,
-            role: type,
-            gstNumber,
-            countryId,
-            stateId,
-            cityId,
-            aniversaryDate,
-            // landline,
-            approved: true,
-            categoryArr: category.map(el => ({ categoryId: el.value })),
-
-            companyObj: {
-                name: companyName,
-                email: companyEmail,
-                phone: companyPhone,
-                address,
-                gstNumber,
-                noofepmployee,
-                natureOfBusiness,
-                annualTurnover,
-                iecCode,
-                yearOfEstablishment,
-                legalStatus,
-                cinNo,
-                // companyCeo,
-                // googleMapsLink,
-            },
-            gstCertificate,
-            bannerImage,
-            profileImage
-        }
-
-        if (salesObj && salesObj?._id) {
-            obj.salesId = salesObj?._id
-        }
-
-        console.log(obj, "companycompanycompanycompany")
-        try {
-            let { data: res } = await registerUser(obj)
-            if (res.data) {
-                // successToast(res.message);
-                navigate("/Thankyou")
-                // handleShow()
-                // window.location.reload();
-            }
-        } catch (error) {
-            console.error(error)
-            errorToast(error)
-        }
-    }
-
-    const handleGetCoutries = async () => {
-        try {
-            let { data: res } = await getCountriesApi();
-            console.log(res.data, "data")
-            if (res.data) {
-                setcountryArr(res.data);
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const handleNestedCategory = async () => {
-        try {
-            const { data: res } = await getAllCategories()
-            if (res.success && res.data.length) {
-                setcategoryArr(res.data)
-            }
-
-        } catch (error) {
-            console.error(error)
-            toastError(error)
-        }
-    }
-
-
-
-    const getAllSalesUsers = async () => {
-        try {
-            const { data: res } = await getSalesUsers();
-            if (res) {
-                setSalesUsersArr(res.data)
-            }
-        } catch (error) {
-            toastError(error)
-        }
-    }
-
-    const handleGetStates = async (countryId) => {
-        try {
-            let { data: res } = await getStateByCountryApi(`countryId=${countryId}`);
-            if (res.data) {
-                setstateArr(res.data);
-            } else {
-                setstateArr([])
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const handleGetCities = async (stateId) => {
-        try {
-            let { data: res } = await getCityByStateApi(`stateId=${stateId}`);
-            if (res.data) {
-                setcityArr(res.data);
-            } else {
-                setcityArr([])
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        handleGetCoutries()
-        handleNestedCategory()
-        getAllSalesUsers()
-    }, [])
-    useEffect(() => {
-        if (countryId) {
-            console.log(countryId, "countryId")
-            handleGetStates(countryId)
-        }
-    }, [countryId])
-
-    useEffect(() => {
-        if (stateId) {
-            handleGetCities(stateId)
-        }
-    }, [stateId])
-
-
-
-
+    const [organisationName, setOrganisationName] = useState("");
+    const [product, setProduct] = useState("66cd61a7e79633780724926d"); // Sample Product ID
+    const [brand, setBrand] = useState("");
+    const [productId, setProductId] = useState("66cd61a7e79633780724926d"); // Same as product
+    const [userId, setUserId] = useState("66cd5f1de796337807248ea4"); // Sample User ID
+    const [image, setImage] = useState(""); // Handle image upload
+    const [cityId, setcityId] = useState([]); // Array of city IDs
+    
+    // State management for dropdown options
     const makeClientCrop = async (crop) => {
         console.log(crop, "crop")
         if (profileImage && crop.width && crop.height) {
@@ -330,18 +94,75 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
             setProfileImage(croppedImageUrl);
         }
     };
-
-
-
-
-
-
-
     const handleCropComplete = async (_, croppedAreaPixels) => {
         const croppedImage = await getCroppedImg(profileImage, croppedAreaPixels);
         // setProfileImage(croppedImage);
     };
 
+    // Fetch states when component mounts
+    const handleGetStates = async (countryId) => {
+        try {
+            let { data: res } = await getStateByCountryApi(`countryId=${countryId}`);
+            console.log('API response:', res); // Add this to debug API response
+            if (res.data) {
+                setstateArr(res.data);
+            } else {
+                setstateArr([]);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+    // Fetch cities when state changes
+    const handleGetCities = async (stateId) => {
+        try {
+            let { data: res } = await getCityByStateApi(`stateId=${stateId}`);
+            if (res.data) {
+                setcityArr(res.data);
+            } else {
+                setcityArr([]);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Handle state change (fetch cities on state change)
+    useEffect(() => {
+        if (stateId) {
+            handleGetCities(stateId);
+        }
+    }, [stateId]);
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Prepare the form data
+        const formData = {
+            Organisation_name: organisationName,
+            Type: type,
+            Product: product,
+            Brand: brand,
+            productId: productId,
+            userId: userId,
+            image: image,
+            cityId: cityId, // Array of city IDs
+            stateId: stateId
+        };
+
+        // Send form data to the server
+        try {
+            const { data: response } = await Adddealership(formData);
+            if (response.success) {
+                console.log("Form submitted successfully", response);
+                // Handle success (e.g., show success message, navigate to another page)
+            }
+        } catch (error) {
+            console.error("Error submitting form", error);
+        }
+    };
 
     return (
         <>
@@ -351,10 +172,8 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                         <div className="col-12 col-md-12">
                             <div className="right">
                                 <h3 className="heading yellow">Register</h3>
-                               
+
                                 <form className="form row ">
-
-
                                     <div className="col-md-6">
                                         <label>Who are you ? <span className="text-danger">*</span>  </label>
                                         <input
@@ -363,7 +182,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                             value={ROLES_CONSTANT.MANUFACTURER}
                                             checked={type === ROLES_CONSTANT.MANUFACTURER}
                                             onChange={(e) => settype(e.target.value)}
-                                            
+
                                         />{" "}
                                         <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
                                         <input
@@ -397,7 +216,7 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                                 onChange={(e) => setcompanyName(e.target.value)}
                                             />
                                         </div>
-                                      
+
                                         <div className="col-md-6">
                                             <label> Dealing With Brand Names  </label>
                                             <input
@@ -407,14 +226,6 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                                 onChange={(e) => setBrandNames(e.target.value)}
                                             />
                                         </div>
-                                     
-                                       
-                                       
-
-                                      
-
-
-
                                         <div className="col-md-6">
                                             <label> image </label>
                                             <div onClick={() => handleOpenImageInNewTab(profileImage)}>
@@ -426,23 +237,8 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                             }} file={profileImage} type="image" previousFile={(profileImage && profileImage != "" && profileImage.includes("base64")) ? profileImage : null} />
                                             {/* <FileUpload onFileChange={(val) => { setProfileImage(val); }} /> */}
                                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     </div>
-                                   
+
                                     <div className="col-md-6">
                                         <label>Your Email Id <span className="text-danger">*</span></label>
                                         <input
@@ -450,57 +246,42 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
                                             className="form-control"
                                             value={email}
                                             onChange={(e) => setemail(e.target.value)}
-                                            
+
                                         />
                                     </div>
-
-
-
-
-
-                                 
-                                        <div className="col-md-6">
-                                            <label> State <span className="text-danger">*</span></label>
-                                            {
-                                                stateArr && (
-                                                    <select className="form-control" onChange={(e) => setstateId(e.target.value)}>
-                                                        <option value="">Please Select State</option>
-                                                        {stateArr.map((state) => (
-                                                            <option value={state._id} >{state.name}</option>
-                                                        ))}
-                                                    </select>
-                                                )
-                                            }
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label> Cities <span className="text-danger">*</span></label>
-                                            {
-                                                cityArr && (
-                                                    <select className="form-control" onChange={(e) => setcityId(e.target.value)}>
-                                                        <option value="">Please Select City</option>
-                                                        {cityArr.map((city) => (
-                                                            <option value={city._id} >{city.name}</option>
-                                                        ))}
-                                                    </select>
-                                                )
-                                            }
-                                        </div>
-
-
-                                      
-
-
-
-
-                                    
-
+                                    <div className="col-md-6">
+                                        <label> State <span className="text-danger">*</span></label>
+                                        {
+                                            stateArr && (
+                                                <select className="form-control" onChange={(e) => setstateId(e.target.value)}>
+                                                    <option value="">Please Select State</option>
+                                                    {stateArr.map((state) => (
+                                                        <option value={state._id} >{state.name}</option>
+                                                    ))}
+                                                </select>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label> Cities <span className="text-danger">*</span></label>
+                                        {
+                                            cityArr && (
+                                                <select className="form-control" onChange={(e) => setcityId(e.target.value)}>
+                                                    <option value="">Please Select City</option>
+                                                    {cityArr.map((city) => (
+                                                        <option value={city._id} >{city.name}</option>
+                                                    ))}
+                                                </select>
+                                            )
+                                        }
+                                    </div>
                                     <div className="col-md-12 ">
                                         <div className="mobilebootm">
                                             <input onChange={(e) => { console.log(e.target.value, e.target.checked); setTermsAccepted(e.target.checked) }} checked={termsAccepted} value={termsAccepted} className="check" type="checkbox" /> Please Accept our <Link
                                                 to="/Terms">terms and condition</Link> and <Link
                                                     to="/Privacy">privacy policy</Link> before registering
                                         </div>
-                                        <button type="button" onClick={() => { handleRegister() }} className="btn btn-custom btn-yellow mt-5">
+                                        <button type="button" onClick={() => { handleSubmit() }} className="btn btn-custom btn-yellow mt-5">
                                             add dealership oprtunity
                                         </button>
                                     </div>
@@ -552,19 +333,5 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
 };
 
 
-// const subcategoryRender = (cateArr, dash) => {
-//     dash += '-    '
-//     console.log(cateArr.length)
-//     return (
-//         cateArr && cateArr.length > 0 && cateArr.map((cat) => {
-//             return (
-//                 <>
-//                     <option key={cat._id} value={cat._id}>{dash}{cat.name}</option>
-//                     {subcategoryRender(cat.subCategoryArr, dash)}
-//                 </>
 
-//             )
-//         })
-//     )
-// }
 export default AddDealership
