@@ -2043,7 +2043,7 @@ function Header() {
               <img src={images.logo} alt="" className="main-logo img-fluid" />
             </Link>
           </div>
-          <h2 className="heading">Log In via</h2>
+          <h2 className="heading">LogIn via</h2>
           <form className="form row">
             {/* <label>Login via </label> */}
             {/* {otpsent == false && (

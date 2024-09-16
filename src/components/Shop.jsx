@@ -226,8 +226,8 @@ function Shop() {
   return (
     <main>
       <section className="shop-page shoppagepading ">
-        <div className="container-fluid">
-          <div className="row px-0 mb-80 px-4pc" >
+        <div className="container-fluid px-0">
+          <div className="row px-0 mb-80 " >
             <PageBanner
               img={
                 shopImage && shopImage !== ""
@@ -237,12 +237,12 @@ function Shop() {
               className="mx-0 mb-80"
             />
 
-            {/* <div className="col-12  d-none d-lg-block">
+            <div className="col-12  d-none d-lg-block">
               <ShopFilter
                 handleApplyFilter={handleApplyFilter}
                 handleClearFilter={handleClearFilter}
               />
-            </div> */}
+            </div>
             <div className=" row px-0">
               <div className="col-12 col-lg-9">
 
@@ -564,8 +564,9 @@ function Shop() {
                         )}
 
                       </Row>
-                      <div className="col-md-12 text-center" id="react-paginate">
+                      <Col className=" text-center" id="react-paginate">
                         <ReactPaginate
+
                           previousLabel={"<"}
                           nextLabel={">"}
                           breakLabel={<a href="">...</a>}
@@ -578,7 +579,7 @@ function Shop() {
                           forcePage={page !== 0 ? page - 1 : 0}
                         />{" "}
                         *
-                      </div>
+                      </Col>
                     </>
                   )}
 
@@ -642,29 +643,31 @@ function Shop() {
                   <section className="py-4 text-center">
                     <Container fluid className="">
                       <h5>RECOMMENDED PRODUCT</h5>
-                      <Row>
-                        <div>
-                          {categoryArr &&
-                            categoryArr
-                              .slice(0, 4)
-                              .map((item, index) => (
+                      <Row className="d-flex">
 
+                        {categoryArr &&
+                          categoryArr
+                            .slice(0, 4)
+                            .map((item, index) => (
+                              <Col xs={5} lg={11} className="d-grid mx-3 text-center align-items-center justify-content-center">
                                 <Link to={`Shop?categories=${item._id}`}>
-                                  <Col className="d-grid mx-3 text-center align-items-center justify-content-center">
-                                    <div className="pt-2  d-grid align-items-center justify-content-center">
-                                      <img
-                                        src={generateImageUrl(item.image)}
-                                        className=" img-fluid recommondedprdcrd rounded-5 "
-                                        alt={item.name}
-                                      />
-                                      <p className="fw-bolder mx-4 py-3 recommondedprdname fs-6">{item.name}</p>
 
-                                    </div>
-                                  </Col>
+                                  <div className="pt-2  d-grid align-items-center justify-content-center">
+                                    <img
+                                      src={generateImageUrl(item.image)}
+                                      className=" img-fluid  rounded-5 "
+                                      alt={item.name}
+                                    />
+                                    <p className="fw-bolder mx-4 py-3 recommondedprdname fs-6 d-lg-block d-none">{item.name}</p>
+                                    <div className="recommondedprdname d-flex justify-content-center  align-items-center d-block d-lg-none"> <span className="px-2  ">{item.name}</span></div>
+
+
+                                  </div>
+
                                 </Link>
+                              </Col>
+                            ))}
 
-                              ))}
-                        </div>
                       </Row>
                     </Container>
                   </section>

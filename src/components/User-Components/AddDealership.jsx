@@ -22,6 +22,7 @@ const AddDealership = () => {
     const navigate = useNavigate();
     const [brandName, setBrandName] = useState("");
     const [productArr, setProductArr] = useState([]);
+    const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
     const userObj = useSelector((state) => state.auth.user);
     console.log(userObj)
@@ -164,6 +165,7 @@ const AddDealership = () => {
         try {
             const { data: response } = await Adddealership(formData);
             if (response.success) {
+                setShow(true);
                 console.log("Form submitted successfully", response);
                 setShow(true);
                 resetForm();

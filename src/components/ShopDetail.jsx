@@ -227,7 +227,7 @@ function ShopDetail() {
       }
     }
     catch (err) {
-      toastError(err)
+    navigate('/Subscription')
     }
   }
 
@@ -437,13 +437,13 @@ function ShopDetail() {
                   {isPriceVisible ? (
                     <div className="btn btn-custom  rounded-1 "> {`INR ${productObj?.sellingprice}`}</div>
                   ) : (
-                    <button onClick={() => !isAuthorized ? setSignInModal(true) : currentUserHasActiveSubscription ? setIsPriceVisible(true) : errorToast("You do not have a valid subscription to perform this action")} className="btn btn-custom text-white  rounded-pill" style={{ background: "#603200" }}>
+                    <button onClick={() => !isAuthorized ? setSignInModal(true) : currentUserHasActiveSubscription ? setIsPriceVisible(true) : navigate('/Subscription')} className="btn btn-custom text-white  rounded-pill" style={{ background: "#603200" }}>
                       Get Latest Price
                     </button>
 
                   )}
                   {authObj?.isAuthorized && (
-                    <button onClick={() => handleCreateLead()} className="btn btn-custom rounded-1">
+                    <button onClick={() => handleCreateLead()} className="btn btn-custom text-white ms-4  rounded-pill" style={{ background: "#603200" }}>
                       Contact Supplier
                     </button>
                   )}
@@ -524,7 +524,9 @@ function ShopDetail() {
                         {productObj?.createdByObj?.userObj?.companyObj?.phone}
                       </a>
                     ) : (
-                      <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : errorToast("You do not have a valid subscription to perform this action") }} className="btn btn-sm btn-yellow w-100 ">
+                      // <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : errorToast("You do not have a valid subscription to perform this action") }} className="btn btn-sm btn-yellow w-100 ">
+                      <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : navigate('/Subscription') }} className="btn btn-sm btn-yellow w-100 ">
+
                         View Mobile Number
                       </button>
                     )}
@@ -919,7 +921,7 @@ function ShopDetail() {
               <img src={images.logo} alt="" className="main-logo img-fluid" />
             </Link>
           </div>
-          <h2 className="heading">Log In via</h2>
+          <h2 className="heading">LogIn via</h2>
           <form className="form row">
             {/* <label>Login via </label> */}
             {/* {otpsent == false && (

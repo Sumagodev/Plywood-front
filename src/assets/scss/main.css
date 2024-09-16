@@ -1922,7 +1922,7 @@ footer .footer {
 
 .productyoulike {
   height: 500px;
-  margin-bottom: -50px;
+  /* margin-bottom: -50px; */
 }
 
 @media (max-width: 480px) {
@@ -3910,23 +3910,38 @@ select {
   color: #fff !important;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (min-width: 500px) and (max-width: 991px) {
   #react-paginate {
     margin-bottom: 0px !important;
   }
 
   #react-paginate ul {
-    gap: 12px;
+    gap: 6px;
     margin-bottom: 0px;
   }
 
   #react-paginate li a {
-    width: 35px !important;
-    height: 35px !important;
+    width: 30px !important;
+    height: 30px !important;
     font-size: 14px !important;
   }
 }
+@media only screen and (max-width: 500px) {
+  #react-paginate {
+    margin-bottom: 0px !important;
+  }
 
+  #react-paginate ul {
+    gap: 3px;
+    margin-bottom: 0px;
+  }
+
+  #react-paginate li a {
+    width: 25px !important;
+    height: 25px !important;
+    font-size: 10px !important;
+  }
+}
 .formheading {
   background: #A37E5F;
   font-weight: 600;

@@ -339,7 +339,7 @@ const ApplyDealership = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Submission Successful</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Your dealership information has been submitted successfully.</Modal.Body>
+                <Modal.Body>Your dealership Application has been submitted successfully.</Modal.Body>
                 <Modal.Footer>
                     <button variant="secondary" onClick={handleCloseAndNavigate}>
                         Close

@@ -4,10 +4,20 @@ import { BsArrowRight } from "react-icons/bs";
 import { FaArrowUp, FaHandshake } from "react-icons/fa";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdCall } from "react-icons/md";
-
+import { getDecodedToken, getToken } from "../services/auth.service";
+import {
+  getUserNotifications,
+  searchVendorFromDb,
+  sentOtp,
+} from "../services/User.service";
+import {
+  login,
+  logoutUser,
+  otpSend,
+} from "../redux/features/auth/authSlice";
 import { RiMessage2Line } from "react-icons/ri";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate, redirect } from "react-router-dom";
 import { Autoplay, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
@@ -48,7 +58,7 @@ import { getHomePageBannersApi } from "../services/homepageBanners.service";
 import { generateImageUrl } from "../services/url.service";
 import { toastSuccess } from "../utils/toastutill";
 import CountdownTimer from "./Utility/CountdownTimer";
-import { errorToast } from "./Utility/Toast";
+import { errorToast, successToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
 // import playbanner from "../assets/image/home/Group 1000004149.png";
 import playbanner from "../assets/image/home/buy now (1).png";
@@ -71,6 +81,7 @@ import { gettopUsers } from "../services/User.service"
 import { getStateDetails } from "../services/State.stateDetail";
 import { getAlldealership } from '../services/AddDealership.service'
 function Index() {
+  const tempLoginObj = useSelector((state) => state.auth.tempLoginObj);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [categoryArr, setcategoryArr] = useState([]);
   const [brandArr, setbrandArr] = useState([]);
@@ -89,7 +100,9 @@ function Index() {
     currentUserHasActiveSubscription,
     setCurrentUserHasActiveSubscription,
   ] = useState(false);
-  const [name, setName] = useState("");
+  const [name, setname] = useState();
+  const [Name, setName] = useState();
+
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [productName, setProductName] = useState("");
@@ -97,6 +110,7 @@ function Index() {
 
   const [signInModal, setSignInModal] = useState(false);
   const [opportunities, setOpportunities] = useState([]);
+  const dispatch = useDispatch();
 
   const fetchOpportunities = async () => {
     try {
@@ -461,7 +475,135 @@ function Index() {
     handleGetProducts();
   }, []);
   const [topusers, settopusers] = useState([]);
+  const handleRegister = () => {
+    setSignInModal(false);
+    return redirect("/Register");
+  };
+  const [loginByEmail, setLoginByEmail] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [otpsent, setotpsent] = useState(false);
+  const [totalNotification, settotalNotification] = useState(0);
+  const [mobile, setmobile] = useState("");
+  const [otp, setotp] = useState("");
+  const handleGetUser = async () => {
+    let decodedToken = await getDecodedToken();
+    let user = decodedToken?.userData?.user;
+    if (user) {
+      setname(user.name);
+    }
+  };
+
+  useEffect(() => {
+    setSignInModal(false);
+    handleNestedcategories();
+    if (getToken()) {
+      handleGetUser();
+    }
+  }, [isAuthorized]);
+
+  useEffect(() => {
+    if (userObj && userObj?._id) {
+      handleGetProducts();
+    }
+  }, [userObj]);
+
+  const handlesendOtp = async () => {
+    try {
+      if (loginByEmail) {
+        if (`${email}` === "") {
+          errorToast("Please Enter email");
+          return;
+        }
+        if (!`${email}`.includes("@")) {
+          errorToast("Please Enter a valid email");
+          return;
+        }
+        if (!`${email}`.includes(".")) {
+          errorToast("Please Enter a valid email");
+          return;
+        }
+      } else {
+        if (`${mobile}`.length !== 10) {
+          errorToast("Please Enter Mobile Number");
+          return;
+        }
+      }
+      let obj = {
+        phone: mobile,
+        email: email,
+      };
+
+      // console.log(obj,"gdfgdkfdgfadfdfdkjdhfjkdafhfdkjkskjafhdkjhsjk",)
+      // dispatch(otpSend(obj));
+      // setotpsent(true);
+
+      let { data: res } = await sentOtp(obj);
+      if (res.message) {
+        successToast(res.message);
+        setotpsent(true);
+      }
+    } catch (error) {
+      errorToast(error);
+      console.log(error);
+    }
+  };
+
+  const resendOtp = async () => {
+    try {
+      if (`${mobile}` === "") {
+        errorToast("Please Enter Mobile Number");
+        return;
+      }
+
+      let obj = {
+        phone: mobile,
+        // email: email,
+      };
+
+      // dispatch(otpSend(obj));
+
+      let { data: res } = await sentOtp(obj);
+      if (res.message) {
+        successToast(res.message);
+        // setotpsent(true)
+      }
+    } catch (error) {
+      errorToast(error);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (tempLoginObj) {
+      if (tempLoginObj && tempLoginObj.isOtpSent) {
+        // setotpsent(true);
+      }
+    }
+  }, [tempLoginObj]);
+
+  const handlesLogin = async () => {
+    if (`${otp}` === "") {
+      errorToast("Please Enter Otp");
+      return;
+    }
+    let obj = {
+      phone: mobile,
+      otp,
+    };
+    dispatch(login(obj));
+    setSignInModal(false);
+  };
+
+  const handleLogout = () => {
+    // deleteToken()
+    dispatch(logoutUser());
+    setotp("");
+    setmobile("");
+    setotpsent(false);
+
+    // setIsAuthorized(false)
+  };
   const handlesettopusers = async () => {
     try {
 
@@ -692,7 +834,7 @@ function Index() {
         </Container>
       </section> */}
 
-      <section className="">
+      <section className=" mt-2">
         <Container fluid className="product-container-section">
           <h1 className="heading text-center">Products You May Like</h1>
           <Row>
@@ -717,7 +859,7 @@ function Index() {
 
                     >
                       <div className="box_Product1 ">
-                       
+
 
                         <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
 
@@ -734,14 +876,15 @@ function Index() {
                         <div className="product_detail">
                           <Link to={`/ShopDetail/${product?.slug}`}>
 
-                            <span className="fs-6 msg1">{product.name}</span>
+                            <span className=" msg1">{product.name}</span>
                             <span className="chennai">
-                              <IoLocationSharp /> chainai
+                              <IoLocationSharp /> {product.cityName}
                             </span>
-                            <span className="fs-6 msg1">{product.sellingprice}</span>
+                            <span className=" msg1">{product.sellingprice}</span>
                           </Link>
                         </div>
-                        <button className=" fs-6 fw-bold">Get Quote</button>
+                        <Link to={`/ShopDetail/${product?.slug}`}>            <button className="mt-2 fs-6 fw-bold">Get Quote</button></Link>
+
 
                       </div>
                     </Col>
@@ -1159,11 +1302,11 @@ function Index() {
               <SwiperSlide key={index}>
                 <Link to={`Shop?categories=${city._id}`}>
                   <div>
-                  <img
-                          src={city.image ? generateImageUrl(city?.image) : img1}
-                          alt={city.name}
-                          className="img-fluid ims img1"
-                        />
+                    <img
+                      src={city.image ? generateImageUrl(city?.image) : img1}
+                      alt={city.name}
+                      className="img-fluid ims img1"
+                    />
                     {/* <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" /> */}
                     <p className="text-center">{city.stateId.name}</p>
 
@@ -1173,8 +1316,10 @@ function Index() {
             ))}
           </Swiper>
         </Container>
-      </section>
-      <section onClick={() => navigate('/AddDealership')}>
+      </section>()
+      <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}>
+        {/* <section onClick={() => setSignInModal(true) }> */}
+
         <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
 
@@ -1217,13 +1362,26 @@ function Index() {
                                 <div className=" col-lg-7">
                                   <span>{opportunity.Organisation_name}</span> <br />
                                 </div>
-                                {
-                                  isAuthorized ?
-                                    <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div>
 
-                                    : <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/', { state: { opportunity } })}  >Apply</button></div>
+                                {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
 
-                                }
+                                : <div className="col-lg-5">
+                                  <button
+                                    className="dealerapply px-3 py-2"
+                                    onClick={() => {
+                                      if (isAuthorized) {
+                                        setSignInModal(true);
+                                      } else {
+                                        navigate('/', { state: { opportunity } });
+                                      }
+                                    }}
+                                  >
+                                    Apply
+                                  </button>
+                                </div>
+
+
+
                               </div>
 
 
@@ -1511,7 +1669,7 @@ function Index() {
                         <SwiperSlide key={index}>
                           <div
                             key={index}
-                            className="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"
+                            className=" d-flex justify-content-center align-items-center"
                           >
                             <div className="blog_listing">
                               <div className="blog_listing_img">
@@ -1684,7 +1842,7 @@ function Index() {
                       type="text"
                       placeholder="Name*"
                       className="custom-input"
-                      value={name}
+                      value={Name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </Form.Group>
@@ -1739,20 +1897,180 @@ function Index() {
           </Col>
         </Row>
       </Container>
-
       <Modal show={signInModal} centered onHide={() => setSignInModal(false)}>
         <Modal.Body className="sign-in-modal custom-modal">
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            onClick={() => setSignInModal(false)}
+          ></button>
           <div>
-            <img src={successgif} alt="" className="main-logo img-fluid" />
+            <Link to="/" className="navbar-brand">
+              <img src={images.logo} alt="" className="main-logo img-fluid" />
+            </Link>
           </div>
+          <h2 className="heading">LogIn via</h2>
+          <form className="form row">
+            {/* <label>Login via </label> */}
+            {/* {otpsent == false && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: 20,
+                  marginTop: 10,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="type2"
+                    id="222"
+                    // value={true}
+                    checked={loginByEmail}
+                    onChange={(e) => setLoginByEmail(true)}
+                  />
+                  <label for="222" className="mx-2">
+                    Email
+                  </label>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="type2"
+                    id="223"
+                    checked={!loginByEmail}
+                    onChange={(e) => setLoginByEmail(false)}
+                  />
+                  <label for="223" className="mx-2">
+                    Phone
+                  </label>
+                </div>
+              </div>
+            )} */}
 
-          <h1 className="heading">Thank You!</h1>
-          <h6>Visiting Again</h6>
-          <a className="btn btn-custom btn-yellow mt-2" href="/">
-            Go to Home
-          </a>
+            {loginByEmail ? (
+              <div className="col-12">
+                {otpsent ? (
+                  <div className="input flex-1">
+                    <label className="text-start">
+                      Enter OTP sent to {mobile}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your OTP"
+                      value={otp}
+                      onChange={(e) => setotp(e.target.value)}
+                    />
+                  </div>
+                ) : (
+                  <div className="input flex-1">
+                    <label className="text-start">Email</label>
+                    <input
+                      type="text"
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="col-12">
+                {otpsent ? (
+                  <div className="input flex-1">
+                    <label className="text-start">
+                      Enter OTP sent to {mobile}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your OTP"
+                      value={otp}
+                      onChange={(e) => setotp(e.target.value)}
+                    />
+
+                    <div className="text-end">
+                      <div
+                        className="resendtp"
+                        onClick={() => {
+                          resendOtp();
+                        }}
+                      >
+                        Resend OTP
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="input flex-1">
+                    <label className="text-start">Phone number</label>
+                    <input
+                      type="number"
+                      maxLength={10}
+                      className="w-100 form-control bg-grey"
+                      placeholder="Enter Your Mobile Number"
+                      value={mobile}
+                      onChange={(e) => setmobile(e.target.value)}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="col-12">
+              {otpsent ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    handlesLogin();
+                  }}
+                  className="btn btn-custom text-white yellow-bg py-2 w-100"
+                >
+                  Verfiy
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    handlesendOtp();
+                  }}
+                  className="btn btn-custom text-white yellow-bg py-2 w-100"
+                >
+                  Submit
+                </button>
+              )}
+
+              <Link
+                to="/Register"
+                onClick={() => {
+                  handleRegister();
+                }}
+                className="btn btn-custom mt-2 text-white yellow-bg py-2 w-100"
+              >
+                Register Now
+              </Link>
+            </div>
+          </form>
         </Modal.Body>
       </Modal>
+
+
     </main >
   );
 }

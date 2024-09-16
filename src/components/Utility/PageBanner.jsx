@@ -13,7 +13,7 @@ function PageBanner({ img, title, desp, className, edit, userId }) {
          ${className ? className : ""}`}
       style={{ backgroundImage: `url(${img})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", position: "relative" }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid mx-0 px-0">
         {
           edit &&
           <div onClick={() => { navigate("/Edit-Profile") }} style={{ position: "absolute", top: 10, right: 20, border: "solid 1px white", borderRadius: 110 }}>
@@ -21,7 +21,7 @@ function PageBanner({ img, title, desp, className, edit, userId }) {
           </div>
         }
         <div className="row justify-content-center">
-          <div className="col-12 col-lg-6">
+          <div className="col-11 col-lg-6">
             <div className="content">
               {title && <h1 className="heading">{title}</h1>}
               {desp && <p className="desp">{desp}</p>}

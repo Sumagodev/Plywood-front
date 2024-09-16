@@ -405,6 +405,7 @@
   .main_Profiles .component-container1 .sub-container1 {
     line-height: 1.2;
     margin: 1.3vmin 5vmin;
+    font-size: 12px;
   }
 
   .main_Profiles .component-container1 .p1 {
@@ -874,7 +875,13 @@
     gap: 3vmin;
     margin-bottom: 0;
   }
-
+  .img1 {
+    height: 150px !important;
+  }
+  .product_detail{
+    height: 12vh;
+    font-size: 12px !important;
+  }
   .dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .dealership-oppo-img-box {
     display: flex;
     justify-content: center;
@@ -1070,7 +1077,8 @@
 }
 
 .product_detail{
-  height: 15vh;
+  height: 12vh;
+  font-size: 17px;
 }
 
 @media (max-width: 1000px) {
@@ -1078,6 +1086,7 @@
   .product_detail {
     height: 11vh;
   }
+
 }
 
 @media (min-width: 750px) and (max-width: 822px) {
