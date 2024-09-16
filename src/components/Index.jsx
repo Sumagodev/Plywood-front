@@ -621,6 +621,8 @@ function Index() {
   useEffect(() => {
     handlesettopusers();
   }, []);
+
+
   return (
     <main>
 
@@ -1317,8 +1319,9 @@ function Index() {
           </Swiper>
         </Container>
       </section>()
-      <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}>
-        {/* <section onClick={() => setSignInModal(true) }> */}
+      {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
+      {/* <section onClick={() => setSignInModal(true) }> */}
+      <section onClick={() => !isAuthorized ? setSignInModal(true) : currentUserHasActiveSubscription ? <></> : navigate('/Subscription')} >
 
         <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
