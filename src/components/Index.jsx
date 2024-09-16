@@ -400,7 +400,7 @@ function Index() {
   };
 
   const [blogsArr, setBlogsArr] = useState([]);
-  const [showBlogs, setShowBlogs] = useState(true);
+  const [showBlogs, setShowBlogs] = useState(false);
   const [blogVideoArr, setBlogVideoArr] = useState([]);
 
   const handleGetBlogs = async () => {
@@ -481,6 +481,15 @@ function Index() {
   }, []);
   return (
     <main>
+
+      <style>
+        {`
+          .swiper-slide {
+            margin-right: 15px !important;
+          }
+        `}
+      </style>
+
       <section className="">
         <div className="container-fluid">
           <div className="row">
@@ -722,7 +731,7 @@ function Index() {
                               : <LuPhoneCall />
                           }
                         </span>
-                        <div className="">
+                        <div className="product_detail">
                           <Link to={`/ShopDetail/${product?.slug}`}>
 
                             <span className="fs-6 msg1">{product.name}</span>
@@ -1502,7 +1511,7 @@ function Index() {
                         <SwiperSlide key={index}>
                           <div
                             key={index}
-                            className="col-xxl-4 col-xl-6 col-lg-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center align-items-center"
+                            className="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center"
                           >
                             <div className="blog_listing">
                               <div className="blog_listing_img">

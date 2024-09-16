@@ -1068,3 +1068,35 @@
   font-size: 1.1rem;
   font-weight: 600;
 }
+
+.product_detail{
+  height: 15vh;
+}
+
+@media (max-width: 1000px) {
+
+  .product_detail {
+    height: 11vh;
+  }
+}
+
+@media (min-width: 750px) and (max-width: 822px) {
+
+  .product_detail {
+    height: 10vh;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 855px) {
+
+  .product_detail {
+    height: 9vh;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1030px) {
+
+  .product_detail {
+    height: 15vh;
+  }
+}
