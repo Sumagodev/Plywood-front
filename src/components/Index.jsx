@@ -481,7 +481,7 @@ function Index() {
   }, []);
   return (
     <main>
-      <section className="mb-80">
+      <section className="">
         <div className="container-fluid">
           <div className="row">
             <Swiper
@@ -512,10 +512,10 @@ function Index() {
         </div>
       </section>
 
-      <section className="category mb-80">
-        <Container fluid className="categoriesback p-5">
+      <section className="category ">
+        <Container fluid className="categoriesback p-0 p-lg-5">
           <div className="container">
-            <div className="title-section with-btn mb-5">
+            <div className="title-section with-btn mb-0 mb-lg-5 py-3 py-lg-0">
               <h1 className="heading "> Categories</h1>
             </div>
           </div>
@@ -740,7 +740,7 @@ function Index() {
                 ))}
             </Swiper>
           </Row>
-          <div className="d-flex justify-content-center align-items-center mb-5">
+          <div className="d-flex justify-content-center align-items-center mb-0 mb-lg-5">
             <Link to={`/product-details`}>
               <button
                 className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
@@ -753,9 +753,9 @@ function Index() {
           </div>
         </Container>
       </section>
-      <div className=" my-4" style={{ height: "2px" }}></div>
-      <section className=" mt-5 ">
-        <Container className=" mt-5 ">
+      <div className=" my-4 d-none d-lg-block" style={{ height: "2px" }}></div>
+      <section className=" mt-0  mt-lg-5">
+        <Container className=" mt-0 mt-lg-5">
           <Row className=" newpeoductback ">
             <Col lg={9} xs={12} className="newprdrw">
               <Swiper
@@ -831,11 +831,11 @@ function Index() {
       </section>
 
       <section>
-        <Container className="main_Profiles my-5">
+        <Container className="main_Profiles my-2 my-lg-5">
           <h1 className="text-center mb-4">Top Profiles</h1>
           <Row className=" d-flex justify-content-center">
             {topusers && topusers.slice(0, 4).map((el) => (
-              <Col lg={3} sm={6} className="py-3 px-2">
+              <Col lg={3} xs={6} className="py-3 px-2">
                 {/* <Link to={`/Supplier/${el?._id}`}> */}
                 <div className="component-container1  text-center">
 
@@ -887,12 +887,12 @@ function Index() {
           </Row>
         </Container>
       </section>
-      <div className=" my-4" style={{ height: "2px" }}></div>
+      <div className=" my-4 d-none d-lg-block" style={{ height: "2px" }}></div>
 
       {
         flashSalesArr && flashSalesArr.length > 0 && (
-          <section className=" mt-5 ">
-            <Container className=" mt-5 ">
+          <section className=" mt-0 mt-lg-5">
+            <Container className=" mt-0 mt-lg-5 ">
               <Row className=" flashpeoductback d-lg-flex  justify-content-center ">
                 <Col
                   lg={3}
@@ -1135,7 +1135,7 @@ function Index() {
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
           States
         </p>
-        <Container fluid className=" px-5 text-center fw-bold">
+        <Container fluid className=" px-1 px-lg-5 text-center fw-bold">
           <Swiper
             modules={[Autoplay]}
             spaceBetween={5}
@@ -1174,11 +1174,11 @@ function Index() {
 
 
       <section>
-        <Container className="dealership-oppo-container my-5">
+        <Container className="dealership-oppo-container my-2 my-lg-5">
           {
             opportunities && opportunities.length > 0 && (
               <>
-                <Row className="h1 justify-content-center text-center mb-5 fs-3 text-black fw-bold" style={{ backgroundColor: "#F5F1E8" }}>
+                <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold" style={{ backgroundColor: "#F5F1E8" }}>
                   Dealership / Distributer <br />
                   Opportunities
                 </Row>
@@ -1195,7 +1195,7 @@ function Index() {
                   >
                     {opportunities.filter(opportunity => opportunity.userId !== userObj._id).map(opportunity => (
                       <SwiperSlide >
-                        <Col key={opportunity._id} className="dealership-oppo-sub-container x" >
+                        <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
                           <div className="dealership-oppo-box rounded-5 rounded">
                             <div
                               className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
@@ -1364,7 +1364,7 @@ function Index() {
                     </div>
                   </SwiperSlide>
                 );
-              })}
+              })} 
           </Swiper>
         </div>
       </section> */}

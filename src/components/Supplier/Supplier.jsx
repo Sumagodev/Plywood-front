@@ -42,8 +42,11 @@ import birthdate from '../../assets/image/home/images/birthdateicn.png'
 
 
 function Supplier() {
+  
   const [quoteModal, setQuoteModal] = useState(false);
-  const authObj = useSelector((state) => state.auth)
+  const authObj = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
+
   let userObj = useSelector((state) => state.auth.user);
   const [reviewModal, setReviewModal] = useState(false);
   const [productReviewArr, setProductReviewArr] = useState([]);
@@ -58,12 +61,12 @@ function Supplier() {
   const [supplierObj, setSupplierObj] = useState({});
   const [productsArr, setProductsArr] = useState([]);
   const [tabs, setTabs] = useState([
-    {
-      name: "Home",
-      icon: <AiFillHome />,
-      active: false,
-      tab: "1",
-    },
+    // {
+    //   name: "Home",
+    //   icon: <AiFillHome />,
+    //   active: false,
+    //   tab: "1",
+    // },
     {
       name: "Profile",
       icon: <ImUser />,
@@ -83,7 +86,23 @@ function Supplier() {
       tab: "4",
     },
   ]);
-
+  const reviews = {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    992: {
+      slidesPerView: 1,
+    },
+    1200: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  }
 
   const ActiveTab = (i) => {
     const temp = tabs.map((item, index) => {
@@ -388,16 +407,16 @@ function Supplier() {
       </section>
 
       <section className=" ">
-        <div className="container supllertabs px-5 ">
+        <div className="container supllertabs px-0 px-lg-5">
           <div className="row d-flex justify-content-center ">
             {tabs.map((item, i) => {
               return (
                 <div
-                  className={`col-lg-2 px-lg-3 vlp my-2 ${item.active ? "active" : ""}`}
+                  className={`col-lg-2 col-3 px-lg-3 px-0 vlp my-2 ${item.active ? "active" : ""}`}
                   key={i}
                   onClick={() => ActiveTab(i)}
                 >
-                  <div className=" fw-light py-3 ">{item.name}</div>
+                  <div className=" fw-light py-0 py-lg-3 ">{item.name}</div>
                 </div>
               );
             })}
@@ -509,7 +528,7 @@ function Supplier() {
                   <div className="row ">
                     <div className="row d-flex align-items-center justify-content-center">
 
-                      <div className="col-lg-3 col-md-4 " >
+                      <div className="col-lg-3 col-md-4 col-12 " >
                         <div className="box ">
                           <div className="icon brown"><img className="img-fluid" src={bagicn} alt="" /></div>
                           <div className="content">
@@ -518,16 +537,8 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                      {/* <div className="col-12 col-md-4">
-                      <div className="box">
-                        <div className="icon brown"><FaUserFriends /></div>
-                        <div className="content">
-                          <h5 className="brown">Total Employees</h5>
-                          <p>{supplierObj?.companyObj?.noofepmployee ? supplierObj?.companyObj?.noofepmployee : "Not provided"}</p>
-                        </div>
-                      </div>
-                    </div> */}
-                      <div className="col-lg-3 col-md-4">
+                     
+                      <div className="col-lg-3 col-md-4 col-12">
                         <div className="box">
 
                           <div className="icon brown"><img className="img-fluid" src={icn365} alt="" /></div>
@@ -537,10 +548,8 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="row d-flex align-items-center justify-content-center">
-                      <div className="col-lg-3 col-md-4 py-5">
+                      <div className="col-lg-3 col-md-4 col-12 py-5">
                         <div className="box">
                           <div className="icon brown"><img className="img-fluid" src={customericn} alt="" /></div>
                           <div className="content">
@@ -549,16 +558,8 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                      {/* <div className="col-12 col-md-4">
-                      <div className="box">
-                        <div className="icon brown"><MdImportExport /></div>
-                        <div className="content">
-                          <h5 className="brown">Import Export Code (IEC)</h5>
-                          <p>{supplierObj?.companyObj?.iecCode ? supplierObj?.companyObj?.iecCode : "Not provided"} </p>
-                        </div>
-                      </div>
-                     </div> */}
-                      <div className="col-lg-3 col-md-4">
+                     
+                      <div className="col-lg-3 col-md-4 col-12">
                         <div className="box">
                           <div className="icon brown"><img className="img-fluid" src={telephone} alt="" /></div>
                           <div className="content">
@@ -567,12 +568,10 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                    </div>
 
 
 
-                    <div className="row d-flex align-items-center justify-content-center">
-                      <div className="col-lg-3 col-md-4">
+                      <div className="col-lg-3 col-md-4 col-12">
                         <div className="box">
                           <div className="icon brown"><img className="img-fluid" src={gsticn} alt="" /></div>
                           <div className="content">
@@ -581,25 +580,8 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                      {/* <div className="col-lg-3 col-md-4">
-                        <div className="box">
-                        <div className="icon brown"><img className="img-fluid" src={bagicn} alt="" /></div>
-                          <div className="content">
-                            <h5 className="brown">GST No.</h5>
-                            <p>{supplierObj?.companyObj?.gstNumber ? supplierObj?.companyObj?.gstNumber : "Not provided"} </p>
-                          </div>
-                        </div>
-                      </div> */}
-                      {/* <div className="col-12 col-md-4">
-                      <div className="box">
-                        <div className="icon brown"><BsFillCheckCircleFill /></div>
-                        <div className="content">
-                          <h5 className="brown">CIN No.</h5>
-                          <p>{supplierObj?.companyObj?.cinNo ? supplierObj?.companyObj?.cinNo : "Not provided"}</p>
-                        </div>
-                      </div>
-                    </div> */}
-                      <div className="col-lg-3 col-md-4 ">
+                  
+                      <div className="col-lg-3 col-md-4 col-12 ">
                         <div className="box">
                           <div className="icon brown"><img className="img-fluid" src={birthdate} alt="" /></div>
                           <div className="content">
@@ -607,17 +589,8 @@ function Supplier() {
                             <p>{supplierObj?.aniversaryDate ? moment(supplierObj?.aniversaryDate).format("YYYY-MM-DD") : "Not provided"}</p>
                           </div>
                         </div>
-                      </div>
-                      {/* <div className="col-lg-3 col-md-4">
-                        <div className="box">
-                          <div className="icon brown"><img className="img-fluid" src={bagicn} alt="" /></div>
-                          <div className="content">
-                            <h5 className="brown">Birthdate</h5>
-                            <p>{supplierObj?.aniversaryDate ? moment(supplierObj?.aniversaryDate).format("YYYY-MM-DD") : "Not provided"}</p>
-                          </div>
-                        </div>
-                      </div> */}
-
+                  
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -664,6 +637,7 @@ function Supplier() {
                 <ul className="row">
                   {productsArr && productsArr.length > 0 ? productsArr.map((item, i) => {
                     return (
+                      
                       <li className="col-12 col-md-3">
 
                         <div className="product-box">
@@ -695,59 +669,182 @@ function Supplier() {
         }
         if (item.active && item.tab === "4") {
           return (
-            <section className="category-page mb-80">
-              <div className="container">
-                <div className="row d-flex justify-content-end">
-                  <div className="col-2 mb-4 d-flex justify-content-end">
-                    {authObj?.isAuthorized &&
+            // <section className="category-page mb-80">
+            //   <div className="container">
+            //     <div className="row d-flex justify-content-end">
+            //       <div className="col-2 mb-4 d-flex justify-content-end">
+            //         {authObj?.isAuthorized &&
 
-                      <Link to="#" className="btn btn-custom btn-yellow" onClick={() => setReviewModal(true)}>
-                        Write a review
-                      </Link>
-                    }
-                  </div>
+            //           <Link to="#" className="btn btn-custom btn-yellow" onClick={() => setReviewModal(true)}>
+            //             Write a review
+            //           </Link>
+            //         }
+            //       </div>
+            //     </div>
+            //     <ul className="row">
+            //       {productReviewArr && productReviewArr.length > 0 ? (
+            //         productReviewArr.map((el, index) => {
+            //           return (
+            //             <div key={index} className="col-12">
+            //               <div className="product-review">
+            //                 <div className="top">
+            //                   <div className="name">
+            //                     <div>
+            //                       <h6>{el.name}</h6>
+            //                       <p className="small brown">{moment(el.createdAt).format("DD-MM-YYYY")}</p>
+            //                     </div>
+            //                   </div>
+            //                   <div className="review-rating">
+            //                     {/* {el.rating} */}
+            //                     <ReactStars edit={false} count={5} size={24} value={el.rating} activeColor="#ffd700" />
+            //                   </div>
+            //                 </div>
+            //                 <div className="desp">
+            //                   <p>
+            //                     {el.message} {el.rating}
+            //                   </p>
+            //                 </div>
+            //               </div>
+            //             </div>
+            //           );
+            //         })
+            //       ) : (
+            //         <div className="col-12">
+            //           <div className="product-review">
+            //             <div className="top">
+            //               <div className="name">
+            //                 <div>
+            //                   <h6>No Reviews found</h6>
+            //                 </div>
+            //               </div>
+            //             </div>
+            //           </div>
+            //         </div>
+            //       )}
+            //     </ul>
+            //     <div className="row gy-4">
+            //       {productReviewArr && productReviewArr.length > 0 ? (
+            //         <Swiper
+            //           spaceBetween={20}
+            //           slidesPerView={4}
+            //           breakpoints={reviews}
+            //           speed={1500}
+            //           modules={[Autoplay, Navigation]}
+            //           autoplay={{ disableOnInteraction: false }}
+            //           navigation
+            //           className="pt-5 px-4"
+            //         >
+            //           {productReviewArr.map((el, index) => (
+            //             <SwiperSlide key={index}>
+            //               <div className="col-12">
+            //                 <div className="product-review">
+            //                   <div className="top">
+            //                     <div className="name">
+            //                       <div>
+            //                         <h6>{el.name}</h6>
+            //                         <p className="small brown">
+            //                           {moment(el.createdAt).format("DD-MM-YYYY")}
+            //                         </p>
+            //                       </div>
+            //                     </div>
+            //                     <div className="review-rating">
+            //                       <ReactStars
+            //                         edit={false}
+            //                         count={5}
+            //                         size={24}
+            //                         value={el.rating}
+            //                         activeColor="#ffd700"
+            //                       />
+            //                     </div>
+            //                   </div>
+            //                   <div className="desp">
+            //                     <p>
+            //                       {el.message} {el.rating}
+            //                     </p>
+            //                   </div>
+            //                 </div>
+            //               </div>
+            //             </SwiperSlide>
+            //           ))}
+            //         </Swiper>
+            //       ) : (
+            //         <div className="col-12">
+
+            //           <div>
+            //             <h6>No Reviews found for this product</h6>
+
+            //           </div>
+            //         </div>
+            //       )}
+            //     </div>
+            //   </div>
+            // </section>
+              <section className="mt-5" style={{ background: "#FFF2E2" }}>
+              <div className="container-fluid pb-4">
+                <div className="title-section with-btn mb-5">
+                  <h1 className="heading text-start ms-lg-5 pt-3  brown">Reviews</h1>
+                  {auth?.isAuthorized && (
+                    <Link to="#" className="btn btn-custom btn-yellow" onClick={() => setReviewModal(true)}>
+                      Write a review
+                    </Link>
+                  )}
                 </div>
-                <ul className="row">
+                <div className="row gy-4">
                   {productReviewArr && productReviewArr.length > 0 ? (
-                    productReviewArr.map((el, index) => {
-                      return (
-                        <div key={index} className="col-12">
-                          <div className="product-review">
-                            <div className="top">
-                              <div className="name">
-                                <div>
-                                  <h6>{el.name}</h6>
-                                  <p className="small brown">{moment(el.createdAt).format("DD-MM-YYYY")}</p>
+                    <Swiper
+                      spaceBetween={20}
+                      slidesPerView={4}
+                      breakpoints={reviews}
+                      speed={1500}
+                      modules={[Autoplay, Navigation]}
+                      autoplay={{ disableOnInteraction: false }}
+                      navigation
+                      className="pt-5 px-4"
+                    >
+                      {productReviewArr.map((el, index) => (
+                        <SwiperSlide key={index}>
+                          <div className="col-12">
+                            <div className="product-review">
+                              <div className="top">
+                                <div className="name">
+                                  <div>
+                                    <h6>{el.name}</h6>
+                                    <p className="small brown">
+                                      {moment(el.createdAt).format("DD-MM-YYYY")}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div className="review-rating">
+                                  <ReactStars
+                                    edit={false}
+                                    count={5}
+                                    size={24}
+                                    value={el.rating}
+                                    activeColor="#ffd700"
+                                  />
                                 </div>
                               </div>
-                              <div className="review-rating">
-                                {/* {el.rating} */}
-                                <ReactStars edit={false} count={5} size={24} value={el.rating} activeColor="#ffd700" />
+                              <div className="desp">
+                                <p>
+                                  {el.message} {el.rating}
+                                </p>
                               </div>
                             </div>
-                            <div className="desp">
-                              <p>
-                                {el.message} {el.rating}
-                              </p>
-                            </div>
                           </div>
-                        </div>
-                      );
-                    })
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   ) : (
                     <div className="col-12">
-                      <div className="product-review">
-                        <div className="top">
-                          <div className="name">
-                            <div>
-                              <h6>No Reviews found</h6>
-                            </div>
-                          </div>
-                        </div>
+      
+                      <div>
+                        <h6>No Reviews found for this product</h6>
+      
                       </div>
                     </div>
                   )}
-                </ul>
+                </div>
+      
               </div>
             </section>
           );

@@ -1313,6 +1313,7 @@ footer .footer {
   border-left: 1px solid rgb(0, 0, 0);
   border-right: 1px solid rgb(0, 0, 0);
   height: 50px;
+  font-size: 24px;
 }
 
 .product-tabs ul.tabs {
@@ -1918,27 +1919,33 @@ footer .footer {
   background: linear-gradient(90deg, #6C4F37 0%, rgba(103, 67, 32, 0.580081) 66.96%, rgba(96, 50, 0, 0) 100%);
   padding-left: 50px;
 }
-.productyoulike{
+
+.productyoulike {
   height: 500px;
   margin-bottom: -50px;
 }
+
 @media (max-width: 480px) {
   .profile-section-container-left .profile-section-Heading {
-    font-size: 1.1rem !important; 
+    font-size: 1.1rem !important;
     padding: 10px 0;
   }
-  .productyoulike{
+
+  .productyoulike {
     height: 400px;
   }
-  .profile-section-container-left .profile-section-Heading-icn{
-    font-size: 0.75rem !important; 
-    
+
+  .profile-section-container-left .profile-section-Heading-icn {
+    font-size: 0.75rem !important;
+
   }
-  .profile-section-container-left .theme-outline-button{
-    font-size: 1.1rem !important; 
+
+  .profile-section-container-left .theme-outline-button {
+    font-size: 1.1rem !important;
     padding: 5px !important;
   }
-  .profile-section-container-left2{
+
+  .profile-section-container-left2 {
     padding: 0 20px !important;
   }
 
@@ -1964,7 +1971,7 @@ footer .footer {
   border: none;
   color: #603200;
   padding: 12px;
-  font-size: 22px;
+  font-size: 17px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -2522,6 +2529,10 @@ footer .footer {
     background: #fff;
   }
 
+  .blog_listing {
+    margin-bottom: 10px !important;
+  }
+
   .category .box .text h5 {
     color: #000 !important;
   }
@@ -2742,6 +2753,24 @@ footer .footer {
 }
 
 @media (max-width: 768px) {
+  .vlp {
+    border-left: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .supllertabs {
+
+    align-items: center;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    background: #F5F1E8;
+    box-shadow: 8px 9px 30px 0px #00000040;
+    border-radius: 0px 40px 0px 40px;
+    padding: 15px;
+  }
 
   .editprofilemt0 .pt-4,
   .editprofilemt0 .mt-4 {
@@ -2999,9 +3028,11 @@ footer .footer {
   .row.flex_deraction_row {
     flex-direction: column;
   }
-.list_content_blog  h6{
-  font-size: 14px;
-}
+
+  .list_content_blog h6 {
+    font-size: 14px;
+  }
+
   .shop-filter .list {
     overflow-x: scroll;
   }
@@ -3064,7 +3095,7 @@ footer .footer {
 
   .theme-outline-button {
     padding: 5px 4px;
-    font-size: 11px;
+    font-size: 11px !important;
   }
 
   .mysubcripterfong {

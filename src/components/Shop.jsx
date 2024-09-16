@@ -69,7 +69,7 @@ function Shop() {
       if (res.data && res?.data?.length > 0) {
         Promise.resolve()
           .then(() => {
-            
+
             setProductsArr(res?.data);
             setTotal(res?.total);
           })
@@ -227,28 +227,29 @@ function Shop() {
     <main>
       <section className="shop-page shoppagepading ">
         <div className="container-fluid">
-          <div className="row  mb-80 px-4pc" >
+          <div className="row px-0 mb-80 px-4pc" >
             <PageBanner
               img={
                 shopImage && shopImage !== ""
                   ? generateImageUrl(shopImage)
                   : images.top_banner
               }
-              className="mx-0"
+              className="mx-0 mb-80"
             />
 
-            <div className="col-12  d-none d-lg-block">
+            {/* <div className="col-12  d-none d-lg-block">
               <ShopFilter
                 handleApplyFilter={handleApplyFilter}
                 handleClearFilter={handleClearFilter}
               />
-            </div>
-            <div className=" row">
+            </div> */}
+            <div className=" row px-0">
               <div className="col-12 col-lg-9">
 
 
-                <div className="row gy-5 main_Profiles">
+                <div className="row px-0 gy-5 main_Profiles">
                   {isLoading == true ? (
+
                     <div className="col-xl-12">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -497,106 +498,62 @@ function Shop() {
                         </g>
                       </svg>
                     </div>
+
+
                   ) : (
                     <>
-                      <Row>
+                      <Row className="px-0">
                         {productsArr && productsArr.length > 0 ? (
                           productsArr.map((el, index) => {
                             return (
                               <>
-                                {/* <div
-                key={index}
-                className="col-12 col-lg-4 col-sm-6 col-md-6 "
-              >
-                <div className="product-box">
-                  <button className="call-btn">
-                    <MdCall />
-                  </button>
-               
-                  <Link to={`/Supplier/${el?._id}`}>
-                    {el?.bannerImage ? (
-                      <img
-                        src={generateImageUrl(el?.bannerImage)}
-                        alt=""
-                        className="img"
-                      />
-                    ) : (
-                      <img
-                        src={images.category_6}
-                        alt=""
-                        className="img"
-                      />
-                    )}
-                  </Link>
-                  <div className="content">
-                    <h6 className="title">
-                      <Link to={`/Supplier/${el?._id}`}>
-                        {el?.companyName
-                          ? el?.companyName
-                          : el?.name}
-                      </Link>
-                    </h6>
-                    <h6 className="size">
-                      Products:{" "}
-                      {el?.productsCount
-                        ? el?.productsCount
-                        : "N.A."}
-                    </h6>
-                    <h6 className="size">
-                      Rating:{" "}
-                      <span style={{ marginLeft: 10 }}>
-                        <BsStarFill /> {el?.rating ? el?.rating : 0}
-                      </span>{" "}
-                    </h6>
-                  </div>
-                </div>
-              </div> */}
-                                <div className="col-12 col-lg-4 col-sm-6 col-md-6 py-3 px-2">
-                                  {/* <Link to={`/Supplier/${el?._id}`}> */}
-                                  <div className="component-container1  text-center">
+                                <Col xs={6} lg={4}>
+                                  <div className=" py-3 px-0 px-lg-2">
+                                    {/* <Link to={`/Supplier/${el?._id}`}> */}
+                                    <div className="component-container1  text-center">
 
-                                    {el?.bannerImage ? (
-                                      <img
-                                        src={generateImageUrl(el?.bannerImage)}
-                                        alt=""
-                                        className=" img-fluid img"
-                                      />
-                                    ) : (
-                                      <img
-                                        src={images.category_6}
-                                        alt=""
-                                        className=" img-fluid img"
-                                      />
-                                    )}
+                                      {el?.bannerImage ? (
+                                        <img
+                                          src={generateImageUrl(el?.bannerImage)}
+                                          alt=""
+                                          className=" img-fluid img"
+                                        />
+                                      ) : (
+                                        <img
+                                          src={images.category_6}
+                                          alt=""
+                                          className=" img-fluid img"
+                                        />
+                                      )}
 
-                                    <div className="sub-container1">
-                                      <span className=""> <Link to={`/Supplier/${el?._id}`}>
-                                        {el?.companyName
-                                          ? el?.companyName
-                                          : el?.name}
-                                      </Link></span>
-                                      <span className="">
-                                        Products:{" "}
-                                        {el?.productsCount
-                                          ? el?.productsCount
-                                          : "N.A."}
-                                      </span>
+                                      <div className="sub-container1">
+                                        <span className=""> <Link to={`/Supplier/${el?._id}`}>
+                                          {el?.companyName
+                                            ? el?.companyName
+                                            : el?.name}
+                                        </Link></span>
+                                        <span className="">
+                                          Products:{" "}
+                                          {el?.productsCount
+                                            ? el?.productsCount
+                                            : "N.A."}
+                                        </span>
+                                      </div>
+                                      <div className="sub-container2">
+                                        <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
+                                        <span className="phone-icon">
+                                          <a href={`tel: ${el?.phone}`}>
+                                            <FaPhoneVolume />
+                                          </a>
+                                        </span>
+                                      </div>
+
+
                                     </div>
-                                    <div className="sub-container2">
-                                      <span className="p3">Rating - {el?.rating ? el?.rating : 0}</span>
-                                      <span className="phone-icon">
-                                        <a href={`tel: ${el?.phone}`}>
-                                          <FaPhoneVolume />
-                                        </a>
-                                      </span>
-                                    </div>
-
-
+                                    {/* </Link> */}
                                   </div>
-                                  {/* </Link> */}
-                                </div>
 
-
+                                </Col>
                               </>
                             );
                           })

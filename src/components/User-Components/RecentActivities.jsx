@@ -58,7 +58,7 @@ export default function RecentActivities() {
                                 <div className='col-lg-6'>
                                     <div key={index} className='profile-section-container my-3'>
                                         <div className="row align-items-center sub-section-1">
-                                            <div className="col-12 col-sm-6 my-2 fs-4 text-white fw-bold text-center">
+                                            <div className="col-12 col-sm-6 my-2 fs-5 text-white fw-bold text-center">
                                                 {el?.name}
                                             </div>
                                             <div className="col-12 col-sm-6 d-flex justify-content-center">
