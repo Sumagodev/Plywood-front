@@ -100,6 +100,10 @@ function Index() {
     currentUserHasActiveSubscription,
     setCurrentUserHasActiveSubscription,
   ] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(true);
+
   const [name, setname] = useState();
   const [Name, setName] = useState();
 
@@ -595,15 +599,7 @@ function Index() {
     setSignInModal(false);
   };
 
-  const handleLogout = () => {
-    // deleteToken()
-    dispatch(logoutUser());
-    setotp("");
-    setmobile("");
-    setotpsent(false);
 
-    // setIsAuthorized(false)
-  };
   const handlesettopusers = async () => {
     try {
 
@@ -863,16 +859,23 @@ function Index() {
 
                         <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
 
-                        <span className="icn_Product">
-                          {/* <LuPhoneCall /> */}
-                          {
-                            isAuthorized ?
+                        <span className="icn_Product"
+                          onClick={() => {
+                            if (!isAuthorized) {
+                              // If the user is not authorized, show the sign-in modal
+                              setSignInModal(true);
+                            } else if (!currentUserHasActiveSubscription) {
+                              // If the user has an active subscription, close the modal
+                              handleClose(true);
+                            } else {
+                              // If the user does not have an active subscription, show the price modal
                               <a href={`tel: ${product.phone}`}>
                                 <LuPhoneCall />
                               </a>
-                              : <LuPhoneCall />
-                          }
-                        </span>
+                            }
+                          }}
+
+                        >  <LuPhoneCall /></span>
                         <div className="product_detail">
                           <Link to={`/ShopDetail/${product?.slug}`}>
 
@@ -931,16 +934,24 @@ function Index() {
                             />
                             <div className="d-flex justify-content-center">
 
-                              <span className="phone-icon">
-                                {
-                                  isAuthorized ?
+
+                              <span className="phone-icon"
+                                onClick={() => {
+                                  if (!isAuthorized) {
+                                    // If the user is not authorized, show the sign-in modal
+                                    setSignInModal(true);
+                                  } else if (!currentUserHasActiveSubscription) {
+                                    // If the user has an active subscription, close the modal
+                                    handleClose(true);
+                                  } else {
+                                    // If the user does not have an active subscription, show the price modal
                                     <a href={`tel: ${el.phone}`}>
                                       <LuPhoneCall className="phn rounded-circle p-2" />
                                     </a>
-                                    : <LuPhoneCall className="phn rounded-circle p-2" />
-                                }
-                              </span>
+                                  }
+                                }}
 
+                              > <LuPhoneCall className="phn rounded-circle p-2" /></span>
                             </div>
                             <h6 className="fs-6 msg1" >{el.message}</h6>
                             <button
@@ -970,7 +981,18 @@ function Index() {
             <Col
               lg={3}
               className="  d-lg-flex d-none align-items-center "
-              onClick={() => navigate("/AddPromotions")}
+              onClick={() => {
+                if (!isAuthorized) {
+                  // If the user is not authorized, show the sign-in modal
+                  setSignInModal(true);
+                } else if (!currentUserHasActiveSubscription) {
+                  // If the user has an active subscription, close the modal
+                  handleClose(true);
+                } else {
+                  // If the user does not have an active subscription, show the price modal
+                  navigate("/AddPromotions")
+                }
+              }}
             >
               <div className=" newprdround fs-1  text-white rounded-circle p-3 text-center d-grid align-items-center ">
                 Add
@@ -1020,15 +1042,24 @@ function Index() {
                   </div>
                   <div className="sub-container2">
                     <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span>
-                    <span className="phone-icon">
-                      {
-                        isAuthorized ?
+
+                    <span className="phone-icon"
+                      onClick={() => {
+                        if (!isAuthorized) {
+                          // If the user is not authorized, show the sign-in modal
+                          setSignInModal(true);
+                        } else if (!currentUserHasActiveSubscription) {
+                          // If the user has an active subscription, close the modal
+                          handleClose(true);
+                        } else {
+                          // If the user does not have an active subscription, show the price modal
                           <a href={`tel: ${el.phone}`}>
                             <LuPhoneCall />
                           </a>
-                          : <LuPhoneCall />
-                      }
-                    </span>
+                        }
+                      }}
+
+                    > <LuPhoneCall /></span>
                   </div>
 
 
@@ -1300,7 +1331,7 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <Link to={`Shop?categories=${city._id}`}>
+                <Link to={`/Shop?stateId=${city._id}`}>
                   <div>
                     <img
                       src={city.image ? generateImageUrl(city?.image) : img1}
@@ -1316,9 +1347,26 @@ function Index() {
             ))}
           </Swiper>
         </Container>
-      </section>()
-      <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}>
-        {/* <section onClick={() => setSignInModal(true) }> */}
+      </section>
+      <Container fluid>
+        <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold mt-3 mt-lg-5" >
+          Dealership / Distributer <br />
+          Opportunities
+        </Row>
+      </Container>
+      {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
+      <section onClick={() => {
+        if (!isAuthorized) {
+          // If the user is not authorized, show the sign-in modal
+          setSignInModal(true);
+        } else if (!currentUserHasActiveSubscription) {
+          // If the user has an active subscription, close the modal
+          handleClose(true);
+        } else {
+          // If the user does not have an active subscription, show the price modal
+          navigate('/AddDealership')
+        }
+      }}>
 
         <img src={playbanner} className=" img-fluid  " alt="" />
       </section>
@@ -1332,10 +1380,7 @@ function Index() {
           {
             opportunities && opportunities.length > 0 && (
               <>
-                <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold" style={{ backgroundColor: "#F5F1E8" }}>
-                  Dealership / Distributer <br />
-                  Opportunities
-                </Row>
+
                 <Row>
                   <Swiper
                     modules={[Autoplay]}
@@ -1366,18 +1411,21 @@ function Index() {
                                 {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
 
                                 : <div className="col-lg-5">
-                                  <button
-                                    className="dealerapply px-3 py-2"
-                                    onClick={() => {
-                                      if (isAuthorized) {
-                                        setSignInModal(true);
-                                      } else {
-                                        navigate('/', { state: { opportunity } });
-                                      }
-                                    }}
-                                  >
-                                    Apply
+
+                                  <button className="dealerapply px-3 py-2" onClick={() => {
+                                    if (!isAuthorized) {
+                                      // If the user is not authorized, show the sign-in modal
+                                      setSignInModal(true);
+                                    } else if (!currentUserHasActiveSubscription) {
+                                      // If the user has an active subscription, close the modal
+                                      handleClose(true);
+                                    } else {
+                                      // If the user does not have an active subscription, show the price modal
+                                      navigate('/', { state: { opportunity } });
+                                    }
+                                  }}>  Apply
                                   </button>
+
                                 </div>
 
 
@@ -1897,8 +1945,8 @@ function Index() {
           </Col>
         </Row>
       </Container>
-      <Modal show={signInModal} centered onHide={() => setSignInModal(false)}>
-        <Modal.Body className="sign-in-modal custom-modal">
+      <Modal show={signInModal} centered onHide={() => setSignInModal(false)} className="rounded-5">
+        <Modal.Body className="sign-in-modal custom-modal subscription-card-container rounded-5">
           <button
             type="button"
             class="btn-close"
@@ -2067,6 +2115,27 @@ function Index() {
               </Link>
             </div>
           </form>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={show} centered onHide={() => setShow(false)} className="  rounded-5">
+
+
+        <Modal.Body className="sign-in-modal custom-modal subscription-card-container">
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            onClick={() => setShow(false)}
+          ></button>
+          <h4 className=" mt-5"><b>You do not have a valid subscription</b></h4>
+
+          <button
+            className="btn btn-custom btn-yellow mt-2 mb-4"
+            onClick={() => navigate("/Subscription")}
+          >
+            Subscribe Now
+          </button>
         </Modal.Body>
       </Modal>
 

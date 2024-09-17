@@ -1282,6 +1282,11 @@ footer .footer {
 
 
 }
+.product-tabs .tab-description span {
+  font-weight: 400 !important;
+
+
+}
 
 .product-tabs .tab-description ul.info li {
   padding: 7px 1pc;
@@ -1354,6 +1359,7 @@ footer .footer {
   font-weight: 300 !important;
   padding: 10px;
   color: white;
+  font-size: 17px !important;
 }
 
 .product-tabs ul.tabs li.active {
