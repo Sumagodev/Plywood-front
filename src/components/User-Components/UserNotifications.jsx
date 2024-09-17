@@ -127,7 +127,7 @@ export default function UserNotifications() {
 
     return (
         <>
-            <div className="container-fluid">
+            <div className="container-fluid ">
                 <div className="row d-flex justify-content-center">
                     <div className="col-10 mb-5">
                         <div className="row d-flex mt-5 align-items-center justify-content-between">
@@ -139,7 +139,7 @@ export default function UserNotifications() {
 
 
 
-                        <div className='react-dataTable'>
+                        <div className='react-dataTable topup-subscription-container'>
 
                             <DataTable
                                 noHeader
