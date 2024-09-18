@@ -557,7 +557,7 @@ const ProductDetails = () => {
                                                                         handleClose(true);
                                                                     } else {
                                                                         // If the user does not have an active subscription, show the price modal
-                                                                        window.location.href = `tel:${el.phone}`;
+                                                                                                window.location.href = `tel:${el.phone}`;
 
                                                                     }
                                                                 }}

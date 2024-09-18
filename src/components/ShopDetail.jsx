@@ -537,35 +537,16 @@ function ShopDetail() {
                         GST- {currentUserHasActiveSubscription ? (productObj?.createdByObj?.userObj?.companyObj?.gstNumber ? productObj?.createdByObj?.userObj?.companyObj?.gstNumber : "NA") : ((productObj?.createdByObj?.userObj?.companyObj?.gstNumber ? `${productObj?.createdByObj?.userObj?.companyObj?.gstNumber}***` : "NA").slice(0, 2))}
                       </p>
                     </li>
-                    <div className="my-3">
+                    <div className="my-3 text-white">
                       {isMobileNumberVisible ? (
-                        <a href={`tel:${productObj?.createdByObj?.userObj?.companyObj?.phone}`} className="btn btn-sm  w-100  " style={{ width: '100%' }}>
+                        <a href={`tel:${productObj?.createdByObj?.userObj?.companyObj?.phone}`} className="btn btn-sm  w-100  text-white " style={{ width: '100%' }}>
                           {productObj?.createdByObj?.userObj?.companyObj?.phone}
                         </a>
                       ) : (
-                        // <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : errorToast("You do not have a valid subscription to perform this action") }} className="btn btn-sm btn-yellow w-100 ">
-                        <button
-                          // onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : navigate('/Subscription') }}
-                          onClick={() => {
-                            if (!isAuthorized) {
-                              // If the user is not authorized, show the sign-in modal
-                              setSignInModal(true);
-                            } else if (!currentUserHasActiveSubscription) {
-                              // If the user has an active subscription, close the modal
-                              handleClose(true);
-                            } else {
-                              // If the user does not have an active subscription, show the price modal
-                              <a href={`tel:${productObj?.createdByObj?.userObj?.companyObj?.phone}`} className="btn btn-sm  w-100  " style={{ width: '100%' }}>
-                                {productObj?.createdByObj?.userObj?.companyObj?.phone}
-                              </a>
-                            }
-                          }}
-                          className="btn btn-sm btn-yellow w-100 ">
-
+                        <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) :   handleClose(true); }} className="btn btn-sm btn-yellow w-100 ">
                           View Mobile Number
                         </button>
                       )}
-
                       {/* <p className="text-danger">72% Response Rate</p> */}
                     </div>
                   </ul>

@@ -61,7 +61,7 @@ import CountdownTimer from "./Utility/CountdownTimer";
 import { errorToast, successToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
 // import playbanner from "../assets/image/home/Group 1000004149.png";
-import playbanner from "../assets/image/home/buy now (1).png";
+import playbanner from "../assets/image/home/buy now.png";
 
 import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
