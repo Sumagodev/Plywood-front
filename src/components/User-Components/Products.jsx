@@ -198,7 +198,7 @@ export default function Products() {
   const [totalPages, setTotalPages] = useState(5);
   return (
     <>
-      <div className="container-fluid main-product-container">
+      <div className="container-fluid main-product-container topup-subscription-container">
         <div className="row d-flex justify-content-center">
           <div className="col-12 col-md-10 mb-5">
             <div className="row d-flex mt-5 px-3 align-items-center justify-content-between" style={{ gap: "2vw 0" }}>
@@ -228,7 +228,7 @@ export default function Products() {
             {/* <div className="row d-flex justify-content-end mt-4">
             </div> */}
 
-            <div className="react-dataTable">
+            <div className="react-dataTable topup-subscription-container">
               <DataTable
                 noHeader
                 subHeader

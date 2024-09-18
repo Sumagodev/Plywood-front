@@ -167,7 +167,7 @@ const AddDealership = () => {
             if (response.success) {
                 setShow(true);
                 console.log("Form submitted successfully", response);
-                setShow(true);
+                handleClose(true);
                 resetForm();
             }
         } catch (error) {

@@ -74,8 +74,8 @@ export const routes = [
     path: "/product-details",
     component: <ProductDetails />,
     role: [],
-    isAuthorized: true,
-    isUnProtected: true,
+    isAuthorized: false,
+    isUnProtected: false,
   },
   {
     path: "/ShopDetail/:slug",

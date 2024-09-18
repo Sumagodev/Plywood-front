@@ -279,7 +279,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
                     <div className="searchbar rounded-pill d-flex row">
                       <div className="col-2 d-flex justify-content-centre align-items-center">  <img src={filter} className="img-fluid"alt="" /></div>
-                      <div className=" col-8">
+                      <div className=" col-8 d-flex align-items-center">
                         <Form.Control
                           type="search"
                           className="searchbar2"

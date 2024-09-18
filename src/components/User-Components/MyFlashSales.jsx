@@ -71,7 +71,7 @@ export default function MyFlashSales() {
   };
 
   return (
-    <div className="container-fluid subscription-container">
+    <div className="container-fluid subscription-container topup-subscription-container">
       <div className="container">
         <div className="row me-2  d-flex justify-content-between">
           <div className="col-6 col-sm-8 subsctiption-heading">

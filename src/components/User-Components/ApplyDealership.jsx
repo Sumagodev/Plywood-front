@@ -166,7 +166,7 @@ const ApplyDealership = () => {
             const { data: response } = await Applydealership(formData);
             if (response.success) {
                 console.log("Form submitted successfully", response);
-                setShow(true);
+                handleClose(true)
                 resetForm();
             }
         } catch (error) {

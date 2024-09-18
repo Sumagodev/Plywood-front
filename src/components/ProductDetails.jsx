@@ -6,15 +6,15 @@ import G2 from "../assets/images/G2.png"
 import G3 from "../assets/images/G3.png"
 import G4 from "../assets/images/G4.png"
 import ShopFilter from "../components/ShopFilter"
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button, Card, Col, Container, Form, Row, Modal } from 'react-bootstrap';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { generateImageUrl } from "../services/url.service";
 import { getNestedCategories } from '../services/Category.service';
 import greenimg from "../assets/image/home/images/greenlam1.png";
 import { LuPhoneCall } from "react-icons/lu";
 import { IoLocationSharp } from "react-icons/io5";
 import { errorToast } from "./Utility/Toast";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toastSuccess } from "../utils/toastutill";
 import { addUserRequirement } from "../services/UserRequirements.service";
 import { FaPhoneVolume } from "react-icons/fa6";
@@ -35,6 +35,11 @@ import {
     deleteProductbyId,
     getProducts,
 } from "../services/Product.service";
+import {
+    sentOtp,
+} from "../services/User.service";
+import { successToast } from "./Utility/Toast";
+import { login } from "../redux/features/auth/authSlice";
 
 import { toastError } from "../utils/toastutill";
 import { getBrands } from '../services/brand.service';
@@ -60,15 +65,23 @@ const cardData = [
 const ProductDetails = () => {
 
     const auth = useSelector((state) => state.auth.user);
-    const [signInModal, setSignInModal] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [categoryArr, setcategoryArr] = useState([]);
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [productName, setProductName] = useState("");
     const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
+    const [signInModal, setSignInModal] = useState(false);
+    const [mobile, setmobile] = useState("");
+    const [otp, setotp] = useState("");
+    const [loginByEmail, setLoginByEmail] = useState(false);
+    const [otpsent, setotpsent] = useState(false);
     const [brandArr, setBrandArr] = useState([]);
+    const [email, setEmail] = useState("");
+    const [currentUserHasActiveSubscription, setCurrentUserHasActiveSubscription] = useState(false);
 
     const getBrand = async () => {
         try {
@@ -84,7 +97,10 @@ const ProductDetails = () => {
     };
 
     const [topusers, settopusers] = useState([]);
-
+    const [show, setShow] = useState(false);
+    const handleClose = () => {
+        setShow(true)
+    };
     const handlesettopusers = async () => {
         try {
 
@@ -217,6 +233,87 @@ const ProductDetails = () => {
             errorToast(err);
         }
     };
+    const handlesLogin = async () => {
+        if (`${otp}` === "") {
+            errorToast("Please Enter Otp");
+            return;
+        }
+        let obj = {
+            phone: mobile,
+            otp,
+        };
+        dispatch(login(obj));
+        setSignInModal(false);
+    };
+
+    const handleRegister = () => {
+        setSignInModal(false);
+        return redirect("/Register");
+    };
+    const handlesendOtp = async () => {
+        try {
+            if (loginByEmail) {
+                if (`${email}` === "") {
+                    errorToast("Please Enter email");
+                    return;
+                }
+                if (!`${email}`.includes("@")) {
+                    errorToast("Please Enter a valid email");
+                    return;
+                }
+                if (!`${email}`.includes(".")) {
+                    errorToast("Please Enter a valid email");
+                    return;
+                }
+            } else {
+                if (`${mobile}`.length !== 10) {
+                    errorToast("Please Enter Mobile Number");
+                    return;
+                }
+            }
+            let obj = {
+                phone: mobile,
+                email: email,
+            };
+
+            // console.log(obj,"gdfgdkfdgfadfdfdkjdhfjkdafhfdkjkskjafhdkjhsjk",)
+            // dispatch(otpSend(obj));
+            // setotpsent(true);
+
+            let { data: res } = await sentOtp(obj);
+            if (res.message) {
+                successToast(res.message);
+                setotpsent(true);
+            }
+        } catch (error) {
+            errorToast(error);
+            console.log(error);
+        }
+    };
+    const resendOtp = async () => {
+        try {
+            if (`${mobile}` === "") {
+                errorToast("Please Enter Mobile Number");
+                return;
+            }
+
+            let obj = {
+                phone: mobile,
+                // email: email,
+            };
+
+            // dispatch(otpSend(obj));
+
+            let { data: res } = await sentOtp(obj);
+            if (res.message) {
+                successToast(res.message);
+                // setotpsent(true)
+            }
+        } catch (error) {
+            errorToast(error);
+            console.log(error);
+        }
+    };
 
     return (
         <main>
@@ -238,7 +335,7 @@ const ProductDetails = () => {
                     <div>
                         <section className="py-4 text-center">
                             <Container fluid className="">
-                                <h6 className=' fs-2'>RECOMMENDED PRODUCT</h6>
+                                <h3 className=''>RECOMMENDED PRODUCT</h3>
                                 <Row className='d-lg-block d-none'>
                                     <div className=' col-lg-12 '>
                                         {categoryArr &&
@@ -254,7 +351,7 @@ const ProductDetails = () => {
                                                                     className=" img-fluid recommondedprdcrd rounded-5 "
                                                                     alt={item.name}
                                                                 />
-                                                                <p className="fw-bolder mx-4 py-3 recommondedprdname fs-6">{item.name}</p>
+                                                                <p className="px-3 mx-4 py-3 recommondedprdname fs-6">{item.name}</p>
 
                                                             </div>
                                                         </Col>
@@ -314,13 +411,31 @@ const ProductDetails = () => {
                                         <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
                                             <div className="box_Product1">
                                                 <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
-                                                <span className="icn_Product">
+                                                {/* <span className="icn_Product">
                                                     {isAuthorized ?
                                                         <a href={`tel: ${product.phone}`}>
                                                             <LuPhoneCall />
                                                         </a>
                                                         : <LuPhoneCall />}
-                                                </span>
+                                                </span> */}
+
+                                                <span className="icn_Product"
+                                                    onClick={() => {
+                                                        if (!isAuthorized) {
+                                                            // If the user is not authorized, show the sign-in modal
+                                                            setSignInModal(true);
+                                                        } else if (!currentUserHasActiveSubscription) {
+                                                            // If the user has an active subscription, close the modal
+                                                            handleClose(true);
+                                                        } else {
+                                                            // If the user does not have an active subscription, show the price modal
+                                                            <a href={`tel: ${product.phone}`}>
+                                                                <LuPhoneCall />
+                                                            </a>
+                                                        }
+                                                    }}
+
+                                                >  <LuPhoneCall /></span>
                                                 <div className="product_icn_text">
                                                     <Link to={`/ShopDetail/${product?.slug}`}>
                                                         <span className="green-1">{product?.name}</span>
@@ -330,7 +445,7 @@ const ProductDetails = () => {
                                                         <span className="Rs-1">{product?.productPrice}</span>
                                                     </Link>
                                                 </div>
-                                                <button>1 Get Deal</button>
+                                                <Link to={`/ShopDetail/${product?.slug}`}><button className="Rs-1">1 Get Deal</button></Link>
                                             </div>
                                         </Col>
 
@@ -401,7 +516,7 @@ const ProductDetails = () => {
 
                     <section>
                         <Container className="main_Profiles my-5">
-                            <h1 className="text-center mb-4">Top profiles</h1>
+                            <h3 className="text-center mb-4">Top profiles</h3>
                             <Row className=''>
                                 {
                                     topusers && topusers.slice(0, 2).map((el) => {
@@ -424,15 +539,32 @@ const ProductDetails = () => {
                                                             </span>
                                                         </div>
                                                         <div className="sub-container2">
-                                                            <span className="p3">Rating - {el?.rating ? el?.rating : 2}</span>
-                                                            <span className="phone-icon">
+                                                            <span className="ps-5">Rating - {el?.rating ? el?.rating : 2}</span>
+                                                            {/* <span className="phone-icon">
                                                                 {
-                                                                isAuthorized ?
-                                                                <a href={`tel: ${el.phone}`}>
-                                                                    <FaPhoneVolume />
-                                                                </a>
-                                                                : <FaPhoneVolume />}
-                                                            </span>
+                                                                    isAuthorized ?
+                                                                        <a href={`tel: ${el.phone}`}>
+                                                                            <FaPhoneVolume />
+                                                                        </a>
+                                                                        : <FaPhoneVolume />}
+                                                            </span> */}
+                                                            <span className="phone-icon"
+                                                                onClick={() => {
+                                                                    if (!isAuthorized) {
+                                                                        // If the user is not authorized, show the sign-in modal
+                                                                        setSignInModal(true);
+                                                                    } else if (!currentUserHasActiveSubscription) {
+                                                                        // If the user has an active subscription, close the modal
+                                                                        handleClose(true);
+                                                                    } else {
+                                                                        // If the user does not have an active subscription, show the price modal
+                                                                        <a href={`tel: ${el.phone}`}>
+                                                                            <LuPhoneCall />
+                                                                        </a>
+                                                                    }
+                                                                }}
+
+                                                            >  <LuPhoneCall /></span>
                                                         </div>
                                                     </div>
                                                 </Col>
@@ -565,6 +697,199 @@ const ProductDetails = () => {
                     </Swiper>
                 </Container>
             </section>
+            <Modal show={signInModal} centered onHide={() => setSignInModal(false)} className="rounded-5">
+                <Modal.Body className="sign-in-modal custom-modal subscription-card-container rounded-5">
+                    <button
+                        type="button"
+                        class="btn-close"
+                        aria-label="Close"
+                        onClick={() => setSignInModal(false)}
+                    ></button>
+                    <div>
+                        <Link to="/" className="navbar-brand">
+                            <img src={images.logo} alt="" className="main-logo img-fluid" />
+                        </Link>
+                    </div>
+                    <h2 className="heading">LogIn via</h2>
+                    <form className="form row">
+                        {/* <label>Login via </label> */}
+                        {/* {otpsent == false && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: 20,
+                  marginTop: 10,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="type2"
+                    id="222"
+                    // value={true}
+                    checked={loginByEmail}
+                    onChange={(e) => setLoginByEmail(true)}
+                  />
+                  <label for="222" className="mx-2">
+                    Email
+                  </label>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="type2"
+                    id="223"
+                    checked={!loginByEmail}
+                    onChange={(e) => setLoginByEmail(false)}
+                  />
+                  <label for="223" className="mx-2">
+                    Phone
+                  </label>
+                </div>
+              </div>
+            )} */}
+
+                        {loginByEmail ? (
+                            <div className="col-12">
+                                {otpsent ? (
+                                    <div className="input flex-1">
+                                        <label className="text-start">
+                                            Enter OTP sent to {mobile}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-100 form-control bg-grey"
+                                            placeholder="Enter Your OTP"
+                                            value={otp}
+                                            onChange={(e) => setotp(e.target.value)}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="input flex-1">
+                                        <label className="text-start">Email</label>
+                                        <input
+                                            type="text"
+                                            className="w-100 form-control bg-grey"
+                                            placeholder="Enter Your Email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="col-12">
+                                {otpsent ? (
+                                    <div className="input flex-1">
+                                        <label className="text-start">
+                                            Enter OTP sent to {mobile}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-100 form-control bg-grey"
+                                            placeholder="Enter Your OTP"
+                                            value={otp}
+                                            onChange={(e) => setotp(e.target.value)}
+                                        />
+
+                                        <div className="text-end">
+                                            <div
+                                                className="resendtp"
+                                                onClick={() => {
+                                                    resendOtp();
+                                                }}
+                                            >
+                                                Resend OTP
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="input flex-1">
+                                        <label className="text-start">Phone number</label>
+                                        <input
+                                            type="number"
+                                            maxLength={10}
+                                            className="w-100 form-control bg-grey"
+                                            placeholder="Enter Your Mobile Number"
+                                            value={mobile}
+                                            onChange={(e) => setmobile(e.target.value)}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        <div className="col-12">
+                            {otpsent ? (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        handlesLogin();
+                                    }}
+                                    className="btn btn-custom text-white yellow-bg py-2 w-100"
+                                >
+                                    Verfiy
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        handlesendOtp();
+                                    }}
+                                    className="btn btn-custom text-white yellow-bg py-2 w-100"
+                                >
+                                    Submit
+                                </button>
+                            )}
+
+                            <Link
+                                to="/Register"
+                                onClick={() => {
+                                    handleRegister();
+                                }}
+                                className="btn btn-custom mt-2 text-white yellow-bg py-2 w-100"
+                            >
+                                Register Now
+                            </Link>
+                        </div>
+                    </form>
+                </Modal.Body>
+            </Modal>
+
+            <Modal show={show} centered onHide={() => setShow(false)} className="  rounded-5">
+
+
+                <Modal.Body className="sign-in-modal custom-modal subscription-card-container">
+                    <button
+                        type="button"
+                        class="btn-close"
+                        aria-label="Close"
+                        onClick={() => setShow(false)}
+                    ></button>
+                    <h4 className=" mt-5"><b>You do not have a valid subscription</b></h4>
+
+                    <button
+                        className="btn btn-custom btn-yellow mt-2 mb-4"
+                        onClick={() => navigate("/Subscription")}
+                    >
+                        Subscribe Now
+                    </button>
+                </Modal.Body>
+            </Modal>
         </main>
     )
 }
