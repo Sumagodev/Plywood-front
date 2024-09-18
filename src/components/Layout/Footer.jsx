@@ -299,9 +299,9 @@ function Footer() {
           <Container className=" text-white mt-0 mt-lg-5 p-4 p-md-0">
             <Row className="elements1">
               <Col xs={12} lg={4} className="">
-                <Link 
-                
-                to='/'>
+                <Link
+
+                  to='/'>
 
                   <p>
                     <img src={logo} alt="" className="img-fluid" />
@@ -486,8 +486,8 @@ function Footer() {
                       <img src={fb} className="p-1 img-fluid" />
                     </a>
                   </li>
-                  <li> 
-                    <a href="https://www.instagram.com/plywoodbazar.com_?igsh=eTdpOGRmbjZteGoz" target="_blank"
+                  <li>
+                    <a href="https://www.instagram.com/plywoodbazar.com_?igsh=MXJma2draXU1eXJ1MQ=="
                     >
                       <img src={inst} className="p-1 img-fluid" />
                     </a>

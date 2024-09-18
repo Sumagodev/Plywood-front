@@ -568,7 +568,7 @@ function Header() {
                   <img src={fb} className=" img-fluid" />
 
                 </a>
-                <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="https://www.instagram.com/plywood_bazar/">
+                <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="https://www.instagram.com/plywoodbazar.com_?igsh=MXJma2draXU1eXJ1MQ==">
                   <img src={inst} className=" img-fluid" />
                 </a>
                 <a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" href="https://www.youtube.com/@DipparvVentures">
@@ -596,9 +596,9 @@ function Header() {
                         <p
                           className="me-3 mt-3 ms-1 text-white"
                           style={{ fontSize: "15px" }}
-                        >
+                        >+91 
                           <a href="tel:948323445243" className="text-white" style={{ textDecoration: "none" }}>
-                            948323445243
+                            &nbsp; 9403574184
                           </a>
                         </p>
 
