@@ -429,9 +429,8 @@ const ProductDetails = () => {
                                                             handleClose(true);
                                                         } else {
                                                             // If the user does not have an active subscription, show the price modal
-                                                            <a href={`tel: ${product.phone}`}>
-                                                                <LuPhoneCall />
-                                                            </a>
+                                                           
+                                                              window.location.href = `tel:${product.phone}`;
                                                         }
                                                     }}
 
@@ -558,9 +557,8 @@ const ProductDetails = () => {
                                                                         handleClose(true);
                                                                     } else {
                                                                         // If the user does not have an active subscription, show the price modal
-                                                                        <a href={`tel: ${el.phone}`}>
-                                                                            <LuPhoneCall />
-                                                                        </a>
+                                                                        window.location.href = `tel:${el.phone}`;
+
                                                                     }
                                                                 }}
 

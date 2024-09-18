@@ -664,9 +664,9 @@ function Shop() {
                                                 handleShow2(true)
                                               } else {
                                                 // If the user does not have an active subscription, show the price modal
-                                                <a href={`tel: ${el.phone}`}>
-                                                  <FaPhoneVolume />{el.phone}
-                                                </a>
+                                            
+                                                                          window.location.href = `tel:${el.phone}`;
+
                                               }
                                             }}
 

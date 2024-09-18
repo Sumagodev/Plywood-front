@@ -295,7 +295,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                       <div className="col-2">
                         <a
                           className="searchicn position-absolute top-50 end-0 translate-middle-y me-1 text-white d-inline-flex align-items-center justify-content-center"
-                          href=""
+                        
                           onClick={() => { handleApplyFilter(); handleClose && handleClose() }}
                         >
                           <FiSearch />

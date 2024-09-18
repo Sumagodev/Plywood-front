@@ -636,9 +636,8 @@ function ShopDetail() {
                             handleClose(true);
                           } else {
                             // If the user does not have an active subscription, show the price modal
-                            <a href={`tel: ${el.phone}`}>
-                              <MdCall className="phn rounded-circle p-2" />
-                            </a>
+                            window.location.href = `tel:${el.phone}`;
+
                           }
                         }}
                         > <button className="call-btn">   <MdCall />

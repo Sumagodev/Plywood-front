@@ -861,23 +861,24 @@ function Index() {
 
                         <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
 
-                        <span className="icn_Product"
+                        <span
+                          className="icn_Product"
                           onClick={() => {
                             if (!isAuthorized) {
                               // If the user is not authorized, show the sign-in modal
                               setSignInModal(true);
                             } else if (!currentUserHasActiveSubscription) {
-                              // If the user has an active subscription, close the modal
+                              // If the user does not have an active subscription, show the price modal
                               handleClose(true);
                             } else {
-                              // If the user does not have an active subscription, show the price modal
-                              <a href={`tel: ${product.phone}`}>
-                                <LuPhoneCall />
-                              </a>
+                              // If the user has an active subscription, initiate a phone call
+                              window.location.href = `tel:${product.phone}`;
                             }
                           }}
+                        >
+                          <LuPhoneCall />
+                        </span>
 
-                        >  <LuPhoneCall /></span>
                         <div className="product_detail">
                           <Link to={`/ShopDetail/${product?.slug}`}>
 
@@ -947,9 +948,7 @@ function Index() {
                                     handleClose(true);
                                   } else {
                                     // If the user does not have an active subscription, show the price modal
-                                    <a href={`tel: ${el.phone}`}>
-                                      <LuPhoneCall className="phn rounded-circle p-2" />
-                                    </a>
+                                    window.location.href = `tel:${el.phone}`;
                                   }
                                 }}
 
@@ -1055,9 +1054,8 @@ function Index() {
                           handleClose(true);
                         } else {
                           // If the user does not have an active subscription, show the price modal
-                          <a href={`tel: ${el.phone}`}>
-                            <LuPhoneCall />
-                          </a>
+                          window.location.href = `tel:${el.phone}`;
+
                         }
                       }}
 
@@ -1112,25 +1110,25 @@ function Index() {
                                   <div className="overlyasper"></div>
                                 </Link>
                               </div>
-                              <div
-                                className="d-flex justify-content-center"
+                            
+                              <span
+                                className="icn_Product"
                                 onClick={() => {
-                                  currentUserHasActiveSubscription
-                                    ? window.alert(
-                                      `${el?.userId?.companyObj?.phone}`
-                                    )
-                                    : errorToast("Take subscription");
+                                  if (!isAuthorized) {
+                                    // If the user is not authorized, show the sign-in modal
+                                    setSignInModal(true);
+                                  } else if (!currentUserHasActiveSubscription) {
+                                    // If the user does not have an active subscription, show the price modal
+                                    handleClose(true);
+                                  } else {
+                                    // If the user has an active subscription, initiate a phone call
+                                    window.location.href = `tel:${el.userId?.companyObj?.phone}`;
+                                  }
                                 }}
                               >
-                                {/* <LuPhoneCall className="phn rounded-circle p-2" /> */}
-                                {
-                                  isAuthorized ?
-                                    <a href={`tel: ${el.userId?.companyObj?.phone}`}>
-                                      <LuPhoneCall className="phn rounded-circle p-2" />
-                                    </a>
-                                    : <LuPhoneCall className="phn rounded-circle p-2" />
-                                }
-                              </div>
+                                <LuPhoneCall className="phn rounded-circle p-2" />
+                              </span>
+
                               <div className="d-flex justify-content-center">
                                 <h6>{el?.description}</h6>
                               </div>
@@ -1190,7 +1188,7 @@ function Index() {
           </section>
         )
       }
- 
+
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
           States
@@ -1254,44 +1252,44 @@ function Index() {
 
       <section>
         <Container className="dealership-oppo-container my-2 my-lg-5">
-  
-              <>
 
-                <Row>
-                  <Swiper
-                    modules={[Autoplay]}
-                    spaceBetween={5}
-                    autoplay={{
-                      delay: 2500,
-                      disableOnInteraction: false,
-                    }}
-                    speed={1500}
-                    breakpoints={ourvideos}
-                  >
-                    {opportunities.filter(opportunity => opportunity.userId !== userObj._id).map(opportunity => (
-                      <SwiperSlide >
-                        <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
-                          <div className="dealership-oppo-box rounded-5 rounded">
-                            <div
-                              className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
-                              style={{
-                                backgroundImage: `url(${generateImageUrl(opportunity.image)})`
-                              }}
-                            >
+          <>
+
+            <Row>
+              <Swiper
+                modules={[Autoplay]}
+                spaceBetween={5}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                speed={1500}
+                breakpoints={ourvideos}
+              >
+                {opportunities.filter(opportunity => opportunity.userId !== userObj._id).map(opportunity => (
+                  <SwiperSlide >
+                    <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
+                      <div className="dealership-oppo-box rounded-5 rounded">
+                        <div
+                          className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
+                          style={{
+                            backgroundImage: `url(${generateImageUrl(opportunity.image)})`
+                          }}
+                        >
 
 
-                            </div>
+                        </div>
 
-                          </div>
-                        </Col></SwiperSlide>
-                    ))}
-                  </Swiper>
-                </Row>
-              </>
-            
+                      </div>
+                    </Col></SwiperSlide>
+                ))}
+              </Swiper>
+            </Row>
+          </>
+
         </Container>
       </section>
-     
+
       <Container fluid className="main-blog">
         <div className="blog2 new_blog2 blog_container top-banner ptb-80">
           <div className="container-fluid d-flex justify-content-center align-items-center">
@@ -1403,7 +1401,7 @@ function Index() {
                                   ></iframe>
                                 )}
                               </div>
-                            
+
                             </div>
                           </div>
                         </SwiperSlide>
@@ -1416,7 +1414,7 @@ function Index() {
         </div>
       </Container>
 
-    
+
       <Container fluid className="custom-container">
         <Row className="custom-container-row">
           <Col className="main_col_1">
