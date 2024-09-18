@@ -201,7 +201,7 @@ function Header() {
   const [activeCategory, setActiveCategory] = useState("");
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
   console.log("isAuthorized", isAuthorized);
-  
+
   const [name, setname] = useState();
 
   const handleNestedcategories = async () => {
@@ -588,7 +588,7 @@ function Header() {
               <div className="Sub_navbar">
                 <Navbar className="w-100">
                   <Container fluid>
-                    <div className="d-flex align-items-center justify-content-between w-100 flex-wrap">
+                    <div className="d-flex align-items-center justify-content-center w-100 flex-wrap">
                       <div className="contact d-flex align-items-center flex-wrap">
                         <a className="callicn rounded-circle mx-2" href="">
                           <IoCallOutline />
@@ -597,14 +597,17 @@ function Header() {
                           className="me-3 mt-3 ms-1 text-white"
                           style={{ fontSize: "15px" }}
                         >
-                          948323445243
+                          <a href="tel:948323445243" className="text-white" style={{ textDecoration: "none" }}>
+                            948323445243
+                          </a>
                         </p>
-                        <p
+
+                        {/* <p
                           className="number me-5 mt-3 text-white"
                           style={{ fontSize: "15px" }}
                         >
                           832344524394
-                        </p>
+                        </p> */}
                       </div>
                       <Form className="Search_section d-flex me-3 justify-content-end flex-grow-1 position-relative"
                         onClick={() => {
@@ -836,80 +839,80 @@ function Header() {
                       <div className="middlebody">
                         <div className="row align-items-center">
                           <div className="col-8 col-lg-6">
-                       
-                                <form
-                                  className="search-bar"
-                                  onClick={() => {
-                                    setSearchBy(!searchBy);
+
+                            <form
+                              className="search-bar"
+                              onClick={() => {
+                                setSearchBy(!searchBy);
+                              }}
+                              onFocus={() => setShowSearchBar(true)}
+                            >
+                              <div
+                                className="custom-search mobileserach "
+
+                              >
+                                <button
+                                  className="yellow-bg btn text-white h-100 rounded-0"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate("/Shop");
                                   }}
-                                  onFocus={() => setShowSearchBar(true)}
+
                                 >
+                                  Search
+                                </button>
+
+                              </div>
+                              <div className="form-control flex-1">
+                                <input
+                                  type="search"
+                                  placeholder={checkSearchMode()}
+                                  aria-label="Search"
+                                  value={searchText}
+                                  onChange={(e) =>
+                                    handleSearchText(e.target.value)
+                                  }
+                                />
+                                <div className="icon">
+                                  <BiSearch />
+                                </div>
+                              </div>
+                              {searchText != "" && showSearchBar && (
+                                <div className="searchBox listsearch">
                                   <div
-                                    className="custom-search mobileserach "
-
+                                    className="searchBoxCloseIcon"
+                                    onClick={() => {
+                                      setShowSearchBar(false);
+                                    }}
                                   >
-                                    <button
-                                      className="yellow-bg btn text-white h-100 rounded-0"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        navigate("/Shop");
-                                      }}
-
-                                    >
-                                      Search
-                                    </button>
-
+                                    X
                                   </div>
-                                  <div className="form-control flex-1">
-                                    <input
-                                      type="search"
-                                      placeholder={checkSearchMode()}
-                                      aria-label="Search"
-                                      value={searchText}
-                                      onChange={(e) =>
-                                        handleSearchText(e.target.value)
-                                      }
-                                    />
-                                    <div className="icon">
-                                      <BiSearch />
-                                    </div>
-                                  </div>
-                                  {searchText != "" && showSearchBar && (
-                                    <div className="searchBox listsearch">
-                                      <div
-                                        className="searchBoxCloseIcon"
-                                        onClick={() => {
-                                          setShowSearchBar(false);
-                                        }}
-                                      >
-                                        X
-                                      </div>
-                                      {searchResultArr &&
-                                        searchResultArr.length > 0 ? (
-                                        searchResultArr.map((el, index) => {
-                                          return (
-                                            <div key={index}>
-                                              <Link
-                                                to={`/Supplier/${el?._id}`}
-                                                onClick={() =>
-                                                  setShowSearchBar(false)
-                                                }
-                                                onFocus={() => setShowSearchBar(true)}
-                                              >
-                                                <p>{el?.companyObj?.name}</p>
-                                              </Link>
-                                            </div>
-                                          );
-                                        })
-                                      ) : (
-                                        <div>
-                                          <p>No results found</p>
+                                  {searchResultArr &&
+                                    searchResultArr.length > 0 ? (
+                                    searchResultArr.map((el, index) => {
+                                      return (
+                                        <div key={index}>
+                                          <Link
+                                            to={`/Supplier/${el?._id}`}
+                                            onClick={() =>
+                                              setShowSearchBar(false)
+                                            }
+                                            onFocus={() => setShowSearchBar(true)}
+                                          >
+                                            <p>{el?.companyObj?.name}</p>
+                                          </Link>
                                         </div>
-                                      )}
+                                      );
+                                    })
+                                  ) : (
+                                    <div>
+                                      <p>No results found</p>
                                     </div>
                                   )}
-                                </form>
-                            
+                                </div>
+                              )}
+                            </form>
+
                           </div>
                           <div className="col-4 col-lg-6">
                             <div className="flex_row d-flex mobile_right">
@@ -1380,7 +1383,7 @@ function Header() {
                   </Container>
                 </Navbar>
               )}
-            </header> 
+            </header>
 
 
 

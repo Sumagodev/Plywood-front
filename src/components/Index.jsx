@@ -1159,132 +1159,7 @@ function Index() {
           </section>
         )
       }
-      {/* {flashSalesArr && flashSalesArr.length > 0 && (
-        <section className="flash-sale mb-80 px-4pc gray-bg ptb-80">
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-12 col-md-4">
-                <div className="flash-sale-box">
-                  <div className="title">
-                    <h1>FLASH </h1>
-                    <h1>SALE</h1>
-                  </div>
-                  <div className="offer">
-                    <h4>Sell your product with </h4>
-                    <h4>discounted rate</h4>
-                  </div>
-                  {isAuthorized && (
-                    <Link
-                      to="/AddFlashSale"
-                      className="btn btn-custom text-white mt-4"
-                      style={{
-                        borderBottom: "solid 1px white",
-                        borderRadius: 1,
-                        width: "max-content",
-                        margin: 0,
-                        padding: 0,
-                      }}
-                    >
-                      Add Flash Sale
-                    </Link>
-                  )}
-                </div>
-              </div>
-              <div className="col-12 col-md-8">
-                <div className="view-all text-end mb-4">
-                <Link to="/" className="btn btn-custom btn-link-yellow">
-                  View All
-                </Link>
-              </div>
-                <Swiper
-                  modules={[Autoplay]}
-                  spaceBetween={5}
-                  autoplay={{ disableOnInteraction: false }}
-                  speed={1500}
-                  breakpoints={flashsale}
-                >
-                  {flashSalesArr &&
-                    flashSalesArr.length > 0 &&
-                    flashSalesArr.map((el, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <div className="newprdcrd">
-                            <div className="position-relative">
-                              <CountdownTimer targetDate={el.endDate} />
-                              <Link to={`/ShopDetail/${el?.productId?.slug}`}>
-                                <img
-                                  src={generateImageUrl(el.productId.mainImage)}
-                                  alt=""
-                                  className="img-fluid"
-                                />
-                                <div className="overlyasper"></div>
-                              </Link>
-
-
-                            </div>
-                            <div className="d-flex justify-content-center"
-                              onClick={() => {
-                                currentUserHasActiveSubscription
-                                  ? window.alert(
-                                    `${el?.userId?.companyObj?.phone}`
-                                  )
-                                  : errorToast("Take subscription");
-                              }}>
-                              <LuPhoneCall className="phn rounded-circle p-2" />
-                            </div>
-                            <div className="d-flex justify-content-center">
-                              <h6>{el?.description}</h6>
-                            </div>
-                            <h6 className=" text-center  prdtitle">
-                              <Link to={`/ShopDetail/${el?.productId?.slug}`}>
-                                {el?.productId?.name}
-                              </Link>
-                            </h6>
-                            <ul className="">
-                                <li>
-                                  {el.discountType == "Percentage"
-                                    ? `${el.discountValue}% OFF`
-                                    : `Flat ${el.discountValue} OFF`}
-                                </li>
-                              </ul>
-                              <div>
-                                <h6 className="old">
-                                  <span className="prize">₹{el?.price}</span>
-                                  <span className="small text-muted">
-                                    {el.pricetype
-                                      ? "/ " + el.pricetype
-                                      : "/ Sq ft"}
-                                  </span>
-                                </h6>
-                                <h6 className="new">
-                                  <span className="prize">
-                                    ₹{el?.salePrice}
-                                  </span>
-                                  <span className="small text-muted">
-                                    {el.pricetype
-                                      ? "/ " + el.pricetype
-                                      : "/ Sq ft"}
-                                  </span>
-                                </h6>
-                              </div>
-                            <button
-                              onClick={() => navigate(`/ShopDetail/${el?.productId?.slug}`)}
-                              className="newprdbtn py-2 text-white"
-                            >
-                              Get Quotes
-                            </button>
-                          </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                </Swiper>
-              </div>
-            </div>
-          </div>
-        </section>
-      )} */}
-
-      {/* states */}
+ 
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
           States
@@ -1319,8 +1194,7 @@ function Index() {
           </Swiper>
         </Container>
       </section>()
-      {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
-      {/* <section onClick={() => setSignInModal(true) }> */}
+      
       <section onClick={() => !isAuthorized ? setSignInModal(true) : currentUserHasActiveSubscription ? <></> : navigate('/Subscription')} >
 
         <img src={playbanner} className=" img-fluid  " alt="" />
@@ -1332,8 +1206,7 @@ function Index() {
 
       <section>
         <Container className="dealership-oppo-container my-2 my-lg-5">
-          {
-            opportunities && opportunities.length > 0 && (
+  
               <>
                 <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold" style={{ backgroundColor: "#F5F1E8" }}>
                   Dealership / Distributer <br />
@@ -1396,185 +1269,10 @@ function Index() {
                   </Swiper>
                 </Row>
               </>
-            )}
+            
         </Container>
       </section>
-      {/* <div className="blog-main-container-1 d-flex flex-wrap flex-column align-items-center gap-5 my-5">
-        <div className="tabs">
-          <div
-            className={`tab ${activeTab === "blog" ? "active" : ""}`}
-            onClick={() => handleTabClick("blog")}
-          >
-            BLOG
-          </div>
-          <div
-            className={`tab ${activeTab === "video" ? "active" : ""}`}
-            onClick={() => handleTabClick("video")}
-          >
-            VIDEO
-          </div>
-        </div>
-        <section className="blog_main d-flex flex-wrap ">
-          <Row className="sub_blog  flex-md-row mx-3">
-            <Col>
-              <div className="sub-div1">
-                <img src={Blog1} alt="" />
-                <div>
-                  {" "}
-                  <p>
-                    Why Should Plywood <br /> Businesses Choose Our <br />{" "}
-                    Platform for Registration? <br />
-                    <span>Are you a part of the booming p</span>
-                  </p>
-                  <button className=" blog_btn ">Read more</button>
-                </div>
-              </div>
-            </Col>
-            <Col>
-              <div className="sub-div2">
-                <img src={Blog2} alt="" />
-                <p>
-                  Why Should Plywood <br /> Businesses Choose Our <br />{" "}
-                  Platform for Registration? <br />
-                  <span>Are you a part of the booming p</span>
-                </p>
-                <button className="blog_btn">Read more</button>
-              </div>
-            </Col>
-          </Row>
-          <Row className="second_row d-flex flex-wrap mx-3">
-            <Col>
-              <iframe
-                className="sub-div3"
-                width="260"
-                height="315"
-                src="https://www.youtube.com/embed/T1jcDyJwYvo?si=679kEMy_JvztyTir"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            </Col>
-            <Col>
-              <iframe
-                className="sub-div4"
-                width="260"
-                height="315"
-                src="https://www.youtube.com/embed/T1jcDyJwYvo?si=679kEMy_JvztyTir"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            </Col>
-          </Row>
-        </section>
-      </div> */}
-
-      {/* <section className="ptb-80 px-4pc">
-        <div className="container">
-          <div className="title-section with-btn mb-5">
-            <h1 className="heading bottom-line brown">Our Blogs</h1>
-            <Link to={`/View/blogs`} className="btn btn-custom btn-link-yellow">
-              View All
-            </Link>
-          </div>
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={20}
-            breakpoints={blogbreakpont}
-            autoplay={{ disableOnInteraction: false }}
-            speed={1500}
-          >
-            {blogsArr &&
-              blogsArr.length > 0 &&
-              blogsArr.map((el, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <Col>
-                      <div className="sub-div1">
-                        <img src={generateImageUrl(el.image)} alt="" />
-                        <div>
-                          {" "}
-                          <p>
-                            Why Should Plywood <br /> Businesses Choose Our{" "}
-                            <br /> Platform for Registration? <br />
-                            <span>Are you a part of the booming p</span>
-                          </p>
-                          <button className=" blog_btn ">Read more</button>
-                        </div>
-                      </div>
-                    </Col>
-                    <div>
-                      <div className="blog_listing mb-0">
-                        <div className="blog_listing_img">
-                          <img
-                            src={generateImageUrl(el.image)}
-                            alt=""
-                            className="img-fluid blogImage"
-                          />
-                        </div>
-                        <div className="list_content_blog">
-                          <h6>{el?.name}</h6>
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: el?.description.slice(0, 100),
-                            }}
-                          ></div>
-                          <Link
-                            to={`/blog-detail/${el._id}`}
-                            className="btn blog_readmore"
-                          >
-                            Read More <BsArrowRight className="blog_arrow" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })} 
-          </Swiper>
-        </div>
-      </section> */}
-
-      {/* <section className=" gray-bg mb-80  ptb-80 px-4pc">
-        <div className="container">
-          <div className="title-section with-btn mb-5">
-            <h1 className="heading bottom-line brown">Our Videos</h1>
-            <Link to={`/View/blogs`} className="btn btn-custom btn-link-yellow">
-              View All
-            </Link>
-          </div>
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={20}
-            breakpoints={ourvideos}
-            autoplay={{ disableOnInteraction: false }}
-            speed={1500}
-          >
-            {blogVideoArr &&
-              blogVideoArr.length > 0 &&
-              blogVideoArr.map((el, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    {el.url && el.url.includes("http") && (
-                      <iframe
-                        allowFullScreen
-                        src={el.url}
-                        frameborder="0"
-                        className="img-fluid blogImage"
-                      ></iframe>
-                    )}
-                    <h6 className="text-center">{el?.name}</h6>
-                  </SwiperSlide>
-                );
-              })}
-          </Swiper>
-        </div>
-      </section> */}
-
+     
       <Container fluid className="main-blog">
         <div className="blog2 new_blog2 blog_container top-banner ptb-80">
           <div className="container-fluid d-flex justify-content-center align-items-center">
@@ -1685,13 +1383,8 @@ function Index() {
                                     className="img-fluid blogImage"
                                   ></iframe>
                                 )}
-                                {/* <img src={generateImageUrl(el.image)} alt="" className="img-fluid blogImage" /> */}
                               </div>
-                              {/* <div className="list_content_blog">
-                                                        <h6>{el?.name}</h6>
-                                                        <div dangerouslySetInnerHTML={{ __html: el?.description.slice(0, 100) }}></div>
-                                                        <Link to={`/blog-detail/${el._id}`} className="btn blog_readmore">Read More <BsArrowRight className="blog_arrow" /></Link>
-                                                    </div> */}
+                            
                             </div>
                           </div>
                         </SwiperSlide>
@@ -1704,94 +1397,7 @@ function Index() {
         </div>
       </Container>
 
-      {/* <section className="ptb-80 contact-us">
-        <div className="container">
-          <div className="row gx-lg-5">
-            <div className="col-12 col-md-6">
-              <div className="left">
-                <h1 className="heading">
-                  Get free quotes from multiple sellers
-                </h1>
-                <ul className="list">
-                  <li>
-                    <div className="icon">
-                      <RiMessage2Line />
-                    </div>
-                    <h6>
-                      Tell us what <br className="d-none d-lg-block" /> You Need
-                    </h6>
-                  </li>
-                  <li>
-                    <div className="icon">
-                      <GiReceiveMoney />
-                    </div>
-                    <h6>Receive free quotes from sellers</h6>
-                  </li>
-                  <li>
-                    <div className="icon">
-                      <FaHandshake />
-                    </div>
-                    <h6>Seal The Deal</h6>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-12 col-md-6">
-              <div className="right">
-                <h3 className="heading yellow">Tell us your Requirement</h3>
-                <form className="form row">
-                  <div className="col-12">
-                    <label>Name *</label>
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      type="text"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="col-12">
-                    <label>Mobile No. *</label>
-                    <input
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      type="tel"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="col-12">
-                    <label>Address *</label>
-                    <input
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      type="text"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="col-12">
-                    <label>Product / Service *</label>
-                    <input
-                      value={productName}
-                      onChange={(e) => setProductName(e.target.value)}
-                      type="text"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="col-12">
-                    <button
-                      className="btn btn-custom btn-yellow mt-2"
-                      type="button"
-                      onClick={(e) => handleSubmitRequirement(e)}
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
+    
       <Container fluid className="custom-container">
         <Row className="custom-container-row">
           <Col className="main_col_1">

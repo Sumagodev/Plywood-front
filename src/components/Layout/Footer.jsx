@@ -487,7 +487,7 @@ function Footer() {
                     </a>
                   </li>
                   <li> 
-                    <a href="https://www.instagram.com/plywood_bazar/" target="_blank"
+                    <a href="https://www.instagram.com/plywoodbazar.com_?igsh=eTdpOGRmbjZteGoz" target="_blank"
                     >
                       <img src={inst} className="p-1 img-fluid" />
                     </a>
