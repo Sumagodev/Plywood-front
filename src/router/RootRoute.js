@@ -10,7 +10,7 @@ import { removeToken } from "../services/User.service";
 import { routes } from "./routes";
 import Movingicon from "../components/Movingicon";
 export default function RootRoute() {
-  
+
   const navigate = useNavigate();
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
   const authToken = useSelector((state) => state.auth.token)
@@ -81,27 +81,31 @@ export default function RootRoute() {
       <Routes>
         {routes.map((el, index) => {
           return (
-            <Route
-              key={index}
-              // exact
-              path={el.path}
-              element={
-                el.isAuthorized ? (
-                  <ProtectedRoute isAllowed={isAuthorized} redirectPath={logoutRedirectPath}>
-                    {el.component}
-                  </ProtectedRoute>
-                ) : el.isUnProtected ? (
-                  <ProtectedRoute isAllowed={!isAuthorized} redirectPath={loginRedirectPath}>
-                    {el.component}
-                  </ProtectedRoute>
-                ) : (
-                  <>{el.component}</>
-                )
-              }
-            />
+            <>
+              <Route
+                key={index}
+                // exact
+                path={el.path}
+                element={
+                  el.isAuthorized ? (
+                    <ProtectedRoute isAllowed={isAuthorized} redirectPath={logoutRedirectPath}>
+                      {el.component} <Movingicon/>
+                    </ProtectedRoute>
+                  ) : el.isUnProtected ? (
+                    <ProtectedRoute isAllowed={!isAuthorized} redirectPath={loginRedirectPath}>
+                      {el.component} <Movingicon/>
+                    </ProtectedRoute>
+                  ) : (
+                    <>{el.component}
+                      <Movingicon /></>
+                  )
+                }
+              />
+
+            </>
           );
         })}
-      
+
       </Routes>
       <Footer />
     </>

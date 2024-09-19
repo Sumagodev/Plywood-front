@@ -1219,7 +1219,7 @@ function Index() {
       </section>
       <Container fluid>
         <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold mt-3 mt-lg-5" >
-          Dealership / Distributer <br />
+          Dealership / Distributor <br />
           Opportunities
         </Row>
       </Container>

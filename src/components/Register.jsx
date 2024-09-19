@@ -388,6 +388,14 @@ export const Register = () => {
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
                                         <b className="mx-2">DEALER</b>
+                                        <input
+                                            type="radio"
+                                            name="type"
+                                            value={ROLES_CONSTANT.RETAILER}
+                                            checked={type === ROLES_CONSTANT.RETAILER}
+                                            onChange={(e) => settype(e.target.value)}
+                                        />{" "}
+                                        <b className="mx-2">RETAILER</b>
                                     </div>
 
 
@@ -446,7 +454,7 @@ export const Register = () => {
                                         </div>
 
                                         <div className="col-md-6">
-                                            <div style={{ width: "max-content" }}>
+                                            <div style={{ width: "max-content" }} >
                                                 <OverlayTrigger placement="right" overlay={tooltip}>
                                                     <label>Category<span className="text-danger me-2">*</span>
                                                         <AiOutlineInfoCircle />
