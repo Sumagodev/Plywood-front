@@ -101,7 +101,7 @@ export default function RootRoute() {
             />
           );
         })}
-        <Movingicon/>
+      
       </Routes>
       <Footer />
     </>
