@@ -8,6 +8,8 @@ import {
     getAllProducts,
 
 } from "../../services/Product.service";
+import logo from "../../assets/image/home/images/logo6.png";
+
 import { AiFillCheckCircle, AiOutlineInfoCircle } from "react-icons/ai";
 import Modal from 'react-bootstrap/Modal';
 import { getCroppedImg, handleOpenImageInNewTab } from "../../utils/image.utils";
@@ -143,9 +145,9 @@ const ApplyDealership = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        if ( !cityId.length) {
+
+        if (!cityId.length) {
             alert("Please fill in cities required fields.");
             return;
         }
@@ -161,14 +163,14 @@ const ApplyDealership = () => {
             stateId: opportunity.stateId
         };
 
-        console.log(formData)
         try {
             const { data: response } = await Applydealership(formData);
-            if (response.success) {
-                console.log("Form submitted successfully", response);
-                handleClose(true)
-                resetForm();
-            }
+
+            setShow(true);
+            resetForm();
+            console.log("Form submitted successfully", response);
+
+
         } catch (error) {
             console.error("Error submitting form", error);
         }
@@ -200,7 +202,7 @@ const ApplyDealership = () => {
                             <div className="right">
                                 <h3 className="heading yellow">Apply for Dealership</h3>
 
-                                <form className="form row" onSubmit={handleSubmit}>
+                                <form className="form row" >
                                     <div className="col-md-6">
                                         <label>Who are you? <span className="text-danger">*</span></label>
                                         <input
@@ -300,7 +302,7 @@ const ApplyDealership = () => {
                                                 placeholder={opportunity.stateName}
                                                 disabled
                                             />
-                                           
+
                                         </div>
                                         <div className="col-md-6">
                                             <label>Cities <span className="text-danger">*</span></label>
@@ -320,11 +322,11 @@ const ApplyDealership = () => {
                                         </div>
 
 
-                                       
+
                                     </div>
-                                    <div className="col-12 mt-3">
-                                        <button type="submit" className="btn btn-primary">
-                                            Submit
+                                    <div className="col-12 mt-3 mb-3">
+                                        <button type="button" onClick={() => { handleSubmit() }} className="btn btn-custom btn-yellow mt-5">
+                                            Apply for Dealership
                                         </button>
                                     </div>
                                 </form>
@@ -335,16 +337,21 @@ const ApplyDealership = () => {
             </div>
 
             {/* Modal */}
+
+
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Submission Successful</Modal.Title>
+
+                <Modal.Header closeButton className="subscription-card-container pt-5">
+                    <br />
+                    <Modal.Title className=" text-dark"></Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Your dealership Application has been submitted successfully.</Modal.Body>
-                <Modal.Footer>
-                    <button variant="secondary" onClick={handleCloseAndNavigate}>
-                        Close
-                    </button>
-                </Modal.Footer>
+                <Modal.Body className="subscription-card-container  text-center">
+                    Dealership Application Successful
+                    <h5 className=" text-dark">                    Your dealership Application has been submitted successfully.
+                    </h5>                    <img src={logo} className=" img-fluid p-5" alt="" />
+
+                </Modal.Body>
+
             </Modal>
         </>
     );

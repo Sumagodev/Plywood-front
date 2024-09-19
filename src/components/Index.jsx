@@ -320,7 +320,7 @@ function Index() {
       slidesPerView: 4,
     },
     1400: {
-      slidesPerView: 5,
+      slidesPerView: 7,
     },
   };
   const findsuppers = {
@@ -1110,7 +1110,7 @@ function Index() {
                                   <div className="overlyasper"></div>
                                 </Link>
                               </div>
-                            
+
                               <span
                                 className="icn_Product"
                                 onClick={() => {
@@ -1276,6 +1276,36 @@ function Index() {
                             backgroundImage: `url(${generateImageUrl(opportunity.image)})`
                           }}
                         >
+
+                          <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
+                            <div className=" col-lg-7">
+                              <span>{opportunity.Organisation_name}</span> <br />
+                            </div>
+
+                            {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
+
+                            <div className="col-lg-5">
+                            <button  className="dealerapply px-3 py-2"
+                              onClick={() => {
+                                if (!isAuthorized) {
+                                  // If the user is not authorized, show the sign-in modal
+                                  setSignInModal(true);
+                                } else if (!currentUserHasActiveSubscription) {
+                                  // If the user does not have an active subscription, show the price modal
+                                  handleClose(true);
+                                } else {
+                                  // If the user has an active subscription, initiate a phone call
+                                  navigate('/', { state: { opportunity } });
+                                }
+                              }}
+                            >
+                              Apply
+                            </button>
+                            </div>
+
+                           
+
+                          </div>
 
 
                         </div>

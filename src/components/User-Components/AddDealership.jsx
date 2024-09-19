@@ -42,7 +42,7 @@ const AddDealership = () => {
     const [zoom, setZoom] = useState(1);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [organisationName, setOrganisationName] = useState("");
-    const [productId, setProductId] = useState("66cd61a7e79633780724926d"); // Sample Product ID
+    const [productId, setProductId] = useState(""); // Sample Product ID
     const [cityId, setCityId] = useState([]); // Array of city IDs
     const [open, setOpen] = React.useState(false);
 
@@ -143,7 +143,7 @@ const AddDealership = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        
 
         if (!organisationName || !countryId || !stateId || !cityId.length) {
             alert("Please fill in all required fields.");
@@ -164,12 +164,10 @@ const AddDealership = () => {
         console.log(formData)
         try {
             const { data: response } = await Adddealership(formData);
-            if (response.success) {
-                setShow(true);
-                console.log("Form submitted successfully", response);
-                handleClose(true);
-                resetForm();
-            }
+            setShow(true);
+            resetForm();
+            console.log("Form submitted successfully", response);
+          
         } catch (error) {
             console.error("Error submitting form", error);
         }
@@ -177,9 +175,11 @@ const AddDealership = () => {
 
     const resetForm = () => {
         setOrganisationName('');
+        setBrandNames('')
+        setProductId('')
         setType(ROLES_CONSTANT.MANUFACTURER);
         setCompanyName('');
-        setProfileImage('');
+        setProfileImage("");
         setCountryId('');
         setStateId('');
         setCityId([]);
@@ -222,7 +222,7 @@ const AddDealership = () => {
                             <div className="right">
                                 <h3 className="heading yellow">Add Dealership</h3>
 
-                                <form className="form row" onSubmit={handleSubmit}>
+                                <form className="form row" >
                                     <div className="col-md-6">
                                         <label>Who are you? <span className="text-danger">*</span></label>
                                         <input
@@ -258,6 +258,7 @@ const AddDealership = () => {
                                                 type="text"
                                                 className="form-control"
                                                 value={organisationName}
+                                                placeholder="Please Enter Your Organization's Name"
                                                 onChange={(e) => setOrganisationName(e.target.value)}
                                             />
                                         </div>
@@ -324,6 +325,7 @@ const AddDealership = () => {
                                             <input
                                                 type="email"
                                                 className="form-control"
+                                                placeholder="Please Enter Your Email"
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
                                             />
@@ -380,7 +382,7 @@ const AddDealership = () => {
                                                 ))}
                                             </select>
                                         </div>
-                                      
+
 
                                         <div className="col-md-6">
                                             <label>Image</label>
@@ -398,9 +400,9 @@ const AddDealership = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-12 mt-3">
-                                        <button type="submit" className="btn btn-primary">
-                                            Submit
+                                    <div className="col-12 mt-3 mb-3">
+                                        <button type="button" onClick={() => { handleSubmit() }} className="btn btn-custom btn-yellow mt-5">
+                                            Register
                                         </button>
                                     </div>
                                 </form>
@@ -411,16 +413,12 @@ const AddDealership = () => {
             </div>
 
             {/* Modal */}
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+            <Modal show={show} onHide={handleClose} className="subscription-card-container">
+                <Modal.Header closeButton className="subscription-card-container">
                     <Modal.Title>Submission Successful</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Your dealership information has been submitted successfully.</Modal.Body>
-                <Modal.Footer>
-                    <button variant="secondary" onClick={handleCloseAndNavigate}>
-                        Close
-                    </button>
-                </Modal.Footer>
+                <Modal.Body className="subscription-card-container">Your dealership information has been submitted successfully.</Modal.Body>
+              
             </Modal>
         </>
     );

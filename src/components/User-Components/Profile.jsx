@@ -188,7 +188,7 @@ export default function Profile() {
         setotp("");
         setmobile("");
         setotpsent(false);
-
+        navigate('/')
         // setIsAuthorized(false)
     };
 
@@ -196,7 +196,7 @@ export default function Profile() {
         <>
             <div className=' container-fluid userprofile'>
 
-
+ m  
 
 
                 <div className=' row'>

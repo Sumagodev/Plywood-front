@@ -579,9 +579,9 @@ function Header() {
                   <img src={whp} className=" img-fluid" />
                 </a>
               </div>
-              <button className="Dbtn btn-primary rounded-pill ms-3 py-2 ls-3  px-4">
+              <a className="Dbtn btn-primary rounded-pill ms-3 py-2 ls-3  px-4" href="https://play.google.com/store/apps/details?id=com.plywoodbazar&pli=1">
                 Download App
-              </button>
+              </a>
             </div>
           </div>
             <div className="Navbar ">

@@ -832,7 +832,7 @@ footer .footer {
 }
 
 .footer {
-  padding: 4pc 0;
+  padding: 10px 0;
   color: rgba(255, 255, 255, 0.5019607843);
 }
 
@@ -3798,7 +3798,6 @@ select {
 .form .form-control::placeholder {
   box-shadow: none;
   transition: all 0.5s;
-  padding-left: 30px !important;
   color: #603200;
 }
 
@@ -3826,7 +3825,6 @@ select {
   opacity: 1;
   transition: all 0.5s;
   text-transform: capitalize;
-  padding-left: 30px;
 }
 
 .form label {
