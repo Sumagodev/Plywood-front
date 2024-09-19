@@ -1098,8 +1098,10 @@ function Index() {
                       flashSalesArr.map((el, index) => {
                         return (
                           <SwiperSlide key={index}>
-                            <div className="newprdcrd text-center">
+                            <div className="newprdcrd text-center position-relative">
+
                               <div className="position-relative">
+
                                 <CountdownTimer targetDate={el.endDate} />
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   <img
@@ -1126,41 +1128,23 @@ function Index() {
                                   }
                                 }}
                               >
-                                <LuPhoneCall className="phn rounded-circle p-2" />
+                                <LuPhoneCall className="phn rounded-circle p-1" />
                               </span>
 
-                              <div className="d-flex justify-content-center">
-                                <h6>{el?.description}</h6>
-                              </div>
-                              <h6 className=" text-center  prdtitle">
+
+                              <h6 className=" text-center  prdtitle mt-3">
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   {el?.productId?.name}
                                 </Link>
                               </h6>
-                              <ul className="">
-                                <li>
-                                  {el.discountType == "Percentage"
-                                    ? `${el.discountValue}% OFF`
-                                    : `Flat ${el.discountValue} OFF`}
-                                </li>
-                              </ul>
+
                               <div>
                                 <h6 className="old">
-                                  <span className="prize">₹{el?.price}</span>
-                                  <span className="small text-muted">
-                                    {el.pricetype
-                                      ? "/ " + el.pricetype
-                                      : "/ Sq ft"}
-                                  </span>
+                                  <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{fontSize:"23px"}}>₹{el?.salePrice}/-</span></span>
+
+
                                 </h6>
-                                <h6 className="new">
-                                  <span className="prize">₹{el?.salePrice}</span>
-                                  <span className="small text-muted">
-                                    {el.pricetype
-                                      ? "/ " + el.pricetype
-                                      : "/ Sq ft"}
-                                  </span>
-                                </h6>
+
                               </div>
                               <button
                                 onClick={() =>
@@ -1170,17 +1154,27 @@ function Index() {
                               >
                                 Get Quotes
                               </button>
+
                             </div>
+                            <div className=" discountnew fw-bold text-center d-grid align-items-center ">
+                              <div className="">{el.discountValue}%
+
+                                {/* <span style={{ fontSize: "8px" }}>OFF</span>  */}
+                              </div>
+                            </div>
+
+
+
                           </SwiperSlide>
                         );
                       })}
-                    <SwiperSlide>
+                    {/* <SwiperSlide>
                       <div className="addfrmmain">
                         <Link to="/AddFlashSale" className="addfrm p-2">
                           +
                         </Link>
                       </div>
-                    </SwiperSlide>
+                    </SwiperSlide> */}
                   </Swiper>
                 </Col>
               </Row>
@@ -1285,25 +1279,25 @@ function Index() {
                             {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
 
                             <div className="col-lg-5">
-                            <button  className="dealerapply px-3 py-2"
-                              onClick={() => {
-                                if (!isAuthorized) {
-                                  // If the user is not authorized, show the sign-in modal
-                                  setSignInModal(true);
-                                } else if (!currentUserHasActiveSubscription) {
-                                  // If the user does not have an active subscription, show the price modal
-                                  handleClose(true);
-                                } else {
-                                  // If the user has an active subscription, initiate a phone call
-                                  navigate('/', { state: { opportunity } });
-                                }
-                              }}
-                            >
-                              Apply
-                            </button>
+                              <button className="dealerapply px-3 py-2"
+                                onClick={() => {
+                                  if (!isAuthorized) {
+                                    // If the user is not authorized, show the sign-in modal
+                                    setSignInModal(true);
+                                  } else if (!currentUserHasActiveSubscription) {
+                                    // If the user does not have an active subscription, show the price modal
+                                    handleClose(true);
+                                  } else {
+                                    // If the user has an active subscription, initiate a phone call
+                                    navigate('/', { state: { opportunity } });
+                                  }
+                                }}
+                              >
+                                Apply
+                              </button>
                             </div>
 
-                           
+
 
                           </div>
 

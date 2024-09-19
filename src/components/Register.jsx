@@ -123,7 +123,7 @@ export const Register = () => {
             errorToast("Address is Required");
             return 0;
         };
-       
+
 
 
         if (`${name}` === "") {
@@ -147,8 +147,8 @@ export const Register = () => {
 
 
 
-        
-        
+
+
         // if (`${companyEmail}` === "") {
         //     errorToast("Organization Email is Required");
         //     return 0;
@@ -161,7 +161,7 @@ export const Register = () => {
         //     errorToast("Gst is Required");
         //     return 0;
         // };
-       
+
         if (`${countryId}` === "") {
             errorToast("Country is Required");
             return 0;
@@ -174,7 +174,7 @@ export const Register = () => {
             errorToast("City is Required");
             return 0;
         };
-      
+
         if (!termsAccepted) {
             errorToast("Please Accept our terms and condition and privacy policy before registering !!!");
             return
@@ -356,7 +356,7 @@ export const Register = () => {
                         <div className="col-12 col-md-12">
                             <div className="right">
                                 <h3 className="heading yellow">Register</h3>
-                               
+
                                 <form className="form row ">
 
 
@@ -365,10 +365,11 @@ export const Register = () => {
                                         <input
                                             type="radio"
                                             name="type"
+
                                             value={ROLES_CONSTANT.MANUFACTURER}
                                             checked={type === ROLES_CONSTANT.MANUFACTURER}
                                             onChange={(e) => settype(e.target.value)}
-                                            
+
                                         />{" "}
                                         <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
                                         <input
@@ -394,10 +395,11 @@ export const Register = () => {
                                         {/* <h4 className="heading yellow">Company Details </h4> */}
 
                                         <div className="col-md-6">
-                                            <label>Name of Organization <span className="text-danger">*</span></label>
+                                            <label>Business Name <span className="text-danger">*</span></label>
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                placeholder="Please Enter Business Name"
                                                 value={companyName}
                                                 onChange={(e) => setcompanyName(e.target.value)}
                                             />
@@ -411,7 +413,7 @@ export const Register = () => {
                                                 onChange={(e) => setcompanyEmail(e.target.value)}
                                             />
                                         </div> */}
-                                        <div className="col-md-6">
+                                        {/* <div className="col-md-6">
                                             <label>Organization Phone / Landline</label>
                                             <input
                                                 type="text"
@@ -421,7 +423,7 @@ export const Register = () => {
                                                 maxLength="10"
                                             />
                                         </div>
-                                        
+                                         */}
                                         {/* <div className="col-md-6">
                                             <label>Landline Number <span className="text-danger">*</span> </label>
                                             <input
@@ -437,10 +439,12 @@ export const Register = () => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                placeholder="Please Enter Year of Establishment"
                                                 value={yearOfEstablishment}
                                                 onChange={(e) => setYearOfEstablishment(e.target.value)}
                                             />
                                         </div>
+
                                         <div className="col-md-6">
                                             <div style={{ width: "max-content" }}>
                                                 <OverlayTrigger placement="right" overlay={tooltip}>
@@ -449,17 +453,20 @@ export const Register = () => {
                                                     </label>
                                                 </OverlayTrigger>
                                             </div>
-                                            <Select className='form-control'  
-                                             options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))} 
-                                             value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
-                                             
+                                            <Select className='form-control bg-transperant'
+                                                options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))}
+                                                value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
+
 
                                         </div>
+
                                         <div className="col-md-6">
                                             <label> Dealing With Brand Names  </label>
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                placeholder="Please Enter Brand Names"
+
                                                 value={brandNames}
                                                 onChange={(e) => setBrandNames(e.target.value)}
                                             />
@@ -468,6 +475,8 @@ export const Register = () => {
                                             <label> GST No </label>
                                             <input
                                                 type="text"
+                                                placeholder="Please Enter GST No"
+
                                                 className="form-control"
                                                 value={gstNumber}
                                                 onChange={(e) => setgstNumber(e.target.value)}
@@ -487,146 +496,8 @@ export const Register = () => {
                                                 onChange={(e) => setGoogleMapsLink(e.target.value)}
                                             />
                                         </div> */}
-                                        <div className="col-md-12">
-                                            <label> Address <span className="text-danger">*</span></label>
-                                            <textarea
-                                                className="form-control"
-                                                value={address}
-                                                onChange={(e) => setaddress(e.target.value)}
-                                                rows={3}
-                                            ></textarea>
-                                        </div>
-
-
-
-
-                                      
-
-
 
                                         <div className="col-md-6">
-                                            <label> Profile Photo</label>
-                                            <div onClick={() => handleOpenImageInNewTab(profileImage)}>
-                                                <img src={profileImage} style={{ width: 150, height: 150 }} alt="" />
-                                            </div>
-                                            <FileInput setFile={async (e) => {
-                                                let base64 = await convertFileToBase64(e);
-                                                setProfileImage(base64)
-                                            }} file={profileImage} type="image" previousFile={(profileImage && profileImage != "" && profileImage.includes("base64")) ? profileImage : null} />
-                                            {/* <FileUpload onFileChange={(val) => { setProfileImage(val); }} /> */}
-                                        </div>
-
-
-                                        <div className="col-md-6">
-                                            <label> Banner Photo  (Exterior/Interior Image of your Showroom/Unit)</label>
-                                            <div onClick={() => handleOpenImageInNewTab(bannerImage)}>
-                                                <img src={bannerImage} style={{ width: 150, height: 150 }} alt="" />
-                                            </div>
-                                            <FileInput setFile={async (e) => {
-                                                let base64 = await convertFileToBase64(e);
-                                                setBannerImage(base64)
-                                            }} file={bannerImage} type="image" previousFile={(bannerImage && bannerImage != "" && bannerImage.includes("base64")) ? bannerImage : null} />
-                                            {/* <FileUpload onFileChange={(val) => setBannerImage(val)} /> */}
-                                        </div>
-                                        {/* <div className="col-md-6">
-                                            <label> Discription of business</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={natureOfBusiness}
-                                                onChange={(e) => setNatureOfBusiness(e.target.value)}
-                                            />
-                                        </div> */}
-                                      
-
-                                        {/* <div className="col-md-6">
-                                            <label>Select Sales Person</label>
-                                            <Select className='form-control' options={salesUsersArr && salesUsersArr.length > 0 && salesUsersArr.map((el) => ({ ...el, label: el.name, value: el._id }))} value={salesObj} onChange={(e) => setSalesObj(e)} />
-
-                                        </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        {/* <div className="col-md-6">
-                                            <label> Nature of your business</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={natureOfBusiness}
-                                                onChange={(e) => setNatureOfBusiness(e.target.value)}
-                                            />
-                                        </div> */}
-
-                                    </div>
-                                    <h4 className="heading yellow mt-4"> Contact Person Details</h4>
-                                    <div className="col-md-6">
-                                        <label>Name of Authorised person<span className="text-danger">*</span></label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            value={name}
-                                            onChange={(e) => setname(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label>Date of Birth </label>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            value={moment(aniversaryDate).format("YYYY-MM-DD")}
-                                            onChange={(e) => setAniversaryDate(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label>Your Email Id <span className="text-danger">*</span></label>
-                                        <input
-                                            type="email"
-                                            className="form-control"
-                                            value={email}
-                                            onChange={(e) => setemail(e.target.value)}
-                                            
-                                        />
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label>Mobile No. <span className="text-danger">*</span></label>
-                                        <input
-                                            type="tel"
-                                            className="form-control"
-                                            value={mobile}
-                                            onChange={(e) => setmobile(e.target.value)}
-                                            maxLength="10"
-                                        />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label>Whatsapp No. </label>
-                                        <input
-                                            type="tel"
-                                            className="form-control"
-                                            value={whatsapp}
-                                            onChange={(e) => setwhatsapp(e.target.value)}
-                                            maxLength="10"
-                                        />
-                                    </div>
-
-
-
-
-
-
-                                    <div className="col-md-6">
                                             <label> Country <span className="text-danger">*</span></label>
                                             {
                                                 countryArr && (
@@ -665,36 +536,188 @@ export const Register = () => {
                                                 )
                                             }
                                         </div>
+                                        <div className="col-md-12">
+                                            <label> Address <span className="text-danger">*</span></label>
+                                            <textarea
+                                                className="form-control"
+                                                placeholder="Please Enter Address"
+
+                                                value={address}
+                                                onChange={(e) => setaddress(e.target.value)}
+                                                rows={3}
+                                            ></textarea>
+                                        </div>
+
+
+
+
+
+
 
 
                                         <div className="col-md-6">
+                                            <label> Profile Photo</label>
+                                            <div onClick={() => handleOpenImageInNewTab(profileImage)}>
+                                                <img src={profileImage} style={{ width: 150, height: 150 }} alt="" />
+                                            </div>
+                                            <FileInput setFile={async (e) => {
+                                                let base64 = await convertFileToBase64(e);
+                                                setProfileImage(base64)
+                                            }} file={profileImage} type="image" previousFile={(profileImage && profileImage != "" && profileImage.includes("base64")) ? profileImage : null} />
+                                            {/* <FileUpload onFileChange={(val) => { setProfileImage(val); }} /> */}
+                                        </div>
+
+
+                                        <div className="col-md-6">
+                                            <label> Banner Photo  (Exterior/Interior Image of your Showroom/Unit)</label>
+                                            <div onClick={() => handleOpenImageInNewTab(bannerImage)}>
+                                                <img src={bannerImage} style={{ width: 150, height: 150 }} alt="" />
+                                            </div>
+                                            <FileInput setFile={async (e) => {
+                                                let base64 = await convertFileToBase64(e);
+                                                setBannerImage(base64)
+                                            }} file={bannerImage} type="image" previousFile={(bannerImage && bannerImage != "" && bannerImage.includes("base64")) ? bannerImage : null} />
+                                            {/* <FileUpload onFileChange={(val) => setBannerImage(val)} /> */}
+                                        </div>
+                                        {/* <div className="col-md-6">
+                                            <label> Discription of business</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={natureOfBusiness}
+                                                onChange={(e) => setNatureOfBusiness(e.target.value)}
+                                            />
+                                        </div> */}
+
+
+                                        {/* <div className="col-md-6">
+                                            <label>Select Sales Person</label>
+                                            <Select className='form-control' options={salesUsersArr && salesUsersArr.length > 0 && salesUsersArr.map((el) => ({ ...el, label: el.name, value: el._id }))} value={salesObj} onChange={(e) => setSalesObj(e)} />
+
+                                        </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        {/* <div className="col-md-6">
+                                            <label> Nature of your business</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={natureOfBusiness}
+                                                onChange={(e) => setNatureOfBusiness(e.target.value)}
+                                            />
+                                        </div> */}
+
+                                    </div>
+                                    <h4 className="heading yellow mt-4"> Contact Person Details</h4>
+                                    <div className="col-md-6">
+                                        <label>Name of Authorised person<span className="text-danger">*</span></label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Please Enter person Name"
+
+                                            value={name}
+                                            onChange={(e) => setname(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label>Date of Birth </label>
+                                        <input
+                                            type="date"
+                                            placeholder="Please Enter Date of Birth"
+
+                                            className="form-control"
+                                            value={moment(aniversaryDate).format("YYYY-MM-DD")}
+                                            onChange={(e) => setAniversaryDate(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label>Your Email Id <span className="text-danger">*</span></label>
+                                        <input
+                                            type="email"
+                                            placeholder="Please Enter Your Email Id"
+
+                                            className="form-control"
+                                            value={email}
+                                            onChange={(e) => setemail(e.target.value)}
+
+                                        />
+                                    </div>
+
+                                    <div className="col-md-6">
+                                        <label>Mobile No. <span className="text-danger">*</span></label>
+                                        <input
+                                            type="tel"
+                                            className="form-control"
+                                            placeholder="Please Enter Mobile No."
+
+                                            value={mobile}
+                                            onChange={(e) => setmobile(e.target.value)}
+                                            maxLength="10"
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label>Whatsapp No. </label>
+                                        <input
+                                            type="tel"
+                                            className="form-control"
+                                            placeholder="Please Enter Whatsapp No."
+
+                                            value={whatsapp}
+                                            onChange={(e) => setwhatsapp(e.target.value)}
+                                            maxLength="10"
+                                        />
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    {/* <div className="col-md-6">
                                             <label> Google Maps Link</label>
-                                            {/* <a href="https://www.google.com/maps" target="_blank" style={{ textDecorationLine: "underline" }}> Click to open google maps</a> */}
-                                            {/* <br />
+                                            <a href="https://www.google.com/maps" target="_blank" style={{ textDecorationLine: "underline" }}> Click to open google maps</a>
+                                            <br />
                                             <br />
                                             <span>Note : The link above will take you to google maps where you can select the your business's location to get the link and paste it in the text input given below</span>
-                                            <br /> */}
+                                            <br />
                                             <input
                                                 type="text"
                                                 className="form-control"
                                                 value={googleMapsLink}
                                                 onChange={(e) => setGoogleMapsLink(e.target.value)}
                                             />
-                                        </div>
+                                        </div> */}
 
 
 
 
 
-                                    
 
-                                    <div className="col-md-12 ">
+
+                                    <div className="col-md-12 mt-3">
                                         <div className="mobilebootm">
                                             <input onChange={(e) => { console.log(e.target.value, e.target.checked); setTermsAccepted(e.target.checked) }} checked={termsAccepted} value={termsAccepted} className="check" type="checkbox" /> Please Accept our <Link
                                                 to="/Terms">terms and condition</Link> and <Link
                                                     to="/Privacy">privacy policy</Link> before registering
                                         </div>
-                                        <button type="button" onClick={() => { handleRegister() }} className="btn btn-custom btn-yellow mt-5">
+                                        <button type="button" onClick={() => { handleRegister() }} className="btn btn-custom btn-yellow my-3">
                                             Register
                                         </button>
                                     </div>

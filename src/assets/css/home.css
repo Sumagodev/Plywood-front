@@ -191,7 +191,7 @@
 
   .product-container-section .box_Product1 .Rs-1 {
     font-size: 1rem;
-    font-weight:0.75rem;
+    font-weight: 0.75rem;
   }
 
   .product-container-section .box_Product1 button {
@@ -264,7 +264,7 @@
   position: relative;
   top: -20px;
   color: white;
-  font-size: 60px;
+  font-size: 50px;
   margin-bottom: -35px;
 }
 
@@ -876,13 +876,16 @@
     gap: 3vmin;
     margin-bottom: 0;
   }
+
   .img1 {
     height: 150px !important;
   }
-  .product_detail{
+
+  .product_detail {
     height: 12vh;
     font-size: 12px !important;
   }
+
   .dealership-oppo-container .dealership-oppo-sub-container .dealership-oppo-box .dealership-oppo-img-box {
     display: flex;
     justify-content: center;
@@ -894,7 +897,8 @@
     height: 265px !important;
     overflow: hidden;
   }
-  .dealerapply{
+
+  .dealerapply {
     background: #573C26;
     border: 2px solid #BC9B80 !important;
     font-size: 14px !important;
@@ -1077,7 +1081,7 @@
   font-weight: 600;
 }
 
-.product_detail{
+.product_detail {
   height: 12vh;
   font-size: 17px;
 }
@@ -1109,4 +1113,17 @@
   .product_detail {
     height: 15vh;
   }
+}
+
+.discountnew {
+  background: url('../image/home/images/Mask\ group.png');
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  color:#603200;
+  position: relative;
+  top: -350px;
+  left: 270px;  
+  /* box-shadow: 8px 4px 17px 0px rgba(0, 0, 0, 0.25); */
+
 }

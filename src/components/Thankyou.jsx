@@ -14,7 +14,7 @@ const Thankyou = () => {
     <div>
       <main>
         <div className="container">
-          <div className="row justify-content-center">
+          <div className="row justify-content-center subscription-card-container">
             <div className="col-lg-6">
               <div className="thankucard">
                   <img  src={successgif } alt="" className="main-logo img-fluid mb-5" />
