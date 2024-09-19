@@ -8,6 +8,7 @@ import ProtectedRoute, { useLoginRedirectPath, useLogoutRedirectPath } from "../
 import ScrollTop from "../components/Utility/ScrollTop";
 import { removeToken } from "../services/User.service";
 import { routes } from "./routes";
+import Movingicon from "../components/Movingicon";
 export default function RootRoute() {
   
   const navigate = useNavigate();
@@ -100,6 +101,7 @@ export default function RootRoute() {
             />
           );
         })}
+        <Movingicon/>
       </Routes>
       <Footer />
     </>
