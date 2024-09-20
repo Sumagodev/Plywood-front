@@ -504,7 +504,7 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-                <p>Terms & Conditions</p>
+            
               </Col>
             </Row>
           </Container>

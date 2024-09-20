@@ -1140,7 +1140,7 @@ function Index() {
 
                               <div>
                                 <h6 className="old">
-                                  <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{fontSize:"23px"}}>₹{el?.salePrice}/-</span></span>
+                                  <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{ fontSize: "23px" }}>₹{el?.salePrice}/-</span></span>
 
 
                                 </h6>
@@ -1200,7 +1200,7 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <Link to={`/Shop?stateId=${city._id}`}>
+                <Link to={`/Shop?state=${city._id}`}>
                   <div>
                     <img
                       src={city.image ? generateImageUrl(city?.image) : img1}
@@ -1219,7 +1219,7 @@ function Index() {
       </section>
       <Container fluid>
         <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold mt-3 mt-lg-5" >
-          Dealership / Distributor <br />
+          Dealership / Franchise <br />
           Opportunities
         </Row>
       </Container>

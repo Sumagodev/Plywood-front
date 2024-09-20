@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.aea99d91.css",
-    "main.js": "/static/js/main.c4bef563.js",
+    "main.css": "/static/css/main.ea449368.css",
+    "main.js": "/static/js/main.72c3c84f.js",
     "static/js/787.a69855e9.chunk.js": "/static/js/787.a69855e9.chunk.js",
     "static/media/banner7.jpg": "/static/media/banner7.f615dbce0ee2c7244617.jpg",
     "static/media/banner2.jpg": "/static/media/banner2.59bd6a7a555c97520d4f.jpg",
+    "static/media/logo6.png": "/static/media/logo6.a87540b9afeafbb8d1c9.png",
     "static/media/banner1.png": "/static/media/banner1.20c0bd2390f3cea12068.png",
     "static/media/top_banner.jpeg": "/static/media/top_banner.b5fb39192b59b346bce4.jpeg",
     "static/media/image 143.png": "/static/media/image 143.16d83c365814a35822b9.png",
@@ -55,7 +56,6 @@
     "static/media/image-removebg-preview (7) 1 (1).png": "/static/media/image-removebg-preview (7) 1 (1).cf6c7a828c0865ab629b.png",
     "static/media/Mask Group.png": "/static/media/Mask Group.afb2265b22b1c0f19826.png",
     "static/media/greenlam1.png": "/static/media/greenlam1.662ec66ff8b2b95fbefb.png",
-    "static/media/logo6.png": "/static/media/logo6.7339066706b605adecbe.png",
     "static/media/Mask Group (1).png": "/static/media/Mask Group (1).d4c30604d2ce25856dbd.png",
     "static/media/1.png": "/static/media/1.d0fcc6645c11ef8265d4.png",
     "static/media/sale-bg.png": "/static/media/sale-bg.85b007888c06b1a30f26.png",
@@ -79,12 +79,12 @@
     "static/media/banner.jpg": "/static/media/banner.b5100d9eea06bdd3238c.jpg",
     "static/media/client_1.png": "/static/media/client_1.3356ce2acbff44c5d042.png",
     "index.html": "/index.html",
-    "main.aea99d91.css.map": "/static/css/main.aea99d91.css.map",
-    "main.c4bef563.js.map": "/static/js/main.c4bef563.js.map",
+    "main.ea449368.css.map": "/static/css/main.ea449368.css.map",
+    "main.72c3c84f.js.map": "/static/js/main.72c3c84f.js.map",
     "787.a69855e9.chunk.js.map": "/static/js/787.a69855e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aea99d91.css",
-    "static/js/main.c4bef563.js"
+    "static/css/main.ea449368.css",
+    "static/js/main.72c3c84f.js"
   ]
 }
