@@ -8,6 +8,8 @@ import {
     getAllProducts,
 
 } from "../../services/Product.service";
+import Select from "react-select";
+
 import { AiFillCheckCircle, AiOutlineInfoCircle } from "react-icons/ai";
 import Modal from 'react-bootstrap/Modal';
 import { getCroppedImg, handleOpenImageInNewTab } from "../../utils/image.utils";
@@ -143,7 +145,7 @@ const AddDealership = () => {
     };
 
     const handleSubmit = async (e) => {
-        
+
 
         if (!organisationName || !countryId || !stateId || !cityId.length) {
             alert("Please fill in all required fields.");
@@ -157,7 +159,7 @@ const AddDealership = () => {
             Product: productId,
             userId: userObj._id,
             image: profileImage,
-            cityId: cityId,
+            cityId: cityId.map((el) => el.value), // Extract only the city _id from each selected city
             stateId: stateId
         };
 
@@ -167,7 +169,7 @@ const AddDealership = () => {
             setShow(true);
             resetForm();
             console.log("Form submitted successfully", response);
-          
+
         } catch (error) {
             console.error("Error submitting form", error);
         }
@@ -175,7 +177,7 @@ const AddDealership = () => {
 
     const resetForm = () => {
         setOrganisationName('');
-        setBrandNames('')
+        setBrandNames('')   
         setProductId('')
         setType(ROLES_CONSTANT.MANUFACTURER);
         setCompanyName('');
@@ -183,6 +185,7 @@ const AddDealership = () => {
         setCountryId('');
         setStateId('');
         setCityId([]);
+        setEmail("")
         setTermsAccepted(false);
     };
 
@@ -225,7 +228,7 @@ const AddDealership = () => {
                                 <form className="form row" >
                                     <div className="col-md-6">
                                         <label>Who are you? <span className="text-danger">*</span></label>
-                                       
+
                                         <input
                                             type="radio"
                                             name="type"
@@ -361,27 +364,23 @@ const AddDealership = () => {
                                             </select>
                                         </div>
                                         <div className="col-md-6">
-                                            <label>State <span className="text-danger">*</span></label>
-                                            <select
-                                                className="form-control"
-                                                value={cityId}
-                                                onChange={(e) => setCityId([...e.target.selectedOptions].map(option => option.value))}
-                                            >
-                                                <option value="">Select Cities</option>
-                                                {cityArr.map((city) => (
-                                                    <option key={city._id} value={city._id}>
-                                                        {city.name}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                            <label>City <span className="text-danger">*</span></label>
+                                            <Select
+                                                className='form-control abc bg-transparent'
+                                                options={cityArr && cityArr.length > 0 && cityArr.map((city) => ({ label: city.name, value: city._id }))}
+                                                value={cityId} // `cityId` should be an array to hold multiple selections
+                                                closeMenuOnSelect={false} // Keeps the dropdown open for multiple selections
+                                                onChange={(selectedOptions) => setCityId(selectedOptions)} // Updates state with selected cities
+                                                isMulti // Enables multi-select
+                                            />
                                         </div>
 
 
                                         <div className="col-md-6">
                                             <label>Image</label>
-                                            <div onClick={() => handleOpenImageInNewTab(profileImage)}>
+                                            {/* <div onClick={() => handleOpenImageInNewTab(profileImage)}>
                                                 <img src={profileImage} style={{ width: 150, height: 150 }} alt="" />
-                                            </div>
+                                            </div> */}
                                             <FileInput
                                                 setFile={async (e) => {
                                                     let base64 = await convertFileToBase64(e);
@@ -406,12 +405,12 @@ const AddDealership = () => {
             </div>
 
             {/* Modal */}
-            <Modal show={show} onHide={handleClose} className="subscription-card-container">
+            <Modal show={show} onHide={handleClose} className="">
                 <Modal.Header closeButton className="subscription-card-container">
                     <Modal.Title>Submission Successful</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="subscription-card-container">Your dealership information has been submitted successfully.</Modal.Body>
-              
+
             </Modal>
         </>
     );
