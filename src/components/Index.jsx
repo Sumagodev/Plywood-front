@@ -1140,7 +1140,7 @@ function Index() {
 
                               <div>
                                 <h6 className="old">
-                                  <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{ fontSize: "23px" }}>₹{el?.salePrice}/-</span></span>
+                                  <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{ fontSize: "23px" }}>₹{el?.salePrice}/- </span><span style={{ fontSize: "12px" }}>{el.pricetype}</span></span>
 
 
                                 </h6>
