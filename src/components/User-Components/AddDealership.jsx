@@ -225,14 +225,7 @@ const AddDealership = () => {
                                 <form className="form row" >
                                     <div className="col-md-6">
                                         <label>Who are you? <span className="text-danger">*</span></label>
-                                        <input
-                                            type="radio"
-                                            name="type"
-                                            value={ROLES_CONSTANT.MANUFACTURER}
-                                            checked={type === ROLES_CONSTANT.MANUFACTURER}
-                                            onChange={(e) => setType(e.target.value)}
-                                        />{" "}
-                                        <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
+                                       
                                         <input
                                             type="radio"
                                             name="type"

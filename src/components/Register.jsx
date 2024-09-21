@@ -358,28 +358,28 @@ export const Register = () => {
                                 <h3 className="heading yellow">Register</h3>
 
                                 <form className="form row ">
+                                
 
-
-                                    <div className="col-md-6">
+                                    <div className="col-md-9">
                                         <label>Who are you ? <span className="text-danger">*</span>  </label>
                                         <input
                                             type="radio"
                                             name="type"
-
-                                            value={ROLES_CONSTANT.MANUFACTURER}
-                                            checked={type === ROLES_CONSTANT.MANUFACTURER}
+                                            value={ROLES_CONSTANT.CONTRACTOR}
+                                            checked={type === ROLES_CONSTANT.CONTRACTOR}
                                             onChange={(e) => settype(e.target.value)}
-
                                         />{" "}
-                                        <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
+                                        <b className="mx-2">CONTRACTOR</b>
+
+
                                         <input
                                             type="radio"
                                             name="type"
-                                            value={ROLES_CONSTANT.DISTRIBUTOR}
-                                            checked={type === ROLES_CONSTANT.DISTRIBUTOR}
+                                            value={ROLES_CONSTANT.RETAILER}
+                                            checked={type === ROLES_CONSTANT.RETAILER}
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
-                                        <b className="mx-2">DISTRIBUTOR</b>
+                                        <b className="mx-2">RETAILER</b>
                                         <input
                                             type="radio"
                                             name="type"
@@ -391,11 +391,21 @@ export const Register = () => {
                                         <input
                                             type="radio"
                                             name="type"
-                                            value={ROLES_CONSTANT.RETAILER}
-                                            checked={type === ROLES_CONSTANT.RETAILER}
+                                            value={ROLES_CONSTANT.DISTRIBUTOR}
+                                            checked={type === ROLES_CONSTANT.DISTRIBUTOR}
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
-                                        <b className="mx-2">RETAILER</b>
+                                        <b className="mx-2">DISTRIBUTOR</b>
+                                        <input
+                                            type="radio"
+                                            name="type"
+
+                                            value={ROLES_CONSTANT.MANUFACTURER}
+                                            checked={type === ROLES_CONSTANT.MANUFACTURER}
+                                            onChange={(e) => settype(e.target.value)}
+
+                                        />{" "}
+                                        <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
                                     </div>
 
 
@@ -461,7 +471,7 @@ export const Register = () => {
                                                     </label>
                                                 </OverlayTrigger>
                                             </div>
-                                            <Select className='form-control bg-transperant'
+                                            <Select className='form-control abc bg-transperant' 
                                                 options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))}
                                                 value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
 

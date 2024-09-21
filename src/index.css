@@ -83,6 +83,16 @@ code {
   border-radius: 30px;
 }
 .css-13cymwt-control{
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
+}
+.css-13cymwt-control :hover{
+  background: transparent !important;
+  border: none !important;
+}
+.css-13cymwt-control::placeholder{
+  color: transparent;
+}
+.abc{
+  background: transparent !important;
 }

@@ -1,7 +1,7 @@
 .floating-icons .whatsapp {
   position: fixed;
-  bottom: 50px;
-  right: 20px;
+  bottom: 70px;
+  left: 2px;
   display: grid;
   flex-direction: column;
   gap: 10px;

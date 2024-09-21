@@ -1,14 +1,15 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { deleteFlashSalebyId, getAllFlashSalesbyUserId } from '../../services/FlashSales.service';
 import { getAllsubscription } from '../../services/Subscription.service'
 import { buySubscription } from '../../services/UserSubscription.service';
 import { errorToast, successToast } from '../Utility/Toast'
 import {
-    FaEdit, FaTrash
+    FaEdit, FaTrash,FaPencilAlt
 } from "react-icons/fa";
+import { FaPlus } from 'react-icons/fa'
 import { toastSuccess } from '../../utils/toastutill';
 import { getUserById } from '../../services/User.service';
 import { deleteAdvertisement, getAllAdvertisements } from '../../services/Advertisement.service';
@@ -43,7 +44,7 @@ export default function MyPromotions() {
 
             let { data: res } = await getAllAdvertisements(id);
             if (res.data) {
-                console.log(res.data)
+                console.log('pooja', res.data)
                 setAdvertisementArr(res.data);
             }
         }
@@ -81,79 +82,94 @@ export default function MyPromotions() {
 
     return (
 
-        
+
         <div className='container-fluid subscription-container topup-subscription-container'>
-        <div className="container">
-            <div className="subsctiption-heading">
-            Your Promotions
-            </div>
-            <div className="subscription-description">
-                Buy our topup to get a steady flow of leads for your business and take your business to the next level.
-            </div>
-            <div className="row">
-                <div className="col-12">
-                    <div className="row">
-                        {
-                            advertisementArr && advertisementArr.length > 0 && advertisementArr.map((el, index) => {
-                                return (
-                                    <div key={index} className="subscription-card">
-                                            <div className="row mt-4">
+            <div className="container">
+                <div className="subsctiption-heading">
+                    Your Promotions &nbsp;&nbsp;
+                    <Link
+                        to="/AddPromotions"
+                        className="yellow-bg btn text-white subsctiption-card-button  rounded-circle"
+                    >
+                        <FaPlus />
+                    </Link>
+
+                </div>
+                <div className="subscription-description">
+                    Buy our topup to get a steady flow of leads for your business and take your business to the next level.
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="row">
+                            {
+                                advertisementArr && advertisementArr.length > 0 && advertisementArr.map((el, index) => {
+                                    return (
+                                        <div key={index} className="subscription-card pb-3">
+                                            <div className="row ">
+                                                 <div className=' d-flex justify-content-end my-2'>
+
+                                                        <button onClick={() => handleDeleteFlashSale(el?._id)} className='yellow-bg btn text-white mx-2   rounded-5'>   <FaTrash /></button>
+
+
+                                                        <button onClick={() => handleRedirectToEditScreen(el?._id)} className='yellow-bg btn text-white  mx-2  rounded-5'><FaPencilAlt /></button>
+                                                    </div>
                                                 <div className="col-12">
-                                               
+                                                   
                                                     {
                                                         el.isVideo ?
                                                             <video style={{ width: "100%", height: 200 }} src={generateImageUrl(el.image)} />
                                                             :
-                                                            <img style={{ width: "100%", height: 200, borderRadius:20 }} src={generateImageUrl(el.image)} alt="" />
+                                                            <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={generateImageUrl(el.image)} alt="" />
                                                     }
-                                                    
-                                                   <div className="row pt-4">
-                                                <div className="col-6 my-1 clr"> 
-                                          
-                                                    Product Name:
-                                                </div>
-                                                <div className="col-6  my-1 clr">
-                                                    {el?.productId.name}
-                                                </div>
-                                                </div>
+
+                                                    <div className="row pt-4">
+                                                        <div className="col-6 my-1 clr">
+
+                                                            Product Name:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {el.productId?.name}
+                                                        </div>
+                                                    </div>
 
 
-                                                <div className="row">
-                                                <div className="col-6 my-1 clr">
-                                                    Message:
-                                                </div>
-                                                <div className="col-6  my-1 clr">
-                                                    {el?.message}
-                                                </div>
-                                                </div>
-                                                <div className="row">
-                                                <div className="col-6 my-1 clr">
-                                                    Start Date:
-                                                </div>
-                                                <div className="col-6  my-1 clr">
-                                                    {moment(el?.startDate).format("DD-MM-YYYY")}
-                                                </div>
-                                                </div>
+                                                    <div className="row">
+                                                        <div className="col-6 my-1 clr">
+                                                            Message:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {el?.message}
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-6 my-1 clr">
+                                                            Start Date:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {moment(el?.startDate).format("DD-MM-YYYY")}
+                                                        </div>
+                                                    </div>
 
-                                                <div className="row">
-                                                <div className="col-6 my-1 clr">
-                                                    End Date:
-                                                </div>
-                                                <div className="col-6  my-1 clr">
-                                                    {moment(el?.endDate).format("DD-MM-YYYY")}
-                                                </div>
+                                                    <div className="row">
+                                                        <div className="col-6 my-1 clr">
+                                                            End Date:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {moment(el?.endDate).format("DD-MM-YYYY")}
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                            </div>
-                                )
-                            })
-                        }
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         // <div className='container-fluid subscription-container'>
         //     <div className="container">
         //         <div className="row me-2 d-flex justify-content-between">
@@ -210,7 +226,7 @@ export default function MyPromotions() {
         //                                     <div className="row">
         //                                         <div className="col-3">
         //                                             {/* <h4><b>{el?.userObj?.name}</b></h4> */}
-                                                    
+
         //                                         </div>
         //                                         <div className="col-9 d-flex justify-content-end">
         //                                             <div className="theme-outline-button" onClick={() => handleRedirectToEditScreen(el._id)} style={{ fontSize: 12, padding: "4px 10px" }}>
@@ -224,21 +240,21 @@ export default function MyPromotions() {
         //                                         </div>
         //                                     </div>
 
-                                            
-                                            
+
+
         //                                     <div className="row mt-4">
         //                                         <div className="col-12">
-                                               
+
         //                                             {
         //                                                 el.isVideo ?
         //                                                     <video style={{ width: "100%", height: 200 }} src={generateImageUrl(el.image)} />
         //                                                     :
         //                                                     <img style={{ width: "100%", height: 200 }} src={generateImageUrl(el.image)} alt="" />
         //                                             }
-                                                    
+
         //                                         </div>
         //                                         <div className="col-5 my-1">
-                                          
+
         //                                             Product Name:
         //                                         </div>
         //                                         <div className="col-7  my-1">

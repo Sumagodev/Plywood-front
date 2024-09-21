@@ -73,15 +73,32 @@ const Movingicon = () => {
                     <form className="form row">
                         <div className="col-12">
                             <label>Name</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" />
+                            <input value={name}
+                                placeholder='Enter Your Name'
+                                onChange={(e) => setName(e.target.value)} type="text" className="form-control" />
                         </div>
+
                         <div className="col-12">
                             <label>Mobile No.</label>
-                            <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className="form-control" />
+                            <input
+                                value={phone}
+                                onChange={(e) => {
+                                    if (e.target.value.length <= 10) {
+                                        setPhone(e.target.value); // Update phone only if it's 10 digits or less
+                                    }
+                                }}
+                                type="tel"
+                                className="form-control"
+                                placeholder='Enter Your Mobile No'
+                            // Disable input if 10 digits are entered
+                            />
                         </div>
                         <div className="col-12">
-                            <label>Meassage</label>
-                            <input value={meassage} onChange={(e) => setmeassage(e.target.value)} type="text" className="form-control" />
+                            <label>Business Name</label>
+                            <input
+                                placeholder='Enter Your Business Name'
+
+                                value={meassage} onChange={(e) => setmeassage(e.target.value)} type="text" className="form-control" />
                         </div>
 
                         <div className="col-12 d-flex justify-content-center">

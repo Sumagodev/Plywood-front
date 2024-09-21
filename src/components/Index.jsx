@@ -119,7 +119,7 @@ function Index() {
   const fetchOpportunities = async () => {
     try {
       const response = await getAlldealership();
-      setOpportunities(response.data.data.filter(opportunity => opportunity.userId !== userObj._id));
+      setOpportunities(response.data.data.filter(opportunity => !userObj || opportunity.userId !== userObj._id));
       console.log("sdfes", response.data)
     } catch (error) {
       console.error('Error fetching dealership opportunities:', error);
@@ -661,7 +661,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="category ">
+      <section className="category">
         <Container fluid className="categoriesback p-0 p-lg-5">
           <div className="container">
             <div className="title-section with-btn mb-0 mb-lg-5 py-3 py-lg-0">
@@ -715,10 +715,10 @@ function Index() {
                       <SwiperSlide key={index}>
                         <Link to={`Shop?categories=${item._id}`}>
                           <Col className="d-grid text-center align-items-center justify-content-center">
-                            <div className="categoriescircle rounded-circle ctimg d-grid align-items-center justify-content-center">
+                            <div className="   d-grid align-items-center justify-content-center">
                               <img
                                 src={generateImageUrl(item.image)}
-                                className="p-4 img-fluid"
+                                className=" img-fluid ctimg "
                                 alt={item.name}
                               />
                             </div>
@@ -1260,7 +1260,8 @@ function Index() {
                 speed={1500}
                 breakpoints={ourvideos}
               >
-                {opportunities.filter(opportunity => opportunity.userId !== userObj._id).map(opportunity => (
+                {opportunities.map(opportunity => (
+
                   <SwiperSlide >
                     <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
                       <div className="dealership-oppo-box rounded-5 rounded">

@@ -9,7 +9,7 @@
 }
 
 .categoriesback {
-
+  /* background-image: url('../image/home/footer.png'); */
   background-color: #f5f1e8;
 }
 
@@ -23,8 +23,11 @@
 }
 
 .ctimg {
-  height: 200px;
-  width: 200px;
+  height: 240px;
+  width: 240px;
+  border-radius: 50%;
+  box-shadow: 8px 4px 17px 0px rgba(0, 0, 0, 0.25);
+
 }
 
 .productyoumaylike {
