@@ -487,7 +487,7 @@ const ProductDetails = () => {
                             <Form.Group controlId="formEmail">
                                 <Form.Control
                                     type="text"
-                                    placeholder="Mobile No.*"
+                                    placeholder="Address*"
                                     required
                                     className="input"
                                     value={address}
