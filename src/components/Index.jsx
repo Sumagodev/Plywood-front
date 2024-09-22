@@ -1135,6 +1135,7 @@ function Index() {
                               <h6 className=" text-center  prdtitle mt-3">
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   {el?.productId?.name}
+                                  
                                 </Link>
                               </h6>
 
