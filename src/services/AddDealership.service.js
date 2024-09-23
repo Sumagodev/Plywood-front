@@ -30,7 +30,7 @@ export const Applydealership = async (obj) => {
 }
 
 export const getAlldealership = async (query) => {
-    return axiosApiInstance.get(`${serverUrl}/getDelearshipOpportunities`)
+    return axiosApiInstance.get(`${url}/dealershipOwnerRoutes/getDelearshipOpportunities`)
 }
 // export const getForHomepage = async (query) => {
 //     return axiosApiInstance.get(`${serverUrl}/getForHomepage?${query}`)
