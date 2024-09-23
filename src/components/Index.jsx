@@ -931,8 +931,8 @@ function Index() {
                         <div className="vender-box">
                           <div className="newprdcrd">
                             <img
-                              src={generateImageUrl(el.image)}
-                              alt=""
+                              src={el.image ? generateImageUrl(el.image) : grls}
+                             
                               className="img-fluid img1"
                             />
                             <div className="d-flex justify-content-center">
@@ -1135,7 +1135,7 @@ function Index() {
                               <h6 className=" text-center  prdtitle mt-3">
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   {el?.productId?.name}
-                                  
+
                                 </Link>
                               </h6>
 

@@ -210,7 +210,11 @@
   /* .form-control {
     width: auto !important;
   } */
-
+   
+  .shopfilterposition{
+    position: relative;
+    bottom: -50px;
+  }
   .searchBox {
     width: auto !important;
     left: auto !important;

@@ -7,7 +7,7 @@ import G3 from "../assets/images/G3.png"
 import G4 from "../assets/images/G4.png"
 import ShopFilter from "../components/ShopFilter"
 import { Button, Card, Col, Container, Form, Row, Modal } from 'react-bootstrap';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate, useSearchParams } from 'react-router-dom';
 import { generateImageUrl } from "../services/url.service";
 import { getNestedCategories } from '../services/Category.service';
 import greenimg from "../assets/image/home/images/greenlam1.png";
@@ -33,7 +33,7 @@ import img5 from "../assets/image/home/imggujarat.png";
 import cardImg from "../assets/images/cardImg.png"
 import {
     deleteProductbyId,
-    getProducts,
+    getProducts, searchProduct
 } from "../services/Product.service";
 import {
     sentOtp,
@@ -42,8 +42,9 @@ import { successToast } from "./Utility/Toast";
 import { login } from "../redux/features/auth/authSlice";
 
 import { toastError } from "../utils/toastutill";
-import { getBrands } from '../services/brand.service';
 import { gettopUsers } from '../services/User.service';
+import ProductFilter from './ProductFilter';
+import { getBrands } from '../services/brand.service';
 
 const cardData = [
     {
@@ -67,7 +68,9 @@ const ProductDetails = () => {
     const auth = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
 
+    const [page, setPage] = useState(1);
     const [categoryArr, setcategoryArr] = useState([]);
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -147,13 +150,18 @@ const ProductDetails = () => {
         { imgSrc: img7, name: "Hyderabad" },
         { imgSrc: img5, name: "Gujarat" },
     ];
-
     const handleApplyFilter = () => {
-
-    }
+        setSearchParams((searchParams) => {
+            searchParams.set("page", 1);
+            setPage(1);
+            return searchParams;
+        });
+        searchProduct();
+    };
     const handleClearFilter = () => {
+        searchProduct();
+    };
 
-    }
 
     const handleNestedcategories = async () => {
         try {
@@ -177,7 +185,7 @@ const ProductDetails = () => {
         try {
 
 
-            let { data: res } = await getProducts();
+            let { data: res } = await searchProduct();
             if (res.data) {
                 console.log("res.data......qqqqqq", res.data);
 
@@ -322,7 +330,11 @@ const ProductDetails = () => {
                     <PageBanner img={images.top_banner} title="We connect Buyers & Sellers" desp="Plywood bazar is India's largest online B2B marketplace, connecting buyers with suppliers." className="mx-0" />
                     <div className="row mt-lg-4 px-4pc" >
                         <div className="col-12 mt-5 d-none d-lg-block">
-                            <ShopFilter
+                            {/* <ShopFilter
+                                handleApplyFilter={handleApplyFilter}
+                                handleClearFilter={handleClearFilter}
+                            /> */}
+                            <ProductFilter
                                 handleApplyFilter={handleApplyFilter}
                                 handleClearFilter={handleClearFilter}
                             />
@@ -429,8 +441,8 @@ const ProductDetails = () => {
                                                             handleClose(true);
                                                         } else {
                                                             // If the user does not have an active subscription, show the price modal
-                                                           
-                                                              window.location.href = `tel:${product.phone}`;
+
+                                                            window.location.href = `tel:${product.phone}`;
                                                         }
                                                     }}
 
@@ -557,7 +569,7 @@ const ProductDetails = () => {
                                                                         handleClose(true);
                                                                     } else {
                                                                         // If the user does not have an active subscription, show the price modal
-                                                                                                window.location.href = `tel:${el.phone}`;
+                                                                        window.location.href = `tel:${el.phone}`;
 
                                                                     }
                                                                 }}

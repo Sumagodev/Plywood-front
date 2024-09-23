@@ -108,6 +108,11 @@ export default function Profile() {
             icon: <AiTwotoneSetting />,
             link: "/notifications",
         },
+        {
+            name: "My DEalerships",
+            icon: <FaUserCheck />,
+            link: "/mydealerships",
+        },
     ]);
     const [userObj, setUserObj] = useState({});
     const [searchParams, setSearchParams] = useSearchParams();
@@ -196,7 +201,7 @@ export default function Profile() {
         <>
             <div className=' container-fluid userprofile'>
 
- m  
+                m
 
 
                 <div className=' row'>

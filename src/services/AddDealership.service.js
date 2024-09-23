@@ -37,17 +37,17 @@ export const getAlldealership = async (query) => {
 // }
 
 
-// export const getAdvertisementById = async (id) => {
-//     return axiosApiInstance.get(`${serverUrl}/getById/${id}`)
-// }
+export const getdealershipById = async (id) => {
+    return axiosApiInstance.get(`${serverUrl}/getDelearshipOpportunities/${id}`)
+}
 
 
-// export const deleteAdvertisement = async (id) => {
-//     return axiosApiInstance.delete(`${serverUrl}/deleteById/${id}`)
-// }
+export const deletedealership = async (id) => {
+    return axiosApiInstance.delete(`${serverUrl}/dealership-owners/${id}`)
+}
 
 
-// export const updateAdvertisementApi = (formData, id) => {
-//     return axiosApiInstance.patch(`${serverUrl}/updateById/${id}`, formData)
-// }
+export const updatedealershipApi = (formData, id) => {
+    return axiosApiInstance.patch(`${serverUrl}/dealership-owners/${id}`, formData)
+}
 

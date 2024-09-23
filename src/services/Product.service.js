@@ -1,5 +1,6 @@
 import { axiosApiInstance } from "../App";
 import { url } from "./url.service";
+import axios from "axios";
 
 let serverUrl = `${url}/product`;
 
@@ -40,6 +41,16 @@ export const deleteProductbyId = async (id) => {
   return axiosApiInstance.delete(`${serverUrl}/deleteById/${id}`);
 };
 
-export const searchProduct = async (query) => {
-  return axiosApiInstance.get(`${serverUrl}/searchProductWithQuery?${query}`);
+// export const searchProduct = async (query) => {
+//   return axiosApiInstance.get(`${serverUrl}/searchProductWithQuery?${query}`);
+// };
+export const searchProduct = async (query, cancelToken) => {
+  if (!cancelToken || !cancelToken?.token) {
+    return axios.get(`${serverUrl}/searchProductWithQuery?${query}`);
+  } else {
+    return axios.get(`${serverUrl}/searchProductWithQuery?${query}`, {
+      cancelToken: cancelToken?.token,
+    });
+  }
+  return axios.get(`${serverUrl}/searchProductWithQuery/?${query}`);
 };

@@ -356,7 +356,7 @@ function Shop() {
                 />
               </div>
               <div className=" row px-0">
-                <div className="col-12 col-lg-9">
+                <div className="col-12 col-lg-10">
 
 
                   <div className="row px-0 gy-5 main_Profiles">
@@ -619,7 +619,7 @@ function Shop() {
                             productsArr.map((el, index) => {
                               return (
                                 <>
-                                  <Col xs={6} lg={4}>
+                                  <Col xs={6} xxl={3} xl={4}>
                                     <div className=" py-3 px-0 px-lg-2">
                                       {/* <Link to={`/Supplier/${el?._id}`}> */}
                                       <div className="component-container1  text-center">
@@ -710,10 +710,10 @@ function Shop() {
 
                   </div>
                 </div>
-                <div className=" col-12 col-lg-3 ">
+                <div className=" col-12 col-lg-2 ">
 
                   <div className="main-container-form py-2 my-5">
-                    <p>TELL US YOUR REQUIREMENT</p>
+                    <p className=" text-center">TELL US YOUR REQUIREMENT</p>
                     <Form action="/submit" className="form">
                       <Form.Group controlId="formName">
                         <Form.Control
@@ -783,9 +783,11 @@ function Shop() {
                                         className=" img-fluid  rounded-5 "
                                         alt={item.name}
                                       />
-                                      <p className="fw-bolder mx-4 py-3 recommondedprdname fs-6 d-lg-block d-none">{item.name}</p>
-                                      <div className="recommondedprdname d-flex justify-content-center  align-items-center d-block d-lg-none"> <span className="px-2  ">{item.name}</span></div>
+                                    <div className="recommondedprdname">
+                                      <div className="fw-bol px-2 py-2  d-lg-block d-none">{item.name}</div>
+                                      <div className=" d-flex justify-content-center  align-items-center d-block d-lg-none"> <span className="px-2  ">{item.name}</span></div>
 
+                                    </div>
 
                                     </div>
 

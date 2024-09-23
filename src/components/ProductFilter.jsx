@@ -5,14 +5,20 @@ import {
   searchVendorFromDb,
   sentOtp,
 } from "../services/User.service";
+import {
+  deleteProductbyId,
+  getProducts, searchProduct
+} from "../services/Product.service";
 import { OverlayTrigger, Row, Tooltip, Form } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import ReactStars from "react-rating-stars-component";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { getNestedCategories } from "../services/Category.service";
+import { getAllCategories } from "../services/Category.service";
 import { getStates } from "../services/State.service";
 import { getBrandApi } from "../services/brand.service";
+import { getBrands } from '../services/brand.service';
+
 import { getCityApi } from "../services/city.service";
 import { toastError } from "../utils/toastutill";
 import { ROLES } from "../utils/Roles.utils";
@@ -23,7 +29,7 @@ import {
 
 } from "react-router-dom";
 import filter from '../assets/image/home/image 140.png'
-function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
+function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
   const navigate = useNavigate();
   let role = useSelector((state) => state.auth.role);
   const formRef = useRef(null);
@@ -39,22 +45,21 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
   const [searchResultArr, setSearchResultArr] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [activeKey, setActiveKey] = useState(null); // This will control the open accordion
 
   const handleCheckItem = (obj) => {
-    let tempArr = searchList.map((el) => {
-      if (el.name == obj.name) {
-        el.checked = true;
-      } else {
-        el.checked = false;
-      }
-
-      return el;
-    });
-    setSearchText("");
+    const updatedList = searchList.map((el) =>
+      el.name === obj.name ? { ...el, checked: true } : { ...el, checked: false }
+    );
     setSearchType(obj.type);
-    setSearchList([...tempArr]);
+    setSearchText("");
     setSearchResultArr([]);
+    setSearchList(updatedList);
   };
+  useEffect(() => {
+    if (searchText) debounceSearch(searchText);
+  }, [searchType]);
+
   const checkSearchMode = () => {
     return searchList.find((el) => el.checked)?.name;
   };
@@ -72,7 +77,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
       console.log(searchType, "handleSearchText");
 
       if (value != "") {
-        const { data: res } = await searchVendorFromDb(
+        const { data: res } = await searchProduct(
           `search=${value}&role=${role}`
         );
         if (res) {
@@ -214,39 +219,16 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
         <Col lg={11} className=" px-5 shop-filter py-3">
           <Accordion>
             <Row>
+
               <Col lg={2}>
 
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
-                    <div className="accordianHeading">Vendor Types</div>
+                    {" "}
+                    <div className="accordianHeading"> Brands</div>
                   </Accordion.Header>
                   <Accordion.Body>
-                    <div className="box">
-                      {/* <h5 className="title">User Types </h5> */}
-                      {/* <div className="price-range"> */}
-                      <ul className="list comm-list">
-                        {usertypes &&
-                          usertypes.length > 0 &&
-                          usertypes.map((el, index) => {
-                            return (
-                              <li>
-                                <label>
-                                  <div>
-                                    <input
-                                      type="checkbox"
-                                      onChange={(e) => toggleSelected(index)}
-                                      checked={isChecked(index)}
-                                      className="form-check-input"
-                                    />
-                                  </div>
-                                  <p> {el?.name} </p>
-                                </label>
-                              </li>
-                            );
-                          })}
-                      </ul>
-                      {/* </div> */}
-                    </div>
+                    <BrandFilter />
                   </Accordion.Body>
                 </Accordion.Item>
               </Col>
@@ -284,7 +266,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           className={`searchicn position-absolute top-50  translate-middle-y me-1 text-white d-inline-flex align-items-center justify-content-center ${!searchText ? "disabled" : ""}`}
                           style={{ fontSize: 12 }}
                           type="button"
-                          onClick={() => { handleApplyFilter(); handleClose && handleClose(); }}
+                          onClick={() => { handleApplyFilter();  handleClose && handleClose(); }}
                           disabled={!searchText} // This will also prevent the button from being clicked
                         >
                           <FiSearch />
@@ -307,7 +289,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
 
                         <div>   <button className="btn btn-outline btn-outline-custom" style={{ fontSize: 12 }} type="button"
-                          onClick={() => { handleApplyFilter();  handleClose && handleClose() }}>
+                          onClick={() => { handleApplyFilter();setActiveKey(null); handleClose && handleClose() }}>
                           Apply
                         </button></div>
 
@@ -316,7 +298,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           style={{ fontSize: 12 }}
                           type="button"
                           onClick={() => {
-                            navigate("/Shop");
+                            navigate("/product-details");
                             handleResetStates();
                             handleClose && handleClose();
                           }}
@@ -384,18 +366,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
                 <Accordion.Item eventKey="2">
                   <Accordion.Header>
-                    <div className="accordianHeading">Location </div>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <LocationFilter />
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Col>
-              <Col lg={2}>
-
-                <Accordion.Item eventKey="3">
-                  <Accordion.Header>
-                    <div className="accordianHeading"> Rating </div>
+                    <div className="accordianHeading">Rating </div>
                   </Accordion.Header>
                   <Accordion.Body>
                     <div className="box">
@@ -468,6 +439,17 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                   </Accordion.Body>
                 </Accordion.Item>
               </Col>
+              <Col lg={2}>
+
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>
+                    <div className="accordianHeading"> MinPrize </div>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <PriceFilter />
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Col>
             </Row>
           </Accordion>
         </Col>
@@ -493,6 +475,86 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
     </div>
   );
 }
+const BrandFilter = () => {
+  const [brandArr, setBrandArr] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const getBrand = async () => {
+    try {
+      const { data: res } = await getBrands();
+      if (res) setBrandArr(res.data);
+    } catch (error) {
+      toastError(error);
+    }
+  };
+
+  useEffect(() => {
+    getBrand();
+  }, []);
+
+  const toggleSelectedBrand = (id) => {
+    setSelectedBrands((prevSelectedBrands) => {
+      const updatedSelectedBrands = prevSelectedBrands.includes(id)
+        ? prevSelectedBrands.filter((el) => el !== id)
+        : [...prevSelectedBrands, id];
+
+      // Update search params
+      setSearchParams((searchParams) => {
+        const brandStr = updatedSelectedBrands.join(",");
+        if (brandStr) {
+          searchParams.set("brand", brandStr);
+        } else {
+          searchParams.delete("brand");
+        }
+        return searchParams;
+      });
+
+      return updatedSelectedBrands;
+    });
+  };
+
+  const isBrandChecked = (id) => selectedBrands.includes(id);
+
+  useEffect(() => {
+    if (searchParams.get("brands")) {
+      setSelectedBrands(searchParams.get("brands").split(","));
+    } else {
+      setSelectedBrands([]);
+    }
+  }, [searchParams]);
+
+  const clearBrandFilters = () => {
+    setSearchParams((searchParams) => {
+      searchParams.delete("brands");
+      return searchParams;
+    });
+  };
+
+  return (
+    <div className="box">
+      <ul className="list comm-list">
+        {brandArr?.map((brand) => (
+          <li key={brand._id}>
+            <label>
+              <input
+                type="checkbox"
+                className="form-check-input"
+                onChange={() => toggleSelectedBrand(brand._id)}
+                checked={isBrandChecked(brand._id)}
+              />
+              {brand?.name}
+            </label>
+          </li>
+        ))}
+      </ul>
+      {/* <button onClick={clearBrandFilters}>Clear Brand Filters</button> */}
+    </div>
+  );
+};
+
+
+
 
 const VendorTypesFilter = () => {
   const [manufacturersArr, setManufacturersArr] = useState([]);
@@ -710,7 +772,7 @@ const CategoryFilter = () => {
 
   const getCategory = async () => {
     try {
-      const { data: res } = await getNestedCategories();
+      const { data: res } = await getAllCategories();
       if (res) {
         console.log(res.data, "filter");
         setCategoryData(res.data);
@@ -740,9 +802,9 @@ const CategoryFilter = () => {
         ""
       );
       if (categoryStr) {
-        searchParams.set("categories", categoryStr);
+        searchParams.set("categoryId", categoryStr);
       } else {
-        searchParams.delete("categories");
+        searchParams.delete("categoryId");
       }
       return searchParams;
     });
@@ -1063,21 +1125,17 @@ const MinPrize = () => {
   return (
     <div>
       <label className="fs-15 fw-semibold line-height-normal">Min</label>
-      <OverlayTrigger
-        placement="top"
-        delay={{ show: 250, hide: 400 }}
-        overlay={minPrizeTooltip}
-      >
-        <input
-          type="range"
-          className="form-range"
-          step="100"
-          min="0"
-          max="500"
-          onChange={(e) => setValue(e.target.value)}
-          value={minPrice}
-        />
-      </OverlayTrigger>
+
+      <input
+        type="range"
+        className="form-range"
+        step="100"
+        min="0"
+        max="500"
+        onChange={(e) => setValue(e.target.value)}
+        value={minPrice}
+      />
+
     </div>
   );
 };
@@ -1114,23 +1172,96 @@ const MaxPrize = () => {
   return (
     <div>
       <label className="fs-15 fw-semibold line-height-normal">Max</label>
-      <OverlayTrigger
-        placement="top"
-        delay={{ show: 250, hide: 400 }}
-        overlay={maxPrizeTooltip}
-      >
-        <input
-          type="range"
-          className="form-range"
-          step="100"
-          min="0"
-          max="55000"
-          onChange={(e) => setValue(e.target.value)}
-          value={maxPrice}
-        />
-      </OverlayTrigger>
+
+      <input
+        type="range"
+        className="form-range"
+        step="100"
+        min="0"
+        max="55000"
+        onChange={(e) => setValue(e.target.value)}
+        value={maxPrice}
+      />
+    </div>
+  );
+};
+const PriceFilter = () => {
+  const [priceRanges, setPriceRanges] = useState([
+    { label: "0 to 1000", min: 0, max: 9999, checked: false },
+    { label: "1000 to 2000", min: 1000, max: 1999, checked: false },
+    { label: "2000 to 3000", min: 2000, max: 2999, checked: false },
+    { label: "3000 to 4000", min: 3000, max: 3999, checked: false },
+    { label: "4000 to 5000", min: 4000, max: 5000, checked: false },
+  ]);
+
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    // Initialize selected price ranges from URL parameters if available
+    const minPriceParam = searchParams.get("minPrice");
+    const maxPriceParam = searchParams.get("maxPrice");
+
+    if (minPriceParam && maxPriceParam) {
+      const updatedRanges = priceRanges.map((range) => {
+        return {
+          ...range,
+          checked:
+            range.min == minPriceParam && range.max == maxPriceParam,
+        };
+      });
+      setPriceRanges(updatedRanges);
+    }
+  }, [searchParams, location.search]);
+
+  const handleCheckboxChange = (index) => {
+    let updatedRanges = [...priceRanges];
+    updatedRanges = updatedRanges.map((range, i) => ({
+      ...range,
+      checked: i === index ? !range.checked : false, // Only allow one checkbox to be selected at a time
+    }));
+
+    setPriceRanges(updatedRanges);
+
+    const selectedRange = updatedRanges[index];
+    if (selectedRange.checked) {
+      setSearchParams((searchParams) => {
+        searchParams.set("minPrice", selectedRange.min);
+        searchParams.set("maxPrice", selectedRange.max);
+        return searchParams;
+      });
+    } else {
+      // Clear price range if unchecked
+      setSearchParams((searchParams) => {
+        searchParams.delete("minPrice");
+        searchParams.delete("maxPrice");
+        return searchParams;
+      });
+    }
+  };
+
+  return (
+    <div>
+      <label className="fs-15 fw-semibold line-height-normal">Price Range</label>
+      <div>
+        {priceRanges.map((range, index) => (
+          <div key={index} className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id={`priceRange${index}`}
+              checked={range.checked}
+              onChange={() => handleCheckboxChange(index)}
+            />
+            <label className="form-check-label" htmlFor={`priceRange${index}`}>
+              {range.label}
+            </label>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default ShopFilter;
+
+export default ProductFilter;

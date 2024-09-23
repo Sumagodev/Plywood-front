@@ -106,7 +106,7 @@
 }
 
 .product-container-section .box_Product1 .icn_Product {
-  background-color: #927251;
+  background-color: #39ab68;
   border: solid white 4px;
   border-radius: 100%;
   color: white;
@@ -261,7 +261,7 @@
 
 .newprdcrd .phn {
 
-  background: rgba(96, 50, 0, 1);
+  background: #39ab68;
   cursor: pointer;
   border: 4px solid white;
   position: relative;
@@ -353,13 +353,13 @@
 }
 
 .main_Profiles .component-container1 .p1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   text-align: center;
 }
 
 .main_Profiles .component-container1 .p2 {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -455,7 +455,7 @@
 }
 
 .ims {
-  border-radius: 0px 0px 30px 30px !important;
+  border-radius: 30px 30px 30px 30px !important;
 }
 
 .flashpeoductback {

@@ -35,6 +35,8 @@ import AddDealership from "../components/User-Components/AddDealership";
 import Thankyou from "../components/Thankyou";
 import ProductDetails from "../components/ProductDetails";
 import ApplyDealership from "../components/User-Components/ApplyDealership";
+import Demoproduct from "../components/Demoproduct";
+import MyDealership from "../components/User-Components/MyDealerships";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -71,8 +73,15 @@ export const routes = [
     isUnProtected: true,
   },
   {
-    path: "/product-details",
+    path: "/product-details6",
     component: <ProductDetails />,
+    role: [],
+    isAuthorized: false,
+    isUnProtected: false,
+  },
+  {
+    path: "/product-details",
+    component: <Demoproduct />,
     role: [],
     isAuthorized: false,
     isUnProtected: false,
@@ -83,7 +92,7 @@ export const routes = [
     role: [],
     isAuthorized: false,
     isUnProtected: false,
-  }, 
+  },
   {
     path: "/AddDealership",
     component: <AddDealership />,
@@ -162,6 +171,12 @@ export const routes = [
     isUnProtected: false,
   },
   {
+    path: "/mydealerships",
+    component: <MyDealership/>,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: true,
+    isUnProtected: false,
+  }, {
     path: "/Recent-Activities",
     component: <RecentActivities />,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],

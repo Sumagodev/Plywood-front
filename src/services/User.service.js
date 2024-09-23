@@ -47,6 +47,10 @@ export const searchVendorFromDb = async (query) => {
   return axiosApiInstance.get(`${serverUrl}/searchVendor?${query}`);
 };
 
+export const searchproductFromDb = async (query) => {
+  return axiosApiInstance.get(`product/searchProductWithQuery?${query}`);
+};
+
 export const updateUserById = async (id, obj) => {
   return axiosApiInstance.patch(`${serverUrl}/updateUserById/${id}`, obj);
 };

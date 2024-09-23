@@ -25,6 +25,7 @@ import {
   sentOtp,
 } from "../services/User.service";
 import { login } from "../redux/features/auth/authSlice";
+import { set } from "lodash";
 function ShopDetail() {
   const [modalOpen, setModalOpen] = useState(false);
   let userObj = useSelector((state) => state.auth.user);
@@ -284,14 +285,18 @@ function ShopDetail() {
       let obj = {
         rating,
         message,
-        name: userName,
+      name: userObj?.name,
         productId: productObj?._id,
       };
       let { data: res } = await addReview(obj);
+
       if (res.message) {
         toastSuccess(res.message);
         setReviewModal(false);
         handleGetProductReview(productObj?._id)
+        setMessage("")
+        setRating("")
+        setName("")
       }
     } catch (err) {
       toastError(err);
@@ -543,7 +548,7 @@ function ShopDetail() {
                           {productObj?.createdByObj?.userObj?.companyObj?.phone}
                         </a>
                       ) : (
-                        <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) :   handleClose(true); }} className="btn btn-sm btn-yellow w-100 ">
+                        <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : handleClose(true); }} className="btn btn-sm btn-yellow w-100 ">
                           View Mobile Number
                         </button>
                       )}
@@ -606,7 +611,7 @@ function ShopDetail() {
                     <SwiperSlide>
                       <div className="product-box">
 
-                        <Link to={`/ShopDetail/${el?.slug}`}>{el?.productImage ? <img src={generateImageUrl(el?.productImage)} alt="" className="img" /> : <img src={images.category_5} alt="" className="img" />}</Link>
+                        {el?.productImage ? <img src={generateImageUrl(el?.productImage)} alt="" className="img" /> : <img src={images.category_5} alt="" className="img" />}
 
                         <div className="content " onClick={() => {
                           if (!isAuthorized) {
@@ -624,12 +629,12 @@ function ShopDetail() {
                         > <button className="call-btn">   <MdCall />
                           </button>
 
-
-                          <div className="title ">
-                            <Link className="text-white fs-5" to={`/ShopDetail/${el?.slug}`}>{el.productName}</Link>
-                          </div>
-                          <div className=" text-white fw-light">Size (Sq ft): {el?.specification?.size ? el?.specification?.size : "N.A."}</div>
-                          <div className=" text-white">₹{el.price}/Sq ft</div>
+                          <Link className="text-white" to={`/ShopDetail/${el?.slug}`}>
+                            <div className="title fs-5">
+                              {el.productName}
+                            </div>
+                            <div className=" text-white fw-light">Size (Sq ft): {el?.specification?.size ? el?.specification?.size : "N.A."}</div>
+                            <div className=" text-white">₹{el.price}/Sq ft</div></Link>
                         </div>
                       </div>
 
@@ -875,7 +880,7 @@ function ShopDetail() {
             <form className="form row">
               <div className="col-12 col-md-6">
                 <label>Name</label>
-                <input onChange={(e) => setUserName(e.target.value)} value={userName} type="text" className="form-control" />
+                <input onChange={(e) => setUserName(e.target.value)} placeholder={userObj?.name} value={userName} type="text" className="form-control" />
               </div>
               <div className="col-12 col-md-6">
                 <label>Rating</label>
@@ -907,7 +912,7 @@ function ShopDetail() {
             <form className="form row">
               <div className="col-12">
                 <label>Name</label>
-                <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" />
+                <input value={name}  onChange={(e) => setName(e.target.value)} type="text" className="form-control" />
               </div>
               <div className="col-12">
                 <label>Mobile No.</label>
