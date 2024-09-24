@@ -17,17 +17,7 @@ export const Adddealership = async (obj) => {
     }
 }
 
-export const Applydealership = async (obj) => {
-    try {
-        console.log("Request Data:", obj); // Log request data
-        const response = await axiosApiInstance.post(`${url}/dealershipUserRoutes/applyForDealershipOpportunitiy`, obj);
-        console.log("Response Data:", response.data); // Log response data
-        return response;
-    } catch (error) {
-        console.error("Error in API call:", error.response ? error.response.data : error.message);
-        throw error;
-    }
-}
+
 
 export const getAlldealership = async (query) => {
     return axiosApiInstance.get(`${url}/dealershipOwnerRoutes/getDelearshipOpportunities`)
@@ -38,7 +28,7 @@ export const getAlldealership = async (query) => {
 
 
 export const getdealershipById = async (id) => {
-    return axiosApiInstance.get(`${serverUrl}/getDelearshipOpportunities/${id}`)
+    return axiosApiInstance.get(`${serverUrl}/getDealershipOwnerByUserId/${id}`)
 }
 
 
@@ -51,3 +41,19 @@ export const updatedealershipApi = (formData, id) => {
     return axiosApiInstance.patch(`${serverUrl}/dealership-owners/${id}`, formData)
 }
 
+// ************dealeruser**********//
+export const Applydealership = async (obj) => {
+    try {
+        console.log("Request Data:", obj); // Log request data
+        const response = await axiosApiInstance.post(`${url}/dealershipUserRoutes/applyForDealershipOpportunitiy`, obj);
+        console.log("Response Data:", response.data); // Log response data
+        return response;
+    } catch (error) {
+        console.error("Error in API call:", error.response ? error.response.data : error.message);
+        throw error;
+    }
+}
+
+export const getalldealershipuser = async (query) => {
+    return axiosApiInstance.get(`${url}/dealershipUserRoutes/getDelearshipOpportunities`)
+}

@@ -292,10 +292,7 @@ function Footer() {
       </footer> */}
       <>
         <div className="footer">
-          <div
-            style={{ backgroundColor: "#E2DCCF", height: "5px" }}
-            className="mt-1"
-          ></div>
+          
           <Container className=" text-white mt-0 mt-lg-5 p-4 p-md-0">
             <Row className="elements1">
               <Col xs={12} lg={4} className="">

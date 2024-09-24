@@ -13,7 +13,7 @@ import { FaPlus } from 'react-icons/fa'
 import { toastSuccess } from '../../utils/toastutill';
 import { getUserById } from '../../services/User.service';
 import { deleteAdvertisement, getAllAdvertisements } from '../../services/Advertisement.service';
-import { getdealershipById } from '../../services/AddDealership.service'
+import { deletedealership,getAlldealership } from '../../services/AddDealership.service'
 import { generateImageUrl } from '../../services/url.service';
 import "../../assets/css/Topup.css"
 export default function MyDealership() {
@@ -43,9 +43,10 @@ export default function MyDealership() {
     const handleGetAdvertisements = async (id) => {
         try {
 
-            let { data: res } = await getdealershipById(id);
+            let { data: res } = await getAlldealership();
             if (res.data) {
                 console.log('pooja', res.data)
+                
                 setAdvertisementArr(res.data);
             }
         }
@@ -58,7 +59,7 @@ export default function MyDealership() {
     const handleDeleteFlashSale = async (id) => {
         try {
 
-            let { data: res } = await deleteAdvertisement(id);
+            let { data: res } = await deletedealership(id);
             if (res.message) {
                 toastSuccess(res.message)
                 handleGetAdvertisements(userObj._id)
@@ -109,7 +110,7 @@ export default function MyDealership() {
                                             <div className="row ">
                                                 <div className=' d-flex justify-content-end my-2'>
 
-                                                    <button onClick={() => handleDeleteFlashSale(el?._id)} className='yellow-bg btn text-white mx-2   rounded-5'>   <FaTrash /></button>
+                                                    <button onClick={() => handleDeleteFlashSale(el._id)} className='yellow-bg btn text-white mx-2   rounded-5'>   <FaTrash /></button>
 
 
                                                     {/* <button onClick={() => handleRedirectToEditScreen(el?._id)} className='yellow-bg btn text-white  mx-2  rounded-5'><FaPencilAlt /></button> */}
