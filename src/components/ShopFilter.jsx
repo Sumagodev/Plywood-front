@@ -109,15 +109,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
   const [usertypes, setUsertypes] = useState([
     {
-      name: ROLES.MANUFACTURER,
-      checked: false,
-    },
-    {
-      name: ROLES.DISTRIBUTOR,
-      checked: false,
-    },
-    {
-      name: ROLES.DEALER,
+      name: ROLES.CONTRACTOR,
       checked: false,
     },
     {
@@ -125,9 +117,17 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
       checked: false,
     },
     {
-      name: ROLES.CONTRACTOR,
+      name: ROLES.DEALER,
       checked: false,
     },
+    {
+      name: ROLES.DISTRIBUTOR,
+      checked: false,
+    },
+    {
+      name: ROLES.MANUFACTURER,
+      checked: false,
+    }
   ]);
 
   const returnBooleanIfChecked = (value) => {
@@ -172,18 +172,26 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
   };
   const handleResetStates = () => {
     let tempArr = [
-      {
-        name: ROLES.MANUFACTURER,
-        checked: false,
-      },
-      {
-        name: ROLES.DISTRIBUTOR,
-        checked: false,
-      },
-      {
-        name: ROLES.DEALER,
-        checked: false,
-      },
+       {
+      name: ROLES.CONTRACTOR,
+      checked: false,
+    },
+    {
+      name: ROLES.RETAILER,
+      checked: false,
+    },
+    {
+      name: ROLES.DEALER,
+      checked: false,
+    },
+    {
+      name: ROLES.DISTRIBUTOR,
+      checked: false,
+    },
+    {
+      name: ROLES.MANUFACTURER,
+      checked: false,
+    },
     ].filter(
       (el) =>
         `${el.name}`.toLowerCase().trim() != `${role}`.toLowerCase().trim()
