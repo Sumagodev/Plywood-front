@@ -120,6 +120,14 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
       name: ROLES.DEALER,
       checked: false,
     },
+    {
+      name: ROLES.RETAILER,
+      checked: false,
+    },
+    {
+      name: ROLES.CONTRACTOR,
+      checked: false,
+    },
   ]);
 
   const returnBooleanIfChecked = (value) => {
