@@ -104,7 +104,7 @@ export const routes = [
     path: "/ApplyDealership",
     component: <ApplyDealership />,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
-    isAuthorized: true,
+    isAuthorized: false,
     isUnProtected: false,
   },
   {

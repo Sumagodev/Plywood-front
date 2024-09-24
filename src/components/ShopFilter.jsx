@@ -172,26 +172,26 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
   };
   const handleResetStates = () => {
     let tempArr = [
-       {
-      name: ROLES.CONTRACTOR,
-      checked: false,
-    },
-    {
-      name: ROLES.RETAILER,
-      checked: false,
-    },
-    {
-      name: ROLES.DEALER,
-      checked: false,
-    },
-    {
-      name: ROLES.DISTRIBUTOR,
-      checked: false,
-    },
-    {
-      name: ROLES.MANUFACTURER,
-      checked: false,
-    },
+      {
+        name: ROLES.CONTRACTOR,
+        checked: false,
+      },
+      {
+        name: ROLES.RETAILER,
+        checked: false,
+      },
+      {
+        name: ROLES.DEALER,
+        checked: false,
+      },
+      {
+        name: ROLES.DISTRIBUTOR,
+        checked: false,
+      },
+      {
+        name: ROLES.MANUFACTURER,
+        checked: false,
+      },
     ].filter(
       (el) =>
         `${el.name}`.toLowerCase().trim() != `${role}`.toLowerCase().trim()
@@ -288,11 +288,6 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                     onFocus={() => setShowSearchBar(true)}
                     ref={formRef}
                   >
-
-
-
-
-
                     <div className="searchbar rounded-pill d-flex row">
                       <div className=" col-1">
 
@@ -323,7 +318,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
 
                         <div>   <button className="btn btn-outline btn-outline-custom" style={{ fontSize: 12 }} type="button"
-                          onClick={() => { handleApplyFilter();  handleClose && handleClose() }}>
+                          onClick={() => { handleApplyFilter(); handleClose && handleClose() }}>
                           Apply
                         </button></div>
 
