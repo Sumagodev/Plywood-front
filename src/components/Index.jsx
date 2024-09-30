@@ -1215,7 +1215,7 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <Link to={`/Shop?state=${city._id}`}>
+                <Link to={`/Shop?state=${city.stateId._id}`}>
                   <div>
                     <img
                       src={city.image ? generateImageUrl(city?.image) : img1}
