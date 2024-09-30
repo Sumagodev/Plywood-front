@@ -19,15 +19,23 @@ import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
 import { getDealershipById, updateDealership, Adddealership } from '../../services/AddDealership.service';
 import { addBrandApi, getBrandApi } from "../../services/brand.service";
 import { errorToast, successToast } from "../Utility/Toast";
+import { getAllCategories } from "../../services/Category.service";
 
 const AddDealership = () => {
     const navigate = useNavigate();
     const [brandName, setBrandName] = useState("");
     const [productArr, setProductArr] = useState([]);
     const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
+    const [category, setcategory] = useState("");
     const [searchParams, setSearchParams] = useSearchParams();
-        const dealershipId = "66f5301c2b94608ae86221b3";  // Extract id from the URL
+    const [dealershipId, setDealershipId] = useState("");
+    console.log("searchParams", searchParams.get('id'));
+    useEffect(() => {
+        setDealershipId(searchParams.get('id'))
+    }, [searchParams])
+    console.log("dealershipId........................", dealershipId);
+
+    // const dealershipId = "66f5301c2b94608ae86221b3";  // Extract id from the URL
     const userObj = useSelector((state) => state.auth.user);
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [email, setEmail] = useState("");
@@ -37,6 +45,7 @@ const AddDealership = () => {
     const [countryArr, setCountryArr] = useState([]);
     const [stateArr, setStateArr] = useState([]);
     const [cityArr, setCityArr] = useState([]);
+    const [categoryArr, setCategoryArr] = useState([]);
     const [countryId, setCountryId] = useState("");
     const [stateId, setStateId] = useState("");
     const [brandNames, setBrandNames] = useState("");
@@ -54,12 +63,26 @@ const AddDealership = () => {
     const handleProfileModalClose = () => setShowProfileModal(false);
     const onCropChange = (newCrop) => setCroppedProfilePhoto(newCrop);
     const onZoomChange = (newZoom) => setZoom(newZoom);
+
+
     const handleGetProducts = async () => {
         try {
             let query = `page=${1}&perPage=${10000}&userId=${userObj?._id}`;
             let { data: res } = await getAllProducts(query);
             if (res.data) {
                 setProductArr(res.data);
+            }
+        } catch (err) {
+            errorToast(err);
+        }
+    };
+
+    const handleGetCategory = async () => {
+        try {
+            let { data: res } = await getAllCategories();
+            if (res.data) {
+                setCategoryArr(res.data);
+
             }
         } catch (err) {
             errorToast(err);
@@ -81,7 +104,7 @@ const AddDealership = () => {
         handleGetCountries();
         handleGetBrands();
         handleGetProducts();
-
+        handleGetCategory()
     }, []);
 
     const handleGetStates = async (countryId) => {
@@ -177,6 +200,7 @@ const AddDealership = () => {
             Type: type,
             Brand: brandNames,
             Product: productId,
+            categoryArr: categoryArr.map((el) => el._id),
             email,
             companyName,
             image: profileImage,
@@ -187,6 +211,7 @@ const AddDealership = () => {
 
         try {
             if (dealershipId) {
+                alert("test")
                 // Update existing dealership
                 const { data: response } = await updateDealership(formData, dealershipId);
                 successToast("Dealership updated successfully");
@@ -325,28 +350,40 @@ const AddDealership = () => {
                                         </div>
 
 
-                                        <div className="col-md-6">
+                                        {/* <div className="col-md-6">
                                             <label>
-                                                Product <span className="text-danger">*</span>
+                                                Category <span className="text-danger">*</span>
                                             </label>
 
                                             <select
                                                 className="form-control "
-                                                value={productId}
+                                                value={category}
                                                 onChange={(e) => {
-                                                    setProductId(e.target.value);
+                                                    setcategory(e.target.value);
 
                                                 }}
                                             >
-                                                <option value="">Please Select Product</option>
-                                                {productArr &&
-                                                    productArr.length > 0 &&
-                                                    productArr.map((el) => (
+                                                <option value="">Please Select Category</option>
+                                                {categoryArr &&
+                                                    categoryArr.length > 0 &&
+                                                    categoryArr.map((el) => (
                                                         <option key={el._id} value={`${el._id}`}>
                                                             {el.name}
                                                         </option>
                                                     ))}
                                             </select>
+                                        </div> */}
+
+                                        <div className="col-md-6">
+                                            <label>Category <span className="text-danger">*</span></label>
+                                            <Select
+                                                className='form-control abc bg-transparent'
+                                                options={categoryArr && categoryArr.length > 0 && categoryArr.map((categories) => ({ label: categories.name, value: categories._id }))}
+                                                value={category} // `cityId` should be an array to hold multiple selections
+                                                closeMenuOnSelect={false} // Keeps the dropdown open for multiple selections
+                                                onChange={(selectedOptions) => setcategory(selectedOptions)} // Updates state with selected cities
+                                                isMulti // Enables multi-select
+                                            />
                                         </div>
 
                                         <div className="col-md-6">
