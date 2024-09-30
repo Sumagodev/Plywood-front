@@ -1065,7 +1065,7 @@ footer .footer {
   object-fit: contain;
 }
 
-.sign-in-modal .form-control {
+.sign-in-modal . {
   display: flex;
   align-items: center;
 }

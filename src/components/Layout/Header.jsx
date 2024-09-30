@@ -726,6 +726,7 @@ function Header() {
                                 >
                                   {signInList.map((item, i) => {
                                     return (
+                                      <>
                                       <li key={i}>
                                         <Link to={item.link} className="userprofileoptionstext">
                                           <div className="userprofileoptionsicon">
@@ -734,8 +735,11 @@ function Header() {
                                           {item.name}
                                         </Link>
                                       </li>
+                                      
+                                      </>
                                     );
                                   })}
+                                  <Link to='/add-oppotunity'><li>Added Opportunity</li></Link>
 
                                   <li onClick={() => handleLogout()}>
                                     <a style={{ cursor: "pointer" }}>

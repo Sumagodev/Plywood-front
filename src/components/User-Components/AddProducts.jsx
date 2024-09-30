@@ -492,7 +492,7 @@ export default function AddProducts() {
                   className="form-control"
                   value={thickness}
                   onChange={(e) => setthickness(e.target.value)}
-                  // maxLength="10"
+                // maxLength="10"
                 />
               </div>
               <div className="col-md-6">
@@ -576,9 +576,9 @@ export default function AddProducts() {
                   type="image"
                   previousFile={
                     isEditingModeOn &&
-                    image &&
-                    image != "" &&
-                    image.includes("base64")
+                      image &&
+                      image != "" &&
+                      image.includes("base64")
                       ? image
                       : null
                   }
@@ -590,7 +590,7 @@ export default function AddProducts() {
               <div className="col-md-12 col-12">
                 <div className="row">
                   <label className="col-md-6 col- mt-2">
-                    Muptiple Image (width:92px and height:92px){" "}
+                    Multiple Image (width:92px and height:92px){" "}
                     <span className="text-danger">*</span>
                   </label>
                   <div className="col-md-6">
@@ -653,9 +653,9 @@ export default function AddProducts() {
                               type="image"
                               previousFile={
                                 isEditingModeOn &&
-                                el.image &&
-                                el.image != "" &&
-                                el.image.includes("base64")
+                                  el.image &&
+                                  el.image != "" &&
+                                  el.image.includes("base64")
                                   ? el.image
                                   : null
                               }
@@ -683,7 +683,7 @@ export default function AddProducts() {
         </div>
       </div>
 
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -711,7 +711,52 @@ export default function AddProducts() {
             Submit
           </button>
         </Box>
+      </Modal> */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {/* Modal Header */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h3>Add Brand</h3>
+            {/* Cancel Button */}
+            <button
+              onClick={handleClose}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '18px',
+                cursor: 'pointer'
+              }}
+            >
+              &times;
+            </button>
+          </div>
+
+          <label>
+            Brand Name<span className="text-danger">*</span>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            value={brandName}
+            onChange={(e) => setBrandName(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => {
+              HandleAddBrand();
+            }}
+            className="btn btn-custom btn-yellow mt-2"
+          >
+            Submit
+          </button>
+        </Box>
       </Modal>
+
     </div>
   );
 }

@@ -247,11 +247,11 @@ export default function Profile() {
             <div className='container-fluid my-5'>
 
                 <Container fluid>
-                    <Row><h1 className='px-5 py-4'>Profile</h1></Row>
+                    <Row><h1 className='px-5 py-4'>Profile  </h1></Row>
                     <Row style={{ display: "flex", gap: "20px 0" }}>
                         <Col lg={5} className='profile-section-container-left profile-section-container-left2 px-5  d-flex flex-column gap-3'>
                             <Row className='text-dark gap-3'>
-                                <Col className=' profile-section-Heading px-4  col-8' >Personal Ditails</Col>
+                                <Col className=' profile-section-Heading px-4  col-8' >Personal Details</Col>
                                 <Col className='d-flex justify-content-center align-items-center col-2 gap-3'>
                                     <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
                                         <button type="button" onClick={() => { navigate(`/Edit-Profile`) }} className="theme-outline-button ">
@@ -395,7 +395,7 @@ export default function Profile() {
                     <Col lg={10} className='py-5'>
                         <Row className='text-dark '>
 
-                            <Col className=' profile-section-Heading px-4  col-md-4 col-8' >Company Ditails</Col>
+                            <Col className=' profile-section-Heading px-4  col-md-4 col-8' >Company Details</Col>
 
                             <Col className='d-flex justify-content-center align-items-center col-md-1 gap-2'>
                                 <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>

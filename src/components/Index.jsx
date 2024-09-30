@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
-import { BsArrowRight } from "react-icons/bs";
-import { FaArrowUp, FaHandshake } from "react-icons/fa";
+import { BsArrowRight, BsStarFill } from "react-icons/bs";
+import { FaArrowUp, FaHandshake, FaRegStar } from "react-icons/fa";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdCall } from "react-icons/md";
 import { getDecodedToken, getToken } from "../services/auth.service";
@@ -67,7 +67,7 @@ import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
 import mancrp from "../assets/image/home/images/mancrp.png";
-import { IoMdMailOpen } from "react-icons/io";
+import { IoIosStarOutline, IoMdMailOpen } from "react-icons/io";
 import { BiSolidMessage } from "react-icons/bi";
 import { MdThumbUp } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
@@ -665,7 +665,7 @@ function Index() {
         <Container fluid className="categoriesback p-0 p-lg-5">
           <div className="container">
             <div className="title-section with-btn mb-0 mb-lg-5 py-3 py-lg-0">
-              <h1 className="heading "> Categories</h1>
+              <h1 className="heading "> Categories </h1>
             </div>
           </div>
           <Row>
@@ -932,7 +932,7 @@ function Index() {
                           <div className="newprdcrd">
                             <img
                               src={el.image ? generateImageUrl(el.image) : grls}
-                             
+
                               className="img-fluid img1"
                             />
                             <div className="d-flex justify-content-center">
@@ -1007,7 +1007,7 @@ function Index() {
 
       <section>
         <Container className="main_Profiles my-2 my-lg-5">
-          <h1 className="text-center mb-4">Top Profiles</h1>
+          <h1 className="text-center mb-4">Top Profiles </h1>
           <Row className=" d-flex justify-content-center">
             {topusers && topusers.slice(0, 4).map((el) => (
               <Col lg={3} xs={6} className="py-3 px-2">
@@ -1042,7 +1042,21 @@ function Index() {
                     </span>
                   </div>
                   <div className="sub-container2">
-                    <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span>
+                    {/* <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span> */}
+
+                    <span className="ps-5">
+                      Rating :  {el?.rating
+                        ? [...Array(Math.round(el.rating))].map((_, index) => <FaRegStar  key={index} />)
+                        : <IoIosStarOutline />}
+                    </span>
+                    
+                    {/* <li className="my-2">
+                      <div className="icon brown pe-2 fs-5">
+                        {Array.from({ length: rating.rating }, (_, index) => (
+                          <BsStarFill key={index} />
+                        ))}
+                      </div>
+                    </li> */}
 
                     <span className="phone-icon"
                       onClick={() => {
@@ -1284,8 +1298,8 @@ function Index() {
                               <button className="dealerapply px-3 py-2"
                                 onClick={() => {
                                   // If the user has an active subscription, initiate a phone call
-                                    navigate('/ApplyDealership', { state: { opportunity } });
-                                  
+                                  navigate('/ApplyDealership', { state: { opportunity } });
+
                                 }}
                               >
                                 Apply

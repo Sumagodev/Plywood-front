@@ -242,6 +242,7 @@ function Shop() {
       errorToast(err);
     }
   };
+  
   const HandleCheckValidSubscription = async () => {
     try {
       let { data: res } = await checkForValidSubscriptionAndReturnBoolean(userObj?._id)
@@ -683,7 +684,7 @@ function Shop() {
                               );
                             })
                           ) : (
-                            <h4 style={{ color: "grey" }} className=" text-center">
+                            <h4 style={{ color: "grey" }} className=" text-center mt-5">
                               No Vendors found
                             </h4>
                           )}
@@ -810,7 +811,7 @@ function Shop() {
             <Col className="main_col_1">
               <div className="main_conatiner">
                 <h1 className="fw-bold">
-                  Get Free Quotes From Multiple Sellers{" "}
+                  Get Free Quotes From Multiple Sellers {" "}
                 </h1>
                 <div className="custom-leftSection">
                   <div className="steps">

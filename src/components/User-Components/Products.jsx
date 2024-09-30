@@ -145,7 +145,7 @@ export default function Products() {
 
   const handleDelteProduct = async (id) => {
     try {
-      if (!window.confirm("Are You Sure ?")) {
+      if (!window.confirm("Are You Sure you want to delete this product ?")) {
         return;
       }
 
@@ -213,14 +213,14 @@ export default function Products() {
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-4 col-sm-6 search-box-button-container">
+              <div className="col-lg-4 col-sm-6 search-box-button-container p-1">
                 <input
                   type="text"
                   placeholder="Search products here ..."
                   onChange={(e) => handleChange(e.target.value)}
                   className="form-control"
                 />
-                <button className=" mx-3">
+                <button className=" mx-3 ">
                   <IoSearch />
                 </button>
               </div>

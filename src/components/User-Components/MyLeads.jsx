@@ -168,13 +168,13 @@ export default function MyLeads() {
                                                         </div>
                                                         <div className="row ">
                                                             <div className="col-4  fw-bold text-black ">
-                                                                User Name :
+                                                                UserName:
                                                             </div>
                                                             <div className="col-8   text-black ">
                                                                 {el?.userObj?.name}
                                                             </div>
                                                             <div className="col-4   fw-bold text-black">
-                                                                Phone :
+                                                                Phone:
                                                             </div>
                                                             <div className="col-8   text-black">
                                                                 {el?.userObj?.phone}

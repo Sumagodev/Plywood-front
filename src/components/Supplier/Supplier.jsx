@@ -42,7 +42,7 @@ import birthdate from '../../assets/image/home/images/birthdateicn.png'
 
 
 function Supplier() {
-  
+
   const [quoteModal, setQuoteModal] = useState(false);
   const authObj = useSelector((state) => state.auth);
   const auth = useSelector((state) => state.auth);
@@ -332,14 +332,21 @@ function Supplier() {
                           <div className="icon brown pe-2 fs-4" >
                             <ImLocation />
                           </div>
-                          <span className="address">{supplierObj.companyObj?.address} {supplierObj?.cityObj?.name}, {supplierObj?.stateObj?.name}, {supplierObj?.countryObj?.name}</span>
+                          <span className="address">{supplierObj.companyObj?.address.toUpperCase()} {supplierObj?.cityObj?.name.toUpperCase()}, {supplierObj?.stateObj?.name.toUpperCase()}, {supplierObj?.countryObj?.name.toUpperCase()}</span>
                         </a>
                       </li>
-                      <li className="my-2">
+                      {/* <li className="my-2">
                         <div className="icon brown pe-2 fs-5">
                           <BsStarFill />
                         </div>
                         {supplierObj.rating}
+                      </li> */}
+                      <li className="my-2">
+                        <div className="icon brown pe-2 fs-5">
+                          {Array.from({ length: supplierObj.rating }, (_, index) => (
+                            <BsStarFill key={index} />
+                          ))}
+                        </div>
                       </li>
                       <li className=" my-2">
                         <div className="icon brown pe-2 fs-5">
@@ -347,6 +354,22 @@ function Supplier() {
                         </div>
                         {supplierObj.companyObj?.gstNumber}
                       </li>
+                      {/* <li className="my-2">
+                        <div className="icon brown pe-2 fs-5">
+                          <BsFillCheckCircleFill />
+                        </div>
+                        {supplierObj.companyObj?.gstNumber ? (
+                          supplierObj.companyObj.gstNumber.startsWith('1') ? (
+                            'GST Number starts with 1'
+                          ) : supplierObj.companyObj.gstNumber.startsWith('2') ? (
+                            'GST Number starts with 2'
+                          ) : (
+                            'GST Number does not start with 1 or 2'
+                          )
+                        ) : (
+                          'No GST Number available'
+                        )}
+                      </li> */}
 
                     </ul>
                     <div className="container">
@@ -537,7 +560,7 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                     
+
                       <div className="col-lg-3 col-md-4 col-12">
                         <div className="box">
 
@@ -558,7 +581,7 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                     
+
                       <div className="col-lg-3 col-md-4 col-12">
                         <div className="box">
                           <div className="icon brown"><img className="img-fluid" src={telephone} alt="" /></div>
@@ -580,7 +603,7 @@ function Supplier() {
                           </div>
                         </div>
                       </div>
-                  
+
                       <div className="col-lg-3 col-md-4 col-12 ">
                         <div className="box">
                           <div className="icon brown"><img className="img-fluid" src={birthdate} alt="" /></div>
@@ -589,8 +612,8 @@ function Supplier() {
                             <p>{supplierObj?.aniversaryDate ? moment(supplierObj?.aniversaryDate).format("YYYY-MM-DD") : "Not provided"}</p>
                           </div>
                         </div>
-                  
-                    </div>
+
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -637,7 +660,7 @@ function Supplier() {
                 <ul className="row">
                   {productsArr && productsArr.length > 0 ? productsArr.map((item, i) => {
                     return (
-                      
+
                       <li className="col-12 col-md-3">
 
                         <div className="product-box">
@@ -779,7 +802,7 @@ function Supplier() {
             //     </div>
             //   </div>
             // </section>
-              <section className="mt-5" style={{ background: "#FFF2E2" }}>
+            <section className="mt-5" style={{ background: "#FFF2E2" }}>
               <div className="container-fluid pb-4">
                 <div className="title-section with-btn mb-5">
                   <h1 className="heading text-start ms-lg-5 pt-3  brown">Reviews</h1>
@@ -836,15 +859,15 @@ function Supplier() {
                     </Swiper>
                   ) : (
                     <div className="col-12">
-      
+
                       <div>
                         <h6>No Reviews found for this product</h6>
-      
+
                       </div>
                     </div>
                   )}
                 </div>
-      
+
               </div>
             </section>
           );

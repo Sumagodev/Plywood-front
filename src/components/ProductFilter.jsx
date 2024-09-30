@@ -266,7 +266,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           className={`searchicn position-absolute top-50  translate-middle-y me-1 text-white d-inline-flex align-items-center justify-content-center ${!searchText ? "disabled" : ""}`}
                           style={{ fontSize: 12 }}
                           type="button"
-                          onClick={() => { handleApplyFilter();  handleClose && handleClose(); }}
+                          onClick={() => { handleApplyFilter(); handleClose && handleClose(); }}
                           disabled={!searchText} // This will also prevent the button from being clicked
                         >
                           <FiSearch />
@@ -288,7 +288,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
 
 
-                        <div>   <button className="btn btn-outline btn-outline-custom" style={{ fontSize: 12 }} type="button"
+                        {/* <div>   <button className="btn btn-outline btn-outline-custom " style={{ fontSize: 12 }} type="button"
                           onClick={() => { handleApplyFilter();setActiveKey(null); handleClose && handleClose() }}>
                           Apply
                         </button></div>
@@ -304,7 +304,36 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           }}
                         >
                           Clear
-                        </button></div>
+                        </button></div> */}
+                        <div>
+                          <button
+                            className="btn btn-outline btn-outline-custom"
+                            style={{ fontSize: 12 }}
+                            type="button"
+                            onClick={() => {
+                              handleApplyFilter();
+                              setActiveKey(null);
+                              handleClose && handleClose();
+                            }}
+                          >
+                            Apply
+                          </button>
+                        </div>
+
+                        <div>
+                          <button
+                            className="btn btn-outline btn-outline-custom"
+                            style={{ fontSize: 12, marginLeft: 3}} // Adjust the value as needed
+                            type="button"
+                            onClick={() => {
+                              navigate("/product-details");
+                              handleResetStates();
+                              handleClose && handleClose();
+                            }}
+                          >
+                            Clear
+                          </button>
+                        </div>
                       </div>
                     </div>
 
