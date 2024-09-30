@@ -13,6 +13,8 @@ import { getNestedCategories } from "../services/Category.service";
 import { generateImageUrl } from "../services/url.service";
 import { toastError } from "../utils/toastutill";
 import ShopFilter from "./ShopFilter";
+import grls from "../assets/image/home/Mask Group (1).png";
+
 import mancrp from "../assets/image/home/images/mancrp.png";
 import { successToast } from "./Utility/Toast";
 import { useDispatch } from "react-redux";
@@ -438,14 +440,18 @@ function Demoproduct() {
                         <Container className="product-container-section">
                           <Row className="px-0">
                             {productsArr && productsArr.length > 0 ? (
-                              productsArr.slice(0, 12).map((product, index) => {
+                              productsArr.slice(0, 24).map((product, index) => {
                                 return (
                                   <>
 
-                                    <Col className="d-flex justify-content-center align-items-center py-4" xxl={4} xl={6} lg={6} md={6} sm={6} xs={6}>
+                                    <Col className="d-flex justify-content-center align-items-center py-4" xxl={3} xl={4} lg={4} md={6} sm={6} xs={6}>
                                       <div className="box_Product1">
-                                        <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
-                                        {/* <span className="icn_Product">
+
+                                        <img
+                                          src={product.mainImage ? generateImageUrl(product.mainImage) : grls}
+
+                                          alt={product.name} className="img-fluid ims img1"
+                                        />{/* <span className="icn_Product">
                                                     {isAuthorized ?
                                                         <a href={`tel: ${product.phone}`}>
                                                             <LuPhoneCall />
@@ -541,7 +547,7 @@ function Demoproduct() {
                       <Form.Group controlId="formEmail">
                         <Form.Control
                           type="text"
-                          placeholder="Mobile No.*"
+                          placeholder="Address *"
                           required
                           className="input"
                           value={address}
@@ -575,10 +581,10 @@ function Demoproduct() {
                             return (
                               <>
                                 <Col xs={6} lg={12}
-                                  className="d-flex justify-content-center align-items-center py-4"
+                                  className="d-flex component-container1 justify-content-center align-items-center py-4"
 
                                 >
-                                  <div className="component-container1">
+                           
                                     {el?.bannerImage ? (
                                       <img
                                         src={generateImageUrl(el?.bannerImage)}
@@ -629,7 +635,7 @@ function Demoproduct() {
 
                                       >  <LuPhoneCall /></span>
                                     </div>
-                                  </div>
+                                
                                 </Col>
                                 {/* <Col xs={6} lg={12}
                                                     className="d-flex justify-content-center align-items-center py-4"

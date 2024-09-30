@@ -443,7 +443,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
                 <Accordion.Item eventKey="3">
                   <Accordion.Header>
-                    <div className="accordianHeading"> MinPrize </div>
+                    <div className="accordianHeading">Price Range</div>
                   </Accordion.Header>
                   <Accordion.Body>
                     <PriceFilter />

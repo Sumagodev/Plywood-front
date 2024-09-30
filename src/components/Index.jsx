@@ -1283,16 +1283,9 @@ function Index() {
                             <div className="col-lg-5">
                               <button className="dealerapply px-3 py-2"
                                 onClick={() => {
-                                  if (!isAuthorized) {
-                                    // If the user is not authorized, show the sign-in modal
-                                    setSignInModal(true);
-                                  } else if (!currentUserHasActiveSubscription) {
-                                    // If the user does not have an active subscription, show the price modal
-                                    handleClose(true);
-                                  } else {
-                                    // If the user has an active subscription, initiate a phone call
-                                    navigate('/', { state: { opportunity } });
-                                  }
+                                  // If the user has an active subscription, initiate a phone call
+                                    navigate('/ApplyDealership', { state: { opportunity } });
+                                  
                                 }}
                               >
                                 Apply

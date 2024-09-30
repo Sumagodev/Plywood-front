@@ -159,6 +159,11 @@ function Header() {
       icon: <AiTwotoneSetting />,
       link: "/notifications",
     },
+  //   {
+  //     name: "My Dealerships",
+  //     icon: <FaUserCheck />,
+  //     link: "/mydealerships",
+  // },
   ]);
   const [showSignIn, setShowSignIn] = useState(false);
   const [displaySearchResults, setDisplaySearchResults] = useState(false);
@@ -596,7 +601,7 @@ function Header() {
                         <p
                           className="me-3 mt-3 ms-1 text-white"
                           style={{ fontSize: "15px" }}
-                        >+91 
+                        >+91
                           <a href="tel:948323445243" className="text-white" style={{ textDecoration: "none" }}>
                             &nbsp; 9403574184
                           </a>

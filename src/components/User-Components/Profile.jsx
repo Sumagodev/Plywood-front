@@ -108,11 +108,11 @@ export default function Profile() {
             icon: <AiTwotoneSetting />,
             link: "/notifications",
         },
-        {
-            name: "My DEalerships",
-            icon: <FaUserCheck />,
-            link: "/mydealerships",
-        },
+        // {
+        //     name: "My DEalerships",
+        //     icon: <FaUserCheck />,
+        //     link: "/mydealerships",
+        // },
     ]);
     const [userObj, setUserObj] = useState({});
     const [searchParams, setSearchParams] = useSearchParams();

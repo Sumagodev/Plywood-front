@@ -46,6 +46,7 @@ export default function MyDealership() {
             let { data: res } = await getDealershipOwnerByUserId(userObj._id);
             if (res.data) {
                 console.log('pooja', res.data)
+                
                 setAdvertisementArr(res.data);
             }
         }

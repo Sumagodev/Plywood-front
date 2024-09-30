@@ -749,11 +749,11 @@ export default function EditProfile() {
             {
                 role != ROLES_CONSTANT.USER &&
                 <div className="profile-section-container rounded" style={{ width: "100%" }}>
-                    <div className="profile-section-Heading">Documents Uploaded</div>
+                    <div className="profile-section-Heading">Upload Document</div>
                     <div className="row mt-4 d-flex justify-content-between">
                         <div className="row d-flex">
                             <div className="col-12 col-md-10 d-flex">
-                                <div className="profile-section-Heading">Imges Uploaded  </div>
+                                <div className="profile-section-Heading">Upload Image</div>
                                 <b className="text-dark ms-3">(width:275px and height:285px)</b>
                             </div>
                             <div className="col-6 col-md-2 d-flex justify-content-between">
