@@ -12,8 +12,8 @@ import {
 import { FaPlus } from 'react-icons/fa'
 import { toastSuccess } from '../../utils/toastutill';
 import { getUserById } from '../../services/User.service';
-import { deleteAdvertisement, getAllAdvertisements } from '../../services/Advertisement.service';
-import { deletedealership,getAlldealership } from '../../services/AddDealership.service'
+import {  getAllAdvertisements } from '../../services/Advertisement.service';
+import { getDealershipOwnerByUserId,deletedealership } from '../../services/AddDealership.service'
 import { generateImageUrl } from '../../services/url.service';
 import "../../assets/css/Topup.css"
 export default function MyDealership() {
@@ -43,7 +43,7 @@ export default function MyDealership() {
     const handleGetAdvertisements = async (id) => {
         try {
 
-            let { data: res } = await getAlldealership();
+            let { data: res } = await getDealershipOwnerByUserId(userObj._id);
             if (res.data) {
                 console.log('pooja', res.data)
                 
@@ -79,6 +79,7 @@ export default function MyDealership() {
 
     const handleRedirectToEditScreen = async (id) => {
         navigate(`/AddDealership?id=${id}`)
+
     }
 
 
@@ -106,41 +107,38 @@ export default function MyDealership() {
                             {
                                 advertisementArr && advertisementArr.length > 0 && advertisementArr.map((el, index) => {
                                     return (
-                                        <div key={index} className="subscription-card pb-3">
+                                        <div key={index} className="subscription-card pb-3"               style={{ background: "#F5F1E8", boxShadow: "12px 14px 35px 0px #00000040" }}>
                                             <div className="row ">
                                                 <div className=' d-flex justify-content-end my-2'>
 
                                                     <button onClick={() => handleDeleteFlashSale(el._id)} className='yellow-bg btn text-white mx-2   rounded-5'>   <FaTrash /></button>
 
 
-                                                    {/* <button onClick={() => handleRedirectToEditScreen(el?._id)} className='yellow-bg btn text-white  mx-2  rounded-5'><FaPencilAlt /></button> */}
+                                                    <button onClick={() => handleRedirectToEditScreen(el._id)} className='yellow-bg btn text-white  mx-2  rounded-5'><FaPencilAlt /></button>
                                                 </div>
                                                 <div className="col-12">
 
-                                                    {
-                                                        el.isVideo ?
-                                                            <video style={{ width: "100%", height: 200 }} src={generateImageUrl(el.image)} />
-                                                            :
+                                                         
                                                             <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={generateImageUrl(el.image)} alt="" />
-                                                    }
+                                                  
 
                                                     <div className="row pt-4">
                                                         <div className="col-6 my-1 clr">
 
-                                                            Product Name:
+                                                        Organisation_name:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
-                                                            {el.productId?.name}
+                                                            {el.Organisation_name}
                                                         </div>
                                                     </div>
 
 
                                                     <div className="row">
                                                         <div className="col-6 my-1 clr">
-                                                            Message:
+                                                        stateName:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
-                                                            {el?.message}
+                                                            {el?.stateName}
                                                         </div>
                                                     </div>
                                                     <div className="row">

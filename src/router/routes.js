@@ -37,6 +37,8 @@ import ProductDetails from "../components/ProductDetails";
 import ApplyDealership from "../components/User-Components/ApplyDealership";
 import Demoproduct from "../components/Demoproduct";
 import MyDealership from "../components/User-Components/MyDealerships";
+import Addopp from "../components/Addopp";
+import EditOpportunity from "../components/EditOpportunity";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -176,6 +178,13 @@ export const routes = [
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,
+  },
+  {
+    path: "/mydealerships",
+    component: <MyDealership />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: true,
+    isUnProtected: false,
   }, {
     path: "/Recent-Activities",
     component: <RecentActivities />,
@@ -305,6 +314,20 @@ export const routes = [
   {
     path: "/Thankyou",
     component: <Thankyou />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: false,
+    isUnProtected: false,
+  },
+  {
+    path: "/add-oppotunity",
+    component: <Addopp />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: false,
+    isUnProtected: false,
+  },
+  {
+    path: "/edit-oppotunity",
+    component: <EditOpportunity />,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
     isAuthorized: false,
     isUnProtected: false,

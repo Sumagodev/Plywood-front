@@ -22,6 +22,7 @@
 
 }
 
+
 .userprofileoptionsicon {
    background: #A37E5F;
    color: white;
@@ -32,3 +33,17 @@
 .userprofileoptionstext{
    color: #5A432F;
 }
+
+
+.icon-circle {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 35px;  /* Adjust size as needed */
+   height: 30px; /* Adjust size as needed */
+   border-radius: 50%;
+   background-color: #30a74d; /* Background color for the circle */
+   margin-left: 20px; /* Space between text and icon */
+   
+ }
+ 

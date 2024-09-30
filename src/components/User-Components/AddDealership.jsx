@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { getCityByStateApi, getCountriesApi, getStateByCountryApi } from "../../services/location.service";
 import { ROLES_CONSTANT } from ".././Utility/constant";
 import {
@@ -16,7 +16,7 @@ import { getCroppedImg, handleOpenImageInNewTab } from "../../utils/image.utils"
 import Cropper from 'react-easy-crop';
 import FileInput from "../Utility/FileUploadCropper";
 import { convertFileToBase64 } from ".././Utility/FileConverterToBase64";
-import { Adddealership } from '../../services/AddDealership.service';
+import { getDealershipById, updateDealership, Adddealership } from '../../services/AddDealership.service';
 import { addBrandApi, getBrandApi } from "../../services/brand.service";
 import { errorToast, successToast } from "../Utility/Toast";
 
@@ -26,8 +26,9 @@ const AddDealership = () => {
     const [productArr, setProductArr] = useState([]);
     const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+        const dealershipId = "66f5301c2b94608ae86221b3";  // Extract id from the URL
     const userObj = useSelector((state) => state.auth.user);
-    console.log(userObj)
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [email, setEmail] = useState("");
     const [type, setType] = useState(ROLES_CONSTANT.MANUFACTURER);
@@ -144,50 +145,78 @@ const AddDealership = () => {
         // Optionally set the cropped image
     };
 
+    // Fetch dealership details if editing (if dealershipId exists)
+    useEffect(() => {
+        const fetchDealershipDetails = async () => {
+            if (dealershipId) {
+                try {
+                    const { data: dealership } = await getDealershipById(searchParams.get("id"));
+                    // Populate form fields with dealership data
+                    setOrganisationName(dealership.organisationName);
+                    setType(dealership.type);
+                    setBrandNames(dealership.brandNames);
+                    setProductId(dealership.productId);
+                    setEmail(dealership.email);
+                    setCompanyName(dealership.companyName);
+                    setProfileImage(dealership.profileImage);
+                    setCountryId(dealership.countryId);
+                    setStateId(dealership.stateId);
+                    setCityId(dealership.cityId.map((city) => ({ value: city._id, label: city.name })));
+                } catch (error) {
+                    console.error("Error fetching dealership details", error);
+                }
+            }
+        };
+        fetchDealershipDetails();
+    }, [dealershipId]);  // Fetch when dealershipId changes
+
     const handleSubmit = async (e) => {
-
-
-        if (!organisationName || !countryId || !stateId || !cityId.length) {
-            alert("Please fill in all required fields.");
-            return;
-        }
 
         const formData = {
             Organisation_name: organisationName,
             Type: type,
             Brand: brandNames,
             Product: productId,
-            userId: userObj._id,
+            email,
+            companyName,
             image: profileImage,
-            cityId: cityId.map((el) => el.value), // Extract only the city _id from each selected city
-            stateId: stateId
+            cityId: cityId.map((el) => el.value),
+            stateId: stateId,
+            countryId
         };
 
-        console.log(formData)
         try {
-            const { data: response } = await Adddealership(formData);
-            setShow(true);
-            resetForm();
-            console.log("Form submitted successfully", response);
-
+            if (dealershipId) {
+                // Update existing dealership
+                const { data: response } = await updateDealership(formData, dealershipId);
+                successToast("Dealership updated successfully");
+            } else {
+                // Add new dealership
+                const { data: response } = await Adddealership(formData);
+                successToast("Dealership added successfully");
+            }
+            navigate('/mydealerships');  // Redirect after successful submission
         } catch (error) {
             console.error("Error submitting form", error);
         }
     };
 
+
     const resetForm = () => {
         setOrganisationName('');
-        setBrandNames('')   
-        setProductId('')
+        setBrandNames('');
+        setProductId('');
         setType(ROLES_CONSTANT.MANUFACTURER);
         setCompanyName('');
-        setProfileImage("");
+        setProfileImage('');
         setCountryId('');
         setStateId('');
         setCityId([]);
-        setEmail("")
+        setEmail('');
         setTermsAccepted(false);
+        // setDealershipId(null);  // Reset the dealership ID for a new form
     };
+
 
     const handleCloseAndNavigate = () => {
         setShow(false);
@@ -223,7 +252,11 @@ const AddDealership = () => {
                     <div className="row m-3 pt-3">
                         <div className="col-12 col-md-12">
                             <div className="right">
-                                <h3 className="heading yellow">Add Dealership</h3>
+                                {dealershipId}
+                                <h3 className="heading yellow">
+                                    {dealershipId ? 'Edit Dealership' : 'Add Dealership'}
+
+                                </h3>
 
                                 <form className="form row" >
                                     <div className="col-md-6">
@@ -394,7 +427,7 @@ const AddDealership = () => {
                                     </div>
                                     <div className="col-12 mt-3 mb-3">
                                         <button type="button" onClick={() => { handleSubmit() }} className="btn btn-custom btn-yellow mt-5">
-                                            Register
+                                            {dealershipId ? 'Update Dealership' : 'Add Dealership'}
                                         </button>
                                     </div>
                                 </form>

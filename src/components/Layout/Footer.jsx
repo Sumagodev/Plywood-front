@@ -356,9 +356,9 @@ function Footer() {
                         {/* <a target="_blank" href="https://plywoodbazar.com/Moto - Vision.pdf"></a> */}
                       </li>
                       <li>
-                        <Link className="text-white" to="#">
+                        {/* <Link className="text-white" to="#">
                           Testimonials
-                        </Link>
+                        </Link> */}
                         {/* <a target="_blank" href="https://plywoodbazar.com/Moto - Vision.pdf"></a> */}
                       </li>
                     </ul>
