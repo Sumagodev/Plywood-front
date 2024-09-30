@@ -172,7 +172,14 @@ export const routes = [
   },
   {
     path: "/mydealerships",
-    component: <MyDealership/>,
+    component: <MyDealership />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: true,
+    isUnProtected: false,
+  },
+  {
+    path: "/mydealerships",
+    component: <MyDealership />,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,

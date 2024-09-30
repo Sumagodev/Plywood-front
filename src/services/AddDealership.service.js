@@ -37,9 +37,14 @@ export const getAlldealership = async (query) => {
 // }
 
 
-export const getdealershipById = async (id) => {
+export const getDealershipById = async (id) => {
     return axiosApiInstance.get(`${serverUrl}/getDelearshipOpportunities/${id}`)
 }
+
+export const getDealershipOwnerByUserId = async (id) => {
+    return axiosApiInstance.get(`${serverUrl}/getDealershipOwnerByUserId/${id}`)
+}
+
 
 
 export const deletedealership = async (id) => {
@@ -47,7 +52,7 @@ export const deletedealership = async (id) => {
 }
 
 
-export const updatedealershipApi = (formData, id) => {
-    return axiosApiInstance.patch(`${serverUrl}/dealership-owners/${id}`, formData)
+export const updateDealership = (formData, id) => {
+    return axiosApiInstance.put(`${serverUrl}/dealership-owners/${id}`, formData)
 }
 

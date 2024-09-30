@@ -128,7 +128,7 @@ export default function MyFlashSales() {
                     <div
                       key={index}
                       className="profile-section-container col-lg-4 col-12"
-                      
+                      style={{ background: "#F5F1E8", boxShadow: "12px 14px 35px 0px #00000040" }}
                     >
                       <div className="row">
                         <div className="col-3">
