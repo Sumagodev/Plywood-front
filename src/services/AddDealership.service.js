@@ -34,8 +34,12 @@ export const getDealershipById = async (id) => {
 export const getDealershipOwnerByUserId = async (id) => {
     return axiosApiInstance.get(`${serverUrl}/getDealershipOwnerByUserId/${id}`)
 }
-
-
+export const getmyDealershipOwnerByUserId = async (id) => {
+    return axiosApiInstance.get(`${url}/dealershipUserRoutes/getDealershipApplicationByUserId/${id}`)
+}
+export const getDealershipApplicationsByUserId = async (id) => {
+    return axiosApiInstance.get(`${url}/dealershipUserRoutes/getApplicationByUserId/${id}`)
+}
 
 export const deletedealership = async (id) => {
     return axiosApiInstance.delete(`${serverUrl}/dealership-owners/${id}`)

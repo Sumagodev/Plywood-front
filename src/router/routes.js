@@ -39,6 +39,7 @@ import Demoproduct from "../components/Demoproduct";
 import MyDealership from "../components/User-Components/MyDealerships";
 import Addopp from "../components/Addopp";
 import EditOpportunity from "../components/EditOpportunity";
+import MyDealershipsusers from "../components/User-Components/MyDealershipsusers";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -180,8 +181,8 @@ export const routes = [
     isUnProtected: false,
   },
   {
-    path: "/mydealerships",
-    component: <MyDealership />,
+    path: "/mydealershipsusers",
+    component: <MyDealershipsusers/>,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,

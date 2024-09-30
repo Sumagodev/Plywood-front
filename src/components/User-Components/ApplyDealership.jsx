@@ -313,11 +313,15 @@ const ApplyDealership = () => {
                                                 onChange={(e) => setCityId([...e.target.selectedOptions].map(option => option.value))}
                                             >
                                                 <option value="">Select Cities</option>
-                                                {cityArr.map((city) => (
-                                                    <option key={city.cityId} value={city.cityId}>
-                                                        {city.cityName}
-                                                    </option>
-                                                ))}
+                                                {cityArr.map((city) => {
+                                                    console.log("city", city);
+                                                    
+                                                    return (
+                                                        <option key={city.cityId} value={city._id}>
+                                                            {city.name}
+                                                        </option>
+                                                    )
+                                                })}
                                             </select>
                                         </div>
 
