@@ -709,7 +709,7 @@ function Index() {
                   categoryArr
                     .filter(
                       (el, index) =>
-                        index <= (isDisplayingAll ? categoryArr.length - 1 : 5)
+                        index <= (isDisplayingAll ? categoryArr.length - 1 : 10)
                     )
                     .map((item, index) => (
                       <SwiperSlide key={index}>
