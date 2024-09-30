@@ -124,7 +124,7 @@ export const routes = [
   {
     path: "/Subscription",
     component: <Subscription />,
-    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.RETAILER, ROLES.CONTRACTOR, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,
   },
@@ -172,7 +172,7 @@ export const routes = [
   },
   {
     path: "/mydealerships",
-    component: <MyDealership/>,
+    component: <MyDealership />,
     role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,
@@ -263,7 +263,7 @@ export const routes = [
   {
     path: "/Topup",
     component: <Topup />,
-    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.RETAILER, ROLES.CONTRACTOR, ROLES.USER],
     isAuthorized: true,
     isUnProtected: false,
   },
