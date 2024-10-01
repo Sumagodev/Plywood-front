@@ -931,7 +931,7 @@ function Index() {
                         <div className="vender-box">
                           <div className="newprdcrd">
                             <img
-                              src={el.image ? generateImageUrl(el.image) : grls}
+                              src={el.image ? generateImageUrl(el.image) : grls} 
 
                               className="img-fluid img1"
                             />
