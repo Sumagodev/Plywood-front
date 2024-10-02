@@ -361,7 +361,7 @@ export const Register = () => {
                                 
 
                                     <div className="col-md-9">
-                                        <label>Who are you ? <span className="text-danger">*</span>  </label>
+                                        <label>Select Vendor Type ? <span className="text-danger">*</span>  </label>
                                         <input
                                             type="radio"
                                             name="type"
