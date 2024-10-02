@@ -27,6 +27,7 @@ import {
 import { login } from "../redux/features/auth/authSlice";
 import { set } from "lodash";
 import { LuPhoneCall } from "react-icons/lu";
+import { IoStar } from "react-icons/io5";
 function ShopDetail() {
   const [modalOpen, setModalOpen] = useState(false);
   let userObj = useSelector((state) => state.auth.user);
@@ -469,8 +470,8 @@ function ShopDetail() {
                             <LuPhoneCall style={{ color: "white" }} />
                           </span>
                         </button>
-                        
-                        
+
+
 
 
 
@@ -541,14 +542,24 @@ function ShopDetail() {
                           {`${currentUserHasActiveSubscription ? (productObj?.createdByObj?.userObj?.companyObj?.address ? productObj?.createdByObj?.userObj?.companyObj?.address : "NA") : (productObj?.createdByObj?.userObj?.companyObj?.address ? `${productObj?.createdByObj?.userObj?.companyObj?.address}***` : "NA").slice(0, 2)}`}
 
                         </p>
-                        <img className="star_img" src={star} alt="" />
+                        {/* <img className="star_img" src={star} alt="" /> */}
                         {
-                          currentUserHasActiveSubscription &&
-                          <div className="supplier-rating">
-                            <ReactStars edit={false} count={5} size={24} value={parseInt(productObj?.createdByObj?.userObj?.rating)} activeColor="#ffd700" />
-                            <p>{productObj?.createdByObj?.userObj?.rating}</p>
-                          </div>
+                          currentUserHasActiveSubscription && (
+                            <div className="supplier-rating">
+                              <span className="ratingcount">
+                                {[...Array(5)].map((_, index) => (
+                                  <IoStar
+                                    key={index}
+                                    style={{
+                                      color: index < Math.round(productObj?.rating) ? '#ffd700' : '#d3d3d3', // Gold for the rating, gray for the rest
+                                    }}
+                                  />
+                                ))}
+                              </span>
+                            </div>
+                          )
                         }
+
 
                         <p>
                           <BsPatchCheckFill className="text-success me-2" />
@@ -639,7 +650,10 @@ function ShopDetail() {
 
                             }
                           }}
-                          > <button className="call-btn">   <MdCall />
+                          > <button className="call-btn">
+
+                              <MdCall />
+                              {/* <LuPhoneCall className="phn rounded-circle p-1" /> */}
                             </button>
 
                             <Link className="text-white" to={`/ShopDetail/${el?.slug}`}>

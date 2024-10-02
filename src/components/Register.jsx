@@ -103,6 +103,10 @@ export const Register = () => {
     const onCropChange = (newCrop) => setCroppedProfilePhoto(newCrop);
     const onZoomChange = (newZoom) => setZoom(newZoom);
 
+    // const [type, setType] = useState("");
+
+    const [isFormValid, setIsFormValid] = useState(true);
+
 
     const handleRegister = async () => {
         // console.log(category, "check cate")
@@ -140,6 +144,10 @@ export const Register = () => {
             errorToast("Mobile is Required");
             return 0;
         }
+        if (`${brandNames}` === "") {
+            errorToast("brand Names is Required");
+            return 0;
+        }
         // if (`${whatsapp}` === "") {
         //     errorToast("Enter Your Whatsapp Number");
         //     return 0;
@@ -174,6 +182,19 @@ export const Register = () => {
             errorToast("City is Required");
             return 0;
         };
+
+        if (type !== ROLES_CONSTANT.CONTRACTOR && type !== ROLES_CONSTANT.RETAILER) {
+            // Validate GST No only if type is not CONTRACTOR or RETAILER
+            if (!gstNumber) {
+                setIsFormValid(false);
+                return; // Exit if validation fails
+            }
+        }
+        setIsFormValid(true);
+
+
+
+
 
         if (!termsAccepted) {
             errorToast("Please Accept our terms and condition and privacy policy before registering !!!");
@@ -358,7 +379,7 @@ export const Register = () => {
                                 <h3 className="heading yellow">Register</h3>
 
                                 <form className="form row ">
-                                
+
 
                                     <div className="col-md-9">
                                         <label>Who are you ? <span className="text-danger">*</span>  </label>
@@ -471,7 +492,7 @@ export const Register = () => {
                                                     </label>
                                                 </OverlayTrigger>
                                             </div>
-                                            <Select className='form-control abc bg-transperant' 
+                                            <Select className='form-control abc bg-transperant'
                                                 options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))}
                                                 value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
 
@@ -479,7 +500,7 @@ export const Register = () => {
                                         </div>
 
                                         <div className="col-md-6">
-                                            <label> Dealing With Brand Names  </label>
+                                            <label>Dealing With Brand Names</label>
                                             <input
                                                 type="text"
                                                 className="form-control"
@@ -495,10 +516,14 @@ export const Register = () => {
                                                 type="text"
                                                 placeholder="Please Enter GST No"
 
-                                                className="form-control"
+                                                // className="form-control"
                                                 value={gstNumber}
                                                 onChange={(e) => setgstNumber(e.target.value)}
+                                                className={`form-control ${!isFormValid && !gstNumber ? 'is-invalid' : ''}`}
                                             />
+                                            {!isFormValid && !gstNumber && (
+                                                errorToast("GST No is Required")
+                                            )}
                                         </div>
                                         {/* <div className="col-md-6">
                                             <label> Google Maps Link <span className="text-danger">*</span> </label>
@@ -676,7 +701,7 @@ export const Register = () => {
                                     </div>
 
                                     <div className="col-md-6">
-                                        <label>Mobile No. <span className="text-danger">*</span></label>
+                                        <label>Mobile No.<span className="text-danger">*</span></label>
                                         <input
                                             type="tel"
                                             className="form-control"

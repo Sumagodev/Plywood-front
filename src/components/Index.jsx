@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Table } from "react-bootstrap";
 import { BsArrowRight, BsStarFill } from "react-icons/bs";
-import { FaArrowUp, FaHandshake, FaRegStar } from "react-icons/fa";
+import { FaArrowUp, FaHandshake, FaRegStar, FaStar } from "react-icons/fa";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdCall } from "react-icons/md";
 import { getDecodedToken, getToken } from "../services/auth.service";
@@ -70,7 +70,7 @@ import mancrp from "../assets/image/home/images/mancrp.png";
 import { IoIosStarOutline, IoMdMailOpen } from "react-icons/io";
 import { BiSolidMessage } from "react-icons/bi";
 import { MdThumbUp } from "react-icons/md";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp, IoStar } from "react-icons/io5";
 import greenimg from "../assets/image/home/images/greenlam1.png";
 import "../assets/css/Blog.css";
 import {
@@ -715,10 +715,10 @@ function Index() {
                       <SwiperSlide key={index}>
                         <Link to={`Shop?categories=${item._id}`}>
                           <Col className="d-grid text-center align-items-center justify-content-center">
-                            <div className="   d-grid align-items-center justify-content-center">
+                            <div className="d-grid align-items-center justify-content-center">
                               <img
                                 src={generateImageUrl(item.image)}
-                                className=" img-fluid ctimg "
+                                className="img-fluid ctimg "
                                 alt={item.name}
                               />
                             </div>
@@ -1007,7 +1007,7 @@ function Index() {
 
       <section>
         <Container className="main_Profiles my-2 my-lg-5">
-          <h1 className="text-center mb-4">Top Profiles </h1>
+          <h1 className="text-center mb-4">Top Profiles</h1>
           <Row className=" d-flex justify-content-center">
             {topusers && topusers.slice(0, 4).map((el) => (
               <Col lg={3} xs={6} className="py-3 px-2">
@@ -1044,12 +1044,12 @@ function Index() {
                   <div className="sub-container2">
                     {/* <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span> */}
 
-                    <span className="ps-5">
+                    <span className="ratingcount">
                       Rating :  {el?.rating
-                        ? [...Array(Math.round(el.rating))].map((_, index) => <FaRegStar  key={index} />)
-                        : <IoIosStarOutline />}
+                        ? [...Array(Math.round(el.rating))].map((_, index) => <IoStar key={index} className="ratingicon" />)
+                        : <IoStar />}
                     </span>
-                    
+
                     {/* <li className="my-2">
                       <div className="icon brown pe-2 fs-5">
                         {Array.from({ length: rating.rating }, (_, index) => (
@@ -1105,7 +1105,7 @@ function Index() {
                     spaceBetween={5}
                     autoplay={{ disableOnInteraction: false }}
                     speed={1500}
-                    breakpoints={flashsale}
+                     breakpoints={flashsale}
                   >
                     {flashSalesArr &&
                       flashSalesArr.length > 0 &&
@@ -1113,10 +1113,8 @@ function Index() {
                         return (
                           <SwiperSlide key={index}>
                             <div className="newprdcrd text-center position-relative">
-
                               <div className="position-relative">
-
-                                <CountdownTimer targetDate={el.endDate} />
+                                <CountdownTimer targetDate={el.endDate} /> 
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   <img
                                     src={generateImageUrl(el.productId.mainImage)}
@@ -1146,20 +1144,19 @@ function Index() {
                               </span>
 
 
+
+
                               <h6 className=" text-center  prdtitle mt-3">
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   {el?.productId?.name}
-
                                 </Link>
                               </h6>
+                           
 
                               <div>
                                 <h6 className="old">
                                   <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{ fontSize: "23px" }}>₹{el?.salePrice}/- </span><span style={{ fontSize: "12px" }}>{el.pricetype}</span></span>
-
-
                                 </h6>
-
                               </div>
                               <button
                                 onClick={() =>
@@ -1179,9 +1176,13 @@ function Index() {
                             </div>
 
 
-
+                            
                           </SwiperSlide>
+                          
+                          
+                          
                         );
+
                       })}
                     {/* <SwiperSlide>
                       <div className="addfrmmain">
