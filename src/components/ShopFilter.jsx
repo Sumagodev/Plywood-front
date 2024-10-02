@@ -303,7 +303,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                       </div>                      <div className=" col-lg-7 col-6  d-flex align-items-center">
                         <Form.Control
                           type="search"
-                          className="searchbar2"
+                          className="searchbar2 h-75"
                           placeholder={checkSearchMode()}
                           aria-label="Search"
                           value={searchText}

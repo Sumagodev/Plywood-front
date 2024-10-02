@@ -91,6 +91,12 @@ export default function Topup() {
                                                 el?.advertisementDays > 0 &&
                                                 <div className="subscription-card-description mt-0">For {el?.advertisementDays > 1 ? `${el?.advertisementDays} Days` : `${el?.advertisementDays} Day`}</div>
                                             }
+                                            <div className="subscription-card-days">{el?.numberOfBannerImages != 0 ? `${el?.numberOfBannerImages} BannerImages` : "No BannerImages"}</div>
+
+                                            {
+
+                                                <div className="subscription-card-description mt-0">For {el?.bannerimagesDays > 1 ? `${el?.bannerimagesDays} Days` : `${el?.bannerimagesDays} Day`}</div>
+                                            }
                                             {
                                                 el.messageArr && el.messageArr.length < 0 && (
                                                     <ul className="subscription-card-message-list pb-5 mb-3">
