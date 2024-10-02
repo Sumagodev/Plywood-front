@@ -12,8 +12,8 @@ import {
 import { FaPlus } from 'react-icons/fa'
 import { toastSuccess } from '../../utils/toastutill';
 import { getUserById } from '../../services/User.service';
-import {  getAllAdvertisements } from '../../services/Advertisement.service';
-import { getDealershipOwnerByUserId,deletedealership } from '../../services/AddDealership.service'
+import { getAllAdvertisements } from '../../services/Advertisement.service';
+import { getDealershipOwnerByUserId, deletedealership } from '../../services/AddDealership.service'
 import { generateImageUrl } from '../../services/url.service';
 import "../../assets/css/Topup.css"
 export default function MyDealership() {
@@ -46,7 +46,7 @@ export default function MyDealership() {
             let { data: res } = await getDealershipOwnerByUserId(userObj._id);
             if (res.data) {
                 console.log('pooja', res.data)
-                
+
                 setAdvertisementArr(res.data);
             }
         }
@@ -106,8 +106,10 @@ export default function MyDealership() {
                         <div className="row">
                             {
                                 advertisementArr && advertisementArr.length > 0 && advertisementArr.map((el, index) => {
+                                    console.log("advertisementArr...........................", advertisementArr);
+
                                     return (
-                                        <div key={index} className="subscription-card pb-3"               style={{ background: "#F5F1E8", boxShadow: "12px 14px 35px 0px #00000040" }}>
+                                        <div key={index} className="subscription-card pb-3" style={{ background: "#F5F1E8", boxShadow: "12px 14px 35px 0px #00000040" }}>
                                             <div className="row ">
                                                 <div className=' d-flex justify-content-end my-2'>
 
@@ -118,24 +120,40 @@ export default function MyDealership() {
                                                 </div>
                                                 <div className="col-12">
 
-                                                         
-                                                            <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={generateImageUrl(el.image)} alt="" />
-                                                  
+
+                                                    <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={el.image} alt="" />
+
 
                                                     <div className="row pt-4">
                                                         <div className="col-6 my-1 clr">
 
-                                                        Organisation_name:
+                                                            Organisation_name:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
                                                             {el.Organisation_name}
                                                         </div>
                                                     </div>
 
+                                                    <div className="row">
+                                                        <div className="col-6 my-1 clr">
+                                                            Brand:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {el?.Brand}
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-6 my-1 clr">
+                                                            Type:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {el?.Type}
+                                                        </div>
+                                                    </div>
 
                                                     <div className="row">
                                                         <div className="col-6 my-1 clr">
-                                                        stateName:
+                                                            stateName:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
                                                             {el?.stateName}
@@ -143,14 +161,22 @@ export default function MyDealership() {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-6 my-1 clr">
-                                                            Start Date:
+                                                            Categories:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
-                                                            {moment(el?.startDate).format("DD-MM-YYYY")}
+                                                            {el.categories.slice(0, 3).map(item => `${item.name}, `)}
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-6 my-1 clr">
+                                                        cities:
+                                                        </div>
+                                                        <div className="col-6  my-1 clr">
+                                                            {el.cities.slice(0, 3).map(item => `${item.name}, `)}
                                                         </div>
                                                     </div>
 
-                                                    <div className="row">
+                                                    {/* <div className="row">
                                                         <div className="col-6 my-1 clr">
                                                             End Date:
                                                         </div>
@@ -158,7 +184,7 @@ export default function MyDealership() {
                                                             {moment(el?.endDate).format("DD-MM-YYYY")}
                                                         </div>
 
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                         </div>

@@ -155,15 +155,15 @@ function Header() {
       link: "/View/My-Promotions",
     },
     {
+      name: "My Dealerships",
+      icon: <FaUserCheck />,
+      link: "/mydealerships",
+    },
+    {
       name: "Notifications",
       icon: <AiTwotoneSetting />,
       link: "/notifications",
     },
-  //   {
-  //     name: "My Dealerships",
-  //     icon: <FaUserCheck />,
-  //     link: "/mydealerships",
-  // },
   ]);
   const [showSignIn, setShowSignIn] = useState(false);
   const [displaySearchResults, setDisplaySearchResults] = useState(false);
@@ -727,19 +727,19 @@ function Header() {
                                   {signInList.map((item, i) => {
                                     return (
                                       <>
-                                      <li key={i}>
-                                        <Link to={item.link} className="userprofileoptionstext">
-                                          <div className="userprofileoptionsicon">
-                                            {item.icon}
-                                          </div>
-                                          {item.name}
-                                        </Link>
-                                      </li>
-                                      
+                                        <li key={i}>
+                                          <Link to={item.link} className="userprofileoptionstext">
+                                            <div className="userprofileoptionsicon">
+                                              {item.icon}
+                                            </div>
+                                            {item.name}
+                                          </Link>
+                                        </li>
+
                                       </>
                                     );
                                   })}
-                                  <Link to='/add-oppotunity'><li>Added Opportunity</li></Link>
+                                  {/* <Link to='/add-oppotunity'><li>Added Opportunity</li></Link> */}
 
                                   <li onClick={() => handleLogout()}>
                                     <a style={{ cursor: "pointer" }}>

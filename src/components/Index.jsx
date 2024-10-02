@@ -709,7 +709,7 @@ function Index() {
                   categoryArr
                     .filter(
                       (el, index) =>
-                        index <= (isDisplayingAll ? categoryArr.length - 1 : 5)
+                        index <= (isDisplayingAll ? categoryArr.length - 1 : 10)
                     )
                     .map((item, index) => (
                       <SwiperSlide key={index}>
@@ -931,7 +931,7 @@ function Index() {
                         <div className="vender-box">
                           <div className="newprdcrd">
                             <img
-                              src={el.image ? generateImageUrl(el.image) : grls}
+                              src={el.image ? generateImageUrl(el.image) : grls} 
 
                               className="img-fluid img1"
                             />
@@ -1215,7 +1215,7 @@ function Index() {
           >
             {stateDetails.map((city, index) => (
               <SwiperSlide key={index}>
-                <Link to={`/Shop?state=${city._id}`}>
+                <Link to={`/Shop?state=${city.stateId._id}`}>
                   <div>
                     <img
                       src={city.image ? generateImageUrl(city?.image) : img1}
