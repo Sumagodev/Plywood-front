@@ -61,7 +61,7 @@ import CountdownTimer from "./Utility/CountdownTimer";
 import { errorToast, successToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
 // import playbanner from "../assets/image/home/Group 1000004149.png";
-import playbanner from "../assets/image/home/buy now.png";
+import playbanner from "../assets/image/home/addopimg.jpg";
 
 import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
@@ -1201,7 +1201,7 @@ function Index() {
 
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
-          States
+          States 
         </p>
         <Container fluid className=" px-1 px-lg-5 text-center fw-bold">
           <Swiper
@@ -1253,7 +1253,7 @@ function Index() {
         }
       }}>
 
-        <img src={playbanner} className=" img-fluid  " alt="" />
+        <img src={playbanner} className=" img-fluid  " alt="" height={'60px'}/>
       </section>
 
 

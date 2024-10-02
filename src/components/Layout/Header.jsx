@@ -64,6 +64,7 @@ import fb from '../../assets/image/home/Facebook Icon.png'
 import inst from '../../assets/image/home/instagram 1.png'
 import yout from '../../assets/image/home/11 1.png'
 import { LuBellRing } from "react-icons/lu";
+import Mybanner from "../Mybanner";
 
 // import Container from "react-bootstrap/Container";
 // import Offcanvas from "react-bootstrap/Offcanvas";
@@ -156,14 +157,29 @@ function Header() {
       link: "/View/My-Promotions",
     },
     {
-      name: "My Dealerships",
+      name: "Promoted Dealerships opportunity",
       icon: <FaUserCheck />,
       link: "/mydealerships",
+    },
+    {
+      name: "Dealerships opportunity Leads",
+      icon: <FaUserCheck />,
+      link: "/mydealershipsusers",
+    },
+    {
+      name: "My Applied Opportunity",
+      icon: <FaUserCheck />,
+      link: "/myappliedopp",
     },
     {
       name: "Notifications",
       icon: <AiTwotoneSetting />,
       link: "/notifications",
+    },
+    {
+      name: "My Banner",
+      icon: <FaUserCheck />,
+      link: "/mybanner",
     },
     // {
     //   name: "Added Oppertunity",

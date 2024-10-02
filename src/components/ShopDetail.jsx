@@ -891,7 +891,6 @@ function ShopDetail() {
 
                     <div>
                       <h6>No Reviews found for this product</h6>
-
                     </div>
                   </div>
                 )}

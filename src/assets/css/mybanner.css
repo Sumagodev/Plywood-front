@@ -1,0 +1,15 @@
+
+.productview_btn{
+    margin-left: 10px;
+}
+.submitbanner{
+    width: 100px;
+}
+.profileview_btn{
+    margin-left: 10px;
+}
+.mybanner_compo{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}

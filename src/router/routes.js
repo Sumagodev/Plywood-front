@@ -40,6 +40,8 @@ import MyDealership from "../components/User-Components/MyDealerships";
 import Addopp from "../components/Addopp";
 import EditOpportunity from "../components/EditOpportunity";
 import MyDealershipsusers from "../components/User-Components/MyDealershipsusers";
+import MyAppliedOpp from "../components/MyAppliedOpp";
+import Mybanner from "../components/Mybanner";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -333,6 +335,21 @@ export const routes = [
     isAuthorized: false,
     isUnProtected: false,
   },
+  {
+    path: "/myappliedopp",
+    component: <MyAppliedOpp />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: false,
+    isUnProtected: false,
+  },
+  {
+    path: "/mybanner",
+    component: <Mybanner />,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: false,
+    isUnProtected: false,
+  },
+
 
   // {
   //   path: "/admin/*",
