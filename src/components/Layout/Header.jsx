@@ -15,7 +15,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { BsX } from 'react-icons/bs'; // Import close icon
 import logo2 from '../../assets/image/home/image 110.png'
 
-import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaYoutube, FaHome } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
@@ -63,6 +63,8 @@ import whp from '../../assets/image/home/Layer 13 1.png'
 import fb from '../../assets/image/home/Facebook Icon.png'
 import inst from '../../assets/image/home/instagram 1.png'
 import yout from '../../assets/image/home/11 1.png'
+import { LuBellRing } from "react-icons/lu";
+import Mybanner from "../Mybanner";
 
 // import Container from "react-bootstrap/Container";
 // import Offcanvas from "react-bootstrap/Offcanvas";
@@ -155,15 +157,35 @@ function Header() {
       link: "/View/My-Promotions",
     },
     {
-      name: "My Dealerships",
+      name: "Promoted Dealerships opportunity",
       icon: <FaUserCheck />,
       link: "/mydealerships",
+    },
+    {
+      name: "Dealerships opportunity Leads",
+      icon: <FaUserCheck />,
+      link: "/mydealershipsusers",
+    },
+    {
+      name: "My Applied Opportunity",
+      icon: <FaUserCheck />,
+      link: "/myappliedopp",
     },
     {
       name: "Notifications",
       icon: <AiTwotoneSetting />,
       link: "/notifications",
     },
+    {
+      name: "My Banner",
+      icon: <FaUserCheck />,
+      link: "/mybanner",
+    },
+    // {
+    //   name: "Added Oppertunity",
+    //   icon: <MdLocalOffer />,
+    //   link: "/add-oppotunity",
+    // }
   ]);
   const [showSignIn, setShowSignIn] = useState(false);
   const [displaySearchResults, setDisplaySearchResults] = useState(false);
@@ -606,6 +628,15 @@ function Header() {
                             &nbsp; 9403574184
                           </a>
                         </p>
+                        {/* <Button className="navbtn rounded-pill me-2">
+                          <Link to="/Subscription" className="text-white">
+                            <FaHome />
+                          </Link>
+                        </Button> */}
+                        <Link to='/'><a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" >
+                          {/* <img src={whp} className=" img-fluid" /> */}
+                          <FaHome />
+                        </a></Link>
 
                         {/* <p
                           className="number me-5 mt-3 text-white"
@@ -689,7 +720,10 @@ function Header() {
                             </Link>
                           </Button>
                         )}
-
+                        <Link to='/'><a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" >
+                          {/* <img src={whp} className=" img-fluid" /> */}
+                          <LuBellRing />
+                        </a></Link>
 
 
 
@@ -715,7 +749,6 @@ function Header() {
                                   {userObj?.name}<BiChevronDown />
                                 </div>
                               </div>
-
 
                               <div ref={wrapperRef}>
                                 <ul
@@ -969,10 +1002,15 @@ function Header() {
 
                                     onClick={() => setShowSignIn(!showSignIn)}
                                   >
-                                    <button
-                                      className="text-dark d-flex align-items-center"
-
-                                    >
+                                    {/* <div className=" d-flex align-items-center">
+                                      <div>
+                                        <MdAccountCircle className=" Acc_icn btn-social rounded-circle mx-2" style={{ fontSize: "2rem",marginLeft:'40px' }} />
+                                      </div>
+                                      <div className=" text-white">
+                                        {userObj?.name}<BiChevronDown />
+                                      </div>
+                                    </div> */}
+                                    <button className="text-dark d-flex align-items-center">
                                       <img src={images.user} alt="" />
                                       {userObj?.name}
                                       <BiChevronDown />

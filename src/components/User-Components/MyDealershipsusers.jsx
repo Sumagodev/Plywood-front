@@ -89,7 +89,7 @@ export default function MyDealershipsusers() {
         <div className='container-fluid subscription-container topup-subscription-container'>
             <div className="container">
                 <div className="subsctiption-heading">
-                    Your Dealership &nbsp;&nbsp;
+                    My Dealership Application &nbsp;&nbsp;
                     <Link
                         to="/AddDealership"
                         className="yellow-bg btn text-white subsctiption-card-button  rounded-circle"
@@ -153,10 +153,10 @@ export default function MyDealershipsusers() {
 
                                                     <div className="row">
                                                         <div className="col-6 my-1 clr">
-                                                            stateName:
+                                                            state Name:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
-                                                            {el?.stateName}
+                                                            {el?.state.name}
                                                         </div>
                                                     </div>
                                                     <div className="row">

@@ -704,7 +704,7 @@ function Shop() {
                             activeClassName={"active"}
                             forcePage={page !== 0 ? page - 1 : 0}
                           />{" "}
-                          *
+                          
                         </Col>
                       </>
                     )}

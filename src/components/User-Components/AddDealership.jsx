@@ -374,7 +374,7 @@ const AddDealership = () => {
                                             </select>
                                         </div> */}
 
-                                        <div className="col-md-6">
+                                        <div className="col-md-6 ">
                                             <label>Category <span className="text-danger">*</span></label>
                                             <Select
                                                 className='form-control abc bg-transparent'

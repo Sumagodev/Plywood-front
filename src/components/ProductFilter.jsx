@@ -271,7 +271,8 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                         >
                           <FiSearch />
                         </button>
-                      </div>                      <div className=" col-lg-7 col-6  d-flex align-items-center">
+                      </div>                     
+                       <div className=" col-lg-7 col-6  d-flex align-items-center">
                         <Form.Control
                           type="search"
                           className="searchbar2"
@@ -281,6 +282,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           onChange={(e) =>
                             handleSearchText(e.target.value)
                           }
+                          
                         />
                       </div>
 
@@ -306,7 +308,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           Clear
                         </button></div> */}
                         <div>
-                          <button
+                          <button 
                             className="btn btn-outline btn-outline-custom"
                             style={{ fontSize: 12 }}
                             type="button"
