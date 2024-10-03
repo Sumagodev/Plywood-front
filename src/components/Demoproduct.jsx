@@ -451,7 +451,8 @@ function Demoproduct() {
                                           src={product.mainImage ? generateImageUrl(product.mainImage) : grls}
 
                                           alt={product.name} className="img-fluid ims img1"
-                                        />{/* <span className="icn_Product">
+                                        />
+                                        {/* <span className="icn_Product">
                                                     {isAuthorized ?
                                                         <a href={`tel: ${product.phone}`}>
                                                             <LuPhoneCall />

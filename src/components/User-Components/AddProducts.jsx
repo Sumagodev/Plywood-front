@@ -666,6 +666,7 @@ export default function AddProducts() {
                   </div>
                 </div>
               </div>
+              
 
               <div className="col-md-12">
                 <button
@@ -674,6 +675,7 @@ export default function AddProducts() {
                     onSubmit();
                   }}
                   className="btn btn-custom btn-yellow mt-2"
+                style={{width:'100px'}}
                 >
                   Submit
                 </button>

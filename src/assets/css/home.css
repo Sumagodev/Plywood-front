@@ -30,6 +30,22 @@
 
 }
 
+@media only screen and (max-width: 600px) {
+  .ratingcount {
+    font-size: 14px;
+    padding: 5px;
+    padding-left: 10px;
+    
+  }
+}
+
+@media (min-width:1025px){
+  .ratingcount{
+   font-size: 16px;
+   padding-left: 20px;
+  }
+}
+
 .productyoumaylike {
   height: 500px;
 }
@@ -1123,10 +1139,14 @@
   width: 50px;
   height: 50px;
   background-size: contain;
-  color:#603200;
+  color: #603200;
   position: relative;
   top: -350px;
-  left: 270px;  
+  left: 270px;
   /* box-shadow: 8px 4px 17px 0px rgba(0, 0, 0, 0.25); */
 
+}
+
+.ratingicon{
+  color: gold;
 }
