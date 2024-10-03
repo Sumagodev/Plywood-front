@@ -64,7 +64,7 @@ import fb from '../../assets/image/home/Facebook Icon.png'
 import inst from '../../assets/image/home/instagram 1.png'
 import yout from '../../assets/image/home/11 1.png'
 import { LuBellRing } from "react-icons/lu";
-import Mybanner from "../Mybanner";
+import Mybanner from "../User-Components/Mybanner";
 
 // import Container from "react-bootstrap/Container";
 // import Offcanvas from "react-bootstrap/Offcanvas";

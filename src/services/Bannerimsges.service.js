@@ -2,32 +2,32 @@ import axios from "axios";
 import { axiosApiInstance } from "../App";
 import { url } from "./url.service";
 
-let serverUrl = `${url}/advertisement`;
+let serverUrl = `${url}/BannerImage`;
 
 
-export const AddAdvertisement = async (obj) => {
-    return axiosApiInstance.post(`${serverUrl}/`, obj)
+export const AddBannerImage = async (obj) => {
+    return axiosApiInstance.post(`${serverUrl}/postbanner`, obj)
 }
 
-export const getAllAdvertisements = async (query) => {
+export const getAllBannerImages = async (query) => {
     return axiosApiInstance.get(`${serverUrl}/?userId=${query}`)
 }
-export const getForHomepage = async (query) => {
-    return axiosApiInstance.get(`${serverUrl}/getForHomepage?${query}`)
+export const getForBannerImagesHomepage = async (id) => {
+    return axiosApiInstance.get(`${serverUrl}/getbanner`)
 }
 
 
-export const getAdvertisementById = async (id) => {
+export const getBannerImageById = async (id) => {
     return axiosApiInstance.get(`${serverUrl}/getById/${id}`)
 }
 
 
-export const deleteAdvertisement = async (id) => {
-    return axiosApiInstance.delete(`${serverUrl}/deleteById/${id}`)
+export const deleteBannerImage = async (id) => {
+    return axiosApiInstance.delete(`${serverUrl}/deletebanner/${id}`)
 }
 
 
-export const updateAdvertisementApi = (formData, id) => {
+export const updateBannerImageApi = (formData, id) => {
     return axiosApiInstance.patch(`${serverUrl}/updateById/${id}`, formData)
 }
 

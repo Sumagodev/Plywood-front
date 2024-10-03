@@ -271,11 +271,11 @@ function Index() {
 
   const handleGetHomepageBanners = async () => {
     try {
-      let { data: res } = await getHomePageBannersApi();
-      if (res.data) {
-        // console.log(res.data, "data");
-        setHomepageBannersArr(res.data);
-      }
+      let res = await getHomePageBannersApi();
+
+      // console.log(res.data, "data");
+      setHomepageBannersArr(res.data.bannerImages);
+
     } catch (err) {
       errorToast(err);
     }
@@ -646,7 +646,20 @@ function Index() {
                 homepageBannersArr.map((el, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <div className="col-12">
+                      <div className="col-12"
+
+                        onClick={() => {
+                          // Handle navigation based on the type
+                          if (el.type === 'productbanner') {
+                            navigate(`/ShopDetail/${el.productId.slug}`); // Navigate to /product
+                          } else if (el.type === 'profilebanner' && el.userId) {
+                            navigate(`/Supplier/${el.userId._id}`); // Navigate to /user/:userId
+                          } else if (el.type === 'Adminbanner' && el.url) {
+                            window.open(el.url); // Open the external URL
+                          } else {
+                            window.open(el.url, '_blank');
+                          }
+                        }}>
                         <img
                           src={generateImageUrl(el.image)}
                           alt=""
@@ -931,7 +944,7 @@ function Index() {
                         <div className="vender-box">
                           <div className="newprdcrd">
                             <img
-                              src={el.image ? generateImageUrl(el.image) : grls} 
+                              src={el.image ? generateImageUrl(el.image) : grls}
 
                               className="img-fluid img1"
                             />
@@ -1105,7 +1118,7 @@ function Index() {
                     spaceBetween={5}
                     autoplay={{ disableOnInteraction: false }}
                     speed={1500}
-                     breakpoints={flashsale}
+                    breakpoints={flashsale}
                   >
                     {flashSalesArr &&
                       flashSalesArr.length > 0 &&
@@ -1114,7 +1127,7 @@ function Index() {
                           <SwiperSlide key={index}>
                             <div className="newprdcrd text-center position-relative">
                               <div className="position-relative">
-                                <CountdownTimer targetDate={el.endDate} /> 
+                                <CountdownTimer targetDate={el.endDate} />
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   <img
                                     src={generateImageUrl(el.productId.mainImage)}
@@ -1151,7 +1164,7 @@ function Index() {
                                   {el?.productId?.name}
                                 </Link>
                               </h6>
-                           
+
 
                               <div>
                                 <h6 className="old">
@@ -1176,11 +1189,11 @@ function Index() {
                             </div>
 
 
-                            
+
                           </SwiperSlide>
-                          
-                          
-                          
+
+
+
                         );
 
                       })}
@@ -1201,7 +1214,7 @@ function Index() {
 
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
-          States 
+          States
         </p>
         <Container fluid className=" px-1 px-lg-5 text-center fw-bold">
           <Swiper
@@ -1253,7 +1266,7 @@ function Index() {
         }
       }}>
 
-        <img src={playbanner} className=" img-fluid  " alt="" height={'60px'}/>
+        <img src={playbanner} className=" img-fluid  " alt="" height={'60px'} />
       </section>
 
 
