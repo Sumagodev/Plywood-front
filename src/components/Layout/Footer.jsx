@@ -291,7 +291,7 @@ function Footer() {
         </div>
       </footer> */}
       <>
-        <div className="footer">
+        <div className="footer" style={{position:"stick",bottom:"-1px"}}>
           
           <Container className=" text-white mt-0 mt-lg-5 p-4 p-md-0">
             <Row className="elements1">

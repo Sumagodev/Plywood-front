@@ -32,7 +32,7 @@ const ApplyDealership = () => {
     console.log(userObj)
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [email, setEmail] = useState("");
-    const [type, setType] = useState(ROLES_CONSTANT.MANUFACTURER);
+    const [type, setType] = useState(opportunity.Type);
     const [companyName, setCompanyName] = useState("");
     const [profileImage, setProfileImage] = useState("");
     const [countryArr, setCountryArr] = useState([]);
@@ -153,8 +153,8 @@ const ApplyDealership = () => {
         }
 
         const formData = {
-            Organisation_name: userObj.name,
-            Type: type,
+            Organisation_name: opportunity.Organisation_name,
+            Type: opportunity.Type,
             dealershipOwnerId: opportunity._id,
             Brand: opportunity.Brand,
             Product: opportunity.product,
@@ -178,7 +178,7 @@ const ApplyDealership = () => {
 
     const resetForm = () => {
         setOrganisationName('');
-        setType(ROLES_CONSTANT.MANUFACTURER);
+        setType(ROLES_CONSTANT.DEALER);
         setCompanyName('');
         setProfileImage('');
         setCountryId('');
@@ -211,6 +211,7 @@ const ApplyDealership = () => {
                                             value={ROLES_CONSTANT.MANUFACTURER}
                                             checked={type === ROLES_CONSTANT.MANUFACTURER}
                                             onChange={(e) => setType(e.target.value)}
+                                            disabled
                                         />{" "}
                                         <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
                                         <input
@@ -219,14 +220,17 @@ const ApplyDealership = () => {
                                             value={ROLES_CONSTANT.DISTRIBUTOR}
                                             checked={type === ROLES_CONSTANT.DISTRIBUTOR}
                                             onChange={(e) => setType(e.target.value)}
+                                            disabled
                                         />{" "}
                                         <b className="mx-2">DISTRIBUTOR</b>
                                         <input
                                             type="radio"
                                             name="type"
+                  
                                             value={ROLES_CONSTANT.DEALER}
                                             checked={type === ROLES_CONSTANT.DEALER}
                                             onChange={(e) => setType(e.target.value)}
+                                            disabled
                                         />{" "}
                                         <b className="mx-2">DEALER</b>
                                     </div>
@@ -238,7 +242,8 @@ const ApplyDealership = () => {
                                                 type="text"
                                                 className="form-control"
                                                 value={organisationName}
-                                                placeholder={userObj.name}
+                                                placeholder={opportunity.Organisation_name}
+                                                disabled
                                                 onChange={(e) => setOrganisationName(e.target.value)}
                                             />
                                         </div>
@@ -257,7 +262,7 @@ const ApplyDealership = () => {
                                                 value={brandNames}
                                                 placeholder={opportunity.Brand}
                                                 onChange={(e) => setBrandNames(e.target.value)}
-
+                                                disabled
 
                                             />
 
