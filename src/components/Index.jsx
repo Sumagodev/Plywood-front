@@ -62,7 +62,7 @@ import { errorToast, successToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
 // import playbanner from "../assets/image/home/Group 1000004149.png";
 import playbanner from "../assets/image/home/addopimg.jpg";
-
+import mbplaybanner from "../assets/image/home/ADD OPPORTUNITIES (7).png";
 import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
@@ -271,11 +271,11 @@ function Index() {
 
   const handleGetHomepageBanners = async () => {
     try {
-      let { data: res } = await getHomePageBannersApi();
-      if (res.data) {
-        // console.log(res.data, "data");
-        setHomepageBannersArr(res.data);
-      }
+      let res = await getHomePageBannersApi();
+
+      // console.log(res.data, "data");
+      setHomepageBannersArr(res.data.bannerImages);
+
     } catch (err) {
       errorToast(err);
     }
@@ -646,7 +646,20 @@ function Index() {
                 homepageBannersArr.map((el, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <div className="col-12">
+                      <div className="col-12"
+
+                        onClick={() => {
+                          // Handle navigation based on the type
+                          if (el.type === 'productbanner') {
+                            navigate(`/ShopDetail/${el.productId.slug}`); // Navigate to /product
+                          } else if (el.type === 'profilebanner' && el.userId) {
+                            navigate(`/Supplier/${el.userId._id}`); // Navigate to /user/:userId
+                          } else if (el.type === 'Adminbanner' && el.url) {
+                            window.open(el.url); // Open the external URL
+                          } else {
+                            window.open(el.url, '_blank');
+                          }
+                        }}>
                         <img
                           src={generateImageUrl(el.image)}
                           alt=""
@@ -831,87 +844,8 @@ function Index() {
           </div>
         </Container>
       </section> */}
+      <div className=" my-4 d-none d-lg-block" style={{ height: "10px" }}></div>
 
-      <section className=" mt-2">
-        <Container fluid className="product-container-section">
-          <h1 className="heading text-center">Products You May Like</h1>
-          <Row>
-            <Swiper
-              modules={[Autoplay]}
-              spaceBetween={5}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              speed={1500}
-              breakpoints={states}
-            >
-
-
-              {productArr &&
-                productArr.slice(0, 10).map((product, index) => (
-                  <SwiperSlide key={index}>
-                    <Col
-                      key={index}
-                      className="d-flex productyoulike justify-content-center align-items-center py-4 px-0 mx-0"
-
-                    >
-                      <div className="box_Product1 ">
-
-
-                        <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
-
-                        <span
-                          className="icn_Product"
-                          onClick={() => {
-                            if (!isAuthorized) {
-                              // If the user is not authorized, show the sign-in modal
-                              setSignInModal(true);
-                            } else if (!currentUserHasActiveSubscription) {
-                              // If the user does not have an active subscription, show the price modal
-                              handleClose(true);
-                            } else {
-                              // If the user has an active subscription, initiate a phone call
-                              window.location.href = `tel:${product.phone}`;
-                            }
-                          }}
-                        >
-                          <LuPhoneCall />
-                        </span>
-
-                        <div className="product_detail">
-                          <Link to={`/ShopDetail/${product?.slug}`}>
-
-                            <span className=" msg1">{product.name}</span>
-                            <span className="chennai">
-                              <IoLocationSharp /> {product.cityName}
-                            </span>
-                            <span className=" msg1">{product.sellingprice}</span>
-                          </Link>
-                        </div>
-                        <Link to={`/ShopDetail/${product?.slug}`}>            <button className="mt-2 fs-6 fw-bold">Get Quote</button></Link>
-
-
-                      </div>
-                    </Col>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </Row>
-          <div className="d-flex justify-content-center align-items-center mb-0 mb-lg-5">
-            <Link to={`/product-details`}>
-              <button
-                className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
-                style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
-
-              >
-                View All
-              </button>
-            </Link>
-          </div>
-        </Container>
-      </section>
-      <div className=" my-4 d-none d-lg-block" style={{ height: "2px" }}></div>
       <section className=" mt-0  mt-lg-5">
         <Container className=" mt-0 mt-lg-5">
           <Row className=" newpeoductback ">
@@ -931,7 +865,7 @@ function Index() {
                         <div className="vender-box">
                           <div className="newprdcrd">
                             <img
-                              src={el.image ? generateImageUrl(el.image) : grls} 
+                              src={el.image ? generateImageUrl(el.image) : grls}
 
                               className="img-fluid img1"
                             />
@@ -1005,12 +939,15 @@ function Index() {
         </Container>
       </section>
 
+      <div className=" my-4 d-none d-lg-block" style={{ height: "10px" }}></div>
+
+
       <section>
-        <Container className="main_Profiles my-2 my-lg-5">
+        <Container fluid className="main_Profiles my-2 my-lg-5">
           <h1 className="text-center mb-4">Top Profiles</h1>
           <Row className=" d-flex justify-content-center">
-            {topusers && topusers.slice(0, 4).map((el) => (
-              <Col lg={3} xs={6} className="py-3 px-2">
+            {topusers && topusers.slice(0, 6).map((el) => (
+              <Col lg={2} xs={6} className="py-3 px-2">
                 {/* <Link to={`/Supplier/${el?._id}`}> */}
                 <div className="component-container1  text-center">
 
@@ -1105,7 +1042,7 @@ function Index() {
                     spaceBetween={5}
                     autoplay={{ disableOnInteraction: false }}
                     speed={1500}
-                     breakpoints={flashsale}
+                    breakpoints={flashsale}
                   >
                     {flashSalesArr &&
                       flashSalesArr.length > 0 &&
@@ -1114,7 +1051,7 @@ function Index() {
                           <SwiperSlide key={index}>
                             <div className="newprdcrd text-center position-relative">
                               <div className="position-relative">
-                                <CountdownTimer targetDate={el.endDate} /> 
+                                <CountdownTimer targetDate={el.endDate} />
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   <img
                                     src={generateImageUrl(el.productId.mainImage)}
@@ -1151,7 +1088,7 @@ function Index() {
                                   {el?.productId?.name}
                                 </Link>
                               </h6>
-                           
+
 
                               <div>
                                 <h6 className="old">
@@ -1176,11 +1113,11 @@ function Index() {
                             </div>
 
 
-                            
+
                           </SwiperSlide>
-                          
-                          
-                          
+
+
+
                         );
 
                       })}
@@ -1198,10 +1135,89 @@ function Index() {
           </section>
         )
       }
+      <section className=" mt-2">
+        <Container fluid className="product-container-section">
+          <h1 className="heading text-center mt-5">Products You May Like</h1>
+          <div className="d-flex justify-content-end align-items-center mb-0 mb-lg-5">
+            <Link to={`/product-details`}>
+              <button
+                className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
+                style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
 
+              >
+                View All
+              </button>
+            </Link>
+          </div>
+          <Row>
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={5}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              speed={1500}
+              breakpoints={states}
+            >
+
+
+              {productArr &&
+                productArr.slice(0, 10).map((product, index) => (
+                  <SwiperSlide key={index}>
+                    <Col
+                      key={index}
+                      className="d-flex productyoulike justify-content-center align-items-center py-4 px-0 mx-0"
+
+                    >
+                      <div className="box_Product1 ">
+
+
+                        <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
+
+                        <span
+                          className="icn_Product"
+                          onClick={() => {
+                            if (!isAuthorized) {
+                              // If the user is not authorized, show the sign-in modal
+                              setSignInModal(true);
+                            } else if (!currentUserHasActiveSubscription) {
+                              // If the user does not have an active subscription, show the price modal
+                              handleClose(true);
+                            } else {
+                              // If the user has an active subscription, initiate a phone call
+                              window.location.href = `tel:${product.phone}`;
+                            }
+                          }}
+                        >
+                          <LuPhoneCall />
+                        </span>
+
+                        <div className="product_detail">
+                          <Link to={`/ShopDetail/${product?.slug}`}>
+
+                            <span className=" msg1">{product.name}</span>
+                            <span className="chennai">
+                              <IoLocationSharp /> {product.cityName}
+                            </span>
+                            <span className=" msg1">{product.sellingprice}</span>
+                          </Link>
+                        </div>
+                        <Link to={`/ShopDetail/${product?.slug}`}>            <button className="mt-2 fs-6 fw-bold">Get Quote</button></Link>
+
+
+                      </div>
+                    </Col>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </Row>
+
+        </Container>
+      </section>
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
-          States 
+          States
         </p>
         <Container fluid className=" px-1 px-lg-5 text-center fw-bold">
           <Swiper
@@ -1240,7 +1256,8 @@ function Index() {
         </Row>
       </Container>
       {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
-      <section onClick={() => {
+
+      <Container fluid className=" mx-0 px-0" onClick={() => {
         if (!isAuthorized) {
           // If the user is not authorized, show the sign-in modal
           setSignInModal(true);
@@ -1253,76 +1270,93 @@ function Index() {
         }
       }}>
 
-        <img src={playbanner} className=" img-fluid  " alt="" height={'60px'}/>
-      </section>
+        <img src={playbanner} className="d-none d-lg-block img-fluid w-100 mx-0 px-0" alt="" />
+        <img src={mbplaybanner} className="d-block d-lg-none img-fluid w-100 mx-0 px-0" alt="" />
+      </Container>
 
 
 
 
 
-      <section>
-        <Container className="dealership-oppo-container my-2 my-lg-5">
 
-          <>
 
-            <Row>
-              <Swiper
-                modules={[Autoplay]}
-                spaceBetween={5}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
-                speed={1500}
-                breakpoints={ourvideos}
-              >
-                {opportunities.map(opportunity => (
+      <Container className="dealership-oppo-container my-2 my-lg-5">
 
-                  <SwiperSlide >
-                    <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
-                      <div className="dealership-oppo-box rounded-5 rounded">
-                        <div
-                          className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
-                          style={{
-                            backgroundImage: `url(${generateImageUrl(opportunity.image)})`
-                          }}
-                        >
+        <>
 
-                          <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
-                            <div className=" col-lg-7">
-                              <span>{opportunity.Organisation_name}</span> <br />
-                            </div>
+          <Row>
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={5}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              speed={1500}
+              breakpoints={ourvideos}
+            >
+              {opportunities.map(opportunity => (
 
-                            {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
+                <SwiperSlide className=" d-flex justify-content-center" >
+                  <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
+                    <div className="dealership-oppo-box rounded-5 rounded">
+                      <div
+                        className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
+                        style={{
+                          backgroundImage: `url(${generateImageUrl(opportunity.image)})`
+                        }}
+                      >
 
-                            <div className="col-lg-5">
-                              <button className="dealerapply px-3 py-2"
-                                onClick={() => {
-                                  // If the user has an active subscription, initiate a phone call
-                                  navigate('/ApplyDealership', { state: { opportunity } });
+                        <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
 
-                                }}
-                              >
-                                Apply
-                              </button>
-                            </div>
+                          <span>{opportunity.Organisation_name}</span>
 
 
 
+                          <div className=" fs-6">
+                            <IoLocationSharp /> {opportunity.stateName}
                           </div>
+
+
+                          {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
+
+                          <div className=" d-flex justify-content-end">
+                            <button className="dealerapply px-3 py-2"
+
+                              onClick={() => {
+                                if (!isAuthorized) {
+                                  // If the user is not authorized, show the sign-in modal
+                                  setSignInModal(true);
+                                } else if (!currentUserHasActiveSubscription) {
+                                  // If the user has an active subscription, close the modal
+                                  handleClose(true);
+                                } else {
+                                  // If the user does not have an active subscription, show the price modal
+                                  navigate('/ApplyDealership', { state: { opportunity } });
+                                }
+                              }}
+
+                            >
+                              Apply
+                            </button>
+                          </div>
+
 
 
                         </div>
 
-                      </div>
-                    </Col></SwiperSlide>
-                ))}
-              </Swiper>
-            </Row>
-          </>
 
-        </Container>
-      </section>
+                      </div>
+
+                    </div>
+                  </Col></SwiperSlide>
+              ))}
+            </Swiper>
+          </Row>
+        </>
+
+      </Container>
+
 
       <Container fluid className="main-blog">
         <div className="blog2 new_blog2 blog_container top-banner ptb-80">

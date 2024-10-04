@@ -22,7 +22,7 @@ import { getDecodedToken } from "../../services/auth.service";
 import { useSelector } from "react-redux";
 import { createLead } from "../../services/leads.service";
 import { errorToast, successToast } from "../Utility/Toast";
-import { addReview, getReviewForProduct } from "../../services/ProductReview.service";
+import { addvendorReview, getReviewForVendor } from "../../services/ProductReview.service";
 import StarRatings from "react-star-ratings";
 import moment from "moment";
 import ReactStars from "react-rating-stars-component";
@@ -148,7 +148,7 @@ function Supplier() {
 
   const handleGetProductReview = async (id) => {
     try {
-      let { data: res } = await getReviewForProduct(`userId=${id}`);
+      let { data: res } = await getReviewForVendor(`userId=${id}`);
       if (res.message) {
         setProductReviewArr(res.data);
       }
@@ -249,14 +249,17 @@ function Supplier() {
       }
 
       let obj = {
+        addedby: userObj._id,
         rating,
         message,
         name: userName,
-        userId: supplierObj._id,
+        userId: supplierObj?._id,
         // productId: productObj?._id,
+
+
       };
 
-      let { data: res } = await addReview(obj);
+      let { data: res } = await addvendorReview(obj);
 
       if (res.message) {
 
@@ -831,10 +834,13 @@ function Supplier() {
                               <div className="top">
                                 <div className="name">
                                   <div>
+                                    <img src={generateImageUrl(el.addedby.profileImage)} style={{ height: "100px", width: "100px" }} className=" rounded-circle" alt="" />
+                                  </div>
+                                  <div>
                                     <h6>{el.name}</h6>
-                                    <p className="small brown">
+                                    {/* <p className="small brown">
                                       {moment(el.createdAt).format("DD-MM-YYYY")}
-                                    </p>
+                                    </p> */}
                                   </div>
                                 </div>
                                 <div className="review-rating">

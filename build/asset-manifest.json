@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.fce724ef.css",
-    "main.js": "/static/js/main.590f71cf.js",
+    "main.css": "/static/css/main.bdaa6d00.css",
+    "main.js": "/static/js/main.c60c8865.js",
     "static/js/787.a69855e9.chunk.js": "/static/js/787.a69855e9.chunk.js",
     "static/media/banner7.jpg": "/static/media/banner7.f615dbce0ee2c7244617.jpg",
     "static/media/banner2.jpg": "/static/media/banner2.59bd6a7a555c97520d4f.jpg",
@@ -18,6 +18,7 @@
     "static/media/Group 1000004425.png": "/static/media/Group 1000004425.a424efb832bfae85c6a8.png",
     "static/media/team211.jpg": "/static/media/team211.9f89b3823a592aad4aa6.jpg",
     "static/media/image 138.png": "/static/media/image 138.6019a525458ae49960a2.png",
+    "static/media/ADD OPPORTUNITIES (7).png": "/static/media/ADD OPPORTUNITIES (7).b3715bce33669e8f2377.png",
     "static/media/cardImg.png": "/static/media/cardImg.d8d69b6d417abd4e34f5.png",
     "static/media/Group 1000004438.png": "/static/media/Group 1000004438.98f0fd9e334fb64dd200.png",
     "static/media/Group 1000004290 (1).png": "/static/media/Group 1000004290 (1).dfdd9959c948581e92bd.png",
@@ -80,12 +81,12 @@
     "static/media/banner.jpg": "/static/media/banner.b5100d9eea06bdd3238c.jpg",
     "static/media/client_1.png": "/static/media/client_1.3356ce2acbff44c5d042.png",
     "index.html": "/index.html",
-    "main.fce724ef.css.map": "/static/css/main.fce724ef.css.map",
-    "main.590f71cf.js.map": "/static/js/main.590f71cf.js.map",
+    "main.bdaa6d00.css.map": "/static/css/main.bdaa6d00.css.map",
+    "main.c60c8865.js.map": "/static/js/main.c60c8865.js.map",
     "787.a69855e9.chunk.js.map": "/static/js/787.a69855e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fce724ef.css",
-    "static/js/main.590f71cf.js"
+    "static/css/main.bdaa6d00.css",
+    "static/js/main.c60c8865.js"
   ]
 }

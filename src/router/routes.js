@@ -41,7 +41,9 @@ import Addopp from "../components/Addopp";
 import EditOpportunity from "../components/EditOpportunity";
 import MyDealershipsusers from "../components/User-Components/MyDealershipsusers";
 import MyAppliedOpp from "../components/MyAppliedOpp";
-import Mybanner from "../components/Mybanner";
+import Mybanner from "../components/User-Components/Mybanner";
+import { AddBannerImage } from "../services/Bannerimsges.service";
+import AddBannerimg from "../components/User-Components/AddBannerimg";
 
 // <Route path="/Register" exact element={<Register />}></Route>
 // <Route path="/Distributor/Dashboard" element={
@@ -349,6 +351,14 @@ export const routes = [
     isAuthorized: false,
     isUnProtected: false,
   },
+  {
+    path: "/addbannerimg",
+    component:  <AddBannerimg/>,
+    role: [ROLES.DISTRIBUTOR, ROLES.DEALER, ROLES.MANUFACTURER, ROLES.USER],
+    isAuthorized: false,
+    isUnProtected: false,
+  },
+
 
 
   // {

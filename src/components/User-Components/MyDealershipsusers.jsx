@@ -121,7 +121,8 @@ export default function MyDealershipsusers() {
                                                 <div className="col-12">
 
 
-                                                    <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={el.image} alt="" />
+                                                    <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow"   src={generateImageUrl(el.image)}
+ alt="" />
 
 
                                                     <div className="row pt-4">

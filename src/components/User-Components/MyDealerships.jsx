@@ -121,7 +121,8 @@ export default function MyDealership() {
                                                 <div className="col-12">
 
 
-                                                    <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={el.image} alt="" />
+                                                    <img style={{ width: "100%", height: 200, borderRadius: 20 }} className="shadow" src={generateImageUrl(el.image)}
+                                                        alt="" />
 
 
                                                     <div className="row pt-4">
@@ -169,7 +170,7 @@ export default function MyDealership() {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-6 my-1 clr">
-                                                        cities:
+                                                            cities:
                                                         </div>
                                                         <div className="col-6  my-1 clr">
                                                             {el.cities.slice(0, 3).map(item => `${item.name}, `)}

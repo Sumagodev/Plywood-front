@@ -31,3 +31,6 @@ export const updateAdvertisementApi = (formData, id) => {
     return axiosApiInstance.patch(`${serverUrl}/updateById/${id}`, formData)
 }
 
+
+// https://api.plywoodbazar.com/v2/uploads/1727869169525.jpeg
+// https://api.plywoodbazar.com/v2/uploads/1727428682804.jpeg

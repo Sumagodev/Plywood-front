@@ -160,7 +160,8 @@ const ApplyDealership = () => {
             Product: opportunity.product,
             userId: userObj._id,
             cityId: cityId,
-            stateId: opportunity.stateId
+            stateId: opportunity.stateId,
+            image: opportunity.image
         };
 
         try {
@@ -203,36 +204,11 @@ const ApplyDealership = () => {
                                 <h3 className="heading yellow">Apply for Dealership</h3>
 
                                 <form className="form row" >
-                                    <div className="col-md-6">
-                                        <label>Who are you? <span className="text-danger">*</span></label>
-                                        <input
-                                            type="radio"
-                                            name="type"
-                                            value={ROLES_CONSTANT.MANUFACTURER}
-                                            checked={type === ROLES_CONSTANT.MANUFACTURER}
-                                            onChange={(e) => setType(e.target.value)}
-                                            disabled
-                                        />{" "}
-                                        <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
-                                        <input
-                                            type="radio"
-                                            name="type"
-                                            value={ROLES_CONSTANT.DISTRIBUTOR}
-                                            checked={type === ROLES_CONSTANT.DISTRIBUTOR}
-                                            onChange={(e) => setType(e.target.value)}
-                                            disabled
-                                        />{" "}
-                                        <b className="mx-2">DISTRIBUTOR</b>
-                                        <input
-                                            type="radio"
-                                            name="type"
-                  
-                                            value={ROLES_CONSTANT.DEALER}
-                                            checked={type === ROLES_CONSTANT.DEALER}
-                                            onChange={(e) => setType(e.target.value)}
-                                            disabled
-                                        />{" "}
-                                        <b className="mx-2">DEALER</b>
+                                    <div className="col-md-6 d-flex py-3">
+                                        <label>Dealership opportunity For :                                         <b className="mx-2">{opportunity.Type}</b>
+                                        </label>
+
+
                                     </div>
 
                                     <div className="row">
@@ -320,7 +296,7 @@ const ApplyDealership = () => {
                                                 <option value="">Select Cities</option>
                                                 {cityArr.map((city) => {
                                                     console.log("city", city);
-                                                    
+
                                                     return (
                                                         <option key={city.cityId} value={city._id}>
                                                             {city.name}

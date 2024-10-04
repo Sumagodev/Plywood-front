@@ -289,6 +289,8 @@ function ShopDetail() {
         message,
         name: userObj?.name,
         productId: productObj?._id,
+        addedby: productObj?.createdByObj._id,
+        userId: userObj._id,
       };
       let { data: res } = await addReview(obj);
 
@@ -860,10 +862,13 @@ function ShopDetail() {
                             <div className="top">
                               <div className="name">
                                 <div>
+                                  <div>
+                                    {/* <img src={generateImageUrl(el.userId.profileImage)} style={{ height: "100px", width: "100px" }} className=" rounded-circle" alt="" /> */}
+                                  </div>
                                   <h6>{el.name}</h6>
-                                  <p className="small brown">
+                                  {/* <p className="small brown">
                                     {moment(el.createdAt).format("DD-MM-YYYY")}
-                                  </p>
+                                  </p> */}
                                 </div>
                               </div>
                               <div className="review-rating">
