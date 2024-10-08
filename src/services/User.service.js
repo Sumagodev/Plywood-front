@@ -84,8 +84,11 @@ export const refreshToken = async (obj) => {
   return axios.post(`${serverUrl}/refreshToken`, obj);
 };
 
+// export const getUserNotifications = async (obj) => {
+//   return await axiosApiInstance.get(`${serverUrl}/getUserNotifications${obj}`);
+// };
 export const getUserNotifications = async (obj) => {
-  return await axiosApiInstance.get(`${serverUrl}/getUserNotifications${obj}`);
+  return await axiosApiInstance.post(`${url}/notifications/getAllNotifications`,obj);
 };
 
 export const markReadNotifications = async (obj) => {
@@ -99,3 +102,9 @@ export const gettopUsers = async () => {
   return await axiosApiInstance.get(`${serverUrl}/getTopVendors`);
 };
 
+export const getsendOTPForVerify = async (query) => {
+  return axios.post(`${serverUrl}/sendOTPForVerify`,query)
+}
+export const getverifyUserOTP = async (query) => {
+  return axios.post(`${serverUrl}/verifyUserOTP`,query)
+}

@@ -125,3 +125,17 @@ code {
 .cgTKyH{
   background: transparent !important;
 }
+
+.notification-badge {
+  position: absolute;
+  top: -5px; /* Adjust as needed */
+  right: -1px; /* Adjust as needed */
+  background-color: rgb(20, 107, 53);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block;
+}

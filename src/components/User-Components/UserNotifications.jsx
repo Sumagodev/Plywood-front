@@ -46,11 +46,11 @@ export default function UserNotifications() {
 
     const handleMarkkProducts = async (skipValue, limitValue, searchQuery) => {
         try {
-    
-            let query = `?userId=${userObj?._id}`
-            let { data: res } = await markReadNotifications(query)
-            if (res.data) {
-            }
+
+            // let query = `?userId=${userObj?._id}`
+            // let { data: res } = await markReadNotifications(query)
+            // if (res.data) {
+            // }
         }
         catch (err) {
             errorToast(err)
@@ -64,7 +64,7 @@ export default function UserNotifications() {
 
 
 
-            let { data: res } = await getUserNotifications(query)
+            let { data: res } = await getUserNotifications({ userId: userObj?._id })
             if (res.data) {
                 setTotalElements(res.totalElements)
                 setProductArr(res.data)
@@ -127,7 +127,7 @@ export default function UserNotifications() {
 
     return (
         <>
-            <div className="container-fluid ">
+            <div className="container-fluid  topup-subscription-container">
                 <div className="row d-flex justify-content-center">
                     <div className="col-10 mb-5">
                         <div className="row d-flex mt-5 align-items-center justify-content-between">
@@ -145,11 +145,11 @@ export default function UserNotifications() {
                                 noHeader
                                 subHeader
                                 sortServer
-                                pagination
+                                // pagination
                                 responsive
                                 columns={columns}
                                 sortIcon={<BiChevronDown />}
-                                className='react-dataTable'
+                                className="react-dataTable  main-datatable-container"
                                 data={productArr}
                                 paginationServer
                                 paginationTotalRows={totalElements}

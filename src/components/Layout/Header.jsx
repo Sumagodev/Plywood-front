@@ -245,7 +245,7 @@ function Header() {
   const handleGetProducts = async (skipValue, limitValue, searchQuery) => {
     try {
       let query = `?page=${skipValue}&perPage=${limitValue}&userId=${userObj?._id}&isRead=false`;
-      let { data: res } = await getUserNotifications(query);
+      let { data: res } = await getUserNotifications({ userId: userObj?._id });
       console.log(
         res.totalElements,
         "res.totalElementsres.totalElementsres.totalElementsres.totalElements"
@@ -720,13 +720,21 @@ function Header() {
                             </Link>
                           </Button>
                         )}
-                        <Link to='/'><a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" >
-                          {/* <img src={whp} className=" img-fluid" /> */}
-                          <LuBellRing />
-                        </a></Link>
 
 
+                        {isAuthorized && (
+                          <a
+                            className="nav-link position-relative"
 
+                          >
+                            <Link to='/notifications'><a className="icn p-2 btn-social rounded-circle mx-2"  >
+
+                              <LuBellRing />
+                            </a></Link>
+                            {totalNotification > 0 && (
+                              <span className="notification-badge">{totalNotification}</span>
+                            )}
+                          </a>)}
                         {isAuthorized ? (
                           <div
                             className="sign-in-btn"
@@ -976,16 +984,14 @@ function Header() {
                                       Blogs
                                     </NavLink>
                                     {isAuthorized && (
-                                      <a
-                                        className="nav-link position-relative"
-                                        href="/notifications"
-                                      >
+                                      <a className="nav-link position-relative" href="/notifications">
                                         <FaBell style={{ fontSize: 22 }} />
                                         {totalNotification > 0 && (
-                                          <span>{totalNotification}</span>
+                                          <span className="notification-badge">{totalNotification}</span>
                                         )}
                                       </a>
                                     )}
+
                                   </Nav>
                                 </>
                               ) : (

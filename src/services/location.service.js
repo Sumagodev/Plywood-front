@@ -14,3 +14,4 @@ export const getStateByCountryApi = async (query) => {
 export const getCityByStateApi = async (query) => {
     return axios.get(`${url}/city?${query}`)
 }
+

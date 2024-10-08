@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { getAllCategories } from "../services/Category.service";
-import { getSalesUsers, registerUser } from "../services/User.service";
+import { getSalesUsers, registerUser, getsendOTPForVerify, getverifyUserOTP } from "../services/User.service";
 import { getCityByStateApi, getCountriesApi, getStateByCountryApi } from "../services/location.service";
 import { toastError } from "../utils/toastutill";
 import FileUpload from "./Utility/FileUpload";
@@ -17,9 +17,12 @@ import { getCroppedImg, handleOpenImageInNewTab } from "../utils/image.utils";
 import Cropper from 'react-easy-crop';
 import FileInput from "./Utility/FileUploadCropper";
 import { convertFileToBase64 } from "./Utility/FileConverterToBase64";
+import logo from "../assets/image/home/images/logo6.png";
 
 export const Register = () => {
     const editorRef = useRef(null);
+    const [otp, setotp] = useState("");
+
     const navigate = useNavigate()
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [name, setname] = useState("");
@@ -46,6 +49,7 @@ export const Register = () => {
     const [brandNames, setBrandNames] = useState("")
     // const [landline, setLandline] = useState("");
     const [aniversaryDate, setAniversaryDate] = useState(new Date());
+    const [signInModal, setSignInModal] = useState(false);
 
     const [bannerImage, setBannerImage] = useState("");
 
@@ -107,7 +111,38 @@ export const Register = () => {
 
     const [isFormValid, setIsFormValid] = useState(true);
 
+    const handlesendOtp = async () => {
+        try {
+            if (`${mobile}`.length !== 10) {
+                errorToast("Please Enter Mobile Number");
+                return;
+            }
 
+            let { data: res } = await getverifyUserOTP({ otp, phone: mobile });
+            if (res.message) {
+
+                handleRegister();
+
+                setotp("");
+            }
+        } catch (error) {
+            errorToast(error);
+            console.log(error);
+        }
+    };
+    const resendOtp = async () => {
+        try {
+            let { data: otpResponse } = await getsendOTPForVerify({ phone: mobile });
+            if (otpResponse.result === true) {
+                successToast("Verification OTP sent to your phone.");
+            } else {
+                errorToast("Failed to send OTP.");
+            }
+        } catch (error) {
+            errorToast(error);
+            console.log(error);
+        }
+    };
     const handleRegister = async () => {
         // console.log(category, "check cate")
 
@@ -245,16 +280,31 @@ export const Register = () => {
 
         console.log(obj, "companycompanycompanycompany")
         try {
-            let { data: res } = await registerUser(obj)
+            let { data: res } = await registerUser(obj);
             if (res.data) {
-                // successToast(res.message);
-                navigate("/Thankyou")
-                // handleShow()
-                // window.location.reload();
+                navigate("/Thankyou");
             }
         } catch (error) {
-            console.error(error)
-            errorToast(error)
+            console.error(error);
+            const errorMessage = error?.response?.data?.message;
+
+            if (errorMessage === "User is not verified ") {
+                try {
+                    // Call the sendOTPForVerify API if the user is not verified
+                    let { data: otpResponse } = await getsendOTPForVerify({ phone: mobile });
+                    if (otpResponse.result === true) {
+                        successToast("Verification OTP sent to your phone.");
+                    } else {
+                        errorToast("Failed to send OTP.");
+                    }
+                    setSignInModal(true)
+                } catch (otpError) {
+                    console.error("Failed to send OTP:", otpError);
+                    errorToast("Failed to send OTP.");
+                }
+            } else {
+                errorToast(errorMessage || "Registration failed.");
+            }
         }
     }
 
@@ -770,7 +820,70 @@ export const Register = () => {
                     </div>
                 </div>
             </div>
+            <Modal show={signInModal} centered  >
+                <Modal.Body className="sign-in-modal custom-modal subscription-card-container p-lg-5 p-3" >
 
+                    <div>
+                        <Link to="/" className="navbar-brand">
+                            <img src={logo} alt="" className="main-logo img-fluid" />
+                        </Link>
+                    </div>
+                    <h2 className="heading">    Verfiy Phone</h2>
+                    <form className="form row">
+
+                        <div className="col-12">
+
+                            <div className="input flex-1">
+                                <label className="text-start">
+                                    Enter OTP sent to {mobile}
+                                </label>
+                                <input
+                                    type="text"
+                                    className="w-100 form-control bg-grey"
+                                    placeholder="Enter Your OTP"
+                                    value={otp}
+                                    onChange={(e) => setotp(e.target.value)}
+                                />
+
+                                <div className="t mt-4">
+                                    <div
+                                        className="btn btn-custom btn-yellow mt-2 mb-4"
+                                        onClick={() => { handlesendOtp(); setSignInModal(false) }}
+                                    >
+                                        Verfiy Phone
+                                    </div>
+                                </div>
+
+
+                                <div className=" d-flex justify-content-between">
+                                    
+                                        <div
+                                            className="resendtp"
+                                            onClick={() => setSignInModal(false)}
+                                        >
+                                            Edit phone no
+                                        </div>
+                                    
+                                    
+                                        <div
+                                            className="resendtp"
+                                            onClick={() => {
+                                                resendOtp();
+                                            }}
+                                        >
+                                            Resend OTP
+                                        </div>
+                                  
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </form>
+                </Modal.Body>
+            </Modal>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                 </Modal.Header>
@@ -787,7 +900,7 @@ export const Register = () => {
             <Modal show={showProfileModal} onHide={handleProfileModalClose}>
                 <Modal.Header closeButton>
                 </Modal.Header>
-                <Modal.Body style={{ display: "grid", placeItems: "center", padding: "0px 30px" }}>
+                <Modal.Body style={{ display: "grid", placeItems: "center", padding: "0px 30px" }} >
 
 
                     <Cropper
@@ -812,18 +925,3 @@ export const Register = () => {
 };
 
 
-// const subcategoryRender = (cateArr, dash) => {
-//     dash += '-    '
-//     console.log(cateArr.length)
-//     return (
-//         cateArr && cateArr.length > 0 && cateArr.map((cat) => {
-//             return (
-//                 <>
-//                     <option key={cat._id} value={cat._id}>{dash}{cat.name}</option>
-//                     {subcategoryRender(cat.subCategoryArr, dash)}
-//                 </>
-
-//             )
-//         })
-//     )
-// }
