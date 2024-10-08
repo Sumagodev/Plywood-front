@@ -30,7 +30,9 @@ const Movingicon = () => {
             if (phone === "") {
                 throw new Error("Mobile number cannot be empty");
             }
-
+            if (meassage === "") {
+                throw new Error("meassage  cannot be empty");
+            }
             let obj = { name, phone, meassage };
             let { data: res } = await addquickenquiry(obj);
             if (res.message) {
