@@ -39,8 +39,9 @@ export const otpLogin = async (obj) => {
   return axios.post(`${serverUrl}/app-login/`, obj);
 };
 export const getUserById = async (id) => {
-  // let decoded = getDecodedToken()
-  return axiosApiInstance.get(`${serverUrl}/getUserById/${id}`);
+  let decoded = await getDecodedToken();
+  // return /apiinstance/ axiosApiInstance.get(${serverUrl}/getUserById/${id});
+  return axiosApiInstance.get(`${serverUrl}/getUserById/${id}?visitorUserId=${decoded?.userId}`);
 };
 
 export const searchVendorFromDb = async (query) => {

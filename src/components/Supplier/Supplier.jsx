@@ -46,8 +46,9 @@ function Supplier() {
   const [quoteModal, setQuoteModal] = useState(false);
   const authObj = useSelector((state) => state.auth);
   const auth = useSelector((state) => state.auth);
-
   let userObj = useSelector((state) => state.auth.user);
+  localStorage.setItem('loginid', userObj._id)
+
   const [reviewModal, setReviewModal] = useState(false);
   const [productReviewArr, setProductReviewArr] = useState([]);
   const [editVisible, setEditVisible] = useState(false);
