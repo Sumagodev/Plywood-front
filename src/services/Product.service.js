@@ -19,7 +19,10 @@ export const getAllProductsBySupplierId = async (id) => {
 };
 
 export const getProductById = async (id) => {
-  return axiosApiInstance.get(`${serverUrl}/getProductById/${id}`);
+  // return axiosApiInstance.get(`${serverUrl}/getProductById/${id}`);
+  const uid = localStorage.getItem('loginid')
+
+  return axiosApiInstance.get(`${serverUrl}/getProductById/${id}?visitorUserId=${uid}`);
 };
 
 export const getProductReviews = async (query) => {

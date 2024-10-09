@@ -51,7 +51,7 @@ import { getNestedCategories } from "../../services/Category.service";
 import {
   getUserNotifications,
   searchVendorFromDb,
-  sentOtp,
+  sentOtp, getUnreadNotificationsCount
 } from "../../services/User.service";
 import { getDecodedToken, getToken } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../utils/toastutill";
@@ -242,22 +242,33 @@ function Header() {
     }
   };
 
-  const handleGetProducts = async (skipValue, limitValue, searchQuery) => {
+  const handleGetProducts = async () => {
     try {
-      let query = `?page=${skipValue}&perPage=${limitValue}&userId=${userObj?._id}&isRead=false`;
-      let { data: res } = await getUserNotifications({ userId: userObj?._id });
-      console.log(
-        res.totalElements,
-        "res.totalElementsres.totalElementsres.totalElementsres.totalElements"
-      );
-
-      if (res.data) {
-        settotalNotification(res.totalElements);
-      }
+      let { data: res } = await getUnreadNotificationsCount({ userId: userObj?._id });
+      settotalNotification(res.unreadCount);
     } catch (err) {
       errorToast(err);
     }
   };
+
+  useEffect(() => {
+    let intervalId;
+
+    if (userObj && userObj?._id) {
+      handleGetProducts(); // Fetch initial count
+
+      // Set up an interval to fetch the count continuously
+      intervalId = setInterval(() => {
+        handleGetProducts();
+      }, 1000); // Fetch every 5 seconds (5000 milliseconds)
+    }
+
+    // Cleanup function to clear the interval when the component unmounts or userObj changes
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userObj]);
+
   const handleRegister = () => {
     setSignInModal(false);
     return redirect("/Register");
@@ -279,11 +290,7 @@ function Header() {
     }
   }, [isAuthorized]);
 
-  useEffect(() => {
-    if (userObj && userObj?._id) {
-      handleGetProducts();
-    }
-  }, [userObj]);
+
 
   const handlesendOtp = async () => {
     try {
@@ -731,9 +738,9 @@ function Header() {
 
                               <LuBellRing />
                             </a></Link>
-                            {totalNotification > 0 && (
-                              <span className="notification-badge">{totalNotification}</span>
-                            )}
+
+                            <span className="notification-badge">{totalNotification}</span>
+
                           </a>)}
                         {isAuthorized ? (
                           <div
@@ -986,9 +993,9 @@ function Header() {
                                     {isAuthorized && (
                                       <a className="nav-link position-relative" href="/notifications">
                                         <FaBell style={{ fontSize: 22 }} />
-                                        {totalNotification > 0 && (
-                                          <span className="notification-badge">{totalNotification}</span>
-                                        )}
+
+                                        <span className="notification-badge">{totalNotification}</span>
+
                                       </a>
                                     )}
 

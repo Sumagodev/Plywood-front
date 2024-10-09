@@ -39,9 +39,9 @@ export const otpLogin = async (obj) => {
   return axios.post(`${serverUrl}/app-login/`, obj);
 };
 export const getUserById = async (id) => {
-  let decoded = await getDecodedToken();
-  // return /apiinstance/ axiosApiInstance.get(${serverUrl}/getUserById/${id});
-  return axiosApiInstance.get(`${serverUrl}/getUserById/${id}?visitorUserId=${decoded?.userId}`);
+  const pooja = localStorage.getItem('loginid')
+
+  return axiosApiInstance.get(`${serverUrl}/getUserById/${id}?visitorUserId=${pooja}`);
 };
 
 export const searchVendorFromDb = async (query) => {
@@ -91,10 +91,13 @@ export const refreshToken = async (obj) => {
 export const getUserNotifications = async (obj) => {
   return await axiosApiInstance.post(`${url}/notifications/getAllNotifications`,obj);
 };
-
-export const markReadNotifications = async (obj) => {
-  return await axiosApiInstance.get(`${serverUrl}/markedAsRead${obj}`);
+export const getUnreadNotificationsCount = async (obj) => {
+  return await axiosApiInstance.post(`${url}/notifications/getUnreadNotificationsCount`,obj);
 };
+export const getupadateRead = async (obj) => {
+  return await axiosApiInstance.post(`${url}/notifications/upadateRead`,obj);
+};
+
 
 export const getSalesUsers = async () => {
   return await axiosApiInstance.get(`${serverUrl}/getSalesUsers`);
