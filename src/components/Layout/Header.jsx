@@ -587,7 +587,7 @@ function Header() {
     <>
       <>
         {windowWidth > 992 ? (
-          <Container fluid className="Header"><div className="Sub_Headere py-2 ">
+          <Container fluid className="Header sticky-top"><div className="Sub_Headere py-2 ">
             <div className="main_logo d-inline-flex align-items-center mx-5">
               <Link
                 to="/"

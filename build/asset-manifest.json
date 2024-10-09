@@ -1,13 +1,19 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.ed3bcd57.css",
     "main.js": "/static/js/main.8cd41865.js",
+=======
+    "main.css": "/static/css/main.caedcf15.css",
+    "main.js": "/static/js/main.56f628c5.js",
+>>>>>>> 9b5f94e9bcdb8d1377c844a1e48cc664555640f0
     "static/js/787.a69855e9.chunk.js": "/static/js/787.a69855e9.chunk.js",
     "static/media/banner7.jpg": "/static/media/banner7.f615dbce0ee2c7244617.jpg",
     "static/media/banner2.jpg": "/static/media/banner2.59bd6a7a555c97520d4f.jpg",
     "static/media/logo6.png": "/static/media/logo6.a87540b9afeafbb8d1c9.png",
     "static/media/banner1.png": "/static/media/banner1.20c0bd2390f3cea12068.png",
     "static/media/top_banner.jpeg": "/static/media/top_banner.b5fb39192b59b346bce4.jpeg",
+    "static/media/founder1.jpeg": "/static/media/founder1.16bd30bfcfb1a80df3b9.jpeg",
     "static/media/image 143.png": "/static/media/image 143.16d83c365814a35822b9.png",
     "static/media/Group 1000004112.png": "/static/media/Group 1000004112.c9abb74fc272a0305a6c.png",
     "static/media/Group 1000004150.png": "/static/media/Group 1000004150.fe3994c1e2a117154350.png",
@@ -15,12 +21,12 @@
     "static/media/bannerImg.png": "/static/media/bannerImg.89c415b077ac3b744a2a.png",
     "static/media/team1111.jpeg": "/static/media/team1111.8adebedc855a34df05c6.jpeg",
     "static/media/team3111.jpg": "/static/media/team3111.4121ee19f1729bdce5c0.jpg",
-    "static/media/Group 1000004425.png": "/static/media/Group 1000004425.a424efb832bfae85c6a8.png",
     "static/media/team211.jpg": "/static/media/team211.9f89b3823a592aad4aa6.jpg",
     "static/media/image 138.png": "/static/media/image 138.6019a525458ae49960a2.png",
     "static/media/ADD OPPORTUNITIES (7).png": "/static/media/ADD OPPORTUNITIES (7).b3715bce33669e8f2377.png",
     "static/media/cardImg.png": "/static/media/cardImg.d8d69b6d417abd4e34f5.png",
     "static/media/Group 1000004438.png": "/static/media/Group 1000004438.98f0fd9e334fb64dd200.png",
+    "static/media/founder.jpeg": "/static/media/founder.a6ffc20ff2ba4b74783f.jpeg",
     "static/media/Group 1000004290 (1).png": "/static/media/Group 1000004290 (1).dfdd9959c948581e92bd.png",
     "static/media/logo1.png": "/static/media/logo1.8a4627254a89b1eb4d28.png",
     "static/media/about_imga.jpg": "/static/media/about_imga.d51dd1a01349499e87a4.jpg",
@@ -53,10 +59,10 @@
     "static/media/verified.png": "/static/media/verified.a33b9ced97f445675dcf.png",
     "static/media/Group 1000004263.png": "/static/media/Group 1000004263.c63a7780620669c42cfb.png",
     "static/media/bg-1.png": "/static/media/bg-1.4520e141b410a8301957.png",
-    "static/media/founder.jpeg": "/static/media/founder.666a6e9f91add0a31c60.jpeg",
     "static/media/image-removebg-preview (7) 1 (1).png": "/static/media/image-removebg-preview (7) 1 (1).cf6c7a828c0865ab629b.png",
     "static/media/Mask Group.png": "/static/media/Mask Group.afb2265b22b1c0f19826.png",
     "static/media/greenlam1.png": "/static/media/greenlam1.662ec66ff8b2b95fbefb.png",
+    "static/media/Group 1000004425.png": "/static/media/Group 1000004425.1f02936bb3aa32f4a752.png",
     "static/media/Mask Group (1).png": "/static/media/Mask Group (1).d4c30604d2ce25856dbd.png",
     "static/media/1.png": "/static/media/1.d0fcc6645c11ef8265d4.png",
     "static/media/sale-bg.png": "/static/media/sale-bg.85b007888c06b1a30f26.png",
@@ -81,6 +87,7 @@
     "static/media/banner.jpg": "/static/media/banner.b5100d9eea06bdd3238c.jpg",
     "static/media/client_1.png": "/static/media/client_1.3356ce2acbff44c5d042.png",
     "index.html": "/index.html",
+<<<<<<< HEAD
     "main.ed3bcd57.css.map": "/static/css/main.ed3bcd57.css.map",
     "main.8cd41865.js.map": "/static/js/main.8cd41865.js.map",
     "787.a69855e9.chunk.js.map": "/static/js/787.a69855e9.chunk.js.map"
@@ -88,5 +95,14 @@
   "entrypoints": [
     "static/css/main.ed3bcd57.css",
     "static/js/main.8cd41865.js"
+=======
+    "main.caedcf15.css.map": "/static/css/main.caedcf15.css.map",
+    "main.56f628c5.js.map": "/static/js/main.56f628c5.js.map",
+    "787.a69855e9.chunk.js.map": "/static/js/787.a69855e9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.caedcf15.css",
+    "static/js/main.56f628c5.js"
+>>>>>>> 9b5f94e9bcdb8d1377c844a1e48cc664555640f0
   ]
 }

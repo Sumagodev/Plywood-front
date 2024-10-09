@@ -11,7 +11,10 @@
 }
 
 .onboard_row {
-    margin-left: 20rem;
+    /* margin-left: 20rem; */
+    /* new */
+    display: flex;
+    justify-content: center;
 }
 
 .AboutUS_Header1 .Header_img {
