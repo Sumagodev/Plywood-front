@@ -414,6 +414,8 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+  /* new */
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

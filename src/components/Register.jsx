@@ -436,12 +436,13 @@ export const Register = () => {
                                         <input
                                             type="radio"
                                             name="type"
-                                            value={ROLES_CONSTANT.CONTRACTOR}
-                                            checked={type === ROLES_CONSTANT.CONTRACTOR}
-                                            onChange={(e) => settype(e.target.value)}
-                                        />{" "}
-                                        <b className="mx-2">CONTRACTOR</b>
 
+                                            value={ROLES_CONSTANT.MANUFACTURER}
+                                            checked={type === ROLES_CONSTANT.MANUFACTURER}
+                                            onChange={(e) => settype(e.target.value)}
+
+                                        />{" "}
+                                        <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
 
                                         <input
                                             type="radio"
@@ -451,6 +452,7 @@ export const Register = () => {
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
                                         <b className="mx-2">RETAILER</b>
+
                                         <input
                                             type="radio"
                                             name="type"
@@ -459,6 +461,7 @@ export const Register = () => {
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
                                         <b className="mx-2">DEALER</b>
+
                                         <input
                                             type="radio"
                                             name="type"
@@ -467,16 +470,15 @@ export const Register = () => {
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
                                         <b className="mx-2">DISTRIBUTOR</b>
+
                                         <input
                                             type="radio"
                                             name="type"
-
-                                            value={ROLES_CONSTANT.MANUFACTURER}
-                                            checked={type === ROLES_CONSTANT.MANUFACTURER}
+                                            value={ROLES_CONSTANT.CONTRACTOR}
+                                            checked={type === ROLES_CONSTANT.CONTRACTOR}
                                             onChange={(e) => settype(e.target.value)}
-
                                         />{" "}
-                                        <b className="mx-2">{ROLES_CONSTANT.MANUFACTURER}</b>
+                                        <b className="mx-2">CONTRACTOR</b>
                                     </div>
 
 

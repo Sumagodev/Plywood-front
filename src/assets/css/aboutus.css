@@ -13,8 +13,8 @@
 .onboard_row {
     /* margin-left: 20rem; */
     /* new */
-    margin-left: 10rem;
-    margin-right: 10rem;
+    display: flex;
+    justify-content: center;
 }
 
 .AboutUS_Header1 .Header_img {
