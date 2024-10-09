@@ -118,76 +118,76 @@ const Aboutus = () => {
 
 
 
-        {/* team section */}
+        {/* main team section */}
 
-        <Container fluid className="p-5 d-flex flex-wrap flex-column align-items-center justify-content-center gap-5">
-      <h1 className="fw-bold">OUR TEAM</h1>
-      <Row className="Team_main gap-2">
-        <Col className="Team_cards">
-          <div className="SubTeam_cards">
-            <img className="man_img" src={man_img} alt="" />
-            <div className="Card_bottum">
-              <div className="Bottum_text">
-                <h3>Mrs. John</h3>
-                <h5>CEO Director</h5>
-                <p>
-                  After working over the product for a few years and studying
-                  applications in various sectors Positive Metering Pumps
-                </p>
+        {/* <Container fluid className="p-5 d-flex flex-wrap flex-column align-items-center justify-content-center gap-5">
+          <h1 className="fw-bold">OUR TEAM</h1>
+          <Row className="Team_main gap-2">
+            <Col className="Team_cards">
+              <div className="SubTeam_cards">
+                <img className="man_img" src={man_img} alt="" />
+                <div className="Card_bottum">
+                  <div className="Bottum_text">
+                    <h3>Mrs. John</h3>
+                    <h5>CEO Director</h5>
+                    <p>
+                      After working over the product for a few years and studying
+                      applications in various sectors Positive Metering Pumps
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </Col>
+            </Col>
 
-        <Col className="Team_cards">
-          <div className="SubTeam_cards">
-            <img className="man_img" src={man_img} alt="" />
-            <div className="Card_bottum">
-              <div className="Bottum_text">
-                <h3>Mrs. Rohan</h3>
-                <h5>Finance Director</h5>
-                <p>
-                  After working over the product for a few years and studying
-                  applications in various sectors Positive Metering Pumps
-                </p>
+            <Col className="Team_cards">
+              <div className="SubTeam_cards">
+                <img className="man_img" src={man_img} alt="" />
+                <div className="Card_bottum">
+                  <div className="Bottum_text">
+                    <h3>Mrs. Rohan</h3>
+                    <h5>Finance Director</h5>
+                    <p>
+                      After working over the product for a few years and studying
+                      applications in various sectors Positive Metering Pumps
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </Col>
+            </Col>
 
-        <Col className="Team_cards">
-          <div className="SubTeam_cards">
-            <img className="man_img" src={man_img} alt="" />
-            <div className="Card_bottum">
-              <div className="Bottum_text">
-                <h3>Mrs. John</h3>
-                <h5>CEO Director</h5>
-                <p>
-                  After working over the product for a few years and studying
-                  applications in various sectors Positive Metering Pumps
-                </p>
+            <Col className="Team_cards">
+              <div className="SubTeam_cards">
+                <img className="man_img" src={man_img} alt="" />
+                <div className="Card_bottum">
+                  <div className="Bottum_text">
+                    <h3>Mrs. John</h3>
+                    <h5>CEO Director</h5>
+                    <p>
+                      After working over the product for a few years and studying
+                      applications in various sectors Positive Metering Pumps
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </Col>
+            </Col>
 
-        <Col className="Team_cards">
-          <div className="SubTeam_cards">
-            <img className="man_img" src={man_img} alt="" />
-            <div className="Card_bottum">
-              <div className="Bottum_text">
-                <h3>Mrs. Rohan</h3>
-                <h5>Finance Director</h5>
-                <p>
-                  After working over the product for a few years and studying
-                  applications in various sectors Positive Metering Pumps
-                </p>
+            <Col className="Team_cards">
+              <div className="SubTeam_cards">
+                <img className="man_img" src={man_img} alt="" />
+                <div className="Card_bottum">
+                  <div className="Bottum_text">
+                    <h3>Mrs. Rohan</h3>
+                    <h5>Finance Director</h5>
+                    <p>
+                      After working over the product for a few years and studying
+                      applications in various sectors Positive Metering Pumps
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+            </Col>
+          </Row>
+        </Container> */}
 
 
 
@@ -200,7 +200,7 @@ const Aboutus = () => {
         <Container fluid className="onboard_container  d-flex flex-wrap flex-column align-items-center justify-content-center">
           <h1 className="fw-bold pt-5">Why you should onboard with us</h1>
           <Row className="onboard_row p-3 ">
-            <Col lg={3} className="py-3" >
+            <Col lg={4} className="py-3" >
             <div className="onboard_col ">
               <img src={img1} alt="" />
               <h3 className="py-3">Sell on Plywood Bazar for free</h3>
@@ -215,7 +215,7 @@ const Aboutus = () => {
               </div>
             </Col>
 
-            <Col lg={3} className="py-3">
+            <Col lg={4} className="py-3">
             <div  className="onboard_col ">
               <img src={img2} alt="" />
               <h3 className="py-3">Connect with verified sellers.</h3>
@@ -230,7 +230,7 @@ const Aboutus = () => {
               </div>
             </Col>
 
-            <Col lg={3} className="py-3">
+            <Col lg={4} className="py-3">
             <div className="onboard_col">
               <img className="bg-light" src={img3} alt="" />
               <h3 className="py-3">Pay with plywood Bazar. <br />&nbsp;</h3>

@@ -1,5 +1,6 @@
 import React from "react";
 import founder from "../assets/images/founder.jpeg";
+import founder1 from "../assets/images/founder1.jpeg";
 import { Container, Row, Col } from "react-bootstrap";
 export default function Moto() {
   return (
@@ -12,14 +13,15 @@ export default function Moto() {
             <div
               style={{
                 width: 300,
-                height: 300,
-                border: "solid #FFE2B1 10px",
-                borderRadius: "50%",
+                // height: 300,
+                // border: "solid #FFE2B1 10px",
+                // borderRadius: "50%",
+                borderRadius: "5%",
                 overflow: "hidden",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "50px 45px 80px 0px #00000059"
+                boxShadow: "11px 11px 11px 0px #00000059"
                 // box-shadow: 50px 45px 80px 0px #00000059;
 
               }}
@@ -29,18 +31,54 @@ export default function Moto() {
                 alt="founder"
                 className="img-fluid"
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  border: "solid #FFF8F3 15px",
-                  borderRadius: "50%",
+                  // width: "100%",
+                  // height: "100%",
+                  // objectFit: "cover",
+                  // border: "solid #FFF8F3 15px",
+                  // borderRadius: "50%",
                 }}
               />
             </div>
           </Col>
-          <Col lg={4} className=" p-3 d-flex flex-column  justify-content-center text-center ">
-            <h1 className="fw-semibold">Sandip Chothave</h1>
-            <h2>Founder & CEO <br />Plywood Bazar.Com</h2>
+          <Col lg={3} className=" p-3 d-flex flex-column  justify-content-center text-center ">
+            <h3 className="fw-semibold">Sandip Chothave</h3>
+            <h4>Founder & CEO <br />Plywood Bazar.Com</h4>
+          </Col>
+
+          <Col lg={3} className=" d-flex align-items-center justify-content-center">
+            <div
+              style={{
+                width: 300,
+                // height: 300,
+                // border: "solid #FFE2B1 10px",
+                // borderRadius: "50%",
+                borderRadius: "5%",
+                overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "11px 11px 11px 0px #00000059"
+                // box-shadow: 50px 45px 80px 0px #00000059;
+
+              }}
+            >
+              <img
+                src={founder1}
+                alt="founder1"
+                className="img-fluid"
+                style={{
+                  // width: "100%",
+                  // height: "100%",
+                  // objectFit: "inherit",
+                  // border: "solid #FFF8F3 15px",
+                  // borderRadius: "50%",
+                }}
+              />
+            </div>
+          </Col>
+          <Col lg={3} className=" p-3 d-flex flex-column  justify-content-center text-center ">
+            <h3 className="fw-semibold">Purva Chothave</h3>
+            <h4>COO <br />Plywood Bazar.Com</h4>
           </Col>
         </Row>
 

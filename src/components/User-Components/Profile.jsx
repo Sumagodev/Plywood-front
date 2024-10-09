@@ -201,8 +201,6 @@ export default function Profile() {
         <>
             <div className=' container-fluid userprofile'>
 
-                m
-
 
                 <div className=' row'>
                     <div className=' col-lg-8'></div>
