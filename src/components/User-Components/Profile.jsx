@@ -422,7 +422,7 @@ export default function Profile() {
                                     <Col lg={4}>
                                         <Row>
                                             <Col xs={5} className='profile-section-container-text'>Email</Col>
-                                            <Col xs={7}> {userObj?.companyObj?.email}</Col>
+                                            <Col xs={7}> {userObj?.email}</Col>
                                         </Row>
                                         <Row>
                                             <Col xs={5} className='profile-section-container-text'>Phone No.</Col>

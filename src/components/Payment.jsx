@@ -19,16 +19,16 @@ function Payment() {
   const handlePhonePaymentCallback = async (id) => {
     try {
       setOrderStatus(1);
-      // let { data: res } = await phonepePaymentStatusCheck(id);
-      // if (res.data) {
-      // } else {
-      //   setOrderStatus(2);
+      let { data: res } = await phonepePaymentStatusCheck(id);
+      if (res.data) {
+      } else {
+        setOrderStatus(2);
 
-      //   // setTimeout(()=>{
-      //   //   navigate('/')
-      //   // },3000)
+        setTimeout(()=>{
+          navigate('/')
+        },3000)
 
-      // }
+      }
     } catch (error) {
       // errorToast(error)
       // setOrderStatus(2);

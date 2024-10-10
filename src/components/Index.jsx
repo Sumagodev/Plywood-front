@@ -80,6 +80,7 @@ import {
 import { gettopUsers } from "../services/User.service"
 import { getStateDetails } from "../services/State.stateDetail";
 import { getAlldealership } from '../services/AddDealership.service'
+import { ROLES } from "../utils/Roles.utils";
 function Index() {
   const tempLoginObj = useSelector((state) => state.auth.tempLoginObj);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -92,6 +93,8 @@ function Index() {
   let role = useSelector((state) => state.auth.role);
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
   const userObj = useSelector((state) => state.auth.user);
+  const forchecking_type = useSelector((state) => state.auth.role);
+
   const [homepageBannersArr, setHomepageBannersArr] = useState([]);
 
   const [isDisplayingAll, setIsDisplayingAll] = useState(false);
@@ -116,11 +119,14 @@ function Index() {
   const [opportunities, setOpportunities] = useState([]);
   const dispatch = useDispatch();
 
+    console.log(forchecking_type)
+
+
   const fetchOpportunities = async () => {
     try {
       const response = await getAlldealership();
       setOpportunities(response.data.data.filter(opportunity => !userObj || opportunity.userId !== userObj._id));
-      console.log("sdfes", response.data)
+
     } catch (error) {
       console.error('Error fetching dealership opportunities:', error);
     }
@@ -1256,24 +1262,29 @@ function Index() {
         </Row>
       </Container>
       {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
+      {
+        forchecking_type !== ROLES.RETAILER || forchecking_type !== ROLES.DEALER || forchecking_type !== ROLES.CONTRACTOR && (
+          <>
+            <Container fluid className=" mx-0 px-0" onClick={() => {
+              if (!isAuthorized) {
+                // If the user is not authorized, show the sign-in modal
+                setSignInModal(true);
+              } else if (!currentUserHasActiveSubscription) {
+                // If the user has an active subscription, close the modal
+                handleClose(true);
+              } else {
+                // If the user does not have an active subscription, show the price modal
+                navigate('/AddDealership')
+              }
+            }}>
 
-      <Container fluid className=" mx-0 px-0" onClick={() => {
-        if (!isAuthorized) {
-          // If the user is not authorized, show the sign-in modal
-          setSignInModal(true);
-        } else if (!currentUserHasActiveSubscription) {
-          // If the user has an active subscription, close the modal
-          handleClose(true);
-        } else {
-          // If the user does not have an active subscription, show the price modal
-          navigate('/AddDealership')
-        }
-      }}>
+              <img src={playbanner} className="d-none d-lg-block img-fluid w-100 mx-0 px-0" alt="" />
+              <img src={mbplaybanner} className="d-block d-lg-none img-fluid w-100 mx-0 px-0" alt="" />
+            </Container>
 
-        <img src={playbanner} className="d-none d-lg-block img-fluid w-100 mx-0 px-0" alt="" />
-        <img src={mbplaybanner} className="d-block d-lg-none img-fluid w-100 mx-0 px-0" alt="" />
-      </Container>
-
+          </>
+        )
+      }
 
 
 
