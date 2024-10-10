@@ -776,7 +776,7 @@ function Header() {
                                     return (
                                       <>
                                         <li key={i}>
-                                          <Link to={item.link} className="userprofileoptionstext">
+                                          <Link to={item.link} className={`userprofileoptionstext ${item.name === "Promoted Dealerships opportunity" ? "promo_del_opp" : ""}`}>
                                             <div className="userprofileoptionsicon">
                                               {item.icon}
                                             </div>
@@ -838,7 +838,7 @@ function Header() {
                                   style={{
                                     display: showSignIn ? "block" : "none",
                                   }}
-                                  className={`custom-search-list`}
+                                  className={showSignIn ? "custom-search-list-login" : "custom-search-list"}
                                 >
                                   <li className="text-center bottom-li">
                                     <button

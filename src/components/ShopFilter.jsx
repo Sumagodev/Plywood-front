@@ -278,119 +278,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                   </Accordion.Body>
                 </Accordion.Item>
               </Col>
-              <Col lg={4} className="d-flex justify-content-centre align-items-center">
-                <div className=" choosefilter d-flex justify-content-centre align-items-center rounded-5 Header">
-                  <Form className=" d-flex serchform rounded-5  position-relative w-100"
 
-                    onClick={() => {
-                      setSearchBy(!searchBy);
-                    }}
-                    onFocus={() => setShowSearchBar(true)}
-                    ref={formRef}
-                  >
-                    <div className="searchbar rounded-pill d-flex row">
-                      <div className=" col-1">
-
-                        <button
-                          className={`searchicn position-absolute top-50  translate-middle-y me-1 text-white d-inline-flex align-items-center justify-content-center ${!searchText ? "disabled" : ""}`}
-                          style={{ fontSize: 12 }}
-                          type="button"
-                          onClick={() => { handleApplyFilter(); handleClose && handleClose(); }}
-                          disabled={!searchText} // This will also prevent the button from being clicked
-                        >
-                          <FiSearch />
-                        </button>
-                      </div>                      <div className=" col-lg-7 col-6  d-flex align-items-center">
-                        <Form.Control
-                          type="search"
-                          className="searchbar2 h-75"
-                          placeholder={checkSearchMode()}
-                          aria-label="Search"
-                          value={searchText}
-                          onChange={(e) =>
-                            handleSearchText(e.target.value)
-                          }
-                        />
-                      </div>
-
-                      <div className="col-lg-4 col-5 d-flex  align-items-center justify-content-">
-
-
-
-                        <div>   <button className="btn btn-outline btn-outline-custom" style={{ fontSize: 12 }} type="button"
-                          onClick={() => { handleApplyFilter(); handleClose && handleClose() }}>
-                          Apply
-                        </button></div>
-
-                        <div>  <button
-                          className="btn btn-outline btn-outline-custom"
-                          style={{ fontSize: 12 }}
-                          type="button"
-                          onClick={() => {
-                            navigate("/Shop");
-                            handleResetStates();
-                            handleClose && handleClose();
-                          }}
-                        >
-                          Clear
-                        </button></div>
-                      </div>
-                    </div>
-
-                    {searchText != "" && showSearchBar && (
-                      <div className="searchBox listsearch">
-                        <div
-                          className="searchBoxCloseIcon"
-                          onClick={() => {
-                            setShowSearchBar(false);
-                          }}
-                        >
-                          X
-                        </div>
-                        {searchResultArr &&
-                          searchResultArr.length > 0 ? (
-                          searchResultArr.map((el, index) => {
-                            return (
-                              <div key={index}>
-                                <Link
-                                  to={`/ShopDetail/${el?.slug}`}
-                                  onClick={() =>
-                                    setShowSearchBar(false)
-                                  }
-                                  onFocus={() => setShowSearchBar(true)}
-                                >
-                                  <p>{el?.slug}</p>
-                                </Link>
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <div>
-                            {/* <Link to={`/ShopDetail/${el?.slug}`} onFocus={() => setShowSearchBar(true)}> */}
-                            <p>No results found</p>
-                            {/* </Link> */}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </Form>
-                  {/* <img src={filter} alt="" /> */}
-                  {/* <h5 className="title">Choose Filters</h5> */}
-
-                  {/* <button
-                    className="clear_filter"
-                    // style={{ fontSize: 12 }}
-                    type="button"
-                    onClick={() => {
-                      navigate("/product-details");
-                      handleResetStates();
-                      handleClose && handleClose();
-                    }}
-                  >
-                    Clear
-                  </button> */}
-                </div>
-              </Col>
               <Col lg={2}>
 
                 <Accordion.Item eventKey="2">
@@ -479,6 +367,124 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                   </Accordion.Body>
                 </Accordion.Item>
               </Col>
+
+              <Col lg={2} className="col-lg-2 d-flex justifiy-content-center align-items-center">
+
+                      <div className="me-2">   
+                        <button className="btn btn-outline btn-outline-custom" style={{ fontSize: 12 }} type="button"
+                          onClick={() => { handleApplyFilter(); handleClose && handleClose() }}>
+                          Apply
+                        </button></div>
+
+                        <div>  <button
+                          className="btn btn-outline btn-outline-custom"
+                          style={{ fontSize: 12 }}
+                          type="button"
+                          onClick={() => {
+                            navigate("/Shop");
+                            handleResetStates();
+                            handleClose && handleClose();
+                          }}
+                        >
+                          Clear
+                        </button>
+                      </div>
+
+              </Col>
+
+              <Col lg={2} className="d-flex justify-content-centre align-items-center mt-2">
+                <div className=" choosefilter d-flex justify-content-centre align-items-center rounded-5 Header">
+                  <Form className=" d-flex serchform rounded-5  position-relative w-100"
+
+                    onClick={() => {
+                      setSearchBy(!searchBy);
+                    }}
+                    onFocus={() => setShowSearchBar(true)}
+                    ref={formRef}
+                  >
+                    <div className="searchbar rounded-pill d-flex row">
+                      <div className=" col-1">
+
+                        <button
+                          className={`searchicn position-absolute top-50  translate-middle-y me-1 text-white d-inline-flex align-items-center justify-content-center ${!searchText ? "disabled" : ""}`}
+                          style={{ fontSize: 12 }}
+                          type="button"
+                          onClick={() => { handleApplyFilter(); handleClose && handleClose(); }}
+                          disabled={!searchText} // This will also prevent the button from being clicked
+                        >
+                          <FiSearch />
+                        </button>
+                      </div>                      
+                      <div className=" col-lg-10 col-6  d-flex align-items-center">
+                        <Form.Control
+                          type="search"
+                          className="searchbar2 h-75 shop-search"
+                          placeholder={checkSearchMode()}
+                          aria-label="Search"
+                          value={searchText}
+                          onChange={(e) =>
+                            handleSearchText(e.target.value)
+                          }
+                        />
+                      </div>
+
+                    </div>
+
+                    {searchText != "" && showSearchBar && (
+                      <div className="searchBox listsearch">
+                        <div
+                          className="searchBoxCloseIcon"
+                          onClick={() => {
+                            setShowSearchBar(false);
+                          }}
+                        >
+                          X
+                        </div>
+                        {searchResultArr &&
+                          searchResultArr.length > 0 ? (
+                          searchResultArr.map((el, index) => {
+                            return (
+                              <div key={index}>
+                                <Link
+                                  to={`/ShopDetail/${el?.slug}`}
+                                  onClick={() =>
+                                    setShowSearchBar(false)
+                                  }
+                                  onFocus={() => setShowSearchBar(true)}
+                                >
+                                  <p>{el?.slug}</p>
+                                </Link>
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <div>
+                            {/* <Link to={`/ShopDetail/${el?.slug}`} onFocus={() => setShowSearchBar(true)}> */}
+                            <p>No results found</p>
+                            {/* </Link> */}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </Form>
+                  {/* <img src={filter} alt="" /> */}
+                  {/* <h5 className="title">Choose Filters</h5> */}
+
+                  {/* <button
+                    className="clear_filter"
+                    // style={{ fontSize: 12 }}
+                    type="button"
+                    onClick={() => {
+                      navigate("/product-details");
+                      handleResetStates();
+                      handleClose && handleClose();
+                    }}
+                  >
+                    Clear
+                  </button> */}
+                </div>
+              </Col>
+
             </Row>
           </Accordion>
         </Col>
