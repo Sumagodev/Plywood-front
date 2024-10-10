@@ -101,12 +101,24 @@
   width: 100%;
 }
 
+.middle-bar.navbar form.search-bar ul.custom-search-list-login {
+  width: 100%;
+}
+
 .middle-bar.navbar form.search-bar ul.custom-search-list label {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
 }
+
+.middle-bar.navbar form.search-bar ul.custom-search-list-login label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
 
 .middle-bar.navbar .navbar-nav {
   justify-content: center;
@@ -142,12 +154,34 @@
   padding: 1pc 0;
 }
 
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login {
+  border-radius: 15px;
+  width: -moz-max-content;
+  width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1pc;
+  padding: 1pc 0;
+}
+
 .middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list li {
   border: 0;
   padding: 8px 30px;
 }
 
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login li {
+  border: 0;
+  padding: 8px 30px;
+}
+
 .middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+}
+
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login li a {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -160,7 +194,18 @@
   padding-top: 1pc !important;
 }
 
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login li.bottom-li {
+  border-top: 1px solid lightgray !important;
+  margin-top: 1pc;
+  padding-top: 1pc !important;
+}
+
 .middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list li.bottom-li button.btn {
+  font-weight: 500;
+  padding: 8px 2pc;
+}
+
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login li.bottom-li button.btn {
   font-weight: 500;
   padding: 8px 2pc;
 }
@@ -174,7 +219,20 @@
   margin-top: 10px;
 }
 
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login li.bottom-li p.text {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 10px;
+}
+
 .middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list li .icon {
+  font-size: 18px;
+}
+
+.middle-bar.navbar .sign-in-btn .custom-search ul.custom-search-list-login li .icon {
   font-size: 18px;
 }
 
@@ -254,17 +312,41 @@ header .bottom-bar {
   width: 250px;
   background: #EAE2D0;
   box-shadow: 8px 4px 20px 0px #00000040;
-  border-radius: 40px;
+  border-radius: 31px;
   /* new */
   height: 75vh;
   overflow-y: auto;
+}
+
+.custom-search .custom-search-list-login {
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  left: 0px;
+  z-index: 99999 !important;
+  width: 250px;
+  background: #EAE2D0;
+  box-shadow: 8px 4px 20px 0px #00000040;
+  border-radius: 40px;
+  /* new */
+  /* height: 75vh;
+  overflow-y: auto; */
 }
 
 .custom-search .custom-search-list::-webkit-scrollbar {
   width: 8px; 
 }
 
+.custom-search .custom-search-list-login::-webkit-scrollbar {
+  width: 8px; 
+}
+
+
 .custom-search .custom-search-list::-webkit-scrollbar-track {
+  background: #EAE2D0; 
+  border-radius: 40px; 
+}
+
+.custom-search .custom-search-list-login::-webkit-scrollbar-track {
   background: #EAE2D0; 
   border-radius: 40px; 
 }
@@ -275,7 +357,13 @@ header .bottom-bar {
   border: 2px solid #EAE2D0; 
 }
 
-.custom-search .custom-search-list {
+.custom-search .custom-search-list-login::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 10px; 
+  border: 2px solid #EAE2D0; 
+}
+
+.custom-search .custom-search-list-login {
   scrollbar-width: thin; 
   scrollbar-color: #888 #EAE2D0; 
 }
@@ -284,7 +372,15 @@ header .bottom-bar {
   padding: 10px 12px;
 }
 
+.custom-search .custom-search-list-login li {
+  padding: 10px 12px;
+}
+
 .custom-search .custom-search-list li:not(:last-child) {
+  border-bottom: 1px solid lightgray;
+}
+
+.custom-search .custom-search-list-login li:not(:last-child) {
   border-bottom: 1px solid lightgray;
 }
 
@@ -1134,6 +1230,25 @@ footer .footer {
   -o-object-fit: contain;
   object-fit: contain;
 }
+
+/*  */
+
+.sign-in-modal .custom-search-list-login {
+  border-radius: 0;
+}
+
+.sign-in-modal .custom-search-list-login li {
+  padding: 4px 10px;
+}
+
+.sign-in-modal .custom-search-list-login li img {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+/*  */
 
 .sign-in-modal .heading {
   margin: 1pc 0;
@@ -2402,6 +2517,30 @@ footer .footer {
   gap: 10px;
 }
 
+.custom-search .custom-search-list li .promo_del_opp {
+  display: flex;
+  gap: 3px !important;
+}
+
+/*  */
+.middlebar_new .sign-in-btn .custom-search ul.custom-search-list-login {
+  border-radius: 15px;
+  width: -moz-max-content;
+  width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1pc;
+  padding: 1pc 0;
+  width: 230px;
+}
+
+.custom-search .custom-search-list-login li a {
+  display: flex;
+  gap: 10px;
+}
+
+/*  */
+
 .searchBox.listsearch a p {
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(225, 225, 225, 0.3411764706);
@@ -2629,6 +2768,20 @@ footer .footer {
   .custom-search .custom-search-list li {
     padding: 7px 5px;
   }
+
+  /*  */
+
+  .middlebar_new .sign-in-btn .custom-search ul.custom-search-list-login li a {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .custom-search .custom-search-list-login li {
+    padding: 7px 5px;
+  }
+
+  /*  */
 
   .topnavigation .container-fluid {
     flex-direction: row-reverse;
@@ -2905,6 +3058,10 @@ footer .footer {
     padding: 10px 15px;
   }
 
+  .middlebar_new .sign-in-btn .custom-search ul.custom-search-list-login {
+    padding: 10px 15px;
+  }
+
   .overlayflowscroll.row {
     overflow-x: scroll;
     flex-wrap: nowrap;
@@ -2960,6 +3117,11 @@ footer .footer {
   }
 
   .middlebar_new .sign-in-btn .custom-search ul.custom-search-list {
+    left: 50%;
+    transform: translateX(-95%);
+  }
+
+  .middlebar_new .sign-in-btn .custom-search ul.custom-search-list-login {
     left: 50%;
     transform: translateX(-95%);
   }
@@ -3308,6 +3470,12 @@ footer .footer {
   }
 
   .mobileserach.custom-search .custom-search-list {
+    width: 226px;
+    left: 20px;
+    top: 40px;
+  }
+
+  .mobileserach.custom-search .custom-search-list-login {
     width: 226px;
     left: 20px;
     top: 40px;
@@ -3991,4 +4159,8 @@ select {
 .frormcontainer {
   background: #F5F1E8;
   border-radius: 20px;
+}
+
+.shop-search{
+  padding: .3rem .2rem .3rem .7rem !important;
 }

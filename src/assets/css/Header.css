@@ -206,6 +206,13 @@
   position: relative;
   bottom: 50px;
 }
+
+@media (max-width: 988px) {
+  .shopfilterposition{
+    position: relative;
+    bottom: -11px;
+  }
+}
 @media (max-width: 768px) {
   /* .form-control {
     width: auto !important;
