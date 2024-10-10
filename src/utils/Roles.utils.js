@@ -8,4 +8,4 @@ export const ROLES = {
     DEALER: "DEALER",
     RETAILER:"RETAILER",
     CONTRACTOR:"CONTRACTOR",
-}
+}   

@@ -447,11 +447,11 @@ export const Register = () => {
                                         <input
                                             type="radio"
                                             name="type"
-                                            value={ROLES_CONSTANT.RETAILER}
-                                            checked={type === ROLES_CONSTANT.RETAILER}
+                                            value={ROLES_CONSTANT.DISTRIBUTOR}
+                                            checked={type === ROLES_CONSTANT.DISTRIBUTOR}
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
-                                        <b className="mx-2">RETAILER</b>
+                                        <b className="mx-2">DISTRIBUTOR</b>
 
                                         <input
                                             type="radio"
@@ -465,11 +465,11 @@ export const Register = () => {
                                         <input
                                             type="radio"
                                             name="type"
-                                            value={ROLES_CONSTANT.DISTRIBUTOR}
-                                            checked={type === ROLES_CONSTANT.DISTRIBUTOR}
+                                            value={ROLES_CONSTANT.RETAILER}
+                                            checked={type === ROLES_CONSTANT.RETAILER}
                                             onChange={(e) => settype(e.target.value)}
                                         />{" "}
-                                        <b className="mx-2">DISTRIBUTOR</b>
+                                        <b className="mx-2">RETAILER</b>
 
                                         <input
                                             type="radio"
