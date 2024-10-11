@@ -33,7 +33,9 @@ export default function Subscription() {
             let obj = {
                 ...subscriptionObj
             }
+            console.log('jfheruithoiertoiejoeri',obj)
             let { data: res } = await buySubscription(obj)
+         
             if (res.success) {
 
                 successToast(res.message);

@@ -260,7 +260,7 @@ function Header() {
       // Set up an interval to fetch the count continuously
       intervalId = setInterval(() => {
         handleGetProducts();
-      }, 1000); // Fetch every 5 seconds (5000 milliseconds)
+      }, 111000); // Fetch every 5 seconds (5000 milliseconds)
     }
 
     // Cleanup function to clear the interval when the component unmounts or userObj changes
@@ -385,7 +385,8 @@ function Header() {
     setotp("");
     setmobile("");
     setotpsent(false);
-
+    // localStorage.removeItem('PLYWOOD_BAZAR_AUTH');
+    localStorage.clear()
     // setIsAuthorized(false)
   };
 

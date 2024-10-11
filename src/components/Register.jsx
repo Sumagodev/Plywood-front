@@ -183,27 +183,7 @@ export const Register = () => {
             errorToast("brand Names is Required");
             return 0;
         }
-        // if (`${whatsapp}` === "") {
-        //     errorToast("Enter Your Whatsapp Number");
-        //     return 0;
-        // }
-
-
-
-
-
-        // if (`${companyEmail}` === "") {
-        //     errorToast("Organization Email is Required");
-        //     return 0;
-        // }
-        // if (`${companyPhone}` === "") {
-        //     errorToast("Organization Phone is Required");
-        //     return 0
-        // }
-        // if (`${gstNumber}` === "") {
-        //     errorToast("Gst is Required");
-        //     return 0;
-        // };
+        
 
         if (`${countryId}` === "") {
             errorToast("Country is Required");
@@ -218,13 +198,6 @@ export const Register = () => {
             return 0;
         };
 
-        if (type !== ROLES_CONSTANT.CONTRACTOR && type !== ROLES_CONSTANT.RETAILER) {
-            // Validate GST No only if type is not CONTRACTOR or RETAILER
-            if (!gstNumber) {
-                setIsFormValid(false);
-                return; // Exit if validation fails
-            }
-        }
         setIsFormValid(true);
 
 
@@ -571,11 +544,9 @@ export const Register = () => {
                                                 // className="form-control"
                                                 value={gstNumber}
                                                 onChange={(e) => setgstNumber(e.target.value)}
-                                                className={`form-control ${!isFormValid && !gstNumber ? 'is-invalid' : ''}`}
+                                                className={`form-control `}
                                             />
-                                            {!isFormValid && !gstNumber && (
-                                                errorToast("GST No is Required")
-                                            )}
+                                          
                                         </div>
                                         {/* <div className="col-md-6">
                                             <label> Google Maps Link <span className="text-danger">*</span> </label>

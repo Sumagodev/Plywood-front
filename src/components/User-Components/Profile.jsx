@@ -32,6 +32,8 @@ import {
 } from "../../redux/features/auth/authSlice";
 import '../../assets/css/ShopDetail.css'
 import { Col, Container, Row } from 'react-bootstrap';
+import ims from '../../assets/image/home/Group 1000004150.png'
+
 export default function Profile() {
     const dispatch = useDispatch();
 
@@ -129,7 +131,7 @@ export default function Profile() {
         try {
             let { data: res } = await getUserById(id)
             if (res.data) {
-                console.log(res.data, "dataa")
+                console.log(res.data, "dataa555555555555555555555555555555555555555555555")
                 setUserObj(res.data);
             }
         }
@@ -160,88 +162,22 @@ export default function Profile() {
     const wrapperRef = useRef(null);
     const wrapperLoggedOutRef = useRef(null);
 
-    useEffect(() => {
-        function handleClickOutsideLoggedOut(event) {
-            if (
-                wrapperLoggedOutRef.current &&
-                !wrapperLoggedOutRef.current.contains(event.target)
-            ) {
-                setShowSignIn(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutsideLoggedOut);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutsideLoggedOut);
-        };
-    }, [wrapperLoggedOutRef, wrapperLoggedOutRef.current]);
+   
 
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-                setShowSignIn(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [wrapperRef, wrapperRef.current]);
-
-    const handleLogout = () => {
-        // deleteToken()
-        dispatch(logoutUser());
-        setotp("");
-        setmobile("");
-        setotpsent(false);
-        navigate('/')
-        // setIsAuthorized(false)
-    };
+   
 
     return (
         <>
-            <div className=' container-fluid userprofile'>
+            <div
+                className='container-fluid userprofile'
+                style={{
+                    backgroundImage: `url(${userObj.bannerImage ? generateImageUrl(userObj.bannerImage) : ims})`
+                }}>
+            
 
 
-                <div className=' row'>
-                    <div className=' col-lg-8'></div>
-                    <div className=' col-lg-3 py-5'>
-                        <div ref={wrapperRef} className=' userprofileoptions py-3'>
-
-                            {signInList.map((item, i) => {
-                                return (
-                                    <Link to={item.link}>
-                                        <div key={i} className='row d-flex justify-content-center align-items-center boxes pt-2 pb-1 mx-5 '>
-
-                                            <div className=" col-3 d-flex justify-content-center ">
-                                                <div className='userprofileoptionsicon '>{item.icon}</div>
-                                            </div>
-                                            <div className='  col-9 d-flex justify-content-start align-items-center userprofileoptionstext fs-5'>
-                                                {item.name}
-                                            </div>
-
-                                        </div>
-                                    </Link>
-                                );
-                            })}
-                            <Link onClick={() => handleLogout()}>
-                                <div className='row d-flex justify-content-center align-items-center  pt-2 pb-1 mx-5 '>
-
-                                    <div className=" col-3 d-flex justify-content-center ">
-                                        <div className='userprofileoptionsicon '>   <AiOutlineLogout /></div>
-                                    </div>
-                                    <div className='  col-9 d-flex justify-content-start align-items-center userprofileoptionstext fs-5'>
-                                        Logout
-                                    </div>
-
-                                </div>
-                            </Link>
-
-
-                        </div>
-                    </div>
-                    <div className='col-lg-1'></div>
-                </div>
-            </div>
+            
+        </div >
             <div className='container-fluid my-5'>
 
                 <Container fluid>
