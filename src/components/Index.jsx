@@ -26,6 +26,7 @@ import location from "../assets/image/home/image-removebg-preview (17) 1.png";
 import grlm from "../assets/image/home/Mask Group.png";
 import grls from "../assets/image/home/Mask Group (1).png";
 import img4 from "../assets/image/home/Group 1000004263.png";
+import Addopportunities from "../assets/images/ADD OPPORTUNITIES.png";
 import banner1 from "../assets/images/banner1.png";
 import banner2 from "../assets/images/banner2.jpg";
 import banner3 from "../assets/images/banner3.jpg";
@@ -1165,6 +1166,7 @@ function Index() {
               }}
               speed={1500}
               breakpoints={states}
+              loop={true}
             >
 
 
@@ -1255,12 +1257,38 @@ function Index() {
           </Swiper>
         </Container>
       </section>
-      <Container fluid>
+      {/* <Container fluid>
         <Row className="h1 justify-content-center text-center mb-2 mb-lg-5 fs-3 text-black fw-bold mt-3 mt-lg-5" >
           Dealership / Franchise <br />
           Opportunities
         </Row>
-      </Container>
+      </Container> */}
+<Container fluid>
+  <Row className="justify-content-center text-center mb-2 mb-lg-5 mt-3 mt-lg-5 position-relative">
+    <Col xs={12}>
+      <h1 className="fs-3 text-black fw-bold">
+        Dealership / Franchise <br />
+        Opportunities
+      </h1>
+
+      <div className="position-relative">
+        <img 
+          src={Addopportunities}
+          alt="Dealership Franchise" 
+          className="img-fluid mt-3"
+        />
+
+        <button
+          className="border-0 rounded-5 px-4 py-3 opportunities_btn text-white fw-bold fs-5 position-absolute"
+        >
+          View All
+        </button>
+      </div>
+    </Col>
+  </Row>
+</Container>
+
+
       {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
       {
         forchecking_type !== ROLES.RETAILER || forchecking_type !== ROLES.DEALER || forchecking_type !== ROLES.CONTRACTOR && (

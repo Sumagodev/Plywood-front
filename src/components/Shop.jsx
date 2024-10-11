@@ -620,7 +620,7 @@ function Shop() {
                             productsArr.map((el, index) => {
                               return (
                                 <>
-                                  <Col xs={6} xxl={3} xl={4}>
+                                  <Col xs={6} md={4} lg={4} xxl={3} xl={4}>
                                     <div className=" py-3 px-0 px-lg-2">
                                       {/* <Link to={`/Supplier/${el?._id}`}> */}
                                       <div className="component-container1  text-center">

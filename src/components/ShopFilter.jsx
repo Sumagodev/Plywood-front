@@ -368,7 +368,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                 </Accordion.Item>
               </Col>
 
-              <Col lg={2} className="col-lg-2 d-flex justifiy-content-center align-items-center">
+              <Col lg={2} className="d-flex justify-content-center align-items-center">
 
                       <div className="me-2">   
                         <button className="btn btn-outline btn-outline-custom" style={{ fontSize: 12 }} type="button"
