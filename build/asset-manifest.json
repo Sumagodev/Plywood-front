@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9a9a2d16.css",
-    "main.js": "/static/js/main.7db58db2.js",
+    "main.css": "/static/css/main.626676a3.css",
+    "main.js": "/static/js/main.2d1750b9.js",
     "static/js/787.a69855e9.chunk.js": "/static/js/787.a69855e9.chunk.js",
     "static/media/banner7.jpg": "/static/media/banner7.f615dbce0ee2c7244617.jpg",
     "static/media/banner2.jpg": "/static/media/banner2.59bd6a7a555c97520d4f.jpg",
@@ -26,6 +26,7 @@
     "static/media/logo1.png": "/static/media/logo1.8a4627254a89b1eb4d28.png",
     "static/media/about_imga.jpg": "/static/media/about_imga.d51dd1a01349499e87a4.jpg",
     "static/media/about.jpg": "/static/media/about.b19d07bc9878f1d26d3a.jpg",
+    "static/media/ADD OPPORTUNITIES.png": "/static/media/ADD OPPORTUNITIES.9d032ef07baafe228bf7.png",
     "static/media/banner3.jpg": "/static/media/banner3.af91438bd0d6ac333897.jpg",
     "static/media/category_4.jfif": "/static/media/category_4.f45778527b4af917fd3c.jfif",
     "static/media/imghome.png": "/static/media/imghome.8e7eb76eac5cd9a7c369.png",
@@ -82,12 +83,12 @@
     "static/media/banner.jpg": "/static/media/banner.b5100d9eea06bdd3238c.jpg",
     "static/media/client_1.png": "/static/media/client_1.3356ce2acbff44c5d042.png",
     "index.html": "/index.html",
-    "main.9a9a2d16.css.map": "/static/css/main.9a9a2d16.css.map",
-    "main.7db58db2.js.map": "/static/js/main.7db58db2.js.map",
+    "main.626676a3.css.map": "/static/css/main.626676a3.css.map",
+    "main.2d1750b9.js.map": "/static/js/main.2d1750b9.js.map",
     "787.a69855e9.chunk.js.map": "/static/js/787.a69855e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a9a2d16.css",
-    "static/js/main.7db58db2.js"
+    "static/css/main.626676a3.css",
+    "static/js/main.2d1750b9.js"
   ]
 }

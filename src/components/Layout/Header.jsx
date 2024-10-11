@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { ROLES } from "../../utils/Roles.utils";
 import Accordion from "react-bootstrap/Accordion";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
@@ -76,6 +77,7 @@ function Header() {
   const [showSearchBox, setShowSearchBox] = useState(false);
 
   const userObj = useSelector((state) => state.auth.user);
+  const forchecking_type = useSelector((state) => state.auth.role);
   const tempLoginObj = useSelector((state) => state.auth.tempLoginObj);
   let role = useSelector((state) => state.auth.role);
   const ref = useRef();
@@ -156,16 +158,16 @@ function Header() {
       icon: <MdLocalOffer />,
       link: "/View/My-Promotions",
     },
-    {
-      name: "Promoted Dealerships opportunity",
-      icon: <FaUserCheck />,
-      link: "/mydealerships",
-    },
-    {
-      name: "Dealerships opportunity Leads",
-      icon: <FaUserCheck />,
-      link: "/mydealershipsusers",
-    },
+    // {
+    //   name: "Promoted Dealerships opportunity",
+    //   icon: <FaUserCheck />,
+    //   link: "/mydealerships",
+    // },
+    // {
+    //   name: "Dealerships opportunity Leads",
+    //   icon: <FaUserCheck />,
+    //   link: "/mydealershipsusers",
+    // },
     {
       name: "My Applied Opportunity",
       icon: <FaUserCheck />,
@@ -789,6 +791,27 @@ function Header() {
                                     );
                                   })}
                                   {/* <Link to='/add-oppotunity'><li>Added Opportunity</li></Link> */}
+                                  {
+
+                                    (forchecking_type === "MANUFACTURER/IMPORTER" ||
+                                      forchecking_type === ROLES.DISTRIBUTOR) && (<>
+                                        <li >
+                                          <Link to='/mydealerships' className={`userprofileoptionstext promo_del_opp `}>
+                                            <div className="userprofileoptionsicon">
+                                              <FaUserCheck />
+                                            </div>
+                                            Promoted Dealerships opportunity
+                                          </Link>
+                                        </li>
+                                        <li>
+                                          <Link to='/mydealershipsusers' className={`userprofileoptionstext `}>
+                                            <div className="userprofileoptionsicon">
+                                              <FaUserCheck />
+                                            </div>
+                                            Dealerships opportunity Leads
+                                          </Link>
+                                        </li>
+                                      </>)}
 
                                   <li onClick={() => handleLogout()}>
                                     <a style={{ cursor: "pointer" }}>

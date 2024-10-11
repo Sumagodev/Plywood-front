@@ -113,14 +113,15 @@ function AddBannerimg() {
     return (
         <div className=" topup-subscription-container py-0 my-0">
             <Container>
-                <h3>{isEditing ? "Edit Banner Image" : "Add Banner Image"}</h3> {/* Dynamic title */}
+                
                 <Row>
-                    <Col xl={6} lg={6} md={6} sm={12} xs={12}>
-                        <label>Select Image:</label>
+                    <Col xl={6} lg={6} md={6} sm={12} xs={12} className='mt-5'>
+                        <h3>{isEditing ? "Edit Banner Image" : "Add Banner Image"}</h3> {/* Dynamic title */}
+                        <label>Select Image : </label>
                         <input type="file" onChange={handleImageChange} />
                     </Col>
 
-                    <Col xl={6} lg={6} md={6} sm={12} xs={12}>
+                    <Col xl={6} lg={6} md={6} sm={12} xs={12} className='mt-5'>
                         <b>Select Type</b>
 
 

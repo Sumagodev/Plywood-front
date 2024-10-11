@@ -4164,3 +4164,118 @@ select {
 .shop-search{
   padding: .3rem .2rem .3rem .7rem !important;
 }
+
+.opportunities_btn{
+  background-color: rgb(96, 50, 0);
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-330%);
+}
+
+@media (min-width: 940px) and (max-width: 1130px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-275%);
+  }
+}
+
+@media (min-width: 761px) and (max-width: 939px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-225%);
+    padding: 1rem !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 760px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-225%);
+    padding: .5rem !important;
+    font-size: 18px ! important;
+    font-weight: 500 !important;
+  }
+}
+
+@media (min-width: 588px) and (max-width: 639px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-225%);
+    padding: .4rem !important;
+    font-size: 18px ! important;
+    font-weight: 500 !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 587px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: .1rem;
+    left: 50%;
+    width: 99px;
+    transform: translate(-65%, -41%);
+    padding: .4rem !important;
+    font-size: 18px ! important;
+    font-weight: 500 !important;
+  }
+}
+
+@media (min-width: 412px) and (max-width: 479px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: .4rem;
+    left: 50%;
+    width: 99px;
+    transform: translate(-61%, -41%);
+    padding: .2rem !important;
+    font-size: 18px ! important;
+    font-weight: 500 !important;
+  }
+}
+
+@media (min-width: 356px) and (max-width: 411px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: .2rem;
+    left: 50%;
+    width: 99px;
+    transform: translate(-50%, -41%);
+    padding: .1rem !important;
+    font-size: 18px ! important;
+    font-weight: 500 !important;
+  }
+}
+
+@media (min-width: 288px) and (max-width: 355px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: -0.4rem;
+    left: 50%;
+    width: 85px;
+    transform: translate(-50%, -41%);
+    padding: .1rem !important;
+    font-size: 15px ! important;
+    font-weight: 400 !important;
+  }
+}
+
+@media (max-width: 286px) {
+  .opportunities_btn{
+    background-color: rgb(96, 50, 0);
+    bottom: -0.4rem;
+    left: 50%;
+    width: 75px;
+    transform: translate(-55%, -41%);
+    padding: .1rem !important;
+    font-size: 15px ! important;
+    font-weight: 400 !important;
+  }
+}

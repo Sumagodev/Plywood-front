@@ -5,10 +5,12 @@ import { url } from "./url.service";
 let serverUrl = `${url}/usersubscription`;
 
 
+// export const buySubscription = async (obj) => {
+//     return axiosApiInstance.post(`${serverUrl}/buySubscription`, obj)
+// }
 export const buySubscription = async (obj) => {
-    return axiosApiInstance.post(`${serverUrl}/buySubscription`, obj)
+    return axiosApiInstance.post(`${serverUrl}/initiateJuspayPaymentForSubcription`, obj)
 }
-
 export const getAllSubscriptionbyUserId = async () => {
     return axiosApiInstance.get(`${serverUrl}/getAllSubscriptionbyUserId`)
 }
