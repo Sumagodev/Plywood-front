@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import "../../assets/css/Subscription.css"
 
 export default function Subscription() {
-
+    const [loading, setLoading] = useState(false);
     const [subscriptionArr, setSubscriptionArr] = useState([]);
     let role = useSelector(state => state.auth.role)
 
@@ -61,36 +61,46 @@ export default function Subscription() {
 
     const handleBuySubscriptionforhdfc = async (subscriptionObj) => {
         try {
-            let obj = {
-                ...subscriptionObj
-            }
-            console.log('jfheruithoiertoiejoeri',obj)
-            let { data: res } = await buySubscriptionforhdfc(obj)
-         
-            if (res.success) {
-
-                successToast(res.message);
-                if (res?.data && res?.data.payment_links) {
-                    let payment_links = res?.data.payment_links;
-                    if (payment_links?.web) {
-                        window.location.href = payment_links?.web;
+            setLoading(true); // Show loading indicator when request starts
+    
+            let response = await buySubscriptionforhdfc(subscriptionObj);
+            let res = response.data;
+    
+            console.log(res);
+    
+            // Check if response status is 200 (success)
+            if (response.status === 200) {
+                if (res && res.payment_links) {
+                    let payment_links = res.payment_links;
+    
+                    // Redirect to payment link if available
+                    if (payment_links.web) {
+                        setLoading(false); // Hide loading before redirect
+                        window.location.href = payment_links.web;
                         return 0;
                     }
                 } else {
                     errorToast(
-                        "Payment gateway  is not working.Please Try Some another Payment Method"
+                        "Payment gateway is not working. Please try another payment method."
                     );
                 }
-                return 0;
+            } else {
+                // Handle non-200 responses (e.g., 400, 500)
+                
+                errorToast(`Error: ${response.status}. Please try again.`);
             }
+        } catch (error) {
+            // Handle any errors during the request
+            console.error(error);
+            errorToast("An error occurred while processing your payment.");
+        } finally {
+            setLoading(false); // Hide loading indicator when request finishes
         }
-        catch (err) {
-            errorToast(err)
-        }
-    }
+    };
 
     return (
         <div className='container-fluid subscription-container subscription-card-container'>
+            {loading && <div className="spinner">Loading...</div>}
             <div className="container">
                 <div className="subsctiption-heading">
                     Our Subscriptions
