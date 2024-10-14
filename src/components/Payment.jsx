@@ -72,7 +72,7 @@ function Payment() {
       <section className="ptb-50 order-complete">
         <div className="container">
           <div className="row text-center my-5">{
-            orderStatus == 1 && (
+            txOrderStatus === "CHARGED" ? (
               <div className="col-12 col-md-8 col-lg-6 mx-auto">
                 <h2>
                   Your Payment has been received
@@ -117,16 +117,40 @@ function Payment() {
                   You will receive a booking confirmation email on your registered email ID.
                 </p>
               </div>)
-          }
-            {orderStatus == 2 && (
+          :
+            (
               <div className="col-12 col-md-8 col-lg-6 mx-auto">
                 <h3>Payment Failed: Technical Issue Encountered during Subscription Process</h3>
                 {/* <img src={images.party} alt="" className="mt-4 mb-5" /> */}
                 <h5>Please Contact Admin for Subscription Problem</h5>
-                <p className=" my-5">
-                  Your Payment ID is&nbsp;:&nbsp;
-                  <span className="green fw-semibold">{orderId}</span>
-                </p>
+                   <table className="table table-bordered mt-5">
+                  <tbody>
+                    <tr>
+                      <td className="fw-semibold">Payment ID:</td>
+                      <td className="green fw-semibold">{orderId}</td>
+                    </tr>
+                    <tr>
+                      <td className="fw-semibold">Order ID:</td>
+                      <td className="green fw-semibold">{orderIds}</td>
+                    </tr>
+                    <tr>
+                      <td className="fw-semibold">Transaction ID:</td>
+                      <td className="green fw-semibold">{txn_id}</td>
+                    </tr>
+                    <tr>
+                      <td className="fw-semibold">Transaction UUID:</td>
+                      <td className="green fw-semibold">{txn_uuid}</td>
+                    </tr>
+                    <tr>
+                      <td className="fw-semibold">Amount:</td>
+                      <td className="green fw-semibold">{effective_amount}</td>
+                    </tr>
+                    <tr>
+                      <td className="fw-semibold">Order Status:</td>
+                      <td className="green fw-semibold">{txOrderStatus === "CHARGED" ? "Success" : "Failed"}</td>
+                    </tr>
+                  </tbody>
+                </table>
 
 
               </div>)
