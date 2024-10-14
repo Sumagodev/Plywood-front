@@ -12,18 +12,33 @@ function Payment() {
   const [effective_amount, seteffective_amount] = useState("");
     const [txn_uuid, settxn_uuid] = useState("");
 
+  // useEffect(() => {
+  //   if (params.id) {
+  //     setOrderId(params.id)
+  //     setOrderIds(req.params?.orderId)
+  //     settxn_id(params?.txn_id)
+  //     settxn_uuid(params?.txn_uuid)
+  //     seteffective_amount(params?.effective_amount)
+  //     handlePhonePaymentCallback(params.id);
+
+  //   }
+  // }, [])
   useEffect(() => {
     if (params.id) {
-      setOrderId(params.id)
-      setOrderIds(params?.orderId)
-      settxn_id(params?.txn_id)
-      settxn_uuid(params?.txn_uuid)
-      seteffective_amount(params?.effective_amount)
+      // Set the orderId from URL params
+      setOrderId(params.id);
+
+      // Parse the query parameters
+      const searchParams = new URLSearchParams(location.search);
+      settxn_id(searchParams.get('txn_id'));
+      setOrderIds(searchParams.get('orderId'))
+      seteffective_amount(searchParams.get('effective_amount'));
+      settxn_uuid(searchParams.get('txn_uuid'));
+
+      // Call the payment callback function
       handlePhonePaymentCallback(params.id);
-
     }
-  }, [])
-
+  }, [params, location.search]);
 
   const handlePhonePaymentCallback = async (id) => {
     try {
@@ -53,7 +68,8 @@ function Payment() {
       <section className="ptb-50 order-complete">
         <div className="container">
           <div className="row text-center my-5">{
-            orderStatus == 1 && (<div className="col-12 col-md-8 col-lg-6 mx-auto">
+            orderStatus == 1 && (
+            <div className="col-12 col-md-8 col-lg-6 mx-auto">
               <h2>
                 Your Payment has been received
                 <span className="emoji" role="img">
