@@ -7,6 +7,7 @@ export const adminUrl = "https://admin.plywoodbazar.com";
 export const url = "https://api.plywoodbazar.com";
 
 export const generateImageUrl = (path) => {
+
   
   return `${url}/uploads/${path}`;
 };
