@@ -72,7 +72,7 @@ export default function Subscription() {
                 successToast(res.message);
                 if (res?.data && res?.data.payment_links) {
                     let payment_links = res?.data.payment_links;
-                    if (payment_links?.redirectInfo) {
+                    if (payment_links?.web) {
                         window.location.href = payment_links?.web;
                         return 0;
                     }
@@ -137,12 +137,12 @@ export default function Subscription() {
                                             } */}
 
 
-                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
-                                                Subscribe Now
-                                            </button>
-                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
+                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
                                                 Subscribe Now
                                             </button> */}
+                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
+                                                Subscribe Now
+                                            </button>
                                         </div>
                                     )
                                 })
