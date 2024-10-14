@@ -407,7 +407,7 @@ function Header() {
 
       if (value != "") {
         const { data: res } = await searchVendorFromDb(
-          `search=${value}&role=${role}`
+          `search=${value}`
         );
         if (res) {
           console.log(res.data, "handleSearchText vendor");
@@ -2118,7 +2118,7 @@ function Header() {
       </header> */}
 
       <Modal show={signInModal} centered onHide={() => setSignInModal(false)}>
-        <Modal.Body className="sign-in-modal custom-modal">
+        <Modal.Body className="sign-in-modal custom-modal subscription-card-container">
           <button
             type="button"
             class="btn-close"

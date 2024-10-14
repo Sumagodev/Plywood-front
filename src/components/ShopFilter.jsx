@@ -73,7 +73,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
 
       if (value != "") {
         const { data: res } = await searchVendorFromDb(
-          `search=${value}&role=${role}`
+          `search=${value}`
         );
         if (res) {
           console.log(res.data, "handleSearchText vendor");
@@ -446,13 +446,13 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                             return (
                               <div key={index}>
                                 <Link
-                                  to={`/ShopDetail/${el?.slug}`}
+                                  to={`/Supplier/${el?._id}`}
                                   onClick={() =>
                                     setShowSearchBar(false)
                                   }
                                   onFocus={() => setShowSearchBar(true)}
                                 >
-                                  <p>{el?.slug}</p>
+                                  <p>{el?.name}</p>
                                 </Link>
                               </div>
                             );

@@ -72,23 +72,22 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
     [searchType]
   );
 
-  const handleSearchFromDb = async (value) => {
+  const handleSearchFromDb = async (query) => {
     try {
       console.log(searchType, "handleSearchText");
 
-      if (value != "") {
-        const { data: res } = await searchProduct(
-          `search=${value}&role=${role}`
-        );
-        if (res) {
-          console.log(res.data, "handleSearchText vendor");
-          setShowSearchBar(true);
-          setSearchResultArr(res.data);
-        } else {
-          setShowSearchBar(true);
-          setDisplaySearchResults([]);
-        }
+      const { data: res } = await searchProduct(
+        `name=${query}`
+      );
+      if (res) {
+        console.log(res.data, "handleSearchText vendor");
+        setShowSearchBar(true);
+        setSearchResultArr(res.data);
+      } else {
+        setShowSearchBar(true);
+        setDisplaySearchResults([]);
       }
+
     } catch (error) {
       toastError(error);
     }
@@ -271,8 +270,8 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                         >
                           <FiSearch />
                         </button>
-                      </div>                     
-                       <div className=" col-lg-7 col-6  d-flex align-items-center">
+                      </div>
+                      <div className=" col-lg-7 col-6  d-flex align-items-center">
                         <Form.Control
                           type="search"
                           className="searchbar2"
@@ -282,7 +281,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           onChange={(e) =>
                             handleSearchText(e.target.value)
                           }
-                          
+
                         />
                       </div>
 
@@ -308,7 +307,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                           Clear
                         </button></div> */}
                         <div>
-                          <button 
+                          <button
                             className="btn btn-outline btn-outline-custom"
                             style={{ fontSize: 12 }}
                             type="button"
@@ -325,7 +324,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                         <div>
                           <button
                             className="btn btn-outline btn-outline-custom"
-                            style={{ fontSize: 12, marginLeft: 3}} // Adjust the value as needed
+                            style={{ fontSize: 12, marginLeft: 3 }} // Adjust the value as needed
                             type="button"
                             onClick={() => {
                               navigate("/product-details");
@@ -361,7 +360,7 @@ function ProductFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                                   }
                                   onFocus={() => setShowSearchBar(true)}
                                 >
-                                  <p>{el?.slug}</p>
+                                  <p>{el?.name}</p>
                                 </Link>
                               </div>
                             );

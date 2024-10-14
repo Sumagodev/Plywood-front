@@ -1191,10 +1191,10 @@ footer .footer {
   object-fit: contain;
 }
 
-.sign-in-modal  {
+/* .sign-in-modal . {
   display: flex;
   align-items: center;
-}
+} */
 
 .sign-in-modal .form-control .input {
   font-weight: 600;
