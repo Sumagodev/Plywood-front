@@ -6,12 +6,21 @@ function Payment() {
   const params = useParams();
   const navigate = useNavigate();
   const [orderId, setOrderId] = useState("");
+  const [orderIds, setOrderIds] = useState("");
   const [orderStatus, setOrderStatus] = useState(0);
+  const [txn_id, settxn_id] = useState("");
+  const [effective_amount, seteffective_amount] = useState("");
+    const [txn_uuid, settxn_uuid] = useState("");
 
   useEffect(() => {
     if (params.id) {
       setOrderId(params.id)
+      setOrderIds(params?.orderId)
+      settxn_id(params?.txn_id)
+      settxn_uuid(params?.txn_uuid)
+      seteffective_amount(params?.effective_amount)
       handlePhonePaymentCallback(params.id);
+
     }
   }, [])
 
@@ -56,6 +65,27 @@ function Payment() {
               <p className=" my-5">
                 Your Payment ID is&nbsp;:&nbsp;
                 <span className="green fw-semibold">{orderId}</span>
+                
+              </p>
+              <p className=" my-5">
+                Your Order ID is&nbsp;:&nbsp;
+                <span className="green fw-semibold">{orderIds}</span>
+                
+              </p>
+              <p className=" my-5">
+                Your Transaction ID is&nbsp;:&nbsp;
+                <span className="green fw-semibold">{txn_id}</span>
+                
+              </p>
+              <p className=" my-5">
+                Your Transaction UUID is&nbsp;:&nbsp;
+                <span className="green fw-semibold">{txn_uuid}</span>
+                
+              </p>
+              <p className=" my-5">
+                Your Amount  is&nbsp;:&nbsp;
+                <span className="green fw-semibold">{effective_amount}</span>
+                
               </p>
               <p>
                 You will receive a booking confirmation email on registerd Email Id.
