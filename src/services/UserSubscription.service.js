@@ -8,6 +8,9 @@ let serverUrl = `${url}/usersubscription`;
 export const buySubscription = async (obj) => {
     return axiosApiInstance.post(`${serverUrl}/buySubscription`, obj)
 }
+export const buySubscriptionforhdfc = async (obj) => {
+    return axiosApiInstance.post(`${serverUrl}/initiateJuspayPaymentForSubcription`, obj)
+}
 // export const buySubscription = async (obj) => {
 //     return axiosApiInstance.post(`${serverUrl}/initiateJuspayPaymentForSubcription`, obj)
 // }

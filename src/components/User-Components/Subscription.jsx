@@ -1,6 +1,6 @@
     import React, { useEffect, useState } from 'react'
 import { getAllsubscription } from '../../services/Subscription.service'
-import { buySubscription } from '../../services/UserSubscription.service';
+import { buySubscription,buySubscriptionforhdfc } from '../../services/UserSubscription.service';
 import { errorToast, successToast } from '../Utility/Toast'
 import { useSelector } from 'react-redux';
 import "../../assets/css/Subscription.css"
@@ -48,6 +48,37 @@ export default function Subscription() {
                 } else {
                     errorToast(
                         "`Phonepe is not working.Please Try Some another Payment Method"
+                    );
+                }
+                return 0;
+            }
+        }
+        catch (err) {
+            errorToast(err)
+        }
+    }
+
+
+    const handleBuySubscriptionforhdfc = async (subscriptionObj) => {
+        try {
+            let obj = {
+                ...subscriptionObj
+            }
+            console.log('jfheruithoiertoiejoeri',obj)
+            let { data: res } = await buySubscriptionforhdfc(obj)
+         
+            if (res.success) {
+
+                successToast(res.message);
+                if (res?.data && res?.data.payment_links) {
+                    let payment_links = res?.data.payment_links;
+                    if (payment_links?.redirectInfo) {
+                        window.location.href = payment_links?.web;
+                        return 0;
+                    }
+                } else {
+                    errorToast(
+                        "Payment gateway  is not working.Please Try Some another Payment Method"
                     );
                 }
                 return 0;
@@ -106,7 +137,10 @@ export default function Subscription() {
                                             } */}
 
 
-                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
+                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
+                                                Subscribe Now
+                                            </button> */}
+                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
                                                 Subscribe Now
                                             </button>
                                         </div>
