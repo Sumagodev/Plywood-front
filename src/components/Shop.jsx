@@ -242,10 +242,14 @@ function Shop() {
       errorToast(err);
     }
   };
-  
+  useEffect(() => {
+    if (auth && auth._id) {
+      HandleCheckValidSubscription();
+    }
+  }, [auth]);
   const HandleCheckValidSubscription = async () => {
     try {
-      let { data: res } = await checkForValidSubscriptionAndReturnBoolean(userObj?._id)
+      let { data: res } = await checkForValidSubscriptionAndReturnBoolean(auth?._id)
       if (res.data) {
         setCurrentUserHasActiveSubscription(res.data)
       }
@@ -665,8 +669,7 @@ function Shop() {
                                                 handleShow2(true)
                                               } else {
                                                 // If the user does not have an active subscription, show the price modal
-                                            
-                                                                          window.location.href = `tel:${el.phone}`;
+                                                window.location.href = `tel:${el.phone}`;
 
                                               }
                                             }}
@@ -704,7 +707,7 @@ function Shop() {
                             activeClassName={"active"}
                             forcePage={page !== 0 ? page - 1 : 0}
                           />{" "}
-                          
+
                         </Col>
                       </>
                     )}
@@ -784,11 +787,11 @@ function Shop() {
                                         className=" img-fluid  rounded-5 "
                                         alt={item.name}
                                       />
-                                    <div className="recommondedprdname">
-                                      <div className="fw-bol px-2 py-2  d-lg-block d-none">{item.name}</div>
-                                      <div className=" d-flex justify-content-center  align-items-center d-block d-lg-none"> <span className="px-2  ">{item.name}</span></div>
+                                      <div className="recommondedprdname">
+                                        <div className="fw-bol px-2 py-2  d-lg-block d-none">{item.name}</div>
+                                        <div className=" d-flex justify-content-center  align-items-center d-block d-lg-none"> <span className="px-2  ">{item.name}</span></div>
 
-                                    </div>
+                                      </div>
 
                                     </div>
 

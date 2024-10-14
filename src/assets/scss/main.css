@@ -1191,7 +1191,7 @@ footer .footer {
   object-fit: contain;
 }
 
-.sign-in-modal . {
+.sign-in-modal  {
   display: flex;
   align-items: center;
 }
@@ -4167,9 +4167,9 @@ select {
 
 .opportunities_btn{
   background-color: rgb(96, 50, 0);
-  bottom: 5.5rem;
-  left: 50%;
-  transform: translateX(-330%);
+  bottom: 2rem;
+    left: 50%;
+    transform: translateX(-245%);
 }
 
 @media (min-width: 940px) and (max-width: 1130px) {
@@ -4177,7 +4177,7 @@ select {
     background-color: rgb(96, 50, 0);
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-275%);
+    transform: translateX(-155%);
   }
 }
 
@@ -4186,31 +4186,32 @@ select {
     background-color: rgb(96, 50, 0);
     bottom: 1rem;
     left: 50%;
-    transform: translateX(-225%);
+    transform: translateX(-125%);
     padding: 1rem !important;
   }
 }
 
-@media (min-width: 640px) and (max-width: 760px) {
+/* @media (min-width: 640px) and (max-width: 760px) {
   .opportunities_btn{
     background-color: rgb(96, 50, 0);
     bottom: 1rem;
     left: 50%;
-    transform: translateX(-225%);
+    transform: translateX(-125%);
+  
     padding: .5rem !important;
-    font-size: 18px ! important;
+    font-size: 12px ! important;
     font-weight: 500 !important;
   }
-}
+} */
 
-@media (min-width: 588px) and (max-width: 639px) {
+@media (min-width: 588px) and (max-width: 760px) {
   .opportunities_btn{
     background-color: rgb(96, 50, 0);
     bottom: 1rem;
     left: 50%;
-    transform: translateX(-225%);
+    transform: translateX(-125%);
     padding: .4rem !important;
-    font-size: 18px ! important;
+    font-size: 15px ! important;
     font-weight: 500 !important;
   }
 }
@@ -4220,7 +4221,7 @@ select {
     background-color: rgb(96, 50, 0);
     bottom: .1rem;
     left: 50%;
-    width: 99px;
+
     transform: translate(-65%, -41%);
     padding: .4rem !important;
     font-size: 18px ! important;

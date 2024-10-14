@@ -62,8 +62,9 @@ import CountdownTimer from "./Utility/CountdownTimer";
 import { errorToast, successToast } from "./Utility/Toast";
 import Ellipse from "../assets/image/home/Ellipse 27.png";
 // import playbanner from "../assets/image/home/Group 1000004149.png";
-import playbanner from "../assets/image/home/addopimg.jpg";
-import mbplaybanner from "../assets/image/home/ADD OPPORTUNITIES (7).png";
+import playbanner from "../assets/image/home/ADD OPPORTUNITIES (10).png";
+import mbplaybanner from "../assets/image/home/ADD OPPORTUNITIES (10).png";
+
 import dealer from "../assets/images/Group 1000004290 (1).png"
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
@@ -1275,7 +1276,12 @@ function Index() {
               <img
                 src={Addopportunities}
                 alt="Dealership Franchise"
-                className="img-fluid mt-3"
+                className="img-fluid mt-3 d-lg-block d-none"
+              />
+               <img
+                src={playbanner}
+                alt="Dealership Franchise"
+                className="img-fluid mt-3 d-block d-lg-none"
               />
               {
 
