@@ -147,12 +147,12 @@ export default function Subscription() {
                                             } */}
 
 
-                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
-                                                Subscribe Now
-                                            </button> */}
-                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
+                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
                                                 Subscribe Now
                                             </button>
+                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
+                                                Subscribe Now
+                                            </button> */}
                                         </div>
                                     )
                                 })
