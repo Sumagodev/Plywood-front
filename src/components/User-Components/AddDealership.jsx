@@ -192,14 +192,15 @@ const AddDealership = () => {
         };
         fetchDealershipDetails();
     }, [dealershipId]);  // Fetch when dealershipId changes
-
+   
     const handleSubmit = async (e) => {
 
         const formData = {
+            userId:userObj._id,
             Organisation_name: organisationName,
             Type: type,
             Brand: brandNames,
-            Product: productId,
+            productId: productId,
             categoryArr: categoryArr.map((el) => el._id),
             email,
             companyName,

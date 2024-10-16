@@ -3,8 +3,8 @@
 export const adminUrl = "https://admin.plywoodbazar.com";
 // 
 // production url
-// export const url = "https://api.plywoodbazar.com/test";
-export const url = "https://api.plywoodbazar.com";
+export const url = "https://api.plywoodbazar.com/test";
+// export const url = "https://api.plywoodbazar.com";
 
 export const generateImageUrl = (path) => {
 
