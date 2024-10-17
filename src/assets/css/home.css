@@ -159,7 +159,14 @@
   align-items: center;
   color: #603200;
 }
-
+.sub-container1 .chennai {
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: #603200;
+}
 .product-container-section .box_Product1 .Rs-1 {
   font-size: 1rem;
   font-weight: 400;

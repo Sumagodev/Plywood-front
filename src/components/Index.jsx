@@ -990,7 +990,7 @@ function Index() {
                             </Link>
                           </span>
                           <span>{el.role}</span>
-                          <span>{el.cityName}, {el.stateName}</span>
+                          <span className="chennai"> <IoLocationSharp />  {el.cityName}, {el.stateName}</span>
                           {/* <span className="">
                             Products:{" "}
                             {el?.productsCount ? el?.productsCount : "N.A."}
