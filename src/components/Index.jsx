@@ -10,11 +10,7 @@ import {
   searchVendorFromDb,
   sentOtp,
 } from "../services/User.service";
-import {
-  login,
-  logoutUser,
-  otpSend,
-} from "../redux/features/auth/authSlice";
+import { login, logoutUser, otpSend } from "../redux/features/auth/authSlice";
 import { RiMessage2Line } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, redirect } from "react-router-dom";
@@ -64,7 +60,7 @@ import Ellipse from "../assets/image/home/Ellipse 27.png";
 // import playbanner from "../assets/image/home/Group 1000004149.png";
 import playbanner from "../assets/image/home/addopimg.jpg";
 import mbplaybanner from "../assets/image/home/ADD OPPORTUNITIES (7).png";
-import dealer from "../assets/images/Group 1000004290 (1).png"
+import dealer from "../assets/images/Group 1000004290 (1).png";
 import { FaPhoneVolume } from "react-icons/fa6";
 import icon1 from "../assets/image/home/images/1.png";
 import mancrp from "../assets/image/home/images/mancrp.png";
@@ -74,13 +70,10 @@ import { MdThumbUp } from "react-icons/md";
 import { IoLocationSharp, IoStar } from "react-icons/io5";
 import greenimg from "../assets/image/home/images/greenlam1.png";
 import "../assets/css/Blog.css";
-import {
-  deleteProductbyId,
-  getProducts,
-} from "../services/Product.service";
-import { gettopUsers } from "../services/User.service"
+import { deleteProductbyId, getProducts } from "../services/Product.service";
+import { gettopUsers } from "../services/User.service";
 import { getStateDetails } from "../services/State.stateDetail";
-import { getAlldealership } from '../services/AddDealership.service'
+import { getAlldealership } from "../services/AddDealership.service";
 import { ROLES } from "../utils/Roles.utils";
 function Index() {
   const tempLoginObj = useSelector((state) => state.auth.tempLoginObj);
@@ -120,25 +113,24 @@ function Index() {
   const [opportunities, setOpportunities] = useState([]);
   const dispatch = useDispatch();
 
-  console.log(forchecking_type)
-
+  console.log(forchecking_type);
 
   const fetchOpportunities = async () => {
     try {
       const response = await getAlldealership();
-      setOpportunities(response.data.data.filter(opportunity => !userObj || opportunity.userId !== userObj._id));
-
+      setOpportunities(
+        response.data.data.filter(
+          (opportunity) => !userObj || opportunity.userId !== userObj._id
+        )
+      );
     } catch (error) {
-      console.error('Error fetching dealership opportunities:', error);
+      console.error("Error fetching dealership opportunities:", error);
     }
   };
 
   useEffect(() => {
     fetchOpportunities();
   }, []);
-
-
-
 
   useEffect(() => {
     if (auth && auth._id) {
@@ -176,10 +168,7 @@ function Index() {
     };
   }, [screenSize]);
 
-
   const navigate = useNavigate();
-
-
 
   const handleSubmitRequirement = async (e) => {
     e.preventDefault();
@@ -229,8 +218,9 @@ function Index() {
     try {
       let date = new Date();
       date.setDate(date.getDate() - 1);
-      let enddate = `${date.getFullYear()}-${(date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1)
-        }-${(date.getDate() + 1 < 10 ? "0" : "") + date.getDate()}`;
+      let enddate = `${date.getFullYear()}-${
+        (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1)
+      }-${(date.getDate() + 1 < 10 ? "0" : "") + date.getDate()}`;
       let { data: res } = await getAllFlashSales("endDate=" + enddate);
       if (res.data) {
         // console.log(res.data, "flash sales");
@@ -282,7 +272,6 @@ function Index() {
 
       // console.log(res.data, "data");
       setHomepageBannersArr(res.data.bannerImages);
-
     } catch (err) {
       errorToast(err);
     }
@@ -311,6 +300,23 @@ function Index() {
     },
     1400: {
       slidesPerView: 4,
+    },
+  };
+  const topprofile = {
+    0: {
+      slidesPerView: 2,
+    },
+    576: {
+      slidesPerView: 3,
+    },
+    992: {
+      slidesPerView: 3,
+    },
+    1200: {
+      slidesPerView: 5,
+    },
+    1400: {
+      slidesPerView: 6,
     },
   };
   const states = {
@@ -472,11 +478,10 @@ function Index() {
 
   const handleGetProducts = async () => {
     try {
-
-
       let { data: res } = await getProducts();
       if (res.data) {
         setProductArr(res.data);
+        console.log(res.data)
       }
     } catch (err) {
       errorToast(err);
@@ -606,11 +611,8 @@ function Index() {
     setSignInModal(false);
   };
 
-
   const handlesettopusers = async () => {
     try {
-
-
       let { data: res } = await gettopUsers();
       if (res.data) {
         // console.log("res.data", res.data);
@@ -625,10 +627,8 @@ function Index() {
     handlesettopusers();
   }, []);
 
-
   return (
     <main>
-
       <style>
         {`
           .swiper-slide {
@@ -653,20 +653,21 @@ function Index() {
                 homepageBannersArr.map((el, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <div className="col-12"
-
+                      <div
+                        className="col-12"
                         onClick={() => {
                           // Handle navigation based on the type
-                          if (el.type === 'productbanner') {
+                          if (el.type === "productbanner") {
                             navigate(`/ShopDetail/${el.productId.slug}`); // Navigate to /product
-                          } else if (el.type === 'profilebanner' && el.userId) {
+                          } else if (el.type === "profilebanner" && el.userId) {
                             navigate(`/Supplier/${el.userId._id}`); // Navigate to /user/:userId
-                          } else if (el.type === 'Adminbanner' && el.url) {
+                          } else if (el.type === "Adminbanner" && el.url) {
                             window.open(el.url); // Open the external URL
                           } else {
-                            window.open(el.url, '_blank');
+                            window.open(el.url, "_blank");
                           }
-                        }}>
+                        }}
+                      >
                         <img
                           src={generateImageUrl(el.image)}
                           alt=""
@@ -873,18 +874,18 @@ function Index() {
                           <div className="newprdcrd">
                             <img
                               src={el.image ? generateImageUrl(el.image) : grls}
-
                               className="img-fluid img1"
                             />
                             <div className="d-flex justify-content-center">
-
-
-                              <span className="phone-icon"
+                              <span
+                                className="phone-icon"
                                 onClick={() => {
                                   if (!isAuthorized) {
                                     // If the user is not authorized, show the sign-in modal
                                     setSignInModal(true);
-                                  } else if (!currentUserHasActiveSubscription) {
+                                  } else if (
+                                    !currentUserHasActiveSubscription
+                                  ) {
                                     // If the user has an active subscription, close the modal
                                     handleClose(true);
                                   } else {
@@ -892,10 +893,12 @@ function Index() {
                                     window.location.href = `tel:${el.phone}`;
                                   }
                                 }}
-
-                              > <LuPhoneCall className="phn rounded-circle p-2" /></span>
+                              >
+                                {" "}
+                                <LuPhoneCall className="phn rounded-circle p-2" />
+                              </span>
                             </div>
-                            <h6 className="fs-6 msg1" >{el.message}</h6>
+                            <h6 className="fs-6 msg1">{el.message}</h6>
                             <button
                               onClick={() =>
                                 navigate(`/ShopDetail/${el?.productSlug}`)
@@ -932,7 +935,7 @@ function Index() {
                   handleClose(true);
                 } else {
                   // If the user does not have an active subscription, show the price modal
-                  navigate("/AddPromotions")
+                  navigate("/AddPromotions");
                 }
               }}
             >
@@ -948,200 +951,212 @@ function Index() {
 
       <div className=" my-4 d-none d-lg-block" style={{ height: "10px" }}></div>
 
-
       <section>
         <Container fluid className="main_Profiles my-2 my-lg-5">
           <h1 className="text-center mb-4">Top Profiles</h1>
           <Row className=" d-flex justify-content-center">
-            {topusers && topusers.slice(0, 6).map((el) => (
-              <Col lg={2} xs={6} className="py-3 px-2">
-                {/* <Link to={`/Supplier/${el?._id}`}> */}
-                <div className="component-container1  text-center">
+            <Swiper
+              modules={[Autoplay, Navigation]}
+              spaceBetween={20}
+              slidesPerView={5}
+              autoplay={{ disableOnInteraction: false }}
+              speed={1500}
+              breakpoints={topprofile}
+            >
+              {topusers &&
+                topusers.slice(0, 15).map((el, index) => (
+                  <Col  className="py-3 px-2">
+                    <SwiperSlide key={index}>
+                      <div className="component-container1  text-center">
+                        {el?.bannerImage ? (
+                          <img
+                            src={generateImageUrl(el?.bannerImage)}
+                            alt=""
+                            className=" img-fluid img"
+                          />
+                        ) : (
+                          <img
+                            src={images.category_6}
+                            alt=""
+                            className=" img-fluid img"
+                          />
+                        )}
 
-                  {el?.bannerImage ? (
-                    <img
-                      src={generateImageUrl(el?.bannerImage)}
-                      alt=""
-                      className=" img-fluid img"
-                    />
-                  ) : (
-                    <img
-                      src={images.category_6}
-                      alt=""
-                      className=" img-fluid img"
-                    />
-                  )}
+                        <div className="sub-container1">
+                          <span className="">
+                            {" "}
+                            <Link to={`/Supplier/${el?._id}`}>
+                              {el?.companyName ? el?.companyName : el?.name}
+                            </Link>
+                          </span>
+                          <span>{el.role}</span>
+                          <span>{el.cityName}, {el.stateName}</span>
+                          {/* <span className="">
+                            Products:{" "}
+                            {el?.productsCount ? el?.productsCount : "N.A."}
+                          </span> */}
+                        </div>
+                        <div className="sub-container2">
+                          {/* <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span> */}
 
-                  <div className="sub-container1">
-                    <span className=""> <Link to={`/Supplier/${el?._id}`}>
-                      {el?.companyName
-                        ? el?.companyName
-                        : el?.name}
-                    </Link></span>
-                    <span className="">
-                      Products:{" "}
-                      {el?.productsCount
-                        ? el?.productsCount
-                        : "N.A."}
-                    </span>
-                  </div>
-                  <div className="sub-container2">
-                    {/* <span className="ps-5">Rating - {el?.rating ? el?.rating : 0}</span> */}
+                          <span className="ratingcount">
+                            Rating :{" "}
+                            {el?.rating ? (
+                              [...Array(Math.round(el.rating))].map(
+                                (_, index) => (
+                                  <IoStar key={index} className="ratingicon" />
+                                )
+                              )
+                            ) : (
+                              <IoStar />
+                            )}
+                          </span>
 
-                    <span className="ratingcount">
-                      Rating :  {el?.rating
-                        ? [...Array(Math.round(el.rating))].map((_, index) => <IoStar key={index} className="ratingicon" />)
-                        : <IoStar />}
-                    </span>
+                          {/* <li className="my-2">
+    <div className="icon brown pe-2 fs-5">
+      {Array.from({ length: rating.rating }, (_, index) => (
+        <BsStarFill key={index} />
+      ))}
+    </div>
+  </li> */}
 
-                    {/* <li className="my-2">
-                      <div className="icon brown pe-2 fs-5">
-                        {Array.from({ length: rating.rating }, (_, index) => (
-                          <BsStarFill key={index} />
-                        ))}
+                          <span
+                            className="phone-icon"
+                            onClick={() => {
+                              if (!isAuthorized) {
+                                // If the user is not authorized, show the sign-in modal
+                                setSignInModal(true);
+                              } else if (!currentUserHasActiveSubscription) {
+                                // If the user has an active subscription, close the modal
+                                handleClose(true);
+                              } else {
+                                // If the user does not have an active subscription, show the price modal
+                                window.location.href = `tel:${el.phone}`;
+                              }
+                            }}
+                          >
+                            {" "}
+                            <LuPhoneCall />
+                          </span>
+                        </div>
                       </div>
-                    </li> */}
+                    </SwiperSlide>
 
-                    <span className="phone-icon"
-                      onClick={() => {
-                        if (!isAuthorized) {
-                          // If the user is not authorized, show the sign-in modal
-                          setSignInModal(true);
-                        } else if (!currentUserHasActiveSubscription) {
-                          // If the user has an active subscription, close the modal
-                          handleClose(true);
-                        } else {
-                          // If the user does not have an active subscription, show the price modal
-                          window.location.href = `tel:${el.phone}`;
-
-                        }
-                      }}
-
-                    > <LuPhoneCall /></span>
-                  </div>
-
-
-                </div>
-                {/* </Link> */}
-              </Col>
-            ))}
+                    {/* </Link> */}
+                  </Col>
+                ))}
+            </Swiper>
           </Row>
         </Container>
       </section>
       <div className=" my-4 d-none d-lg-block" style={{ height: "2px" }}></div>
 
-      {
-        flashSalesArr && flashSalesArr.length > 0 && (
-          <section className=" mt-0 mt-lg-5">
-            <Container className=" mt-0 mt-lg-5 ">
-              <Row className=" flashpeoductback d-lg-flex  justify-content-center ">
-                <Col
-                  lg={3}
-                  xs={8}
-                  className="  d-lg-flex  justify-content-center align-items-center "
-                  onClick={() => navigate("/AddFlashSale")}
+      {flashSalesArr && flashSalesArr.length > 0 && (
+        <section className=" mt-0 mt-lg-5">
+          <Container className=" mt-0 mt-lg-5 ">
+            <Row className=" flashpeoductback d-lg-flex  justify-content-center ">
+              <Col
+                lg={3}
+                xs={8}
+                className="  d-lg-flex  justify-content-center align-items-center "
+                onClick={() => navigate("/AddFlashSale")}
+              >
+                <img src={img4} className=" img-fluid " alt="" />{" "}
+              </Col>
+              <Col lg={9} xs={12} className="newprdrw">
+                <Swiper
+                  modules={[Autoplay]}
+                  spaceBetween={5}
+                  autoplay={{ disableOnInteraction: false }}
+                  speed={1500}
+                  breakpoints={flashsale}
                 >
-                  <img src={img4} className=" img-fluid " alt="" />{" "}
-                </Col>
-                <Col lg={9} xs={12} className="newprdrw">
-                  <Swiper
-                    modules={[Autoplay]}
-                    spaceBetween={5}
-                    autoplay={{ disableOnInteraction: false }}
-                    speed={1500}
-                    breakpoints={flashsale}
-                  >
-                    {flashSalesArr &&
-                      flashSalesArr.length > 0 &&
-                      flashSalesArr.map((el, index) => {
-                        return (
-                          <SwiperSlide key={index}>
-                            <div className="newprdcrd text-center position-relative">
-                              <div className="position-relative">
-                                <CountdownTimer targetDate={el.endDate} />
-                                <Link to={`/ShopDetail/${el?.productId?.slug}`}>
-                                  <img
-                                    src={generateImageUrl(el.productId.mainImage)}
-                                    alt=""
-                                    className="img-fluid ims img1 "
-                                  />
-                                  <div className="overlyasper"></div>
-                                </Link>
-                              </div>
+                  {flashSalesArr &&
+                    flashSalesArr.length > 0 &&
+                    flashSalesArr.map((el, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <div className="newprdcrd text-center position-relative">
+                            <div className="position-relative">
+                              <CountdownTimer targetDate={el.endDate} />
+                              <Link to={`/ShopDetail/${el?.productId?.slug}`}>
+                                <img
+                                  src={generateImageUrl(el.productId.mainImage)}
+                                  alt=""
+                                  className="img-fluid ims img1 "
+                                />
+                                <div className="overlyasper"></div>
+                              </Link>
+                            </div>
 
-                              <span
-                                className="icn_Product"
-                                onClick={() => {
-                                  if (!isAuthorized) {
-                                    // If the user is not authorized, show the sign-in modal
-                                    setSignInModal(true);
-                                  } else if (!currentUserHasActiveSubscription) {
-                                    // If the user does not have an active subscription, show the price modal
-                                    handleClose(true);
-                                  } else {
-                                    // If the user has an active subscription, initiate a phone call
-                                    window.location.href = `tel:${el.userId?.companyObj?.phone}`;
-                                  }
-                                }}
-                              >
-                                <LuPhoneCall className="phn rounded-circle p-1" />
-                              </span>
-
-
-
-
-                              <h6 className=" text-center  prdtitle mt-3">
-                                <Link to={`/ShopDetail/${el?.productId?.slug}`}>
-                                  {el?.productId?.name}
-                                </Link>
-                              </h6>
-
-
-                              <div>
-                                <h6 className="old">
-                                  <span className="prize"><del>₹{el?.price}</del>/-   &nbsp; &nbsp; <span style={{ fontSize: "23px" }}>₹{el?.salePrice}/- </span><span style={{ fontSize: "12px" }}>{el.pricetype}</span></span>
-                                </h6>
-                              </div>
-                              <button
-                                onClick={() =>
-                                  navigate(`/ShopDetail/${el?.productId?.slug}`)
+                            <span
+                              className="icn_Product"
+                              onClick={() => {
+                                if (!isAuthorized) {
+                                  // If the user is not authorized, show the sign-in modal
+                                  setSignInModal(true);
+                                } else if (!currentUserHasActiveSubscription) {
+                                  // If the user does not have an active subscription, show the price modal
+                                  handleClose(true);
+                                } else {
+                                  // If the user has an active subscription, initiate a phone call
+                                  window.location.href = `tel:${el.userId?.companyObj?.phone}`;
                                 }
-                                className="newprdbtn py-2 text-white"
-                              >
-                                Get Quotes
-                              </button>
+                              }}
+                            >
+                              <LuPhoneCall className="phn rounded-circle p-1" />
+                            </span>
 
+                            <h6 className=" text-center  prdtitle mt-3">
+                              <Link to={`/ShopDetail/${el?.productId?.slug}`}>
+                                {el?.productId?.name}
+                              </Link>
+                            </h6>
+
+                            <div>
+                              <h6 className="old">
+                                <span className="prize">
+                                  <del>₹{el?.price}</del>/- &nbsp; &nbsp;{" "}
+                                  <span style={{ fontSize: "23px" }}>
+                                    ₹{el?.salePrice}/-{" "}
+                                  </span>
+                                  <span style={{ fontSize: "12px" }}>
+                                    {el.pricetype}
+                                  </span>
+                                </span>
+                              </h6>
                             </div>
-                            <div className=" discountnew fw-bold text-center d-grid align-items-center ">
-                              <div className="">{el.discountValue}%
-
-                                {/* <span style={{ fontSize: "8px" }}>OFF</span>  */}
-                              </div>
+                            <button
+                              onClick={() =>
+                                navigate(`/ShopDetail/${el?.productId?.slug}`)
+                              }
+                              className="newprdbtn py-2 text-white"
+                            >
+                              Get Quotes
+                            </button>
+                          </div>
+                          <div className=" discountnew fw-bold text-center d-grid align-items-center ">
+                            <div className="">
+                              {el.discountValue}%
+                              {/* <span style={{ fontSize: "8px" }}>OFF</span>  */}
                             </div>
-
-
-
-                          </SwiperSlide>
-
-
-
-                        );
-
-                      })}
-                    {/* <SwiperSlide>
+                          </div>
+                        </SwiperSlide>
+                      );
+                    })}
+                  {/* <SwiperSlide>
                       <div className="addfrmmain">
                         <Link to="/AddFlashSale" className="addfrm p-2">
                           +
                         </Link>
                       </div>
                     </SwiperSlide> */}
-                  </Swiper>
-                </Col>
-              </Row>
-            </Container>
-          </section>
-        )
-      }
+                </Swiper>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      )}
       <section className=" mt-2">
         <Container fluid className="product-container-section">
           <h1 className="heading text-center mt-5">Products You May Like</h1>
@@ -1150,7 +1165,6 @@ function Index() {
               <button
                 className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5"
                 style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
-
               >
                 View All
               </button>
@@ -1168,20 +1182,19 @@ function Index() {
               breakpoints={states}
               loop={true}
             >
-
-
               {productArr &&
                 productArr.slice(0, 10).map((product, index) => (
                   <SwiperSlide key={index}>
                     <Col
                       key={index}
                       className="d-flex productyoulike justify-content-center align-items-center py-4 px-0 mx-0"
-
                     >
                       <div className="box_Product1 ">
-
-
-                        <img src={generateImageUrl(product.mainImage)} alt={product.name} className="img-fluid ims img1" />
+                        <img
+                          src={generateImageUrl(product.mainImage)}
+                          alt={product.name}
+                          className="img-fluid ims img1"
+                        />
 
                         <span
                           className="icn_Product"
@@ -1200,27 +1213,57 @@ function Index() {
                         >
                           <LuPhoneCall />
                         </span>
-
+                       
                         <div className="product_detail">
                           <Link to={`/ShopDetail/${product?.slug}`}>
-
                             <span className=" msg1">{product.name}</span>
                             <span className="chennai">
                               <IoLocationSharp /> {product.cityName}
                             </span>
-                            <span className=" msg1">{product.sellingprice}</span>
+                            <span className=" msg1">
+                              {product.sellingprice}
+                            </span>
                           </Link>
+                         
                         </div>
-                        <Link to={`/ShopDetail/${product?.slug}`}>            <button className="mt-2 fs-6 fw-bold">Get Quote</button></Link>
+                        
+
+<span className="ratingcount">
+  Rating:{" "}
+  {[...Array(5)].map((_, index) => {
+    return index < Number(product?.rating) ? (
+      <IoStar key={index} className="ratingicon" /> // Filled star
+    ) : (
+      <IoStar key={index} className="ratingicon" /> // Empty star
+    );
+  })}
+</span>
 
 
+                        <span className="ratingcount">{product?.rating}
+  Rating :{" "}
+  {product?.rating ? (
+    [...Array(product.rating)].map((_, index) => {
+      console.log(`Displaying ${product.rating} stars`);
+      return <IoStar key={index} className="ratingicon" />;
+    })
+  ) : (
+    <IoStar />
+  )}
+</span>
+
+                        <Link to={`/ShopDetail/${product?.slug}`}>
+                          {" "}
+                          <button className="mt-2 fs-6 fw-bold">
+                            Get Quote
+                          </button>
+                        </Link>
                       </div>
                     </Col>
                   </SwiperSlide>
                 ))}
             </Swiper>
           </Row>
-
         </Container>
       </section>
       <section style={{ backgroundColor: "#F5F1E8" }}>
@@ -1249,9 +1292,8 @@ function Index() {
                     />
                     {/* <img src={generateImageUrl(city?.image)} alt={city.name} className="img-fluid ims img1" /> */}
                     <p className="text-center">{city.stateId.name}</p>
-
-                  </div></Link>
-
+                  </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -1277,55 +1319,43 @@ function Index() {
                 alt="Dealership Franchise"
                 className="img-fluid mt-3"
               />
-              {
-
-                (forchecking_type === "MANUFACTURER/IMPORTER" ||
-                  forchecking_type === ROLES.DISTRIBUTOR) && (
-                  <button
-                    onClick={() => {
-                      if (!isAuthorized) {
-                        // If the user is not authorized, show the sign-in modal
-                        setSignInModal(true);
-                      } else if (!currentUserHasActiveSubscription) {
-                        // If the user has an active subscription, close the modal
-                        handleClose(true);
-                      } else {
-                        // If the user does not have an active subscription, show the price modal
-                        navigate('/AddDealership')
-                      }
-                    }}
-                    className="border-0 rounded-5 px-4 py-3 opportunities_btn text-white fw-bold fs-5 position-absolute "
-                  >
-                    Add Opportunities
-                  </button>)}
+              {(forchecking_type === "MANUFACTURER/IMPORTER" ||
+                forchecking_type === ROLES.DISTRIBUTOR) && (
+                <button
+                  onClick={() => {
+                    if (!isAuthorized) {
+                      // If the user is not authorized, show the sign-in modal
+                      setSignInModal(true);
+                    } else if (!currentUserHasActiveSubscription) {
+                      // If the user has an active subscription, close the modal
+                      handleClose(true);
+                    } else {
+                      // If the user does not have an active subscription, show the price modal
+                      navigate("/AddDealership");
+                    }
+                  }}
+                  className="border-0 rounded-5 px-4 py-3 opportunities_btn text-white fw-bold fs-5 position-absolute "
+                >
+                  Add Opportunities
+                </button>
+              )}
             </div>
           </Col>
         </Row>
       </Container>
 
-
       {/* <section onClick={() => !isAuthorized ? setSignInModal(true) : navigate('/AddDealership')}> */}
       {/*  */}
       <>
         <Container fluid className=" mx-0 px-0">
-
           {/* <img src={playbanner} className=" img-fluid w-100 mx-0 px-0" alt="" /> */}
-
         </Container>
-
       </>
       {/* )
       } */}
 
-
-
-
-
-
       <Container className="dealership-oppo-container my-2 my-lg-5">
-
         <>
-
           <Row>
             <Swiper
               modules={[Autoplay]}
@@ -1337,34 +1367,39 @@ function Index() {
               speed={1500}
               breakpoints={ourvideos}
             >
-              {opportunities.map(opportunity => (
-
-                <SwiperSlide className=" d-flex justify-content-center" >
-                  <Col xs={6} lg={3} key={opportunity._id} className="dealership-oppo-sub-container x" >
+              {opportunities.map((opportunity) => (
+                <SwiperSlide className=" d-flex justify-content-center">
+                  <Col
+                    xs={6}
+                    lg={3}
+                    key={opportunity._id}
+                    className="dealership-oppo-sub-container x"
+                  >
                     <div className="dealership-oppo-box rounded-5 rounded">
                       <div
-                        className={`dealership-oppo-img-box ${opportunity.image ? `img-${opportunity.image}` : 'default-img'}`}
+                        className={`dealership-oppo-img-box ${
+                          opportunity.image
+                            ? `img-${opportunity.image}`
+                            : "default-img"
+                        }`}
                         style={{
-                          backgroundImage: `url(${generateImageUrl(opportunity.image)})`
+                          backgroundImage: `url(${generateImageUrl(
+                            opportunity.image
+                          )})`,
                         }}
                       >
-
                         <div className="dealership-oppo-text-box-1 p-0 pt-4 py-4 row">
-
                           <span>{opportunity.Organisation_name}</span>
-
-
 
                           <div className=" fs-6">
                             <IoLocationSharp /> {opportunity.stateName}
                           </div>
 
-
                           {/* <div className=" col-lg-5"><button className="dealerapply px-3 py-2" onClick={() => navigate('/ApplyDealership', { state: { opportunity } })}  >Apply</button></div> */}
 
                           <div className=" d-flex justify-content-end">
-                            <button className="dealerapply px-3 py-2"
-
+                            <button
+                              className="dealerapply px-3 py-2"
                               onClick={() => {
                                 if (!isAuthorized) {
                                   // If the user is not authorized, show the sign-in modal
@@ -1374,47 +1409,43 @@ function Index() {
                                   handleClose(true);
                                 } else {
                                   // If the user does not have an active subscription, show the price modal
-                                  navigate('/ApplyDealership', { state: { opportunity } });
+                                  navigate("/ApplyDealership", {
+                                    state: { opportunity },
+                                  });
                                 }
                               }}
-
                             >
                               Apply
                             </button>
                           </div>
-
-
-
                         </div>
-
-
                       </div>
-
                     </div>
-                  </Col></SwiperSlide>
+                  </Col>
+                </SwiperSlide>
               ))}
             </Swiper>
           </Row>
         </>
-
       </Container>
-
 
       <Container fluid className="main-blog">
         <div className="blog2 new_blog2 blog_container top-banner ptb-80">
           <div className="container-fluid d-flex justify-content-center align-items-center">
             <div className="row overlayflowscroll">
               <div
-                className={`tab col-lg-2 col-12 ${showBlogs == true ? "active-tab" : "in-active"
-                  }`}
+                className={`tab col-lg-2 col-12 ${
+                  showBlogs == true ? "active-tab" : "in-active"
+                }`}
                 onClick={() => setShowBlogs(true)}
               >
                 <div className="blog2_heading">News</div>
               </div>
               &nbsp;
               <div
-                className={`tab col-lg-2 col-12 ${showBlogs == false ? "active-tab" : "in-active"
-                  }`}
+                className={`tab col-lg-2 col-12 ${
+                  showBlogs == false ? "active-tab" : "in-active"
+                }`}
                 onClick={() => setShowBlogs(false)}
               >
                 <div className="blog2_heading">Video</div>
@@ -1425,7 +1456,6 @@ function Index() {
 
         <div className="blog2 new_blog2 blog_container ">
           <div className="container-fluid">
-
             {showBlogs ? (
               <div className="row news-1">
                 <Swiper
@@ -1467,7 +1497,8 @@ function Index() {
                                   to={`/blog-detail/${el._id}`}
                                   className="btn blog_readmore"
                                 >
-                                  Read More <BsArrowRight className="blog_arrow" />
+                                  Read More{" "}
+                                  <BsArrowRight className="blog_arrow" />
                                 </Link>
                               </div>
                             </div>
@@ -1477,7 +1508,6 @@ function Index() {
                     })}
                 </Swiper>
               </div>
-
             ) : (
               <div className="row video-2">
                 <Swiper
@@ -1511,7 +1541,6 @@ function Index() {
                                   ></iframe>
                                 )}
                               </div>
-
                             </div>
                           </div>
                         </SwiperSlide>
@@ -1523,7 +1552,6 @@ function Index() {
           </div>
         </div>
       </Container>
-
 
       <Container fluid className="custom-container">
         <Row className="custom-container-row">
@@ -1633,7 +1661,12 @@ function Index() {
           </Col>
         </Row>
       </Container>
-      <Modal show={signInModal} centered onHide={() => setSignInModal(false)} className="rounded-5">
+      <Modal
+        show={signInModal}
+        centered
+        onHide={() => setSignInModal(false)}
+        className="rounded-5"
+      >
         <Modal.Body className="sign-in-modal custom-modal subscription-card-container rounded-5">
           <button
             type="button"
@@ -1806,9 +1839,12 @@ function Index() {
         </Modal.Body>
       </Modal>
 
-      <Modal show={show} centered onHide={() => setShow(false)} className="  rounded-5">
-
-
+      <Modal
+        show={show}
+        centered
+        onHide={() => setShow(false)}
+        className="  rounded-5"
+      >
         <Modal.Body className="sign-in-modal custom-modal subscription-card-container">
           <button
             type="button"
@@ -1816,7 +1852,9 @@ function Index() {
             aria-label="Close"
             onClick={() => setShow(false)}
           ></button>
-          <h4 className=" mt-5"><b>You do not have a valid subscription</b></h4>
+          <h4 className=" mt-5">
+            <b>You do not have a valid subscription</b>
+          </h4>
 
           <button
             className="btn btn-custom btn-yellow mt-2 mb-4"
@@ -1826,9 +1864,7 @@ function Index() {
           </button>
         </Modal.Body>
       </Modal>
-
-
-    </main >
+    </main>
   );
 }
 

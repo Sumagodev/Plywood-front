@@ -6,6 +6,28 @@ import { useNavigate } from 'react-router-dom';
 import { errorToast } from '../Utility/Toast';
 import { getUserNotifications, getupadateRead, getUserById, checkForValidSubscriptionAndReturnBoolean } from '../../services/User.service'; // Import your API call
 
+// ===========================
+// Helper functions for formatting date to IST and calculating time difference
+function timeDifference(date) {
+    const now = new Date();
+    const diffInMs = now - new Date(date);
+    const diffInSeconds = Math.floor(diffInMs / 1000);
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
+  
+    if (diffInSeconds < 60) {
+      return `${diffInSeconds} seconds ago`;
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes} minutes ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hours ago`;
+    } else {
+      return `${diffInDays} days ago`;
+    }
+  }
+ 
+// ==============================
 export default function UserNotifications() {
     const userObj = useSelector(state => state.auth.user);
     const { _id } = userObj || {};
@@ -43,6 +65,8 @@ export default function UserNotifications() {
             if (res.data) {
                 setTotalElements(res.totalElements);
                 setProductArr(res.data);
+                console.log(res.data, "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+                
             }
         } catch (err) {
             errorToast(`Failed to fetch notifications: ${err.message}`);
@@ -177,9 +201,22 @@ export default function UserNotifications() {
                                                 </div>
                                                 <div className="row">
                                                     <div className="mb-2">
-                                                        <strong className='clr fs-5'>{new Date(item.createdAt).toDateString()}</strong>
+                                                        <div className='row'>
+                                                            <div className='col-lg-6 col-md-6 col-sm-6 d-flex justify-content-start'>
+                                                            <strong className='clr fs-5'>{new Date(item.createdAt).toDateString()}</strong>
+                                                            </div>
+                                                            <div className='col-lg-6 col-md-6 col-sm-6 d-flex justify-content-end'>
+                                                            <p className="m-0 text-muted">
+                                                              <small>{timeDifference(item.createdAt)}</small>
+                                                            </p>
+                                                                </div>
+                                                        </div>
+                                                      
+                                                       
+                                                        {/* <span>{item.lastAccessTime}</span> */}
                                                     </div>
                                                     <div className="text-dark">{message}</div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

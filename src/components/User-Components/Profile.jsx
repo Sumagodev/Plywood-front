@@ -204,45 +204,98 @@ export default function Profile() {
                             </Row>
 
                             <Row className='profile-section-container-left-info mt-2 py-2'>
-                                <Col lg={3} className='d-flex justify-content-center align-items-center'>  <img src={iconp} alt="" className="profile-section-container-img img-fluid" /></Col>
-                                <Col lg={9} className='p-4 '>
+                                <Col lg={3} className='d-flex justify-content-center align-items-center'>
+                                <img 
+                                    src={userObj.profileImage ? generateImageUrl(userObj.profileImage) : iconp} 
+                                    alt="" 
+                                    className="profile-section-container-img img-fluid" 
+                                />
+                                </Col>
+
+                               <Col lg={9} className='p-4 '>
                                     <Row className='px-2 pb-3 fs-2 text-black fw-semibold'> {userObj?.name}</Row>
 
                                     <Row className='d-flex justify-content-center ' style={{ fontSize: "0.75rem", color: "black", fontWeight: "500" }}>
                                         <Col lg={7}>
-                                            <Row>
-                                                <Col xs={3} className='profile-section-container-text'>Phone No.</Col>
-                                                <Col xs={9}>{userObj?.phone}</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={3} className='profile-section-container-text'>Role</Col>
-                                                <Col xs={9}> {userObj?.role}</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={3} className='profile-section-container-text'>Country</Col>
-                                                <Col xs={9}>{userObj?.countryObj?.name ? userObj?.countryObj?.name : "N.A."}</Col>
-                                            </Row>
+                                            <div><span className='profile-section-container-text'>Phone No.</span> : {userObj?.phone} </div>
+                                            <div> <span className='profile-section-container-text'>Role</span> : {userObj?.role} </div>
+                                            <div><span className='profile-section-container-text'>Country</span>  : {userObj?.countryObj?.name ? userObj?.countryObj?.name : "N.A."} </div>
                                         </Col>
-
                                         <Col lg={5}>
-                                            <Row>
-                                                <Col xs={3} className='profile-section-container-text'>State</Col>
-                                                <Col xs={9}>{userObj?.stateObj?.name ? userObj?.stateObj?.name : "N.A."}</Col>
-                                            </Row>
-
-                                            <Row>
-                                                <Col xs={3} className='profile-section-container-text'>City</Col>
-                                                <Col xs={9}>{userObj?.cityObj?.name ? userObj?.cityObj?.name : "N.A."}</Col>
-                                            </Row>
+                                        <div><span className='profile-section-container-text'>State</span> : {userObj?.stateObj?.name ? userObj?.stateObj?.name : "N.A."}</div>
+                                        <div><span className='profile-section-container-text'>City</span> : {userObj?.cityObj?.name ? userObj?.cityObj?.name : "N.A."}</div>
                                         </Col>
                                     </Row>
                                 </Col>
                             </Row>
 
                         </Col>
+                        <Col lg={7} className='profile-section-container-left profile-section-container-left2 px-5  d-flex flex-column gap-3'>
+                        <Row className='text-dark gap-2'>
+
+                            <Col className=' profile-section-Heading px-4  col-md-6 col-6' >Company Details</Col>
+
+                            <Col className='d-flex justify-content-center align-items-center col-md-1' >
+                                <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
+                                    <button type="button" onClick={() => { navigate(`/Edit-Profile`) }} className="theme-outline-button ">
+                                        <MdEdit />
+                                    </button>
+                                    Edit
+                                </div>
+                                <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
+                                    <button type="button" onClick={() => { navigate(`/Supplier/${userObj?._id}`) }} className="theme-outline-button" >
+                                        <IoEye />
+                                    </button>
+                                    View
+                                </div>
+                            </Col>
+
+                        </Row>
 
 
-                        <Col lg={7} className=''>
+                        <Row className='profile-section-container-left-info mt-2' >
+                            {/* <Col lg={3} className='d-flex justify-content-center align-items-center'>  <img src={iconp} alt="" className="profile-section-container-img img-fluid" /></Col> */}
+                            <Col lg={3} className='d-flex justify-content-center align-items-center'>
+                                <img 
+                                    src={userObj.profileImage ? generateImageUrl(userObj.bannerImage) : iconp} 
+                                    alt="" 
+                                    className="profile-section-container-img img-fluid" 
+                                />
+                                </Col>
+
+                           <Col lg={9} className='p-4 '>
+                                <Row className='px-2 pb-3 fs-2 text-black fw-semibold'> {userObj?.companyObj?.name}</Row>
+
+                                <Row className='d-flex justify-content-center ' style={{ fontSize: "0.75rem", color: "black", fontWeight: "500" }}>
+                                <Col lg={6}><div><span className='profile-section-container-text'>Email : </span>{userObj?.email}</div>
+                                <div><span className='profile-section-container-text'>Phone No. : </span>{userObj?.phone}</div>
+                                <div><span className='profile-section-container-text'>Dealing With Brand Name : </span>{userObj?.brandNames}</div>
+                                <div><span className='profile-section-container-text'>Google Map : </span>{userObj?.googleMapsLink}</div>
+                                </Col>
+
+                                <Col lg={6}>
+                                    <div><span className='profile-section-container-text'>GST Number : </span>{userObj?.companyObj?.gstNumber}</div>
+                                    <div><span className='profile-section-container-text'>Address : </span>{userObj?.companyObj?.gstNumber}</div>
+                                    <div><span className='profile-section-container-text'>Year Of Establish : </span>{userObj?.companyObj?.yearOfEstablishment}</div>
+                                 </Col>
+                                </Row>
+                           </Col>
+
+                          
+                          
+                            {/* <Row className='profile-section-container-text'>
+                            Google Map : {userObj?.companyObj?.googleMapsLink}
+                            </Row> */}
+                           
+                           
+                                </Row>
+                            </Col>
+                     
+                    </Row>
+                </Container>
+
+                <Container fluid className='profile-section-container-left profile-section-container-left2 px-5 mt-5' >
+                <Col lg={12} className=''>
                             <div className="row ">
                                 {
                                     role != ROLES_CONSTANT.USER &&
@@ -250,7 +303,7 @@ export default function Profile() {
                                         <div className="row d-flex justify-content-between">
                                             <div className=' profile-section-Heading px-4 my-2 mx-3  col-10 col-md-6' >Subscription Status</div>
 
-                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6  d-flex justify-content-end">
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6  d-flex justify-content-start">
                                                 {
                                                     userObj?.subscriptionEndDate &&
                                                     <div className="theme-outline-button">
@@ -288,31 +341,42 @@ export default function Profile() {
                                     </div> 
                                 </h6> */}
 
-                                                    <div className="subscribe-syatus col-12 col-md-3 d-flex justify-content-center align-items-center">
+                                                    <div className="subscribe-syatus col-12 col-md-2 d-flex justify-content-center align-items-center">
                                                         <div className=" porfilebox">
                                                             <h6> {userObj?.numberOfAdvertisement ? userObj?.numberOfAdvertisement : 0} </h6>
-                                                            <h4 > Advertisement balance  </h4>
+                                                            <h4 style={{fontSize: '10px;'}}> Advertisement balance  </h4>
                                                         </div>
                                                     </div>
-                                                    <div className="subscribe-syatus col-12 col-md-3 d-flex justify-content-center align-items-center">
+                                                    <div className="subscribe-syatus col-12 col-md-2 d-flex justify-content-center align-items-center">
                                                         <div className="porfilebox" >
                                                             <h6>{userObj?.advertisementDays ? userObj?.advertisementDays : 0}</h6>
                                                             <h4>Advertisement balance (Days)</h4>
                                                         </div>
                                                     </div>
-                                                    <div className="subscribe-syatus col-12 col-md-3 d-flex justify-content-center align-items-center ">
+                                                    <div className="subscribe-syatus col-12 col-md-2 d-flex justify-content-center align-items-center ">
                                                         <div className=" porfilebox ">
                                                             <h6>{userObj?.numberOfSales ? userObj?.numberOfSales : 0}</h6>
                                                             <h4 >Flash sale balance</h4>
                                                         </div>
                                                     </div>
-                                                    <div className="subscribe-syatus col-12 col-md-3 d-flex justify-content-center align-items-center ">
+                                                    <div className="subscribe-syatus col-12 col-md-2 d-flex justify-content-center align-items-center ">
                                                         <div className=" porfilebox ">
                                                             <h6>{userObj?.saleDays ? userObj?.saleDays : 0}</h6>
                                                             <h4 >Flash sale balance (Days)</h4>
                                                         </div>
                                                     </div>
-
+                                                    <div className="subscribe-syatus col-12 col-md-2 d-flex justify-content-center align-items-center ">
+                                                        <div className=" porfilebox ">
+                                                            <h6>{userObj?.profileCount ? userObj?.profileCount : 0}</h6>
+                                                            <h4 >Profile Count</h4>
+                                                        </div>
+                                                    </div>
+                                                    {/* <div className="subscribe-syatus col-12 col-md-2 d-flex justify-content-center align-items-center ">
+                                                        <div className=" porfilebox ">
+                                                            <h6>{userObj?.saleDays ? userObj?.saleDays : 0}</h6>
+                                                            <h4 >Profile Count</h4>
+                                                        </div>
+                                                    </div> */}
 
 
                                                 </div>
@@ -322,85 +386,8 @@ export default function Profile() {
                                 }
                             </div>
                         </Col >
-                    </Row>
-                </Container>
-
-                <Container fluid className='profile-section-container-left profile-section-container-left2 px-5' >
-                    <Col lg={10} className='py-5'>
-                        <Row className='text-dark '>
-
-                            <Col className=' profile-section-Heading px-4  col-md-4 col-8' >Company Details</Col>
-
-                            <Col className='d-flex justify-content-center align-items-center col-md-1 gap-2'>
-                                <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
-                                    <button type="button" onClick={() => { navigate(`/Edit-Profile`) }} className="theme-outline-button ">
-                                        <MdEdit />
-                                    </button>
-                                    Edit
-                                </div>
-                                <div className='profile-section-Heading-icn d-flex justify-content-center align-items-center flex-column gap-1'>
-                                    <button type="button" onClick={() => { navigate(`/Supplier/${userObj?._id}`) }} className="theme-outline-button" >
-                                        <IoEye />
-                                    </button>
-                                    View
-                                </div>
-                            </Col>
-
-                        </Row>
-
-
-                        <Row className='profile-section-container-left-info mt-4 py-3' >
-                            <Col lg={3} className='d-flex justify-content-center align-items-center'>  <img src={iconp} alt="" className="profile-section-container-img img-fluid" /></Col>
-                            <Col lg={9} className='p-4 '>
-                                <Row className='px-2 pb-3 fs-2 text-black fw-semibold'> {userObj?.companyObj?.name}</Row>
-
-                                <Row className='d-flex justify-content-center ' style={{ fontSize: "0.75rem", color: "black", fontWeight: "500" }}>
-                                    <Col lg={4}>
-                                        <Row>
-                                            <Col xs={5} className='profile-section-container-text'>Email</Col>
-                                            <Col xs={7}> {userObj?.email}</Col>
-                                        </Row>
-                                        <Row>
-                                            <Col xs={5} className='profile-section-container-text'>Phone No.</Col>
-                                            <Col xs={7}> {userObj?.companyObj?.phone}</Col>
-                                        </Row>
-                                        <Row>
-                                            <Col xs={5} className='profile-section-container-text'>Dealing With Brand Name</Col>
-                                            <Col xs={7}> {userObj?.brandNames}</Col>
-                                        </Row>
-                                    </Col>
-
-                                    <Col lg={8}>
-                                        <Row>
-                                            <Col xs={5} lg={4} className='profile-section-container-text'>GST Number</Col>
-                                            <Col xs={7} lg={8}>{userObj?.companyObj?.gstNumber}</Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col xs={5} lg={4} className='profile-section-container-text'>Address</Col>
-                                            <Col xs={7} lg={8}>{userObj?.companyObj?.address}</Col>
-                                        </Row>
-                                        <Row>
-                                            <Col xs={5} lg={4} className='profile-section-container-text'>Year Of Establish</Col>
-                                            <Col xs={7} lg={8}>{userObj?.companyObj?.yearOfEstablishment}</Col>
-                                        </Row>
-
-
-                                    </Col>
-                                    <Col>
-                                        <Row>
-                                            <Col lg={2} className='profile-section-container-text'>Google Map</Col>
-                                            <Col lg={10}>
-                                                <p style={{ wordBreak: 'break-word' }}>
-                                                    {userObj?.companyObj?.googleMapsLink}
-                                                </p>
-                                            </Col>
-
-                                        </Row></Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Col>
+                        {/* </Row> */}
+                    {/* </Col> */}
                 </Container>
 
 
