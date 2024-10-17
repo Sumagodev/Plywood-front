@@ -92,7 +92,7 @@ export default function AddFlashSale() {
         productId,
         price: price,
         discountType,
-          discountValue,
+        discountValue,
         pricetype,
         // salePrice: (discountType == "Percentage" ? percentage(discountValue, price) : price - discountValue).toFixed(2),
         salePrice,
@@ -181,6 +181,21 @@ export default function AddFlashSale() {
       return;
     }
   };
+  const handleEndDateChange = (value) => {
+    const selectedEndDate = new Date(value);
+    const selectedStartDate = new Date(startDate);
+
+    if (selectedEndDate <= selectedStartDate) {
+      errorToast("End date must be greater than start date.");
+    } else {
+      setEndDate(value);
+    }
+  };
+  useEffect(() => {
+    console.log(userObj, "userObj");
+    handleGetProducts();
+    handleGetUser();
+  }, []);
 
   useEffect(() => {
     console.log(userObj, "userObj");
@@ -203,8 +218,8 @@ export default function AddFlashSale() {
         </h3>
 
         {userDataObj?.numberOfSales > 0 &&
-        !userSubscriptionExpired &&
-        !userDataObj?.isBlocked ? (
+          !userSubscriptionExpired &&
+          !userDataObj?.isBlocked ? (
           <div className="col-6 col-sm-4 justify-content-end"></div>
         ) : (
           userDataObj?.numberOfSales <= 0 &&
@@ -287,14 +302,14 @@ export default function AddFlashSale() {
                   <label>
                     Discount type <span className="text-danger">*</span>
                   </label>
-                  <select 
+                  <select
                     onChange={(e) => {
                       setDiscountType(e.target.value);
                       setDiscountValue(0);
                       setSalePrice(0);
                     }}
                     value={discountType}
-                    className="form-control" 
+                    className="form-control"
                   >
                     <option value={"Percentage"}>Percentage</option>
                     <option value={"Amount"}>Amount</option>
@@ -374,7 +389,9 @@ export default function AddFlashSale() {
                     type="datetime-local"
                     className="form-control"
                     value={moment(endDate).format("YYYY-MM-DDThh:mm:ss")}
-                    onChange={(e) => setEndDate(e.target.value)}
+                    onChange={(e) => handleEndDateChange(e.target.value)}
+                    
+                    // setEndDate
                   />
                 </div>
                 <div className="col-md-6">

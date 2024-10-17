@@ -128,75 +128,145 @@ export default function AddProducts() {
     setmainCategoryArr([...tempCategoryArr]);
   };
 
+  // const onSubmit = async () => {
+  //   try {
+  //     if (`${name}` === "") {
+  //       errorToast("Please Fill Name");
+  //       return 0;
+  //     }
+  //     if (`${category}` === "") {
+  //       errorToast("Please Fill Category");
+  //       return 0;
+  //     }
+  //     if (`${price}` === "") {
+  //       errorToast("Please Fill Long price",);
+  //       return 0;
+
+  //     }
+  //     if (`${sellingprice}` === "") {
+  //       errorToast("Please Fill Long selling price");
+  //       return 0;
+  //     }
+
+  //     if (`${longDescription}` === "") {
+  //       errorToast("Please Fill Long Description");
+  //       return 0;
+  //     }
+
+  //     if (`${image}` === "") {
+  //       errorToast("Please add main imgae");
+  //       return 0;
+  //     }
+  //     // if (imageArr && imageArr.length > 1) {
+  //     //   if (imageArr.some((el) => !el.image || el.image == "")) {
+  //     //     errorToast("canot upload blank image");
+  //     //     return 0;
+  //     //   }
+  //     // }
+
+  //     let obj = {
+  //       name: name,
+  //       categoryId: category,
+  //       brand: brand,
+  //       price: price,
+  //       sellingprice: sellingprice + " " + pricetype,
+  //       specification: {
+  //         thickness,
+  //         application,
+  //         grade,
+  //         // color,
+  //         wood,
+  //         glue,
+  //         warranty,
+  //       },
+  //       shortDescription: shortDescription,
+  //       longDescription: longDescription,
+  //       status: status,
+  //       image: image,
+  //       imageArr: imageArr,
+  //       categoryArr: mainCategoryArr,
+  //     };
+
+  //     if (isEditingModeOn) {
+  //       let { data: res } = await updateProductApi(obj, productId);
+  //       if (res.message) {
+  //         successToast(res.message);
+  //       }
+  //     } else {
+  //       let { data: res } = await AddProduct(obj);
+  //       if (res.message) {
+  //         successToast(res.message);
+  //       }
+  //     }
+  //   } catch (err) {
+  //     errorToast(err);
+  //   }
+  // };
+
   const onSubmit = async () => {
     try {
-      if (`${name}` === "") {
-        errorToast("Please Fill Name");
-        return 0;
-      }
-      if (`${category}` === "") {
-        errorToast("Please Fill Category");
-        return 0;
-      }
-      if (`${sellingprice}` === "") {
-        errorToast("Please Fill Long price");
-        return 0;
+      // Validation rules including numeric checks
+      const validations = [
+        { value: name, message: "Please Fill Name" },
+        { value: category, message: "Please Fill Category" },
+        { value: price, message: "Please Fill Long price", isNumeric: true },
+        { value: sellingprice, message: "Please Fill Long selling price", isNumeric: true },
+        { value: longDescription, message: "Please Fill Long Description" },
+        { value: image, message: "Please add main image" },
+      ];
+
+      for (const { value, message, isNumeric } of validations) {
+        if (value === "") {
+          errorToast(message);
+          return;
+        }
+        if (isNumeric && isNaN(value)) {
+          errorToast(`${message} must be a number`);
+          return;
+        }
       }
 
-      if (`${longDescription}` === "") {
-        errorToast("Please Fill Long Description");
-        return 0;
-      }
-
-      if (`${image}` === "") {
-        errorToast("Please add main imgae");
-        return 0;
-      }
-      // if (imageArr && imageArr.length > 1) {
-      //   if (imageArr.some((el) => !el.image || el.image == "")) {
-      //     errorToast("canot upload blank image");
-      //     return 0;
-      //   }
-      // }
-
-      let obj = {
-        name: name,
+      const obj = {
+        name,
         categoryId: category,
-        brand: brand,
-        price: price,
-        sellingprice: sellingprice + " " + pricetype,
+        brand,
+        price: Number(price), // Ensure price is a number
+        sellingprice: `${Number(sellingprice)} ${pricetype}`, // Ensure selling price is a number
         specification: {
           thickness,
           application,
           grade,
-          // color,
           wood,
           glue,
           warranty,
         },
-        shortDescription: shortDescription,
-        longDescription: longDescription,
-        status: status,
-        image: image,
-        imageArr: imageArr,
+        shortDescription,
+        longDescription,
+        status,
+        image,
+        imageArr,
         categoryArr: mainCategoryArr,
       };
 
+      let res;
       if (isEditingModeOn) {
-        let { data: res } = await updateProductApi(obj, productId);
-        if (res.message) {
-          successToast(res.message);
-        }
+        ({ data: res } = await updateProductApi(obj, productId));
       } else {
-        let { data: res } = await AddProduct(obj);
-        if (res.message) {
-          successToast(res.message);
-        }
+        ({ data: res } = await AddProduct(obj));
       }
+
+      if (res.message) {
+        successToast(res.message);
+      }
+
     } catch (err) {
-      errorToast(err);
+      errorToast(err.message || "An error occurred");
     }
   };
+
+
+
+
   const subcategoryRender = (cateArr, dash) => {
     dash += "- ";
     console.log(cateArr && cateArr?.length);
@@ -666,7 +736,7 @@ export default function AddProducts() {
                   </div>
                 </div>
               </div>
-              
+
 
               <div className="col-md-12">
                 <button
@@ -675,7 +745,7 @@ export default function AddProducts() {
                     onSubmit();
                   }}
                   className="btn btn-custom btn-yellow mt-2"
-                style={{width:'100px'}}
+                  style={{ width: '100px' }}
                 >
                   Submit
                 </button>
@@ -685,35 +755,7 @@ export default function AddProducts() {
         </div>
       </div>
 
-      {/* <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <h3>Add Brand</h3>
-
-          <label>
-            Brand Name<span className="text-danger">*</span>
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            value={brandName}
-            onChange={(e) => setBrandName(e.target.value)}
-          />
-          <button
-            type="button"
-            onClick={() => {
-              HandleAddBrand();
-            }}
-            className="btn btn-custom btn-yellow mt-2"
-          >
-            Submit
-          </button>
-        </Box>
-      </Modal> */}
+   
       <Modal
         open={open}
         onClose={handleClose}

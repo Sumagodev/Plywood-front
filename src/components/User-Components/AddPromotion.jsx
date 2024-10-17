@@ -69,9 +69,26 @@ export default function AddPromotion() {
         }
 
     }
+    const handleEndDateChange = (value) => {
+        const selectedEndDate = new Date(value);
+        const selectedStartDate = new Date(startDate);
 
+        if (selectedEndDate <= selectedStartDate) {
+            errorToast("End date must be greater than start date.");
+        } else {
+            setEndDate(value);
+        }
+    };
+    const handleStartDateChange = (value) => {
+        const selectedEndDate = new Date(endDate);
+        const selectedStartDate = new Date(value);
 
-
+        if (selectedEndDate <  selectedStartDate) {
+            errorToast("start date must be greater than start date.");
+        } else {
+            setStartDate(value);
+        }
+    };
     const handleGetProducts = async () => {
         try {
 
@@ -85,8 +102,6 @@ export default function AddPromotion() {
             errorToast(err)
         }
     }
-
-
     const handleGetSaleById = async () => {
         try {
 
@@ -107,9 +122,6 @@ export default function AddPromotion() {
             errorToast(err)
         }
     }
-
-
-
     const handleGetUser = async () => {
         try {
             let { data: res } = await getUserById(id)
@@ -122,9 +134,6 @@ export default function AddPromotion() {
             errorToast(err)
         }
     }
-
-
-
     useEffect(() => {
         if (image && image.includes("base64")) {
             if (image.slice(0, 30).toLowerCase().includes("video")) {
@@ -135,23 +144,16 @@ export default function AddPromotion() {
             }
         }
     }, [image])
-
-
-
     useEffect(() => {
         handleGetUser()
         handleGetProducts()
     }, [])
-
-
-
     useEffect(() => {
         if (searchParams.get("id")) {
             setIsEditingModeOn(true)
             handleGetSaleById()
         }
     }, [searchParams.get("id")])
-
     return (
         <div className="container">
             <div className="row mt-3">
@@ -159,103 +161,90 @@ export default function AddPromotion() {
                     <div className="right frormcontainer">
                         <h3 className="heading formheading ps-3">{isEditingModeOn ? "Edit" : "Add"} Promotions</h3>
                         <form className="form profile-section-container ">
-                          
-                          <div className="row">
-                            <div className="col-md-6">
-                                <label>Product <span className="text-danger">*</span></label>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Product <span className="text-danger">*</span></label>
 
-                                <select className='form-control' value={productId} onChange={(e) => {
-                                    setProductId(e.target.value)
-                                    let tempObj = productArr.find(el => el._id == e.target.value)
-                                    setProductSlug(tempObj.slug);
-                                }}>
-                                    <option value="">Please Select Product</option>
-                                    {productArr && productArr.length > 0 && productArr.map(el => <option key={el._id} value={`${el._id}`}>{el.name}</option>)}
-                                </select>
-                            </div>
-
-
-
-
-
-                            <div className="col-md-6">
-                                <label>Start Date <span className="text-danger">*</span></label>
-                                <input
-                                    type="datetime-local"
-                                    className="form-control"
-                                    value={moment(startDate).format("YYYY-MM-DDThh:mm:ss")}
-                                    onChange={(e) => setStartDate(e.target.value)}
-                                />
-                            </div>
-                            <div className="col-md-6">
-                                <label>End Date <span className="text-danger">*</span></label>
-                                <input
-                                    type="datetime-local"
-                                    className="form-control"
-                                    value={moment(endDate).format("YYYY-MM-DDThh:mm:ss")}
-                                    onChange={(e) => setEndDate(e.target.value)}
-                                />
-                            </div>
-
-
-
-                            <br />
-                            <div className="col-md-12 mt-3">
-                                <label>Promotion Image/Video  <span className="text-danger">*</span> <span> width:100px and height:100px
-</span></label>
-                                <div className="my-3">
-                                    {/* {image} */}
-                                   
-                                    {
-                                        isVideo ?
-                                            <>
-                                                {
-                                                    image.includes("base64") ?
-                                                        <>
-                                                            <video src={image} height={100} width={100} />
-                                                        </>
-                                                        :
-                                                        <>
-                                                            <video src={generateImageUrl(image)} height={100} width={100} />
-                                                        </>
-                                                }
-                                            </>
-                                            :
-                                            <>
-                                                {
-                                                    image.includes("base64") ?
-                                                        <img style={{ height: 100, width: 100 }} src={image} alt="" />
-                                                        :
-                                                        <img style={{ height: 100, width: 100 }} src={generateImageUrl(image)} alt="" />
-                                                }
-                                            </>
-                                    }
-
+                                    <select className='form-control' value={productId} onChange={(e) => {
+                                        setProductId(e.target.value)
+                                        let tempObj = productArr.find(el => el._id == e.target.value)
+                                        setProductSlug(tempObj.slug);
+                                    }}>
+                                        <option value="">Please Select Product</option>
+                                        {productArr && productArr.length > 0 && productArr.map(el => <option key={el._id} value={`${el._id}`}>{el.name}</option>)}
+                                    </select>
                                 </div>
-                                <FileUpload acceptedType={"image/png, image/gif, image/jpeg,video/mp4,video/x-m4v,video/*"} onFileChange={(value) => { setImage(value); }} />
-                            </div>
-                            <br />
+                                <div className="col-md-6">
+                                    <label>Start Date <span className="text-danger">*</span></label>
+                                    <input
+                                        type="datetime-local"
+                                        className="form-control"
+                                        value={moment(startDate).format("YYYY-MM-DDThh:mm:ss")}
+                                        onChange={(e) => handleStartDateChange(e.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-6">
+                                    <label>End Date <span className="text-danger">*</span></label>
+                                    <input
+                                        type="datetime-local"
+                                        className="form-control"
+                                        value={moment(endDate).format("YYYY-MM-DDThh:mm:ss")}
+                                        onChange={(e) => handleEndDateChange(e.target.value)}
+                                    />
+                                </div>
+                                <br />
+                                <div className="col-md-12 mt-3">
+                                    <label>Promotion Image/Video  <span className="text-danger">*</span> <span> width:100px and height:100px
+                                    </span></label>
+                                    <div className="my-3">
+                                        {/* {image} */}
 
-                            <div className="col-md-12">
-                                <label>Promotion Message <span className="text-danger">*</span></label>
-                                <textarea
-                                    type="text"
-                                    className="form-control"
-                                    value={message}
-                                    placeholder=" Enter Message here"
-                                    // disabled
-                                    onChange={(e) => setMessage(e.target.value)}
-                                />
-                            </div>
-                            <div className="col-md-12 d-flex justify-content-end">
-                                <button type="button" onClick={() => { onSubmit() }} className="btn btn-custom btn-yellow mt-2 px-4 fs-5 me-5">
-                                    Submit
-                                </button>
-                            </div>
+                                        {
+                                            isVideo ?
+                                                <>
+                                                    {
+                                                        image.includes("base64") ?
+                                                            <>
+                                                                <video src={image} height={100} width={100} />
+                                                            </>
+                                                            :
+                                                            <>
+                                                                <video src={generateImageUrl(image)} height={100} width={100} />
+                                                            </>
+                                                    }
+                                                </>
+                                                :
+                                                <>
+                                                    {
+                                                        image.includes("base64") ?
+                                                            <img style={{ height: 100, width: 100 }} src={image} alt="" />
+                                                            :
+                                                            <img style={{ height: 100, width: 100 }} src={generateImageUrl(image)} alt="" />
+                                                    }
+                                                </>
+                                        }
 
+                                    </div>
+                                    <FileUpload acceptedType={"image/png, image/gif, image/jpeg,video/mp4,video/x-m4v,video/*"} onFileChange={(value) => { setImage(value); }} />
+                                </div>
+                                <br />
+                                <div className="col-md-12">
+                                    <label>Promotion Message <span className="text-danger">*</span></label>
+                                    <textarea
+                                        type="text"
+                                        className="form-control"
+                                        value={message}
+                                        placeholder=" Enter Message here"
+                                        // disabled
+                                        onChange={(e) => setMessage(e.target.value)}
+                                    />
+                                </div>
+                                <div className="col-md-12 d-flex justify-content-end">
+                                    <button type="button" onClick={() => { onSubmit() }} className="btn btn-custom btn-yellow mt-2 px-4 fs-5 me-5">
+                                        Submit
+                                    </button>
+                                </div>
                             </div>
-
-
                         </form>
                     </div>
                 </div>

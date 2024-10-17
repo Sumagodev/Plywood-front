@@ -14,6 +14,7 @@ import { toastError } from '../../utils/toastutill';
 import Select from 'react-select';
 import FileInput from '../Utility/FileUploadCropper';
 import { convertFileToBase64 } from '../Utility/FileConverterToBase64';
+import '../../assets/css/editProfile.css'
 
 export default function EditProfile() {
     let role = useSelector(state => state.auth.role)
@@ -356,16 +357,8 @@ export default function EditProfile() {
         else {
             tempCategoryObj = {}
         }
-
         return tempCategoryObj
-
-
-
-
-
-
     }
-
     const handleAddImage = () => {
         // alert("asd")
         // let tempArr = imagesArr
@@ -374,7 +367,6 @@ export default function EditProfile() {
             setImagesArr([...imagesArr, { image: "" }])
         }
     }
-
     const handleRemoveImage = () => {
         if ((imagesArr.length) > 0) {
             let tempArr = imagesArr
@@ -387,8 +379,6 @@ export default function EditProfile() {
         tempArr[index].image = value
         setImagesArr([...tempArr])
     }
-
-
     const handleAddVideo = () => {
         if (videoArr && videoArr.length < 5) {
             let tempArr = videoArr
@@ -396,7 +386,6 @@ export default function EditProfile() {
             setVideoArr([...tempArr])
         }
     }
-
     const handleRemoveVideo = () => {
         if ((videoArr.length) > 0) {
             let tempArr = videoArr
@@ -409,420 +398,399 @@ export default function EditProfile() {
         tempArr[index].video = value
         setVideoArr([...tempArr])
     }
-
-
-
-
-
     return (
-        <div className='container my-5 editprofilemt0'>
-
-            <div className="profile-section-container rounded" style={{ width: "100%" }}>
-                <div className="row d-flex justify-content-between">
-                    <div className="col-12 pt-2 profile-section-Heading mb-4">Personal Details</div>
-                    {/* <div className="col-1">
+        <div className='backimgprofile p-0 m-0'>
+            <div className='container  editprofilemt0 '>
+                <div className="profile-section-container rounded" style={{ width: "100%" }}>
+                    <div className="row d-flex justify-content-between">
+                        <div className="col-12 pt-2 profile-section-Heading mb-4">Personal Details</div>
+                        {/* <div className="col-1">
                         <button type="button" onClick={() => { navigate(`/Edit-Profile?profile=${userObj?._id}`) }} className="btn btn-custom btn-yellow">
                             Edit
                         </button>
                     </div> */}
-                </div>
-                <div className="row  d-flex justify-content-between">
-                    <div className="col-12 col-md-5 ">
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                Name of Organization
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type={"text"} className="form-control" value={companyName} onChange={(e) => setcompanyName(e.target.value)} placeholder='Name ...' />
+                    </div>
+                    <div className="row  d-flex justify-content-between">
+                        <div className="col-12 col-md-5 ">
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    Name of Organization
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <input type={"text"} className="form-control" value={companyName} onChange={(e) => setcompanyName(e.target.value)} placeholder='Name ...' />
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="border-right"></div>
-                    <div className="col-12 col-md-5 pt-4" >
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                Landline
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type={"text"} className="form-control" value={landline} onChange={(e) => setLandline(e.target.value)} placeholder='Name ...' />
+                        <div className="border-right"></div>
+                        <div className="col-12 col-md-5 pt-4" >
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    Landline
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <input type={"text"} className="form-control" value={landline} onChange={(e) => setLandline(e.target.value)} placeholder='Name ...' />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-12 col-md-5 my-4">
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                Organization Phone
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type={"text"} className="form-control" value={companyPhone} onChange={(e) => setcompanyPhone(e.target.value)} placeholder='Name ...' />
+                        <div className="col-12 col-md-5 my-4">
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    Organization Phone
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <input type={"text"} className="form-control" value={companyPhone} onChange={(e) => setcompanyPhone(e.target.value)} placeholder='Name ...' />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="border-right"></div>
-                    <div className="col-12 col-md-5 my-4">
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                Role
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <input type={"text"} className="form-control" value={userObj?.role} disabled placeholder='Name ...' />
+                        <div className="border-right"></div>
+                        <div className="col-12 col-md-5 my-4">
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    Role
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <input type={"text"} className="form-control" value={userObj?.role} disabled placeholder='Name ...' />
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    {
-                        role != ROLES_CONSTANT.USER &&
-                        <>
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12 col-md-6 ">
-                                        Country
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        {
-                                            countryArr && (
-                                                <select className="form-control" value={countryId} onChange={(e) => { setcountryId(e.target.value); setcityArr([]) }}>
-                                                    <option value="">Please Select Country</option>
-                                                    {countryArr.map((country) => (
-                                                        <option value={country._id} >{country.name}</option>
-                                                    ))}
-                                                </select>
-                                            )
-                                        }
+                        {
+                            role != ROLES_CONSTANT.USER &&
+                            <>
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12 col-md-6 ">
+                                            Country
+                                        </div>
+                                        <div className="col-12 col-md-6">
+                                            {
+                                                countryArr && (
+                                                    <select className="form-control" value={countryId} onChange={(e) => { setcountryId(e.target.value); setcityArr([]) }}>
+                                                        <option value="">Please Select Country</option>
+                                                        {countryArr.map((country) => (
+                                                            <option value={country._id} >{country.name}</option>
+                                                        ))}
+                                                    </select>
+                                                )
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="border-right"></div>
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12 col-md-6">
-                                        State
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        {
-                                            stateArr && (
-                                                <select className="form-control" value={stateId} onChange={(e) => setstateId(e.target.value)}>
-                                                    <option value="">Please Select State</option>
-                                                    {stateArr.map((state) => (
-                                                        <option value={state._id} >{state.name}</option>
-                                                    ))}
-                                                </select>
-                                            )
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12 col-md-6">
-                                        Aniversary Date
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            value={moment(aniversaryDate).format("YYYY-MM-DD")}
-                                            onChange={(e) => setAniversaryDate(e.target.value)}
-                                        />
+                                <div className="border-right"></div>
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12 col-md-6">
+                                            State
+                                        </div>
+                                        <div className="col-12 col-md-6">
+                                            {
+                                                stateArr && (
+                                                    <select className="form-control" value={stateId} onChange={(e) => setstateId(e.target.value)}>
+                                                        <option value="">Please Select State</option>
+                                                        {stateArr.map((state) => (
+                                                            <option value={state._id} >{state.name}</option>
+                                                        ))}
+                                                    </select>
+                                                )
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="border-right"></div>
-                            <div className="col-12 col-md-5 my-4">
-                                <label> Google Maps Link <span className="text-danger">*</span> </label>
-                                <a href="https://www.google.com/maps" target="_blank" style={{ textDecorationLine: "underline" }}> Click to open google maps</a>
-                                <br />
-                                <br />
-                                <span>Note : The link above will take you to google maps where you can select the your business's location to get the link and paste it in the text input given below</span>
-                                <br />
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={googleMapsLink}
-                                    onChange={(e) => setGoogleMapsLink(e.target.value)}
-                                />
-                            </div>
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12 col-md-6">
-                                        City
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        {
-                                            cityArr && (
-                                                <select className="form-control" value={cityId} onChange={(e) => setcityId(e.target.value)}>
-                                                    <option value="">Please Select City</option>
-                                                    {cityArr.map((city) => (
-                                                        <option value={city._id} >{city.name}</option>
-                                                    ))}
-                                                </select>
-                                            )
-                                        }
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12 col-md-6">
+                                            Anniversary Date
+                                        </div>
+                                        <div className="col-12 col-md-6">
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                value={moment(aniversaryDate).format("YYYY-MM-DD")}
+                                                onChange={(e) => setAniversaryDate(e.target.value)}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="border-right"></div>
-                            <div className="col-5 my-4">
-
-                            </div>
-
-
-                            <div className="col-12 col-md-5  my-4">
-                                <div className="row">
-                                    <div className="col-12">
-                                        Banner Image <b className='text-dark ms-3'>(width:1775px and height:367px)</b>
-                                    </div>
-                                    <div className="col-12">
-                                        {
-                                            bannerImage && bannerImage.includes("base64") ?
-                                                <a target={"_blank"}> <img src={bannerImage} style={{ width: 150 }} alt="" srcset="" /></a>
-                                                :
-                                                <a target={"_blank"} href={generateImageUrl(bannerImage)}> <img src={generateImageUrl(bannerImage)} style={{ width: 150 }} alt="" srcset="" /></a>
-
-                                        }
-                                        <FileInput setFile={async (e) => {
-                                            let base64 = await convertFileToBase64(e);
-                                            setBannerImage(base64)
-                                        }} file={bannerImage} type="image" previousFile={(bannerImage && bannerImage != "" && bannerImage.includes("base64")) ? bannerImage : null} />
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="border-right"></div>
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12">
-                                        Profile Image
-                                        <b className='text-dark ms-3'>(widht:150px and height:150px)</b>
-                                    </div>
-                                    <div className="col-12">
-                                        {
-                                            profileImage && profileImage.includes("base64") ?
-                                                <a target={"_blank"}> <img src={profileImage} style={{ width: 150 }} alt="" srcset="" /></a>
-                                                :
-                                                <a target={"_blank"} href={generateImageUrl(profileImage)}> <img src={generateImageUrl(profileImage)} style={{ width: 150 }} alt="" srcset="" /></a>
-
-                                        }
-                                        <FileInput setFile={async (e) => {
-                                            let base64 = await convertFileToBase64(e);
-                                            setprofileImage(base64)
-                                        }} file={profileImage} type="image" previousFile={(profileImage && profileImage != "" && profileImage.includes("base64")) ? profileImage : null} />
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12 col-md-6">
-                                        Category
-                                    </div>
-                                    <Select className='form-control' options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))} value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
-
-                                </div>
-                            </div>
-                            <div className="border-right"></div>
-                            <div className="col-12 col-md-5 my-4">
-                                <div className="row">
-                                    <div className="col-12 col-md-12">
-                                        Brand Names
-                                    </div>
+                                <div className="border-right"></div>
+                                <div className="col-12 col-md-5 my-4">
+                                    <label> Google Maps Link <span className="text-danger">*</span> </label>
+                                    <a href="https://www.google.com/maps" target="_blank" style={{ textDecorationLine: "underline" }}> Click to open google maps</a>
+                                    <br />
+                                    <br />
+                                    <span>Note : The link above will take you to google maps where you can select the your business's location to get the link and paste it in the text input given below</span>
+                                    <br />
                                     <input
                                         type="text"
                                         className="form-control"
-                                        value={brandNames}
-                                        onChange={(e) => setBrandNames(e.target.value)}
+                                        value={googleMapsLink}
+                                        onChange={(e) => setGoogleMapsLink(e.target.value)}
                                     />
                                 </div>
-                            </div>
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12 col-md-6">
+                                            City
+                                        </div>
+                                        <div className="col-12 col-md-6">
+                                            {
+                                                cityArr && (
+                                                    <select className="form-control" value={cityId} onChange={(e) => setcityId(e.target.value)}>
+                                                        <option value="">Please Select City</option>
+                                                        {cityArr.map((city) => (
+                                                            <option value={city._id} >{city.name}</option>
+                                                        ))}
+                                                    </select>
+                                                )
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="border-right"></div>
+                                <div className="col-5 my-4">
+                                </div>
+                                <div className="col-12 col-md-5  my-4">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            Banner Image <b className='text-dark ms-3'>(width:1775px and height:367px)</b>
+                                        </div>
+                                        <div className="col-12">
+                                            {
+                                                bannerImage && bannerImage.includes("base64") ?
+                                                    <a target={"_blank"}> <img src={bannerImage} style={{ width: 150 }} alt="" srcset="" /></a>
+                                                    :
+                                                    <a target={"_blank"} href={generateImageUrl(bannerImage)}> <img src={generateImageUrl(bannerImage)} style={{ width: 150 }} alt="" srcset="" /></a>
+
+                                            }
+                                            <FileInput setFile={async (e) => {
+                                                let base64 = await convertFileToBase64(e);
+                                                setBannerImage(base64)
+                                            }} file={bannerImage} type="image" previousFile={(bannerImage && bannerImage != "" && bannerImage.includes("base64")) ? bannerImage : null} />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="border-right"></div>
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            Profile Image
+                                            <b className='text-dark ms-3'>(widht:150px and height:150px)</b>
+                                        </div>
+                                        <div className="col-12">
+                                            {
+                                                profileImage && profileImage.includes("base64") ?
+                                                    <a target={"_blank"}> <img src={profileImage} style={{ width: 150 }} alt="" srcset="" /></a>
+                                                    :
+                                                    <a target={"_blank"} href={generateImageUrl(profileImage)}> <img src={generateImageUrl(profileImage)} style={{ width: 150 }} alt="" srcset="" /></a>
+
+                                            }
+                                            <FileInput setFile={async (e) => {
+                                                let base64 = await convertFileToBase64(e);
+                                                setprofileImage(base64)
+                                            }} file={profileImage} type="image" previousFile={(profileImage && profileImage != "" && profileImage.includes("base64")) ? profileImage : null} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12 col-md-6">
+                                            Category
+                                        </div>
+                                        <Select className='form-control' options={categoryArr && categoryArr.length > 0 && categoryArr.map((el) => ({ ...el, label: el.name, value: el._id }))} value={category} closeMenuOnSelect={false} onChange={(e) => setcategory(e)} isMulti />
+
+                                    </div>
+                                </div>
+                                <div className="border-right"></div>
+                                <div className="col-12 col-md-5 my-4">
+                                    <div className="row">
+                                        <div className="col-12 col-md-12">
+                                            Brand Names
+                                        </div>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={brandNames}
+                                            onChange={(e) => setBrandNames(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-12 mt-4">
+                                    <label> Address <span className="text-danger">*</span></label>
+                                    <textarea
+                                        className="form-control"
+                                        value={address}
+                                        onChange={(e) => setaddress(e.target.value)}
+                                    ></textarea>
+                                </div>
+                            </>
+                        }
 
 
-
-
-
-
-
-
-                            <div className="col-12 mt-4">
-                                <label> Address <span className="text-danger">*</span></label>
-                                <textarea
-                                    className="form-control"
-                                    value={address}
-                                    onChange={(e) => setaddress(e.target.value)}
-                                ></textarea>
-                            </div>
-                        </>
+                    </div>
+                    {
+                        role == ROLES_CONSTANT.USER &&
+                        <div className="row  mt-5 d-flex justify-content-center">
+                            <button type="button" onClick={() => { handleUpdateUserDetails() }} className="btn btn-custom btn-yellow col-3" >
+                                Save
+                            </button>
+                        </div>
                     }
-
-
                 </div>
+
                 {
-                    role == ROLES_CONSTANT.USER &&
-                    <div className="row  mt-5 d-flex justify-content-center">
-                        <button type="button" onClick={() => { handleUpdateUserDetails() }} className="btn btn-custom btn-yellow col-3" >
-                            Save
-                        </button>
+                    role != ROLES_CONSTANT.USER &&
+                    <div className="profile-section-container rounded" style={{ width: "100%" }}>
+                        <div className="profile-section-Heading">Contact Personal Details</div>
+                        <div className="row mt-4 d-flex justify-content-between">
+                            <div className="col-12 col-md-5 pt-4">
+
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        Name of Authorised person
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type={"text"} className="form-control" value={name} onChange={(e) => setName(e.target.value)} placeholder='Name ...' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border-right"></div>
+                            <div className="col-md-5 col-12 col-5 pt-4" >
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        Whatsapp No.
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type={"text"} className="form-control" value={whatsapp} onChange={(e) => setwhatsapp(e.target.value)} placeholder='Name ...' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-5 mt-4">
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        Mobile No.
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type={"text"} className="form-control" value={phone} onChange={(e) => setphone(e.target.value)} placeholder='Name ...' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border-right"></div>
+
+                            <div className="col-12 col-md-5 mt-4">
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        Nature of your business
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type={"text"} className="form-control" value={natureOfBusiness} onChange={(e) => setNatureOfBusiness(e.target.value)} placeholder='Name ...' />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="col-12 col-md-5 mt-4">
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        Year of Establishment
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type={"text"} className="form-control" value={yearOfEstablishment} onChange={(e) => setYearOfEstablishment(e.target.value)} placeholder='Name ...' />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="border-right"></div>
+                            <div className="col-5 my-4">
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        GST Number
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <input type={"text"} className="form-control" value={gstNumber} onChange={(e) => setgstNumber(e.target.value)} placeholder='Name ...' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 }
-            </div>
-
-            {
-                role != ROLES_CONSTANT.USER &&
-                <div className="profile-section-container rounded" style={{ width: "100%" }}>
-                    <div className="profile-section-Heading">Contact Personal Details</div>
-                    <div className="row mt-4 d-flex justify-content-between">
-                        <div className="col-12 col-md-5 pt-4">
-
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    Name of Authorised person
+                {
+                    role != ROLES_CONSTANT.USER &&
+                    <div className="profile-section-container rounded" style={{ width: "100%" }}>
+                        <div className="profile-section-Heading">Upload Document</div>
+                        <div className="row mt-4 d-flex justify-content-between">
+                            <div className="row d-flex">
+                                <div className="col-12 col-md-10 d-flex">
+                                    <div className="profile-section-Heading">Upload image</div>
+                                    <b className="text-dark ms-3">(width:275px and height:285px)</b>
                                 </div>
-                                <div className="col-12 col-md-6">
-                                    <input type={"text"} className="form-control" value={name} onChange={(e) => setName(e.target.value)} placeholder='Name ...' />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="border-right"></div>
-                        <div className="col-md-5 col-12 col-5 pt-4" >
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    Whatsapp No.
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <input type={"text"} className="form-control" value={whatsapp} onChange={(e) => setwhatsapp(e.target.value)} placeholder='Name ...' />
+                                <div className="col-6 col-md-2 d-flex justify-content-between">
+                                    <button type="button" onClick={() => { handleAddImage() }} className="btn btn-custom btn-yellow" >
+                                        +
+                                    </button><button type="button" onClick={() => { handleRemoveImage() }} className="btn btn-custom btn-yellow" >
+                                        -
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-12 col-md-5 mt-4">
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    Mobile No.
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <input type={"text"} className="form-control" value={phone} onChange={(e) => setphone(e.target.value)} placeholder='Name ...' />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="border-right"></div>
+                            {
+                                imagesArr && imagesArr.length > 0 && imagesArr.map((el, index) => {
+                                    return (
+                                        <div className="col-md-6 mb-3" key={index}>
+                                            <div>
+                                                {
+                                                    el.image && el.image.includes("base64") ?
+                                                        <a target={"_blank"}> <img src={el.image} style={{ height: 150 }} alt="" srcset="" /></a>
+                                                        :
+                                                        <a target={"_blank"} href={generateImageUrl(el.image)}> <img src={generateImageUrl(el.image)} style={{ height: 150 }} alt="" srcset="" /></a>
 
-                        <div className="col-12 col-md-5 mt-4">
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    Nature of your business
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <input type={"text"} className="form-control" value={natureOfBusiness} onChange={(e) => setNatureOfBusiness(e.target.value)} placeholder='Name ...' />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-12 col-md-5 mt-4">
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    Year of Establishment
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <input type={"text"} className="form-control" value={yearOfEstablishment} onChange={(e) => setYearOfEstablishment(e.target.value)} placeholder='Name ...' />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="border-right"></div>
-                        <div className="col-5 my-4">
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    GST Number
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <input type={"text"} className="form-control" value={gstNumber} onChange={(e) => setgstNumber(e.target.value)} placeholder='Name ...' />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            {
-                role != ROLES_CONSTANT.USER &&
-                <div className="profile-section-container rounded" style={{ width: "100%" }}>
-                    <div className="profile-section-Heading">Upload Document</div>
-                    <div className="row mt-4 d-flex justify-content-between">
-                        <div className="row d-flex">
-                            <div className="col-12 col-md-10 d-flex">
-                                <div className="profile-section-Heading">Upload image</div>
-                                <b className="text-dark ms-3">(width:275px and height:285px)</b>
-                            </div>
-                            <div className="col-6 col-md-2 d-flex justify-content-between">
-                                <button type="button" onClick={() => { handleAddImage() }} className="btn btn-custom btn-yellow" >
-                                    +
-                                </button><button type="button" onClick={() => { handleRemoveImage() }} className="btn btn-custom btn-yellow" >
-                                    -
-                                </button>
-                            </div>
-                        </div>
-                        {
-                            imagesArr && imagesArr.length > 0 && imagesArr.map((el, index) => {
-                                return (
-                                    <div className="col-md-6 mb-3" key={index}>
-                                        <div>
-                                            {
-                                                el.image && el.image.includes("base64") ?
-                                                    <a target={"_blank"}> <img src={el.image} style={{ height: 150 }} alt="" srcset="" /></a>
-                                                    :
-                                                    <a target={"_blank"} href={generateImageUrl(el.image)}> <img src={generateImageUrl(el.image)} style={{ height: 150 }} alt="" srcset="" /></a>
-
-                                            }
+                                                }
+                                            </div>
+                                            <FileInput setFile={async (e) => {
+                                                let base64 = await convertFileToBase64(e);
+                                                handleSetImage(index, base64)
+                                            }} key={index} file={el.image} type="image" previousFile={(el.image && el.image != "" && el.image.includes("base64")) ? el.image : null} />
+                                            {/* <FileUpload onFileChange={(value) => handleSetImage(index, value)} /> */}
                                         </div>
-                                        <FileInput setFile={async (e) => {
-                                            let base64 = await convertFileToBase64(e);
-                                            handleSetImage(index, base64)
-                                        }} key={index} file={el.image} type="image" previousFile={(el.image && el.image != "" && el.image.includes("base64")) ? el.image : null} />
-                                        {/* <FileUpload onFileChange={(value) => handleSetImage(index, value)} /> */}
-                                    </div>
-                                )
-                            })
-                        }
+                                    )
+                                })
+                            }
 
-                        <hr />
+                            <hr />
 
-                        <div className="row d-flex">
-                            <div className="col-12 col-md-10">
-                                <div className="profile-section-Heading">Upload Video </div>
+                            <div className="row d-flex">
+                                <div className="col-12 col-md-10">
+                                    <div className="profile-section-Heading">Upload Video </div>
+                                </div>
+                                <div className="col-6 col-md-2 d-flex justify-content-between">
+                                    <button type="button" onClick={() => { handleAddVideo() }} className="btn btn-custom btn-yellow" >
+                                        +
+                                    </button><button type="button" onClick={() => { handleRemoveVideo() }} className="btn btn-custom btn-yellow" >
+                                        -
+                                    </button>
+                                </div>
                             </div>
-                            <div className="col-6 col-md-2 d-flex justify-content-between">
-                                <button type="button" onClick={() => { handleAddVideo() }} className="btn btn-custom btn-yellow" >
-                                    +
-                                </button><button type="button" onClick={() => { handleRemoveVideo() }} className="btn btn-custom btn-yellow" >
-                                    -
-                                </button>
-                            </div>
-                        </div>
-                        {
-                            videoArr && videoArr.length > 0 && videoArr.map((el, index) => {
-                                return (
-                                    <div className="col-md-6 mb-3" key={index}>
-                                        <div>
-                                            {
-                                                el.video && el.video.includes("base64") ?
-                                                    <video height={100} width={100} src={el.video} />
-                                                    // <a target={"_blank"}> <img src={el.image} style={{ height: 150 }} alt="" srcset="" /></a>
-                                                    :
+                            {
+                                videoArr && videoArr.length > 0 && videoArr.map((el, index) => {
+                                    return (
+                                        <div className="col-md-6 mb-3" key={index}>
+                                            <div>
+                                                {
+                                                    el.video && el.video.includes("base64") ?
+                                                        <video height={100} width={100} src={el.video} />
+                                                        // <a target={"_blank"}> <img src={el.image} style={{ height: 150 }} alt="" srcset="" /></a>
+                                                        :
 
-                                                    <video height={100} width={100} src={generateImageUrl(el.video)} />
-                                                // <a target={"_blank"} href={generateImageUrl(el.image)}> <img src={generateImageUrl(el.image)} style={{ height: 150 }} alt="" srcset="" /></a>
+                                                        <video height={100} width={100} src={generateImageUrl(el.video)} />
+                                                    // <a target={"_blank"} href={generateImageUrl(el.image)}> <img src={generateImageUrl(el.image)} style={{ height: 150 }} alt="" srcset="" /></a>
 
-                                            }
+                                                }
+                                            </div>
+                                            <FileUpload acceptedType={"video/mp4,video/x-m4v,video/*"} onFileChange={(value) => handleSetVideo(index, value)} />
                                         </div>
-                                        <FileUpload acceptedType={"video/mp4,video/x-m4v,video/*"} onFileChange={(value) => handleSetVideo(index, value)} />
-                                    </div>
-                                )
-                            })
-                        }
-                        {/* <div className="profile-section-Heading">Video Uploaded</div>
+                                    )
+                                })
+                            }
+                            {/* <div className="profile-section-Heading">Video Uploaded</div>
 
                         <div className="col-md-6 mb-3">
                             <div>
@@ -839,14 +807,15 @@ export default function EditProfile() {
 
 
 
-                        <div className="row  mt-5 d-flex justify-content-center">
-                            <button type="button" onClick={() => { handleUpdateUserDetails() }} className="btn btn-custom btn-yellow col-3" >
-                                Save
-                            </button>
+                            <div className="row  mt-5 d-flex justify-content-center">
+                                <button type="button" onClick={() => { handleUpdateUserDetails() }} className="btn btn-custom btn-yellow col-3" >
+                                    Save
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div >
+                }
+            </div >
+        </div>
     )
 }

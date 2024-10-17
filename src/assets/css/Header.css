@@ -293,3 +293,20 @@
     width: 100% !important;
   }
 }
+
+.text-truncate {
+  max-width: 76px; /* Set the desired max width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+ 
+}
+
+.mobileviewprofile_icon{
+  width: '24px';
+  height: '24px' 
+}
+
+
+

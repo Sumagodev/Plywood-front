@@ -132,7 +132,7 @@ export default function UserNotifications() {
                     <div className="col-10 mb-5">
                         <div className="row d-flex mt-5 align-items-center justify-content-between">
                             <div className="col-6 col-sm-4">
-                                <h4 className='yellow'>Your Notifications</h4>
+                                <h4 className='yellow mt-2'>Your Notifications</h4>
                             </div>
 
                         </div>

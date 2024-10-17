@@ -292,7 +292,7 @@ function Footer() {
       </footer> */}
       <>
         <div className="footer">
-          
+
           <Container className=" text-white mt-0 mt-lg-5 p-4 p-md-0">
             <Row className="elements1">
               <Col xs={12} lg={4} className="">
@@ -405,21 +405,28 @@ function Footer() {
                 </Row>
               </Col>
               <Col className="contactus mt-5 mt-lg-0" xs={12} lg={3}>
-                <h5 className=" text-white">CONTACT US</h5>
+                <h5 className="text-white">CONTACT US</h5>
                 <ul className="list-unstyled">
                   <li>
                     <IoCallOutline />
-                    &nbsp; +91 9403574184
+                    &nbsp;
+                    <a href="tel:+919403574184" className="text-white" aria-label="Call us at +91 9403574184">
+                      +91 9403574184
+                    </a>
                   </li>
                   <li>
                     <MdOutlineEmail />
-                    &nbsp; info@plywoodbazar.com
+                    &nbsp;
+                    <a href="mailto:info@plywoodbazar.com" className="text-white" aria-label="Email us at info@plywoodbazar.com">
+                      info@plywoodbazar.com
+                    </a>
                   </li>
                   <li>
                     <SlLocationPin />
-                    &nbsp; E-Wing 407, Business Plus, <br /> next to Sai Square,
-                    Near <br />
-                    Mumbai Naka, Tidke Colony <br /> Nashik, Maharashtra 422002.
+                    &nbsp; E-Wing 407, Business Plus, <br />
+                    next to Sai Square, Near <br />
+                    Mumbai Naka, Tidke Colony <br />
+                    Nashik, Maharashtra 422002.
                   </li>
                 </ul>
               </Col>
@@ -501,7 +508,7 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-            
+
               </Col>
             </Row>
           </Container>

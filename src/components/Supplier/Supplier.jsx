@@ -276,6 +276,15 @@ function Supplier() {
 
   };
 
+  const phoneNumber = "+91 8412563251";
+  const handleCall = () => {
+    window.open(`tel:${phoneNumber}`);
+  };
+
+
+
+
+
   useEffect(() => {
     if (userObj && userObj._id) {
       HandleCheckValidSubscription()
@@ -344,13 +353,13 @@ function Supplier() {
                       <li className="my-2">
                         <div className="icon brown pe-2 fs-5">
                           {Array.from({ length: supplierObj.rating }, (_, index) => (
-                            <BsStarFill key={index} />
+                            <BsStarFill key={index} class="text-warning" />
                           ))}
                         </div>
                       </li>
                       <li className=" my-2">
                         <div className="icon brown pe-2 fs-5">
-                          <BsFillCheckCircleFill />
+                          <BsFillCheckCircleFill class="text-success" />
                         </div>
                         {supplierObj.companyObj?.gstNumber}
                       </li>
@@ -446,6 +455,7 @@ function Supplier() {
           </div>
         </div>
       </section>
+      <br></br>
 
       {tabs.map((item, i) => {
         if (item.active && item.tab === "1") {
@@ -526,24 +536,6 @@ function Supplier() {
         if (item.active && item.tab === "2") {
           return (
             <>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               {/* profile */}
               <section className="supplier-profile mb-80">
                 <div className="container">
@@ -618,38 +610,6 @@ function Supplier() {
                   </div>
                 </div>
               </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </>
           );
         }
@@ -658,36 +618,40 @@ function Supplier() {
             <section className="category-page my-3">
               <div className="container">
                 <ul className="row">
-                  {productsArr && productsArr.length > 0 ? productsArr.map((item, i) => {
-                    return (
-
-                      <li className="col-12 col-md-3">
-
-                        <div className="product-box">
-
-                          <Link to={`/ShopDetail/${item?.slug}`}>{item?.mainImage ? <img src={generateImageUrl(item?.mainImage)} alt="" className="img" /> : <img src={images.category_5} alt="" className="img" />}</Link>
-
-                          <div className="content ">
-                            <button className="call-btn">
+                  {productsArr && productsArr.length > 0 ? (
+                    productsArr.map((item, i) => (
+                      <li key={item.id || i} className="col-12 col-md-3">
+                        <div className="product-box mb-3">
+                          <Link to={`/ShopDetail/${item?.slug}`}>
+                            <img
+                              src={item?.mainImage ? generateImageUrl(item?.mainImage) : images.category_5}
+                              alt={item?.mainImage ? item.name : "Default product image"}
+                              className="img"
+                            />
+                          </Link>
+                          <div className="content">
+                            <button className="call-btn" onClick={handleCall} aria-label="Call product seller">
                               <MdCall />
                             </button>
-                            <div className="title ">
-                              <Link className="text-white fs-5" to={`/ShopDetail/${item?.slug}`}>{item.name}</Link>
+                            <div className="title">
+                              <Link className="text-white fs-5" to={`/ShopDetail/${item?.slug}`}>
+                                {item.name}
+                              </Link>
                             </div>
-                            <div className=" text-white fw-light">Size (Sq ft): {item?.specification?.size ? item?.specification?.size : "N.A."}</div>
-                            <div className=" text-white">₹{item.sellingprice}/Sq ft</div>
+                            <div className="text-white fw-light">
+                              Size (Sq ft): {item?.specification?.size || "N.A."}
+                            </div>
+                            <div className="text-white">₹{item.sellingprice}/Sq ft</div>
                           </div>
                         </div>
                       </li>
-                    );
-                  })
-                    :
+                    ))
+                  ) : (
                     <h6>No products added yet.</h6>
-                  }
+                  )}
                 </ul>
               </div>
             </section>
-
           );
         }
         if (item.active && item.tab === "4") {

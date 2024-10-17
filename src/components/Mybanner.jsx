@@ -44,13 +44,13 @@ function Mybanner() {
 
     return (
         <>
-            <div className='mt-3'>
-                <Container>
+            <div className='backimgbanner m-0 p-0'>
+                <Container className='pt-4'>
                     <Row>
                         <Col xl={6} lg={6} md={6} sm={12} xs={12}>
-                            <label>Select Image:</label>
+                            <label className='p-2'>Select Image : </label>
                             {/* <FileInput type="image" /> */}
-                            <input type='file' />
+                             <input type='file' />
                         </Col>
 
                         <Col xl={6} lg={6} md={6} sm={12} xs={12}>
@@ -67,7 +67,7 @@ function Mybanner() {
 
                                         className='profileview_btn'
                                     />
-                                    <p className='m-0 p-2'>Profile View : </p>
+                                    <p className='m-0 p-2'>Profile View  </p>
                                     <Form.Check
                                         type="radio"
                                         aria-label="radio 2"
@@ -77,12 +77,10 @@ function Mybanner() {
                                         checked={viewType === 'product-view'}
                                         className='productview_btn'
                                     />
-                                    <p className='m-2'>Product View : </p>
+                                    <p className='m-2'>Product View  </p>
 
                                 </div>
                             </div>
-
-
                             {viewType === 'product-view' && (
                                 <>
                                     <p>Selecte Product : </p>
@@ -104,7 +102,7 @@ function Mybanner() {
                         </Col>
                     </Row>
 
-                    <Row className="justify-content-center mt-2 mb-3">
+                    <Row className="justify-content-center mt-2 mb-3 pb-3">
                         <Col xs="auto">
                             <button
                                 type="button"
@@ -117,7 +115,6 @@ function Mybanner() {
                     </Row>
                 </Container>
             </div>
-
         </>
     )
 }

@@ -1,4 +1,6 @@
-
+.backimgbanner{
+    background-image: url('../image/home/images/backimg.png');
+}
 .productview_btn{
     margin-left: 10px;
 }

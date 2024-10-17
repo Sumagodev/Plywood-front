@@ -15,7 +15,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import { BsX } from 'react-icons/bs'; // Import close icon
 import logo2 from '../../assets/image/home/image 110.png'
 
-import { FaInstagram, FaFacebookF, FaYoutube, FaHome } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaYoutube, FaHome, FaRegUserCircle } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
@@ -628,13 +628,9 @@ function Header() {
                             &nbsp; 9403574184
                           </a>
                         </p>
-                        {/* <Button className="navbtn rounded-pill me-2">
-                          <Link to="/Subscription" className="text-white">
-                            <FaHome />
-                          </Link>
-                        </Button> */}
+
                         <Link to='/'><a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" >
-                          {/* <img src={whp} className=" img-fluid" /> */}
+
                           <FaHome />
                         </a></Link>
 
@@ -721,7 +717,6 @@ function Header() {
                           </Button>
                         )}
                         <Link to='/'><a className="icn p-2 btn-social rounded-circle mx-2" target="_blank" >
-                          {/* <img src={whp} className=" img-fluid" /> */}
                           <LuBellRing />
                         </a></Link>
 
@@ -730,17 +725,11 @@ function Header() {
                         {isAuthorized ? (
                           <div
                             className="sign-in-btn"
-
                           >
                             <div
                               className="custom-search"
-
                               onClick={() => setShowSignIn(!showSignIn)}
                             >
-
-
-
-
                               <div className=" d-flex align-items-center">
                                 <div>
                                   <MdAccountCircle className=" Acc_icn btn-social rounded-circle mx-2" style={{ fontSize: "2rem" }} />
@@ -914,8 +903,10 @@ function Header() {
                                   onChange={(e) =>
                                     handleSearchText(e.target.value)
                                   }
+                                  
                                 />
-                                <div className="icon">
+                                
+                                <div className="icon" >
                                   <BiSearch />
                                 </div>
                               </div>
@@ -1011,10 +1002,19 @@ function Header() {
                                       </div>
                                     </div> */}
                                     <button className="text-dark d-flex align-items-center">
-                                      <img src={images.user} alt="" />
-                                      {userObj?.name}
-                                      <BiChevronDown />
+                                      <img
+                                        src={images.user}
+                                        alt="User"
+                                        className="me-1 mobileviewprofile_icon"
+                                      />
+                                      {/* <FaRegUserCircle /> */}
+                                      <span className="text-truncate" >
+                                        {userObj?.name}
+                                      </span>
+                                      <BiChevronDown className="ms-2" />
                                     </button>
+
+
                                     <div ref={wrapperRef}>
                                       <ul
                                         style={{
