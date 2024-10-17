@@ -452,7 +452,7 @@ function ShopFilter({ handleApplyFilter, handleClearFilter, handleClose }) {
                                   }
                                   onFocus={() => setShowSearchBar(true)}
                                 >
-                                  <p>{el?.companyObj.name}</p>
+                                  <p>{el?.name}</p>
                                 </Link>
                               </div>
                             );

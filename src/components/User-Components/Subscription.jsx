@@ -1,6 +1,6 @@
-    import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getAllsubscription } from '../../services/Subscription.service'
-import { buySubscription,buySubscriptionforhdfc } from '../../services/UserSubscription.service';
+import { buySubscription, buySubscriptionforhdfc } from '../../services/UserSubscription.service';
 import { errorToast, successToast } from '../Utility/Toast'
 import { useSelector } from 'react-redux';
 import "../../assets/css/Subscription.css"
@@ -33,9 +33,9 @@ export default function Subscription() {
             let obj = {
                 ...subscriptionObj
             }
-            console.log('jfheruithoiertoiejoeri',obj)
+            console.log('jfheruithoiertoiejoeri', obj)
             let { data: res } = await buySubscription(obj)
-         
+
             if (res.success) {
 
                 successToast(res.message);
@@ -62,17 +62,17 @@ export default function Subscription() {
     const handleBuySubscriptionforhdfc = async (subscriptionObj) => {
         try {
             setLoading(true); // Show loading indicator when request starts
-    
+
             let response = await buySubscriptionforhdfc(subscriptionObj);
             let res = response.data;
-    
+
             console.log(res);
-    
+
             // Check if response status is 200 (success)
             if (response.status === 200) {
                 if (res && res.payment_links) {
                     let payment_links = res.payment_links;
-    
+
                     // Redirect to payment link if available
                     if (payment_links.web) {
                         setLoading(false); // Hide loading before redirect
@@ -86,7 +86,7 @@ export default function Subscription() {
                 }
             } else {
                 // Handle non-200 responses (e.g., 400, 500)
-                
+
                 errorToast(`Error: ${response.status}. Please try again.`);
             }
         } catch (error) {
@@ -117,7 +117,15 @@ export default function Subscription() {
                                     return (
                                         <div key={index} className="subscription-card">
                                             <div className="subscription-card-heading">{el?.name}</div>
-                                            <div className="subscription-card-price">₹ {el?.price}  <span style={{ fontSize: 15, color: '#603200' }}>+18% GST </span></div>
+                                            {/* <div className="subscription-card-price">₹ {el?.price}  <span style={{ fontSize: 15, color: '#603200' }}>+18% GST </span></div> */}
+                                            <div className="subscription-card-price">
+                                                ₹ {el?.price ? Math.round(el.price * 1.18) : "0"}{" "}
+                                                <span style={{ fontSize: 15, color: '#603200' }}>
+                                                    (Including 18% GST)
+                                                </span>
+                                            </div>
+
+
                                             {
                                                 el?.noOfMonth ?
                                                     <div className="subscription-card-days">{el?.noOfMonth} {el?.noOfMonth > 1 ? "months" : "month"}</div>
@@ -147,12 +155,12 @@ export default function Subscription() {
                                             } */}
 
 
-                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
-                                                Subscribe Now
-                                            </button>
-                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
+                                            {/* <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscription(el)}>
                                                 Subscribe Now
                                             </button> */}
+                                            <button className="yellow-bg btn text-white subsctiption-card-button" onClick={() => handleBuySubscriptionforhdfc(el)}>
+                                                Subscribe Now
+                                            </button>
                                         </div>
                                     )
                                 })

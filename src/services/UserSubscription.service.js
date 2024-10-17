@@ -11,6 +11,9 @@ export const buySubscription = async (obj) => {
 export const buySubscriptionforhdfc = async (obj) => {
     return axiosApiInstance.post(`${serverUrl}/initiateJuspayPaymentForSubcription`, obj)
 }
+export const verifyPayment = async (obj) => {
+    return axiosApiInstance.post(`${url}/payments/verifyPayment`, obj)
+}
 // export const buySubscription = async (obj) => {
 //     return axiosApiInstance.post(`${serverUrl}/initiateJuspayPaymentForSubcription`, obj)
 // }
