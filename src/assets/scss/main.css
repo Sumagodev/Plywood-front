@@ -2034,13 +2034,14 @@ footer .footer {
 
 .subscribe-syatus .porfilebox h4 {
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
   background: #F5F1E8;
   text-align: center;
   border-radius: 100px;
   font-weight: 600;
   color: black;
   padding: 17px 14px;
+  height: 60px !important;
   margin-bottom: -5px !important;
 }
 

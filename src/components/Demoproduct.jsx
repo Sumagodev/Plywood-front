@@ -12,6 +12,7 @@ import { addUserRequirement } from "../services/UserRequirements.service";
 import { getNestedCategories } from "../services/Category.service";
 import { generateImageUrl } from "../services/url.service";
 import { toastError } from "../utils/toastutill";
+import {  IoStar } from "react-icons/io5";
 import ShopFilter from "./ShopFilter";
 import grls from "../assets/image/home/Mask Group (1).png";
 
@@ -480,11 +481,33 @@ function Demoproduct() {
                                           <Link to={`/ShopDetail/${product?.slug}`}>
                                             <span className="green-1">{product?.name}</span>
                                             <span className="chennai">
-                                              <IoLocationSharp /> {product?.cityName}
+                                              <IoLocationSharp /> {product?.cityName} Maharashtra, Nashik {product?.stateName} {product?.cityName}
                                             </span>
                                             <span className="Rs-1">{product?.productPrice}</span>
                                           </Link>
                                         </div>
+                                        {/* <span className="ratingcount">
+                            Rating :{" "}
+                            {product?.rating ? (
+                              [...Array(Math.round(product.rating))].map(
+                                (_, index) => (
+                                  <IoStar key={index} className="ratingicon" />
+                                )
+                              )
+                            ) : (
+                              <IoStar />
+                            )}
+                          </span> */}
+                          <span className="ratingcount">
+  Rating:{" "}
+  {[...Array(5)].map((_, index) => {
+    return index < Number(product?.rating) ? (
+      <IoStar key={index} className="ratingicon" /> // Filled star
+    ) : (
+      <IoStar key={index} className="ratingicon" /> // Empty star
+    );
+  })}
+</span>
                                         <Link to={`/ShopDetail/${product?.slug}`}><button className="Rs-1">1 Get Deal</button></Link>
                                       </div>
                                     </Col>

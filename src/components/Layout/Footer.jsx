@@ -309,11 +309,11 @@ function Footer() {
                   Distributors, Dealers, Wholesalers and Retailers of Furniture,
                   Plywood, Hardware & Interior Exterior Industries.
                 </p>
-                <p>
-                  <b>Email Id</b> - dipparv.in@gmail.com <br />
-                  Job/Career - admin@plywoodbazar.com
+             <p className="">
+                  <b>Email Id</b> - <a href="mailto:dipparv.in@gmail.com">dipparv.in@gmail.com </a><br />
+                  Job/Career - <a href="mailto:admin@plywoodbazar.com">admin@plywoodbazar.com</a>
                 </p>
-              </Col>
+</Col>
               <Col lg={5}>
                 <Row>
                   <Col className="quicklinks mt-5 mt-lg-0" xs={12} lg={4}>
@@ -372,7 +372,7 @@ function Footer() {
                             categoryArr
                               .slice(0, Math.ceil(categoryArr.length / 2))
                               .map((category) => (
-                                <li key={category._id} onClick={scrollToTop}>
+                                <li className="number-hover" key={category._id} onClick={scrollToTop}>
                                   <Link
                                     className="text-white"
                                     to={`/Shop?categories=${category._id}`}
@@ -389,7 +389,7 @@ function Footer() {
                             categoryArr
                               .slice(Math.ceil(categoryArr.length / 2))
                               .map((category) => (
-                                <li key={category._id} onClick={scrollToTop}>
+                                <li className="number-hover" key={category._id} onClick={scrollToTop}>
                                   <Link
                                     className="text-white"
                                     to={`/Shop?categories=${category._id}`}
@@ -407,14 +407,15 @@ function Footer() {
               <Col className="contactus mt-5 mt-lg-0" xs={12} lg={3}>
                 <h5 className=" text-white">CONTACT US</h5>
                 <ul className="list-unstyled">
-                  <li>
-                    <IoCallOutline />
-                    &nbsp; +91 9403574184
-                  </li>
-                  <li>
-                    <MdOutlineEmail />
-                    &nbsp; info@plywoodbazar.com
-                  </li>
+                <li className="number-hover">
+              <IoCallOutline />
+              &nbsp; <a href="tel:+919403574184" >+91 9403574184</a>
+            </li>
+            <li className="number-hover">
+              <MdOutlineEmail />
+              &nbsp; <a href="mailto:info@plywoodbazar.com">info@plywoodbazar.com</a>
+            </li>
+
                   <li>
                     <SlLocationPin />
                     &nbsp; E-Wing 407, Business Plus, <br /> next to Sai Square,
@@ -442,7 +443,7 @@ function Footer() {
                 <div>
                   © 2024 Copyright :{" "}
                   <a href="https://www.sumagoinfotech.com/">
-                    Made with Passion by Sumago Infotech
+                    Made with Passion by Sumago Infotech Pvt Ltd
                   </a>
                 </div>
               </Col>

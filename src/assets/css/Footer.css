@@ -11,7 +11,25 @@
     
   
   }
+ .footer .links li a {
+    color: white; 
+    text-decoration: none;
+    transition: color 0.3s ease; 
+  }
   
+  .footer .links li a:hover {
+    color: #ffcc00 !important;
+  }
+  .contactus .links li a:hover {
+    color: #ffcc00 !important;
+  }
+  .number-hover a:hover {
+    color: #ffcc00 !important;
+    
+}
+.elements1 a:hover {
+  color: #ffcc00 !important;
+}
   @media only screen and (max-width: 991px) {
     .footer {
     background-image: url(../image/home/footer.png);

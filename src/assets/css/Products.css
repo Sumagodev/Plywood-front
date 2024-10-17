@@ -105,3 +105,8 @@
   border: #6c4f37 solid 2px;
   box-shadow: 0px 4px 4px 0px #00000040;
 }
+.bg-colour-card{
+  background: #F5F1E8 !important;
+    box-shadow: 0px 4px 4px 0px #00000040 !important;
+    border-radius: 50px !important;
+}
