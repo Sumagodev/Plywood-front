@@ -119,9 +119,12 @@ export default function Subscription() {
                                             <div className="subscription-card-heading">{el?.name}</div>
                                             {/* <div className="subscription-card-price">₹ {el?.price}  <span style={{ fontSize: 15, color: '#603200' }}>+18% GST </span></div> */}
                                             <div className="subscription-card-price">
-                                                ₹ {el?.price ? (el.price * 1.18).toFixed(2) : "0.00"}{" "}
-                                                <span style={{ fontSize: 15, color: '#603200' }}>(Including 18% GST)</span>
+                                                ₹ {el?.price ? Math.round(el.price * 1.18) : "0"}{" "}
+                                                <span style={{ fontSize: 15, color: '#603200' }}>
+                                                    (Including 18% GST)
+                                                </span>
                                             </div>
+
 
                                             {
                                                 el?.noOfMonth ?
