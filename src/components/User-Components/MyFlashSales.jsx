@@ -12,7 +12,8 @@ import { errorToast, successToast } from "../Utility/Toast";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toastSuccess } from "../../utils/toastutill";
 import { getUserById } from "../../services/User.service";
-import { Container,Row,Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import '../../assets/css/myflashseles.css'
 export default function MyFlashSales() {
   const navigate = useNavigate();
   let userObj = useSelector((state) => state.auth.user);
@@ -74,22 +75,26 @@ export default function MyFlashSales() {
     <div className="container-fluid subscription-container topup-subscription-container">
       <div className="container">
         <div className="row me-2  d-flex justify-content-between">
-          <div className="col-6 col-sm-8 subsctiption-heading">
+          <div className="col-lg-8 col-md-8 col-sm-12 subsctiption-heading">
             Your Flash-Sales
           </div>
           {userDataObj?.numberOfSales > 0 &&
-          !userSubscriptionExpired &&
-          !userDataObj?.isBlocked ? (
-            <div className="col-6 col-sm-4 mt-5 justify-content-end">
-              <div className="row d-flex justify-content-end">
-                <button
-                  className="theme-outline-button"
-                  onClick={() => navigate("/AddFlashSale")}
-                >
-                  Create a flash sale
-                </button>
+            !userSubscriptionExpired &&
+            !userDataObj?.isBlocked ? (
+
+              <div className="col-lg-4 col-md-4 col-sm-12 justify-content-end mt-5">
+              <div className="mt-0">
+                <div className="row d-flex justify-content-end">
+                  <button
+                    className="theme-outline-button no-margin-top" // Updated class to remove top margin
+                    onClick={() => navigate("/AddFlashSale")}
+                  >
+                    Create a flash sale
+                  </button>
+                </div>
               </div>
             </div>
+            
           ) : (
             userDataObj?.numberOfSales <= 0 &&
             userSubscriptionExpired &&
@@ -154,7 +159,7 @@ export default function MyFlashSales() {
                         </div>
                       </div>
 
-                     
+
                       <div className="row mt-4 col-12">
                         <div className="col-6  my-1">Product Name:</div>
                         <div className="col-6    my-1">{el?.productId?.name}</div>

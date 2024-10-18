@@ -68,19 +68,24 @@ export default function RecentActivities() {
                                             </div>
                                         </div>
                                         <div className="row mt-4 sub-section-2">
-                                            <div className="col-3 my-1 fw-bold">
-                                                Product Name:
+                                            <div className="col-12 d-flex justify-content-between my-1">
+                                                <div className="fw-bold">
+                                                    Product Name:
+                                                </div>
+                                                <div>
+                                                    {el?.productObj?.name ? el?.productObj?.name : "NA"}
+                                                </div>
                                             </div>
-                                            <div className="col-9 my-1">
-                                                {el?.productObj?.name ? el?.productObj?.name : "NA"}
-                                            </div>
-                                            <div className="col-3 my-1 fw-bold">
-                                                Product Price:
-                                            </div>
-                                            <div className="col-9 my-1">
-                                                {el?.productObj?.sellingprice ? ("₹" + el?.productObj?.sellingprice) : "NA"}
+                                            <div className="col-12 d-flex justify-content-between my-1">
+                                                <div className="fw-bold">
+                                                    Product Price:
+                                                </div>
+                                                <div>
+                                                    {el?.productObj?.sellingprice ? ("₹" + el?.productObj?.sellingprice) : "NA"}
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             )
@@ -89,7 +94,7 @@ export default function RecentActivities() {
                 </div>
 
             </div>
-                    
+
 
         </div >
 

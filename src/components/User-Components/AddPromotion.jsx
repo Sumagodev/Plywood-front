@@ -83,7 +83,7 @@ export default function AddPromotion() {
         const selectedEndDate = new Date(endDate);
         const selectedStartDate = new Date(value);
 
-        if (selectedEndDate <  selectedStartDate) {
+        if (selectedEndDate < selectedStartDate) {
             errorToast("start date must be greater than start date.");
         } else {
             setStartDate(value);
@@ -239,11 +239,17 @@ export default function AddPromotion() {
                                         onChange={(e) => setMessage(e.target.value)}
                                     />
                                 </div>
-                                <div className="col-md-12 d-flex justify-content-end">
+                                <div className="col-sm-12 col-md-12">
                                     <button type="button" onClick={() => { onSubmit() }} className="btn btn-custom btn-yellow mt-2 px-4 fs-5 me-5">
                                         Submit
                                     </button>
+
                                 </div>
+                                {/* <div className="col-md-12  col-sm-12 d-flex justify-content-end">
+                                    <button type="button" onClick={() => { onSubmit() }} className="btn btn-custom btn-yellow mt-2 px-4 fs-5 me-5">
+                                        Submit
+                                    </button>
+                                </div> */}
                             </div>
                         </form>
                     </div>

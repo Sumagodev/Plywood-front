@@ -220,15 +220,14 @@ export default function Products() {
                   onChange={(e) => handleChange(e.target.value)}
                   className="form-control"
                 />
-                <button className=" mx-3 ">
+                <button className="mx-3">
                   <IoSearch />
                 </button>
               </div>
             </div>
-            {/* <div className="row d-flex justify-content-end mt-4">
-            </div> */}
 
-            <div className="react-dataTable topup-subscription-container">
+            {/* Add overflow-x: auto for smaller screens */}
+            <div className="table-responsive-mobile">
               <DataTable
                 noHeader
                 subHeader
@@ -244,37 +243,12 @@ export default function Products() {
                 onChangeRowsPerPage={handlePerRowsChange}
                 onChangePage={handlePageChange}
                 customStyles={customStyles}
-              // subHeaderComponent={
-              //     // <CustomHeader
-              //     //     store={store}
-              //     //     searchTerm={searchTerm}
-              //     //     rowsPerPage={rowsPerPage}
-              //     //     handleFilter={handleFilter}
-              //     //     handlePerPage={handlePerPage}
-              //     //     toggleSidebar={toggleSidebar}
-              //     // />
-              // }
               />
-
-              {/* <ReactPaginate
-                            previousLabel={'<'}
-                            nextLabel={'>'}
-                            pageCount={totalPages || 1}
-                            // activeClassName='active'
-                            forcePage={page !== 0 ? page - 1 : 0}
-                            // onPageChange={page => handlePagination(page)}
-                            // pageClassName={'page-item'}
-                            nextLinkClassName={'page-link'}
-                            // nextClassName={'page-item'}
-                            // previousClassName={'page-item'}
-                            previousLinkClassName={'page-link'}
-                            pageLinkClassName={'page-link'}
-                            containerClassName={'pagination react-paginate justify-content-end my-2 pe-1'}
-                        /> */}
             </div>
           </div>
         </div>
       </div>
+
     </>
   );
 }

@@ -464,7 +464,7 @@ export default function AddProducts() {
                   <div className="col-4">
                     <label>Brand</label>
                   </div>
-                  <div className="col">
+                  <div className="col pb-2">
                     <div
                       className="row d-flex justify-content-end"
                       style={{
@@ -481,13 +481,13 @@ export default function AddProducts() {
                         <label>Didn't find your brand ? </label>
                       </div>
                       <div
-                        className="d-flex justify-content-end"
+                        className="d-flex justify-content-end "
                         style={{ width: "max-content" }}
                       >
                         <button
                           type="button"
                           onClick={handleOpen}
-                          className="btn btn-custom btn-link-yellow"
+                          className="btn btn-custom btn-link-yellow "
                         >
                           Add Brand now
                         </button>
@@ -657,8 +657,58 @@ export default function AddProducts() {
 
               <hr />
 
+              <div className="col-md-6">
+                <label>Multiple Image (width:92px and height:92px){" "}</label>
+
+                <div className="col-md-6 col-sm-6 d-flex justify-content-start align-items-center">
+                  <p
+                    type="button"
+                    onClick={() => {
+                      handleImageAdd();
+                    }}
+                    className="btn btn-custom btn-yellow mt-2 me-2" // Space between buttons using me-2
+                  >
+                    +
+                  </p>
+                  <p
+                    type="button"
+                    onClick={() => {
+                      handleImagesRemove();
+                    }}
+                    className="btn btn-custom btn-yellow mt-2"
+                  >
+                    -
+                  </p>
+                </div>
+                {image && image != "" && image.includes("base64") ? (
+                  <img style={{ height: 100 }} src={image} alt="" />
+                ) : (
+                  <img
+                    src={generateImageUrl(image)}
+                    style={{ height: 100 }}
+                    alt=""
+                  />
+                )}
+                <FileInput
+                  setFile={async (e) => {
+                    let base64 = await convertFileToBase64(e);
+                    setimage(base64);
+                  }}
+                  file={image}
+                  type="image"
+                  previousFile={
+                    isEditingModeOn &&
+                      image &&
+                      image != "" &&
+                      image.includes("base64")
+                      ? image
+                      : null
+                  }
+                />
+              </div>
+
               <div className="col-md-12 col-12">
-                <div className="row">
+                {/* <div className="row">
                   <label className="col-md-6 col- mt-2">
                     Multiple Image (width:92px and height:92px){" "}
                     <span className="text-danger">*</span>
@@ -683,9 +733,9 @@ export default function AddProducts() {
                       -
                     </p>
                   </div>
-                </div>
-                <div className="col-md-12">
-                  <div className="row mt-4">
+                </div> */}
+                {/* <div className="col-md-12">
+                  <div className="row ">
                     {imageArr &&
                       imageArr.length > 0 &&
                       imageArr.map((el, index) => {
@@ -706,13 +756,6 @@ export default function AddProducts() {
                                 />
                               )}
                             </div>
-
-                            {/* {
-                                                        el.image && el.image != "" && el.image.includes("base64") ?
-                                                            <img style={{ height: 100 }} src={el.image} alt="" />
-                                                            :
-                                                            <img src={generateImageUrl(el.image)} style={{ height: 100 }} alt="" />
-                                                    } */}
                             <FileInput
                               setFile={async (e) => {
                                 let base64 = await convertFileToBase64(e);
@@ -734,7 +777,7 @@ export default function AddProducts() {
                         );
                       })}
                   </div>
-                </div>
+                </div> */}
               </div>
 
 
@@ -755,7 +798,7 @@ export default function AddProducts() {
         </div>
       </div>
 
-   
+
       <Modal
         open={open}
         onClose={handleClose}

@@ -1150,3 +1150,30 @@
 .ratingicon{
   color: gold;
 }
+
+
+.newprdround {
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.addnewarrivalbtn{
+  background-color: #89725f;
+}
+
+/* Add this CSS to your styles */
+.card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Show 2 lines */
+  overflow: hidden; /* Hide the overflow */
+  text-overflow: ellipsis; /* Add ellipsis (...) */
+}
+
+@media (min-width: 768px) {
+  .card-description {
+    display: block; /* Show full text on larger screens */
+    overflow: visible; /* Allow overflow */
+    text-overflow: clip; /* Remove ellipsis */
+  }
+}

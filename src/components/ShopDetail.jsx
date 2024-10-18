@@ -448,63 +448,59 @@ function ShopDetail() {
                         {/* <p>{productObj?.shortDescription}</p> */}
                       </div>
                     )}
-                    <div className=" pt-3 ">
-                      {isPriceVisible ? (
-                        <div className="btn btn-custom  rounded-1 "> {`INR ${productObj?.sellingprice}`}</div>
-                      ) : (
-                        <button
-                          onClick={() => {
-                            if (!isAuthorized) {
-                              // If the user is not authorized, show the sign-in modal
-                              setSignInModal(true);
-                            } else {
-                              // If the user does not have an active subscription, show the price modal
-                              setIsPriceVisible(true);
-                            }
-                          }}
-                          className="btn btn-custom text-white rounded-pill "
-                          style={{ background: "#603200" }}
-                        >
-                          Get Latest Price
-                          <span className="icon-circle">
-                            <LuPhoneCall style={{ color: "white" }} />
-                          </span>
-                        </button>
-
-
-
-
-
-                      )}
-                      {/* <div className="phone-icon"><LuPhoneCall /></div> */}
-                      {authObj?.isAuthorized && (
-                        <button onClick={() => handleCreateLead()} className="btn btn-custom text-white ms-4  rounded-pill" style={{ background: "#603200" }}>
-                          Contact Supplier
-                          <span className="icon-circle">
-                            <LuPhoneCall style={{ color: "white" }} />
-                          </span>
-                        </button>
-                      )}
+                    <div className="pt-3">
+                      <div className="container">
+                        <div className="d-flex justify-content-center flex-column flex-sm-row">
+                          {isPriceVisible ? (
+                            <div className="btn btn-custom rounded-1">{`INR ${productObj?.sellingprice}`}</div>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                if (!isAuthorized) {
+                                  // If the user is not authorized, show the sign-in modal
+                                  setSignInModal(true);
+                                } else {
+                                  // If the user does not have an active subscription, show the price modal
+                                  setIsPriceVisible(true);
+                                }
+                              }}
+                              className="btn btn-custom text-white rounded-pill mb-2 mb-sm-0"
+                              style={{
+                                background: "#603200",
+                                width: '230px', // Set a fixed width
+                                height: '50px', // Set a fixed height
+                              }}
+                            >
+                              Get Latest Price
+                              <span className="icon-circle">
+                                <LuPhoneCall style={{ color: "white" }} />
+                              </span>
+                            </button>
+                          )}
+                          {authObj?.isAuthorized && (
+                            <button
+                              onClick={() => handleCreateLead()}
+                              className="btn btn-custom text-white ms-0 ms-sm-4 rounded-pill"
+                              style={{
+                                background: "#603200",
+                                width: '230px', // Set a fixed width
+                                height: '50px', // Set a fixed height
+                              }}
+                            >
+                              Contact Supplier
+                              <span className="icon-circle">
+                                <LuPhoneCall style={{ color: "white" }} />
+                              </span>
+                            </button>
+                          )}
+                        </div>
+                      </div>
                     </div>
+
                   </div>
                 </div>
                 <div className="col-12 col-lg-3">
                   <div className="right bg-transparent" >
-                    {/* <div className="d-flex justify-content-between" style={{ position: "relative" }}>
-
-                  <h6 className="heading" onClick={() => currentUserHasActiveSubscription && navigate(`/Supplier/${productObj?.createdByObj?.userObj._id}`)}>{currentUserHasActiveSubscription ?
-                    `${productObj?.createdByObj?.userObj?.companyObj?.name ?
-                      productObj?.createdByObj?.userObj?.companyObj?.name :
-                      "Plywood Bazar"}` :
-                    `${productObj?.createdByObj?.userObj?.companyObj?.name ?
-                      `${productObj?.createdByObj?.userObj?.companyObj?.name}***` :
-                      "Plywood Bazar***"}`
-                      .slice(0, 4)}</h6>
-                  {
-                    productObj?.createdByObj?.userObj?.isVerified &&
-                    <img style={{ height: 80, position: "absolute", right: 0 }} src={images.verified} alt="" />
-                  }
-                </div> */}
                     <ul className="info d-flex flex-column bg-light">
                       <li>
                         {
@@ -530,10 +526,6 @@ function ShopDetail() {
                             `${productObj?.createdByObj?.userObj?.companyObj?.name}***` :
                             "Plywood Bazar***"}`
                             .slice(0, 4)}</h6>
-                        {/* {
-                    productObj?.createdByObj?.userObj?.isVerified &&
-                    <img style={{ height: 80, position: "absolute", right: 0 }} src={images.verified} alt="" />
-                  } */}
                       </div>
                       <li className="flex-1 d-flex flex-column align-items-center justify-content-center gap-3">
                         <p style={{ maxWidth: "100%" }}>
@@ -542,7 +534,7 @@ function ShopDetail() {
                           {`${currentUserHasActiveSubscription ? (productObj?.createdByObj?.userObj?.companyObj?.address ? productObj?.createdByObj?.userObj?.companyObj?.address : "NA") : (productObj?.createdByObj?.userObj?.companyObj?.address ? `${productObj?.createdByObj?.userObj?.companyObj?.address}***` : "NA").slice(0, 2)}`}
 
                         </p>
-                        {/* <img className="star_img" src={star} alt="" /> */}
+
                         {
                           currentUserHasActiveSubscription && (
                             <div className="supplier-rating">
@@ -576,32 +568,10 @@ function ShopDetail() {
                             View Mobile Number
                           </button>
                         )}
-                        {/* <p className="text-danger">72% Response Rate</p> */}
+
                       </div>
                     </ul>
-                    {/* <div className="my-3">
-                  {isMobileNumberVisible ? (
-                    <a href={`tel:${productObj?.createdByObj?.userObj?.companyObj?.phone}`} className="btn btn-sm btn-yellow w-100  ">
-                      {productObj?.createdByObj?.userObj?.companyObj?.phone}
-                    </a>
-                  ) : (
-                    <button onClick={() => { currentUserHasActiveSubscription ? setIsMobileNumberVisible(true) : errorToast("You do not have a valid subscription to perform this action") }} className="btn btn-sm btn-yellow w-100">
-                      View Mobile Number
-                    </button>
-                  )}
-                  <p className="text-danger">72% Response Rate</p>
-                </div> */}
-                    {/* <ul className="list-circle border-bottom pb-3 mb-3"> */}
-                    {/* {
-                    productObj?.createdByObj?.userObj?.isVerified &&
-                    <img src={images.verified} style={{ width: 130 }} alt="" />
-                  } */}
 
-                    {/* <li>Leading Supplier</li>
-                  <li>TrustSEAL Verified</li>
-                  <li>Distributor / Channel Partner</li> */}
-                    {/* <li>Company Video</li> */}
-                    {/* </ul> */}
                     <h6 className="heading text-center ">Looking for more Verified Exporters?</h6>
                     <button onClick={() => handleConnectNow()} className="btn btn-sm btn-brown w-100">
                       Connect Now
@@ -615,10 +585,8 @@ function ShopDetail() {
           <section className="products gray-bg mt-2 ">
             <div className="container-fluid">
               <div className="title-section with-btn">
-                <h1 className="heading text-start">Similar Products</h1>
-                {/* <Link to="/" className="btn btn-custom btn-yellow">
-              View All
-            </Link> */}
+                <h1 className="heading text-start">Similar Products </h1>
+
               </div>
               <Swiper
                 spaceBetween={20}
@@ -757,17 +725,14 @@ function ShopDetail() {
                   })}
                 </div>
               </Col>
-              <Col className="col-lg-4 col-sm-12   d-flex  align-items-center">
+              <Col className="col-lg-4 col-sm-12 d-flex flex-column align-items-center">
                 <Table className="custom-form">
                   <Col className="col_1">
                     <h4 className="right-h2">TELL US YOUR REQUIREMENT</h4>
                   </Col>
                   <Col className="col_2">
                     <div className="custom-form-input-container">
-                      <Form.Group
-                        controlId="formName"
-                        className="custom-input-group"
-                      >
+                      <Form.Group controlId="formName" className="custom-input-group">
                         <Form.Control
                           type="text"
                           placeholder="Name*"
@@ -776,10 +741,7 @@ function ShopDetail() {
                           onChange={(e) => setName(e.target.value)}
                         />
                       </Form.Group>
-                      <Form.Group
-                        controlId="formMobile"
-                        className="custom-input-group"
-                      >
+                      <Form.Group controlId="formMobile" className="custom-input-group">
                         <Form.Control
                           type="tel"
                           placeholder="Mobile No.*"
@@ -788,10 +750,7 @@ function ShopDetail() {
                           onChange={(e) => setPhone(e.target.value)}
                         />
                       </Form.Group>
-                      <Form.Group
-                        controlId="formAddress"
-                        className="custom-input-group"
-                      >
+                      <Form.Group controlId="formAddress" className="custom-input-group">
                         <Form.Control
                           type="text"
                           placeholder="Address*"
@@ -800,10 +759,7 @@ function ShopDetail() {
                           onChange={(e) => setAddress(e.target.value)}
                         />
                       </Form.Group>
-                      <Form.Group
-                        controlId="formProduct"
-                        className="custom-input-group"
-                      >
+                      <Form.Group controlId="formProduct" className="custom-input-group">
                         <Form.Control
                           type="text"
                           placeholder="Product / Service*"
@@ -814,7 +770,7 @@ function ShopDetail() {
                       </Form.Group>
                     </div>
                   </Col>
-                  <Col className="col_3">
+                  <Col className="col_3 d-flex justify-content-center">
                     <Button
                       type="submit"
                       className="submit-button"
@@ -826,14 +782,13 @@ function ShopDetail() {
                 </Table>
               </Col>
             </Row>
-
           </section>
 
 
 
           <section className="mt-5" style={{ background: "#FFF2E2" }}>
             <div className="container-fluid pb-4">
-              <div className="title-section with-btn mb-5">
+              <div className="title-section with-btn ">
                 <h1 className="heading text-start ms-lg-5 pt-3  brown">Reviews</h1>
                 {auth?.isAuthorized && (
                   <Link to="#" className="btn btn-custom btn-yellow" onClick={() => setReviewModal(true)}>
@@ -976,56 +931,6 @@ function ShopDetail() {
               </div>
               <h2 className="heading">LogIn via</h2>
               <form className="form row">
-                {/* <label>Login via </label> */}
-                {/* {otpsent == false && (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  marginBottom: 20,
-                  marginTop: 10,
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    name="type2"
-                    id="222"
-                    // value={true}
-                    checked={loginByEmail}
-                    onChange={(e) => setLoginByEmail(true)}
-                  />
-                  <label for="222" className="mx-2">
-                    Email
-                  </label>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    name="type2"
-                    id="223"
-                    checked={!loginByEmail}
-                    onChange={(e) => setLoginByEmail(false)}
-                  />
-                  <label for="223" className="mx-2">
-                    Phone
-                  </label>
-                </div>
-              </div>
-            )} */}
 
                 {loginByEmail ? (
                   <div className="col-12">

@@ -24,3 +24,11 @@
     padding: 20px;
     color: black;
 }
+
+.sub-section-2 .my-1 {
+    padding: 0.5rem 0;
+}
+
+.sub-section-2 .fw-bold {
+    margin-right: 1rem;
+}

@@ -57,3 +57,66 @@
   margin-bottom: -35px;
  }
  
+
+ @media (max-width: 576px) {
+   .btn-custom {
+     width: 100%; /* Make buttons full-width on mobile */
+     margin: 5px 0; /* Space between buttons */
+   }
+ }
+ 
+
+ /* CSS for mobile view */
+@media (max-width: 768px) {
+   .right-h2 {
+     font-size: 24px; /* Adjust font size for mobile */
+     text-align: center; /* Center align the text */
+     margin-bottom: 10px; /* Add margin if needed */
+   }
+ }
+
+ @media (max-width: 767px)  {
+   /* Ensure form takes full width */
+   .custom-form {
+     width: 100%;
+     margin: 0; /* Remove margin */
+   }
+ 
+   /* Center the header text */
+   .right-h2 {
+     text-align: center; 
+     font-size: 1.5rem; /* Adjust font size */
+     margin-bottom: 1rem; /* Space below the header */
+   }
+ 
+   /* Flexbox for inputs, stack vertically */
+   .custom-form-input-container {
+     display: flex; 
+     flex-direction: column; 
+     gap: 1rem; /* Space between inputs */
+   }
+ 
+   /* Style for submit button */
+   .submit-button {
+     width: 100%; /* Full width for button */
+     font-size: 1.25rem; /* Increase font size for better readability */
+     margin-top: 0rem; /* Space above the button */
+     text-align: center; /* Center the text inside button */
+     padding-bottom: 50px;
+   }
+ 
+   /* Center align the button container */
+   .col_3 {
+     display: flex; 
+     justify-content: center; 
+   }
+ }
+
+
+ @media (max-width: 1024px){
+   .submit-button{
+      padding-bottom: 40px;
+   }
+ }
+ 
+ 

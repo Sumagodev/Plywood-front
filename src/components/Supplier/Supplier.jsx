@@ -35,6 +35,8 @@ import gsticn from '../../assets/image/home/images/gsticn.png'
 import birthdate from '../../assets/image/home/images/birthdateicn.png'
 
 
+import '../../assets/css/supplier.css'
+
 
 
 
@@ -344,12 +346,7 @@ function Supplier() {
                           <span className="address">{supplierObj.companyObj?.address.toUpperCase()} {supplierObj?.cityObj?.name.toUpperCase()}, {supplierObj?.stateObj?.name.toUpperCase()}, {supplierObj?.countryObj?.name.toUpperCase()}</span>
                         </a>
                       </li>
-                      {/* <li className="my-2">
-                        <div className="icon brown pe-2 fs-5">
-                          <BsStarFill />
-                        </div>
-                        {supplierObj.rating}
-                      </li> */}
+
                       <li className="my-2">
                         <div className="icon brown pe-2 fs-5">
                           {Array.from({ length: supplierObj.rating }, (_, index) => (
@@ -363,22 +360,6 @@ function Supplier() {
                         </div>
                         {supplierObj.companyObj?.gstNumber}
                       </li>
-                      {/* <li className="my-2">
-                        <div className="icon brown pe-2 fs-5">
-                          <BsFillCheckCircleFill />
-                        </div>
-                        {supplierObj.companyObj?.gstNumber ? (
-                          supplierObj.companyObj.gstNumber.startsWith('1') ? (
-                            'GST Number starts with 1'
-                          ) : supplierObj.companyObj.gstNumber.startsWith('2') ? (
-                            'GST Number starts with 2'
-                          ) : (
-                            'GST Number does not start with 1 or 2'
-                          )
-                        ) : (
-                          'No GST Number available'
-                        )}
-                      </li> */}
 
                     </ul>
                     <div className="container">
@@ -537,7 +518,7 @@ function Supplier() {
           return (
             <>
               {/* profile */}
-              <section className="supplier-profile mb-80">
+              {/* <section className="supplier-profile mb-80">
                 <div className="container">
                   <p className="text-center my-5">{supplierObj?.longDescription}</p>
                   <div className="row ">
@@ -553,7 +534,7 @@ function Supplier() {
                         </div>
                       </div>
 
-                      <div className="col-lg-3 col-md-4 col-12">
+                      <div className="col-lg-3 col-md-4 col-12 ">
                         <div className="box">
 
                           <div className="icon brown"><img className="img-fluid" src={icn365} alt="" /></div>
@@ -609,7 +590,91 @@ function Supplier() {
                     </div>
                   </div>
                 </div>
+              </section> */}
+              <section className="supplier-profile mb-80">
+                <div className="container">
+                  <p className="text-center my-5">{supplierObj?.longDescription}</p>
+                  <div className="row">
+                    <div className="row d-flex align-items-center justify-content-center">
+
+                      <div className="col-lg-3 col-md-4 col-12 mobile-spacing"> {/* Add mobile-spacing class here */}
+                        <div className="box">
+                          <div className="icon brown">
+                            <img className="img-fluid" src={bagicn} alt="" />
+                          </div>
+                          <div className="content">
+                            <h5 className="brown">Nature of Business</h5>
+                            <p>{supplierObj?.companyObj?.natureOfBusiness ? supplierObj?.companyObj?.natureOfBusiness : "Not provided"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-3 col-md-4 col-12">
+                        <div className="box">
+                          <div className="icon brown">
+                            <img className="img-fluid" src={icn365} alt="" />
+                          </div>
+                          <div className="content">
+                            <h5 className="brown">Year of Establishment</h5>
+                            <p>{supplierObj?.companyObj?.yearOfEstablishment ? supplierObj?.companyObj?.yearOfEstablishment : "Not provided"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Remaining cards */}
+                      <div className="col-lg-3 col-md-4 col-12 py-5">
+                        <div className="box">
+                          <div className="icon brown">
+                            <img className="img-fluid" src={customericn} alt="" />
+                          </div>
+                          <div className="content">
+                            <h5 className="brown">Contact Person Name</h5>
+                            <p>{supplierObj?.name ? supplierObj?.name : "Not provided"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-3 col-md-4 col-12">
+                        <div className="box">
+                          <div className="icon brown">
+                            <img className="img-fluid" src={telephone} alt="" />
+                          </div>
+                          <div className="content">
+                            <h5 className="brown">Landline</h5>
+                            <p>{currentUserHasActiveSubscription ? supplierObj?.landline ? supplierObj?.landline : "Not provided" : "You do not have a valid subscription"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-3 col-md-4 col-12">
+                        <div className="box">
+                          <div className="icon brown">
+                            <img className="img-fluid" src={gsticn} alt="" />
+                          </div>
+                          <div className="content">
+                            <h5 className="brown">GST Number</h5>
+                            <p>{supplierObj?.companyObj?.gstNumber ? supplierObj?.companyObj?.gstNumber : "Not provided"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-3 col-md-4 col-12">
+                        <div className="box">
+                          <div className="icon brown">
+                            <img className="img-fluid" src={birthdate} alt="" />
+                          </div>
+                          <div className="content">
+                            <h5 className="brown">Birthdate</h5>
+                            <p>{supplierObj?.aniversaryDate ? moment(supplierObj?.aniversaryDate).format("YYYY-MM-DD") : "Not provided"}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </section>
+
             </>
           );
         }
@@ -767,14 +832,14 @@ function Supplier() {
             //   </div>
             // </section>
             <section className="mt-5" style={{ background: "#FFF2E2" }}>
-              <div className="container-fluid pb-4">
-                <div className="title-section with-btn mb-5">
+              <div className="container-fluid ">
+                <div className="title-section with-btn ">
                   <h1 className="heading text-start ms-lg-5 pt-3  brown">Reviews</h1>
-                  {auth?.isAuthorized && (
-                    <Link to="#" className="btn btn-custom btn-yellow" onClick={() => setReviewModal(true)}>
-                      Write a review
-                    </Link>
-                  )}
+                  {/* {auth?.isAuthorized && ( */}
+                  <Link to="#" className="btn btn-custom btn-yellow" onClick={() => setReviewModal(true)}>
+                    Write a review
+                  </Link>
+                  {/* )} */}
                 </div>
                 <div className="row gy-4">
                   {productReviewArr && productReviewArr.length > 0 ? (

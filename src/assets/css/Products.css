@@ -105,3 +105,16 @@
   border: #6c4f37 solid 2px;
   box-shadow: 0px 4px 4px 0px #00000040;
 }
+
+
+.table-responsive-mobile {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .table-responsive-mobile {
+    display: block;
+    width: 100%;
+    white-space: nowrap; /* Prevents the content from wrapping */
+  }
+}

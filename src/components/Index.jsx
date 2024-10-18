@@ -912,9 +912,18 @@ function Index() {
         </Container>
       </section>
       <div className=" my-4 d-none d-lg-block" style={{ height: "2px" }}></div>
-      <section className=" mt-0  mt-lg-5">
-        <Container className=" mt-0 mt-lg-5">
-          <Row className=" newpeoductback ">
+      {/* <section className="mt-0 mt-lg-5">
+        
+        <button
+          className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5 d-block d-md-none mt-3 "
+          style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
+
+        >
+          Add New Arrivals
+        </button>
+
+        <Container className="mt-0 mt-lg-5">
+          <Row className="newpeoductback">
             <Col lg={9} xs={12} className="newprdrw">
               <Swiper
                 modules={[Autoplay, Navigation]}
@@ -922,7 +931,7 @@ function Index() {
                 slidesPerView={5}
                 autoplay={{ disableOnInteraction: false }}
                 speed={1500}
-                breakpoints={fretureprod}
+                breakpoints={fretureprod}  // Responsive breakpoints
               >
                 {advertisementsArr &&
                   advertisementsArr.map((el, index) => {
@@ -931,30 +940,27 @@ function Index() {
                         <div className="vender-box">
                           <div className="newprdcrd">
                             <img
-                              src={el.image ? generateImageUrl(el.image) : grls} 
-
+                              src={el.image ? generateImageUrl(el.image) : grls}
                               className="img-fluid img1"
+                              alt="Product"
                             />
                             <div className="d-flex justify-content-center">
-
-
-                              <span className="phone-icon"
+                              <span
+                                className="phone-icon"
                                 onClick={() => {
                                   if (!isAuthorized) {
-                                    // If the user is not authorized, show the sign-in modal
                                     setSignInModal(true);
                                   } else if (!currentUserHasActiveSubscription) {
-                                    // If the user has an active subscription, close the modal
                                     handleClose(true);
                                   } else {
-                                    // If the user does not have an active subscription, show the price modal
                                     window.location.href = `tel:${el.phone}`;
                                   }
                                 }}
-
-                              > <LuPhoneCall className="phn rounded-circle p-2" /></span>
+                              >
+                                <LuPhoneCall className="phn rounded-circle p-2" />
+                              </span>
                             </div>
-                            <h6 className="fs-6 msg1" >{el.message}</h6>
+                            <h6 className="fs-6 msg1">{el.message}</h6>
                             <button
                               onClick={() =>
                                 navigate(`/ShopDetail/${el?.productSlug}`)
@@ -968,34 +974,123 @@ function Index() {
                       </SwiperSlide>
                     );
                   })}
-
-                {/* Add Products Button on the Last Slide */}
-                <SwiperSlide>
-                  {/* <div className="addfrmmain">
-                    <Link to="/AddPromotions" className="addfrm fs-6 p-2">
-                      
-                    </Link>
-                  </div> */}
-                </SwiperSlide>
+                <SwiperSlide />
               </Swiper>
             </Col>
             <Col
               lg={3}
-              className="  d-lg-flex d-none align-items-center "
+              xs={12}  // Ensures this column takes full width on mobile
+              className="d-flex align-items-center justify-content-center mt-3 mt-lg-0" // Center alignment for mobile
               onClick={() => {
                 if (!isAuthorized) {
-                  // If the user is not authorized, show the sign-in modal
                   setSignInModal(true);
                 } else if (!currentUserHasActiveSubscription) {
-                  // If the user has an active subscription, close the modal
                   handleClose(true);
                 } else {
-                  // If the user does not have an active subscription, show the price modal
-                  navigate("/AddPromotions")
+                  navigate("/AddPromotions");
                 }
               }}
             >
-              <div className=" newprdround fs-1  text-white rounded-circle p-3 text-center d-grid align-items-center ">
+              <div className="newprdround fs-1 text-white rounded-circle p-3 text-center d-grid align-items-center d-none d-md-block pt-5">
+                Add
+                <br />
+                New Arrivals
+              </div>
+
+
+
+            </Col>
+          </Row>
+        </Container>
+      </section> */}
+      <section className="mt-0 mt-lg-5">
+        {/* Mobile View Button */}
+        <div className="text-center d-block d-md-none mb-3">
+          <button
+            className="border-0 rounded-5 px-4 py-3 vvall text-white fw-bold fs-5 mt-3"
+            style={{ backgroundColor: "rgba(96, 50, 0, 1)" }}
+            onClick={() => {
+              if (!isAuthorized) {
+                setSignInModal(true);
+              } else if (!currentUserHasActiveSubscription) {
+                handleClose(true);
+              } else {
+                navigate("/AddPromotions");
+              }
+            }}
+          >
+            Add New Arrivals
+          </button>
+        </div>
+
+        <Container className="mt-0 mt-lg-5">
+          <Row className="newpeoductback">
+            <Col lg={9} xs={12} className="newprdrw">
+              <Swiper
+                modules={[Autoplay, Navigation]}
+                spaceBetween={20}
+                slidesPerView={5}
+                autoplay={{ disableOnInteraction: false }}
+                speed={1500}
+                breakpoints={fretureprod} // Responsive breakpoints
+              >
+                {advertisementsArr &&
+                  advertisementsArr.map((el, index) => {
+                    return (
+                      <SwiperSlide key={index}>
+                        <div className="vender-box">
+                          <div className="newprdcrd">
+                            <img
+                              src={el.image ? generateImageUrl(el.image) : grls}
+                              className="img-fluid img1"
+                              alt="Product"
+                            />
+                            <div className="d-flex justify-content-center">
+                              <span
+                                className="phone-icon"
+                                onClick={() => {
+                                  if (!isAuthorized) {
+                                    setSignInModal(true);
+                                  } else if (!currentUserHasActiveSubscription) {
+                                    handleClose(true);
+                                  } else {
+                                    window.location.href = `tel:${el.phone}`;
+                                  }
+                                }}
+                              >
+                                <LuPhoneCall className="phn rounded-circle p-2" />
+                              </span>
+                            </div>
+                            <h6 className="fs-6 msg1 card-description">{el.message}</h6>
+                            <button
+                              onClick={() => navigate(`/ShopDetail/${el?.productSlug}`)}
+                              className="newprdbtn py-2 text-white"
+                            >
+                              Get Quotes
+                            </button>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
+              </Swiper>
+            </Col>
+            <Col
+              lg={3}
+              xs={12} // Ensures this column takes full width on mobile
+              className="d-flex align-items-center justify-content-center mt-3 mt-lg-0" // Center alignment for mobile
+              onClick={() => {
+                if (!isAuthorized) {
+                  setSignInModal(true);
+                } else if (!currentUserHasActiveSubscription) {
+                  handleClose(true);
+                } else {
+                  navigate("/AddPromotions");
+                }
+              }}
+            >
+              {/* Desktop View Button */}
+              <div className="newprdround fs-1 text-white rounded-circle p-3 text-center d-grid align-items-center d-none d-md-block pt-5">
                 Add
                 <br />
                 New Arrivals
@@ -1005,9 +1100,10 @@ function Index() {
         </Container>
       </section>
 
+
       <section>
         <Container className="main_Profiles my-2 my-lg-5">
-          <h1 className="text-center mb-4">Top Profiles</h1>
+          <h1 className="text-center mb-4">Top Profiles - </h1>
           <Row className=" d-flex justify-content-center">
             {topusers && topusers.slice(0, 4).map((el) => (
               <Col lg={3} xs={6} className="py-3 px-2">
@@ -1105,7 +1201,7 @@ function Index() {
                     spaceBetween={5}
                     autoplay={{ disableOnInteraction: false }}
                     speed={1500}
-                     breakpoints={flashsale}
+                    breakpoints={flashsale}
                   >
                     {flashSalesArr &&
                       flashSalesArr.length > 0 &&
@@ -1114,7 +1210,7 @@ function Index() {
                           <SwiperSlide key={index}>
                             <div className="newprdcrd text-center position-relative">
                               <div className="position-relative">
-                                <CountdownTimer targetDate={el.endDate} /> 
+                                <CountdownTimer targetDate={el.endDate} />
                                 <Link to={`/ShopDetail/${el?.productId?.slug}`}>
                                   <img
                                     src={generateImageUrl(el.productId.mainImage)}
@@ -1151,7 +1247,7 @@ function Index() {
                                   {el?.productId?.name}
                                 </Link>
                               </h6>
-                           
+
 
                               <div>
                                 <h6 className="old">
@@ -1170,27 +1266,11 @@ function Index() {
                             </div>
                             <div className=" discountnew fw-bold text-center d-grid align-items-center ">
                               <div className="">{el.discountValue}%
-
-                                {/* <span style={{ fontSize: "8px" }}>OFF</span>  */}
                               </div>
                             </div>
-
-
-                            
                           </SwiperSlide>
-                          
-                          
-                          
                         );
-
                       })}
-                    {/* <SwiperSlide>
-                      <div className="addfrmmain">
-                        <Link to="/AddFlashSale" className="addfrm p-2">
-                          +
-                        </Link>
-                      </div>
-                    </SwiperSlide> */}
                   </Swiper>
                 </Col>
               </Row>
@@ -1201,7 +1281,7 @@ function Index() {
 
       <section style={{ backgroundColor: "#F5F1E8" }}>
         <p className="text-center fw-bold m-3" style={{ fontSize: "55px" }}>
-          States 
+          States
         </p>
         <Container fluid className=" px-1 px-lg-5 text-center fw-bold">
           <Swiper
@@ -1253,7 +1333,7 @@ function Index() {
         }
       }}>
 
-        <img src={playbanner} className=" img-fluid  " alt="" height={'60px'}/>
+        <img src={playbanner} className=" img-fluid  " alt="" height={'60px'} />
       </section>
 
 

@@ -701,13 +701,20 @@ export default function EditProfile() {
 
 
                             <div className="border-right"></div>
-                            <div className="col-5 my-4">
+                            <div className="col-lg-5 col-md-5 my-4 col-sm-12">
                                 <div className="row">
                                     <div className="col-12 col-md-6">
                                         GST Number
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <input type={"text"} className="form-control" value={gstNumber} onChange={(e) => setgstNumber(e.target.value)} placeholder='Name ...' />
+                                        <input
+                                            type="text"
+                                            className="form-control w-100"
+                                            value={gstNumber}
+                                            onChange={(e) => setgstNumber(e.target.value)}
+                                            placeholder="Enter GST Number ..."
+                                            
+                                        />
                                     </div>
                                 </div>
                             </div>

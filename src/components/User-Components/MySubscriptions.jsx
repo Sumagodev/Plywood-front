@@ -71,7 +71,7 @@ export default function MySubscriptions() {
                     </div>
                     {
                         userSubscriptionsArr && !(userSubscriptionsArr.length > 0) &&
-                        <div className="subscription-container ms-2 mt-3">
+                        <div className="subscription-container ms-2 mt-2">
                             <div className="subscription-description">
                                 You have not purchased a subsctiption yet, subscribe to one now to utilise full capabilities of your account
                             </div>

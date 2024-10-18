@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    .btn-custom.btn-yellow {
+      width: 100%; /* Full width for mobile */
+      text-align: center;
+      font-size: 14px; /* Adjust font size */
+      padding: 10px 20px; /* Adjust padding */
+    }
+  }
+
+  /* Add this CSS to your styles */
+@media (max-width: 767.98px) {
+  .mobile-spacing {
+    margin-bottom: 40px; /* Adjust the value as needed for spacing */
+  }
+}

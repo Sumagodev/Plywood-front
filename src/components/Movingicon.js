@@ -67,7 +67,7 @@ const Movingicon = () => {
 
             <Modal show={modalOpen} centered onHide={() => setModalOpen(false)}>
                 <Modal.Body className="review-modal custom-modal subscription-card-container ">
-                    <button type="button" class="btn-close right" aria-label="Close" onClick={() => setModalOpen(false)}></button>
+                    <button type="button" class="btn-close right pt-3 mt-3" aria-label="Close" onClick={() => setModalOpen(false)}></button>
                     <img src={logo} className='img-fluid p-5' />
                     <h3 className="heading yellow d-flex justify-content-center">Quick Enquiry</h3>
                     <form className="form row">
