@@ -70,7 +70,7 @@ import { MdThumbUp } from "react-icons/md";
 import { IoLocationSharp, IoStar } from "react-icons/io5";
 import greenimg from "../assets/image/home/images/greenlam1.png";
 import "../assets/css/Blog.css";
-import { deleteProductbyId, getProducts } from "../services/Product.service";
+import { deleteProductbyId, getProducts ,productsyoumaylike} from "../services/Product.service";
 import { gettopUsers } from "../services/User.service";
 import { getStateDetails } from "../services/State.stateDetail";
 import { getAlldealership } from "../services/AddDealership.service";
@@ -218,9 +218,8 @@ function Index() {
     try {
       let date = new Date();
       date.setDate(date.getDate() - 1);
-      let enddate = `${date.getFullYear()}-${
-        (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1)
-      }-${(date.getDate() + 1 < 10 ? "0" : "") + date.getDate()}`;
+      let enddate = `${date.getFullYear()}-${(date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1)
+        }-${(date.getDate() + 1 < 10 ? "0" : "") + date.getDate()}`;
       let { data: res } = await getAllFlashSales("endDate=" + enddate);
       if (res.data) {
         // console.log(res.data, "flash sales");
@@ -478,7 +477,7 @@ function Index() {
 
   const handleGetProducts = async () => {
     try {
-      let { data: res } = await getProducts();
+      let { data: res } = await productsyoumaylike();
       if (res.data) {
         setProductArr(res.data);
         console.log(res.data)
@@ -965,7 +964,7 @@ function Index() {
             >
               {topusers &&
                 topusers.slice(0, 15).map((el, index) => (
-                  <Col  className="py-3 px-2">
+                  <Col className="py-3 px-2">
                     <SwiperSlide key={index}>
                       <div className="component-container1  text-center">
                         {el?.bannerImage ? (
@@ -1191,7 +1190,7 @@ function Index() {
                     >
                       <div className="box_Product1 ">
                         <img
-                          src={generateImageUrl(product.mainImage)}
+                          src={generateImageUrl(product.product.mainImage)}
                           alt={product.name}
                           className="img-fluid ims img1"
                         />
@@ -1213,44 +1212,44 @@ function Index() {
                         >
                           <LuPhoneCall />
                         </span>
-                       
+
                         <div className="product_detail">
                           <Link to={`/ShopDetail/${product?.slug}`}>
-                            <span className=" msg1">{product.name}</span>
+                            <span className=" msg1">{product.productName}</span>
                             <span className="chennai">
-                              <IoLocationSharp /> {product.cityName}
+                              <IoLocationSharp /> {product.cityName} 
                             </span>
-                            <span className=" msg1">
-                              {product.sellingprice}
+                            <span className=" ">
+                              {product.product.sellingprice}
                             </span>
                           </Link>
-                         
+
                         </div>
-                        
-
-<span className="ratingcount">
-  Rating:{" "}
-  {[...Array(5)].map((_, index) => {
-    return index < Number(product?.rating) ? (
-      <IoStar key={index} className="ratingicon" /> // Filled star
-    ) : (
-      <IoStar key={index} className="ratingicon" /> // Empty star
-    );
-  })}
-</span>
 
 
-                        <span className="ratingcount">{product?.rating}
-  Rating :{" "}
-  {product?.rating ? (
-    [...Array(product.rating)].map((_, index) => {
-      console.log(`Displaying ${product.rating} stars`);
-      return <IoStar key={index} className="ratingicon" />;
-    })
-  ) : (
-    <IoStar />
-  )}
-</span>
+                        {/* <span className="ratingcount">
+                          Rating:{" "}
+                          {[...Array(5)].map((_, index) => {
+                            return index < Number(product?.rating) ? (
+                              <IoStar key={index} className="ratingicon" /> // Filled star
+                            ) : (
+                              <IoStar key={index} className="ratingicon" /> // Empty star
+                            );
+                          })}
+                        </span> */}
+
+
+                        <span className="ratingcount">
+                          Rating :{" "}
+                          {product?.rating ? (
+                            [...Array(product.rating)].map((_, index) => {
+                              console.log(`Displaying ${product.rating} stars`);
+                              return <IoStar key={index} className="ratingicon" />;
+                            })
+                          ) : (
+                            <IoStar className="text-dark"/>
+                          )}
+                        </span>
 
                         <Link to={`/ShopDetail/${product?.slug}`}>
                           {" "}
@@ -1321,24 +1320,24 @@ function Index() {
               />
               {(forchecking_type === "MANUFACTURER/IMPORTER" ||
                 forchecking_type === ROLES.DISTRIBUTOR) && (
-                <button
-                  onClick={() => {
-                    if (!isAuthorized) {
-                      // If the user is not authorized, show the sign-in modal
-                      setSignInModal(true);
-                    } else if (!currentUserHasActiveSubscription) {
-                      // If the user has an active subscription, close the modal
-                      handleClose(true);
-                    } else {
-                      // If the user does not have an active subscription, show the price modal
-                      navigate("/AddDealership");
-                    }
-                  }}
-                  className="border-0 rounded-5 px-4 py-3 opportunities_btn text-white fw-bold fs-5 position-absolute "
-                >
-                  Add Opportunities
-                </button>
-              )}
+                  <button
+                    onClick={() => {
+                      if (!isAuthorized) {
+                        // If the user is not authorized, show the sign-in modal
+                        setSignInModal(true);
+                      } else if (!currentUserHasActiveSubscription) {
+                        // If the user has an active subscription, close the modal
+                        handleClose(true);
+                      } else {
+                        // If the user does not have an active subscription, show the price modal
+                        navigate("/AddDealership");
+                      }
+                    }}
+                    className="border-0 rounded-5 px-4 py-3 opportunities_btn text-white fw-bold fs-5 position-absolute "
+                  >
+                    Add Opportunities
+                  </button>
+                )}
             </div>
           </Col>
         </Row>
@@ -1377,11 +1376,10 @@ function Index() {
                   >
                     <div className="dealership-oppo-box rounded-5 rounded">
                       <div
-                        className={`dealership-oppo-img-box ${
-                          opportunity.image
+                        className={`dealership-oppo-img-box ${opportunity.image
                             ? `img-${opportunity.image}`
                             : "default-img"
-                        }`}
+                          }`}
                         style={{
                           backgroundImage: `url(${generateImageUrl(
                             opportunity.image
@@ -1434,18 +1432,16 @@ function Index() {
           <div className="container-fluid d-flex justify-content-center align-items-center">
             <div className="row overlayflowscroll">
               <div
-                className={`tab col-lg-2 col-12 ${
-                  showBlogs == true ? "active-tab" : "in-active"
-                }`}
+                className={`tab col-lg-2 col-12 ${showBlogs == true ? "active-tab" : "in-active"
+                  }`}
                 onClick={() => setShowBlogs(true)}
               >
                 <div className="blog2_heading">News</div>
               </div>
               &nbsp;
               <div
-                className={`tab col-lg-2 col-12 ${
-                  showBlogs == false ? "active-tab" : "in-active"
-                }`}
+                className={`tab col-lg-2 col-12 ${showBlogs == false ? "active-tab" : "in-active"
+                  }`}
                 onClick={() => setShowBlogs(false)}
               >
                 <div className="blog2_heading">Video</div>

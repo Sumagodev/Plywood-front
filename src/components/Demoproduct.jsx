@@ -12,7 +12,7 @@ import { addUserRequirement } from "../services/UserRequirements.service";
 import { getNestedCategories } from "../services/Category.service";
 import { generateImageUrl } from "../services/url.service";
 import { toastError } from "../utils/toastutill";
-import {  IoStar } from "react-icons/io5";
+import { IoStar } from "react-icons/io5";
 import ShopFilter from "./ShopFilter";
 import grls from "../assets/image/home/Mask Group (1).png";
 
@@ -481,7 +481,7 @@ function Demoproduct() {
                                           <Link to={`/ShopDetail/${product?.slug}`}>
                                             <span className="green-1">{product?.name}</span>
                                             <span className="chennai">
-                                              <IoLocationSharp /> {product?.cityName} Maharashtra, Nashik {product?.stateName} {product?.cityName}
+                                              {product?.cityName}  {product?.stateName}
                                             </span>
                                             <span className="Rs-1">{product?.productPrice}</span>
                                           </Link>
@@ -498,17 +498,18 @@ function Demoproduct() {
                               <IoStar />
                             )}
                           </span> */}
-                          <span className="ratingcount">
-  Rating:{" "}
-  {[...Array(5)].map((_, index) => {
-    return index < Number(product?.rating) ? (
-      <IoStar key={index} className="ratingicon" /> // Filled star
-    ) : (
-      <IoStar key={index} className="ratingicon" /> // Empty star
-    );
-  })}
-</span>
-                                        <Link to={`/ShopDetail/${product?.slug}`}><button className="Rs-1">1 Get Deal</button></Link>
+                                        {/* <span className="ratingcount">
+                                          Rating :{" "}
+                                          {product.productrating ? (
+                                            [...Array(product.productrating)].map((_, index) => {
+
+                                              return <IoStar key={index} className="ratingicon" />;
+                                            })
+                                          ) : (
+                                            <IoStar />
+                                          )}
+                                        </span> */}
+                                        <Link to={`/ShopDetail/${product?.slug}`}><button className="Rs-1"> Get Deal</button></Link>
                                       </div>
                                     </Col>
                                   </>
@@ -608,33 +609,33 @@ function Demoproduct() {
                                   className="d-flex component-container1 justify-content-center align-items-center py-4"
 
                                 >
-                           
-                                    {el?.bannerImage ? (
-                                      <img
-                                        src={generateImageUrl(el?.bannerImage)}
-                                        alt=""
-                                        className=" img-fluid img"
-                                      />
-                                    ) : (
-                                      <img
-                                        src={images.category_6}
-                                        alt=""
-                                        className=" img-fluid img"
-                                      />
-                                    )}
-                                    <div className="sub-container1">
-                                      <span className="p1">{el?.companyName
-                                        ? el?.companyName
-                                        : el?.name}</span>
-                                      <span className="p2">
-                                        Product - <span>{el?.productsCount
-                                          ? el?.productsCount
-                                          : "N.A."}</span>
-                                      </span>
-                                    </div>
-                                    <div className="sub-container2">
-                                      <span className="ps-5">Rating - {el?.rating ? el?.rating : 2}</span>
-                                      {/* <span className="phone-icon">
+
+                                  {el?.bannerImage ? (
+                                    <img
+                                      src={generateImageUrl(el?.bannerImage)}
+                                      alt=""
+                                      className=" img-fluid img"
+                                    />
+                                  ) : (
+                                    <img
+                                      src={images.category_6}
+                                      alt=""
+                                      className=" img-fluid img"
+                                    />
+                                  )}
+                                  <div className="sub-container1">
+                                    <span className="p1">{el?.companyName
+                                      ? el?.companyName
+                                      : el?.name}</span>
+                                    <span className="p2">
+                                      Product - <span>{el?.productsCount
+                                        ? el?.productsCount
+                                        : "N.A."}</span>
+                                    </span>
+                                  </div>
+                                  <div className="sub-container2">
+                                    <span className="ps-5">Rating - {el?.rating ? el?.rating : 2}</span>
+                                    {/* <span className="phone-icon">
                                                                 {
                                                                     isAuthorized ?
                                                                         <a href={`tel: ${el.phone}`}>
@@ -642,24 +643,24 @@ function Demoproduct() {
                                                                         </a>
                                                                         : <FaPhoneVolume />}
                                                             </span> */}
-                                      <span className="phone-icon"
-                                        onClick={() => {
-                                          if (!isAuthorized) {
-                                            // If the user is not authorized, show the sign-in modal
-                                            setSignInModal(true);
-                                          } else if (!currentUserHasActiveSubscription) {
-                                            // If the user has an active subscription, close the modal
-                                            handleClose(true);
-                                          } else {
-                                            // If the user does not have an active subscription, show the price modal
-                                            window.location.href = `tel:${el.phone}`;
+                                    <span className="phone-icon"
+                                      onClick={() => {
+                                        if (!isAuthorized) {
+                                          // If the user is not authorized, show the sign-in modal
+                                          setSignInModal(true);
+                                        } else if (!currentUserHasActiveSubscription) {
+                                          // If the user has an active subscription, close the modal
+                                          handleClose(true);
+                                        } else {
+                                          // If the user does not have an active subscription, show the price modal
+                                          window.location.href = `tel:${el.phone}`;
 
-                                          }
-                                        }}
+                                        }
+                                      }}
 
-                                      >  <LuPhoneCall /></span>
-                                    </div>
-                                
+                                    >  <LuPhoneCall /></span>
+                                  </div>
+
                                 </Col>
                                 {/* <Col xs={6} lg={12}
                                                     className="d-flex justify-content-center align-items-center py-4"

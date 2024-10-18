@@ -13,6 +13,9 @@ export const getProducts = async () => {
 export const getAllProducts = async (query) => {
   return axiosApiInstance.get(`${serverUrl}/?${query}`);
 };
+export const productsyoumaylike = async (query) => {
+  return axiosApiInstance.get(`${serverUrl}/getProductYouMayLike`);
+};
 
 export const getAllProductsBySupplierId = async (id) => {
   return axiosApiInstance.get(`${serverUrl}/getAllProductsBySupplierId/${id}`);
